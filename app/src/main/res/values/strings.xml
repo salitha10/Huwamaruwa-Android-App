@@ -91,5 +91,21 @@
     <string name="addPhoto_btn">ADD PHOTO</string>
     <string name="takePhoto_btn">TAKE PHOTO</string>
 
+    //main Navigation side bar
+    <string name="nav_home_title">Home</string>
+    <string name="nav_customer_care_title">Customer Care</string>
+    <string name="nav_admin_panel_title">Admin Panel</string>
+    <string name="nav_notifications_title">Notifications</string>
+    <string name="nav_messages_title">Messages</string>
+    <string name="nav_history_title">History</string>
+    <string name="nav_rental_requests_title">Rental Requests</string>
+    <string name="nav_delivery_title">Delivery</string>
+    <string name="nav_categories_title">Categories</string>
+    <string name="nav_favorites_title">Favorites</string>
+    <string name="nav_login_title">Log In</string>
+    <string name="nav_logout_title">Log Out</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
 
 </resources>
