@@ -1,0 +1,95 @@
+<resources>
+
+    //Salitha
+    <string name="app_name">Huwamaruwa</string>
+    <string name="product_review1">Product Quality</string>
+    <string name="product_review2">Support</string>
+    <string name="product_review3">Price</string>
+    <string name="buyer_review1">Payment</string>
+    <string name="buyer_review2">Product Handling</string>
+    <string name="buyer_review3">Communication</string>
+    <string name="btn_done">Done</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_edit">Edit</string>
+    <string name="txt_review">reviews</string>
+    <string name="txt_location_sort">Sort by Location</string>
+    <string name="btn_pick">Picked Up</string>
+    <string name="btn_intransit">In Transit</string>
+    <string name="btn_delivered">Delivered</string>
+    <string name="txt_notdelivered">Not Delivered</string>
+    <string name="txt_newlistings">New Listings</string>
+    <string name="txt_approved">Approved</string>
+    <string name="txt_perday">per day</string>
+    <string name="btn_accept">Accept</string>
+    <string name="btn_reject">Reject</string>
+
+    //Esala
+    <string name="lblproductName">Product Name</string>
+    <string name="lblCategory">Category</string>
+    <string name="lblQuantity">Quantity</string>
+    <string name="lblRequiredDate">Required Date</string>
+    <string name="lblBudget">Budget</string>
+    <string name="lblSave">Save</string>
+    <string name="lblCancel">Cancel</string>
+    <string name="btnsignUp">Sign up</string>
+    <string name="btnsignIn">SignIn</string>
+    <string name="lblAlreadyHaveAnAccount">Already have an Account?</string>
+    <string name="lbldonthaveanAccount">Don\'t have an Account?</string>
+    <string name="lblMyOffer">My Offer</string>
+    <string name="lblRental">Rental</string>
+    <string name="btnDelete">Delete</string>
+    <string name="btnEdit">Edit</string>
+    <string name="lblEditProfile">Edit Profile</string>
+    <string name="lblRequestProduct">Request Product</string>
+    <string name="lblProductRequest">Product Request</string>
+    <string name="lblProfile">Profile</string>
+    <string name="btnAccept">Accept</string>
+    <string name="btnReject">Reject</string>
+    <string name="btnEditProfile">Edit Profile</string>
+    <string name="btnUpgradeToPremium">Upgrade To Premium</string>
+    <string name="btnSubmit">Submit</string>
+
+    //Danuja
+    <string name="showOnlyPremiumRentals">show Only Premium Rentals</string>
+    <string name="location">Location</string>
+    <string name="category">Category</string>
+    <string name="vrfyPremiumRentals">Verify Premium Rentals</string>
+    <string name="doorStpDelivery">Door Step Delivery</string>
+    <string name="weTkeResponsibility">We Take All Responsibility</string>
+    <string name="recentView">Recently Viewed</string>
+    <string name="viewMore">View More</string>
+    <string name="forYou">For You</string>
+    <string name="rentProduct">Rent Product</string>
+    <string name="specification">Specification</string>
+    <string name="feedback">FeedBack</string>
+    <string name="premiumProduct">Premium Product</string>
+    <string name="premiumProductDescrip">Dont Do Anything.just Rent ,We take all the Responsibilities and Delivery</string>
+    <string name="visitStore">Visit Store</string>
+    <string name="recentRentals">Recent Rentals</string>
+    <string name="checkouts">Checkout</string>
+    <string name="rentalDetails">Rental Details</string>
+    <string name="address">Address</string>
+    <string name="rentDate">Rent Date</string>
+    <string name="contactNumber">Contact Number</string>
+    <string name="duration">Duration</string>
+    <string name="total">Total</string>
+    <string name="deposit">Deposit</string>
+    <string name="pay">Pay</string>
+    <string name="chooseYourPaymentPlan">Choose Your Payment Plan</string>
+    <string name="oneTimePayment">One Time Payment</string>
+    <string name="cashOnDelivery">Cash On Delivery</string>
+    <string name="sendRequest">Send Request</string>
+
+    //Kavindya
+    <string name="select_category">select Category</string>
+    <string name="select_location">select Location</string>
+    <string name="Property_Title">Property Title</string>
+    <string name="description">Description</string>
+    <string name="contact_number">Contact Number</string>
+    <string name="Rental_fee">Rental Fee</string>
+    <string name="deposit_Amount">Deposit Amount</string>
+    <string name="addPhoto_btn">ADD PHOTO</string>
+    <string name="takePhoto_btn">TAKE PHOTO</string>
+
+
+</resources>
