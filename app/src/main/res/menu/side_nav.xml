@@ -26,9 +26,10 @@
             android:icon="@drawable/favorite_icon"
             android:title="@string/nav_favorites_title" />
     </group>
-    <group android:checkableBehavior="single">
+
         <item android:title="@string/nav_admin_panel_title">
             <menu>
+                <group android:checkableBehavior="single">
                 <item
                     android:id="@+id/admin_delivery"
                     android:icon="@drawable/delivery_icon"
@@ -37,8 +38,9 @@
                     android:id="@+id/admin_categories"
                     android:icon="@drawable/category_icon"
                     android:title="@string/nav_categories_title" />
+                </group>
             </menu>
         </item>
-    </group>
+
 
 </menu>
