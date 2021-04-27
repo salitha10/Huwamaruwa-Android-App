@@ -79,6 +79,10 @@
     <string name="oneTimePayment">One Time Payment</string>
     <string name="cashOnDelivery">Cash On Delivery</string>
     <string name="sendRequest">Send Request</string>
+    <string name="VerifiedPremiumSellers">Verified Premium Sellers</string>
+    <string name="price">Price</string>
+    <string name="title">Title</string>
+    <string name="time">Time</string>
 
     //Kavindya
     <string name="select_category">select Category</string>
@@ -108,6 +112,8 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="user_name">User Name</string>
     <string name="user_type">User Type</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

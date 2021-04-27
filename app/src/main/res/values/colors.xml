@@ -24,5 +24,6 @@
     <color name="btnBlue">#1BB5AC</color>
     <color name="btnRed">#EE0000</color>
     <color name="vetorGreen">#88E9AF</color>
-
+    <color name="txtLightGrey">#FF888686</color>
+    <color name="lightBlack">#6B000000</color>
 </resources>

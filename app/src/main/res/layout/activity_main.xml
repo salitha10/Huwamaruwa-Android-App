@@ -20,9 +20,10 @@
 
     </com.google.android.material.navigation.NavigationView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         >
 
         <include
@@ -31,12 +32,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/menu_icon" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="This is The Home page" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <fragment
+            android:id="@+id/fragmentDefault"
+            android:name="com.example.huwamaruwa.Home_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 </androidx.drawerlayout.widget.DrawerLayout>
