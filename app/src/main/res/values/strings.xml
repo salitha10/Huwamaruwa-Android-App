@@ -83,6 +83,9 @@
     <string name="price">Price</string>
     <string name="title">Title</string>
     <string name="time">Time</string>
+    <string name="accountRating">Account Rating :</string>
+    <string name="minimumRentalTime">Minimum Rental Time :</string>
+    <string name="maximumRentalTime">Maximum Rental Time :</string>
 
     //Kavindya
     <string name="select_category">select Category</string>
