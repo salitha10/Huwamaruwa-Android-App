@@ -86,6 +86,8 @@
     <string name="accountRating">Account Rating :</string>
     <string name="minimumRentalTime">Minimum Rental Time :</string>
     <string name="maximumRentalTime">Maximum Rental Time :</string>
+    <string name="paymentOptionNote1">You can Pay Initial Deposit via cash on dilevry Method</string>
+    <string name="paymentOptionNote2">Only You Have to do ,Make Payment To Our Dilevry Agent</string>
 
     //Kavindya
     <string name="select_category">select Category</string>
