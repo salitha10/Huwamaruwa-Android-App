@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "997694266958",
+    "project_id": "huwamaruwadb",
+    "storage_bucket": "huwamaruwadb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:997694266958:android:08a4b440bed057feec2d1f",
+        "android_client_info": {
+          "package_name": "com.example.huwamaruwa"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "997694266958-buqg0ig12ikvb49vbs71t7ul5bo9r72m.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZYoPIHAnxOQHE0WxJ2ZPf7vZcjZv66Mc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "997694266958-buqg0ig12ikvb49vbs71t7ul5bo9r72m.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
