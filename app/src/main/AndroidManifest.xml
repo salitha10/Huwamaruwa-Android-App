@@ -9,8 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Huwamaruwa">
-        <activity android:name=".FireStore_crud" android:exported="true"></activity>
+        <activity android:name=".Login"></activity>
+        <activity android:name=".SplashScreen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".FireStore_crud"
+            android:exported="true" />
         <activity android:name=".singleProduct.RequestRent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,16 +27,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity android:name=".PaymentOption"></activity>
-        <activity android:name=".singleProduct.NonPremiumProduct"></activity>
-        <activity android:name=".singleProduct.PremiumProduct">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity android:name=".PaymentOption" />
+        <activity android:name=".singleProduct.NonPremiumProduct" />
+        <activity android:name=".singleProduct.PremiumProduct"></activity>
         <activity android:name=".MainActivity" />
 
         <meta-data
