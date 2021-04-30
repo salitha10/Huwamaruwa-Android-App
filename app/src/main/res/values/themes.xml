@@ -13,5 +13,6 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >#00000000</item>
         <!-- Customize your theme here. -->
+        <item name="android:windowContentTransitions">true</item>
     </style>
 </resources>
