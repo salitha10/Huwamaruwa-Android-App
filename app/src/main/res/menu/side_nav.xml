@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/home_icon"
+            android:title="@string/nav_home_title" />
+        <item
+            android:id="@+id/nav_customer_care"
+            android:icon="@drawable/customer_care_icon"
+            android:title="@string/nav_customer_care_title" />
+        <item
+            android:id="@+id/nav_messages"
+            android:icon="@drawable/message_icon"
+            android:title="@string/nav_messages_title" />
+        <item
+            android:id="@+id/nav_notifications"
+            android:icon="@drawable/notifications_icon"
+            android:title="@string/nav_notifications_title" />
+        <item
+            android:id="@+id/nav_rental_requests"
+            android:icon="@drawable/rental_request_icon"
+            android:title="@string/nav_rental_requests_title" />
+        <item
+            android:id="@+id/nav_favorites"
+            android:icon="@drawable/favorite_icon"
+            android:title="@string/nav_favorites_title" />
+    </group>
+
+        <item android:title="@string/nav_admin_panel_title">
+            <menu>
+                <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/admin_delivery"
+                    android:icon="@drawable/delivery_icon"
+                    android:title="@string/nav_delivery_title" />
+                <item
+                    android:id="@+id/admin_categories"
+                    android:icon="@drawable/category_icon"
+                    android:title="@string/nav_categories_title" />
+                </group>
+            </menu>
+        </item>
+
+
+</menu>

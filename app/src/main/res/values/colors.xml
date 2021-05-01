@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    //Salitha
+    <color name="theme_green">#1BB55C</color>
+    <color name="card_ash1">#F0F0F0</color>
+    <color name="card_ash2">#F5F5F5</color>
+    <color name="card_ash3">#E0E0E0</color>
+    <color name="chat_bar">#9BEFC7</color>
+    <color name="purple">#6200EE</color>
+
+    //Danuja
+    <color name="GreenMain">#1BB55C</color>
+    <color name="lightGreenBtn">#F6FCF9</color>
+    <color name="lightGrayBtn">#F0F0F0</color>
+    <color name="btnBlue">#1BB5AC</color>
+    <color name="btnRed">#EE0000</color>
+    <color name="vetorGreen">#88E9AF</color>
+    <color name="txtLightGrey">#FF888686</color>
+    <color name="lightBlack">#6B000000</color>
+
+
+    //kavindya
+    <color name="View_line">#A6A6A6</color>
+</resources>
