@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "1085639648422",
-    "project_id": "huwamaruwaapp-d1713",
-    "storage_bucket": "huwamaruwaapp-d1713.appspot.com"
+    "project_number": "365969962153",
+    "firebase_url": "https://huwamaruwa-3e019-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "huwamaruwa-3e019",
+    "storage_bucket": "huwamaruwa-3e019.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1085639648422:android:dcbb59ecb2b07e686c4067",
+        "mobilesdk_app_id": "1:365969962153:android:315076ff35ff9384bbe5b8",
         "android_client_info": {
           "package_name": "com.example.huwamaruwa"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1085639648422-p6nsrtviip08tb9ik7v2f9fob4uqu5mh.apps.googleusercontent.com",
+          "client_id": "365969962153-13sv6ncjal0tjcmvd1b9e25uhkgm2ori.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyB8tx_apjHqGNWwUb53v_Yej39BJu2qqQU"
+          "current_key": "AIzaSyCLVJnUqXkcz3Z-kvH4fJSqsK4apU5NrDo"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1085639648422-p6nsrtviip08tb9ik7v2f9fob4uqu5mh.apps.googleusercontent.com",
+              "client_id": "365969962153-13sv6ncjal0tjcmvd1b9e25uhkgm2ori.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

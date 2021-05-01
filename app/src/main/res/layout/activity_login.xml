@@ -92,7 +92,6 @@
             android:text="@string/btnsignUp"
             android:background="#00000000"/>
 
-
     </LinearLayout>
 
 
