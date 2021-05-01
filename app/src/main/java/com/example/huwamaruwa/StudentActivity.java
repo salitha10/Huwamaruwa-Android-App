@@ -134,6 +134,11 @@ public class StudentActivity extends AppCompatActivity {
                     student.setName(name.getText().toString().trim());
                     student.setAddress(address.getText().toString().trim());
                     student.setConNo(Integer.parseInt(phone.getText().toString().trim()));
+                    
+                    //set values
+                    dbf = FirebaseDatabase.getInstance().getReference().child("Student").child("Std1");
+                    dbf.setValue(student);
+                    clearContent();
 
                     Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT);
                 }
