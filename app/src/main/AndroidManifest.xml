@@ -17,9 +17,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".FireStore_crud"
-            android:exported="true" />
         <activity android:name=".singleProduct.RequestRent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
