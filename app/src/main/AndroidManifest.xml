@@ -17,6 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 28bc6caaa75e67b0e139ccdd048557f64807d6fc
         <activity android:name=".singleProduct.RequestRent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

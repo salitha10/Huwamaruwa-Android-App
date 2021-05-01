@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.storage.StorageReference;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //define variables
@@ -23,6 +24,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Fragment fragment;
     FragmentTransaction fragmentTransaction;
     FragmentManager fragmentManager;
+    StorageReference storageReference;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
