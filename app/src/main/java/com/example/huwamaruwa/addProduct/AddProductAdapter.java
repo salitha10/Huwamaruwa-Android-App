@@ -57,4 +57,6 @@ public class AddProductAdapter extends RecyclerView.Adapter<AddProductAdapter.Vi
             parentLayout = itemView.findViewById(R.id.parent_layout);
         }
     }
+
+
 }

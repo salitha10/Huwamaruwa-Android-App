@@ -139,7 +139,7 @@
                             android:textSize="16sp" />
 
                         <RatingBar
-                            android:id="@+id/ratingBar2"
+                            android:id="@+id/pUsabilityRatingBar"
                             style="@style/Widget.AppCompat.RatingBar.Small"
                             android:layout_width="94dp"
                             android:layout_height="wrap_content"

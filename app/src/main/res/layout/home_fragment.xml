@@ -25,7 +25,7 @@
             app:layout_constraintVertical_bias="0.007">
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginEnd="1dp"
@@ -57,7 +57,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/txtProductQuality"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="75dp"
@@ -78,10 +78,10 @@
             android:id="@+id/switch1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintBaseline_toBaselineOf="@+id/textView2"
+            app:layout_constraintBaseline_toBaselineOf="@+id/txtProductQuality"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/textView2" />
+            app:layout_constraintStart_toEndOf="@+id/txtProductQuality" />
 
         <ImageView
             android:id="@+id/imageView9"
@@ -92,10 +92,10 @@
             android:layout_marginRight="8dp"
             android:src="@drawable/done"
             app:layout_constraintBottom_toTopOf="@+id/imageView10"
-            app:layout_constraintEnd_toStartOf="@+id/textView3"
+            app:layout_constraintEnd_toStartOf="@+id/txtProductHandling"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintTop_toBottomOf="@+id/txtProductQuality" />
 
         <ImageView
             android:id="@+id/imageView10"
@@ -106,7 +106,7 @@
             android:layout_marginRight="8dp"
             android:src="@drawable/delivery"
             app:layout_constraintBottom_toTopOf="@+id/imageView11"
-            app:layout_constraintEnd_toStartOf="@+id/textView4"
+            app:layout_constraintEnd_toStartOf="@+id/txtPPrice"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView9" />
@@ -125,7 +125,7 @@
             app:layout_constraintTop_toBottomOf="@+id/imageView10" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/txtProductHandling"
             android:layout_width="164dp"
             android:layout_height="20dp"
             android:layout_marginEnd="75dp"
@@ -138,7 +138,7 @@
             app:layout_constraintTop_toTopOf="@+id/imageView9" />
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/txtPPrice"
             android:layout_width="163dp"
             android:layout_height="20dp"
             android:layout_marginEnd="75dp"
@@ -271,7 +271,7 @@
                 android:textSize="18sp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnDone"
                 style="@style/Widget.AppCompat.Button.Borderless"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
