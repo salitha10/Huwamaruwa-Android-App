@@ -22,25 +22,26 @@
         </activity>
         <activity
             android:name=".StudentActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />
         <activity android:name=".singleProduct.RequestRent">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+        </activity>
 
-            </intent-filter>
+        <activity android:name=".ProfileView">
 
         </activity>
+        <activity android:name=".UserProfileEdit" />
+        <activity android:name=".BuyerRentalRequest" />
+        <activity android:name=".SignUp" />
 
         <activity android:name=".PaymentOption" />
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
         <activity android:name=".MainActivity" >
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
