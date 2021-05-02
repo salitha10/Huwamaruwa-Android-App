@@ -76,26 +76,26 @@ public class addProduct extends AppCompatActivity {
             public void onClick(View view) {
                 dbRef = FirebaseDatabase.getInstance().getReference().child("Product");
                 sdbRef = FirebaseStorage.getInstance().getReference().child("Product Images");
-               try {
-                   if (TextUtils.isEmpty(edtTitle.getText().toString().trim())){
-                       Toast.makeText(addProduct.this, "Title Required", Toast.LENGTH_SHORT).show();
-                   }else if (TextUtils.isEmpty(edtPrice.getText().toString().trim())){
-                       Toast.makeText(addProduct.this, "Price Required", Toast.LENGTH_SHORT).show();
+                try {
+                    if (TextUtils.isEmpty(edtTitle.getText().toString().trim())){
+                        Toast.makeText(addProduct.this, "Title Required", Toast.LENGTH_SHORT).show();
+                    }else if (TextUtils.isEmpty(edtPrice.getText().toString().trim())){
+                        Toast.makeText(addProduct.this, "Price Required", Toast.LENGTH_SHORT).show();
 
-                   }else if (TextUtils.isEmpty(edtDes.getText().toString().trim())){
-                       Toast.makeText(addProduct.this, "Description Required", Toast.LENGTH_SHORT).show();
+                    }else if (TextUtils.isEmpty(edtDes.getText().toString().trim())){
+                        Toast.makeText(addProduct.this, "Description Required", Toast.LENGTH_SHORT).show();
 
-                   }else if(prev_img_list.isEmpty()){
-                       Toast.makeText(addProduct.this, "Image Required", Toast.LENGTH_SHORT).show();
-                   } else {
+                    }else if(prev_img_list.isEmpty()){
+                        Toast.makeText(addProduct.this, "Image Required", Toast.LENGTH_SHORT).show();
+                    } else {
 
-                       loadingProgress.startProgress();
-                       imageUploader(0);
+                        loadingProgress.startProgress();
+                        imageUploader(0);
 
-                   }
-               }catch (Exception e){
+                    }
+                }catch (Exception e){
 
-               }
+                }
             }
         });
     }
@@ -109,8 +109,8 @@ public class addProduct extends AppCompatActivity {
         product.setImages2(imgData[1]);
         product.setImages3(imgData[2]);
         product.setImages4(imgData[3]);
-
-        dbRef.push().setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
+        product.setId(dbRef.push().getKey());
+        dbRef.child(product.getId()).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(addProduct.this, "Product Added Successfully", Toast.LENGTH_SHORT).show();
@@ -127,27 +127,39 @@ public class addProduct extends AppCompatActivity {
 
 
     private void imageUploader(int i) {
-       if(i >= prev_img_list.size()){
-           dataUploader();
-       } else{
-           StorageReference storageReference  = sdbRef.child(System.currentTimeMillis() +"."+ GetFileExtension(prev_img_list.get(i)));
-           int finalI = i;
-           storageReference.putFile(prev_img_list.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-               @Override
-               public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                   Toast.makeText(addProduct.this, "image "+ (finalI +1)+" uploaded", Toast.LENGTH_SHORT).show();
-                   imgData[finalI] = taskSnapshot.getUploadSessionUri().toString();
-                   imageUploader(finalI+1);
-               }
-           }).addOnFailureListener(new OnFailureListener() {
-               @Override
-               public void onFailure(@NonNull Exception e) {
-                   Toast.makeText(addProduct.this, "image "+(finalI +1 )+" uploading Failed", Toast.LENGTH_SHORT).show();
-                   imageUploader(finalI+1);
-               }
-           });
+        if(i >= prev_img_list.size()){
+            dataUploader();
+        } else{
+            StorageReference storageReference  = sdbRef.child(System.currentTimeMillis() +"."+ GetFileExtension(prev_img_list.get(i)));
+            int finalI = i;
+            storageReference.putFile(prev_img_list.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    Toast.makeText(addProduct.this, "image "+ (finalI +1)+" uploaded", Toast.LENGTH_SHORT).show();
+                    storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            imgData[finalI] =  uri.toString();
+                            imageUploader(finalI+1);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(addProduct.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            imageUploader(finalI+1);
+                        }
+                    });
 
-       }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(addProduct.this, "image "+(finalI +1 )+" uploading Failed", Toast.LENGTH_SHORT).show();
+                    imageUploader(finalI+1);
+                }
+            });
+
+        }
     }
 
 
@@ -167,10 +179,10 @@ public class addProduct extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 100 && resultCode == RESULT_OK){
-                Toast.makeText(this, "Multiple Image selected", Toast.LENGTH_SHORT).show();
-                prev_img_list = data.getParcelableArrayListExtra(FishBun.INTENT_PATH);
+            Toast.makeText(this, "Multiple Image selected", Toast.LENGTH_SHORT).show();
+            prev_img_list = data.getParcelableArrayListExtra(FishBun.INTENT_PATH);
 
-                initRecycler();
+            initRecycler();
 
         }
     }

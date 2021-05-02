@@ -13,11 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Huwamaruwa">
         <activity android:name=".addProduct.addProduct">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".StudentActivity"
@@ -28,16 +24,18 @@
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen"></activity>
         <activity android:name=".singleProduct.RequestRent">
+
+        </activity>
+        <activity android:name=".PaymentOption" />
+        <activity android:name=".singleProduct.NonPremiumProduct" />
+        <activity android:name=".singleProduct.PremiumProduct" />
+        <activity android:name=".MainActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PaymentOption" />
-        <activity android:name=".singleProduct.NonPremiumProduct" />
-        <activity android:name=".singleProduct.PremiumProduct" />
-        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
