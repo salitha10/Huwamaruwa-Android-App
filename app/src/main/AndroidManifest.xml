@@ -77,8 +77,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".singleProduct.RequestRent" />
-        <activity android:name=".PaymentOption" />
-        <activity android:name=".singleProduct.NonPremiumProduct" />
+
         <activity android:name=".singleProduct.PremiumProduct" />
         <activity android:name=".MainActivity" />
         <activity
@@ -99,32 +98,25 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-      
-        <activity android:name=".singleProduct.RequestRent" />
+
+
         <activity android:name=".payment.PaymentOption" >
 
         </activity>
-        <activity android:name=".singleProduct.PremiumProduct" />
-        <activity android:name=".MainActivity">
 
-        </activity>
+
+
         <activity android:name=".RentalHistory.RentalHistory"/>
         <activity android:name=".PremiumStore.PremiumStore"/>
 
-        <activity
-            android:name=".ProductReviews.AddProductReview"
-            android:exported="true" />
-        <activity
-            android:name=".ProductReviews.EditReview"
-            android:exported="true" />
-        <activity
-            android:name=".ProductReviews.AllProductReviews"
-            android:exported="true" />
+
+
+
         <activity android:name=".addProduct.AddNewItem">
         </activity>
-        <activity android:name=".SignUp">
 
-        </activity>
+
+
         <activity android:name=".SplashScreen" />
 
         <activity android:name=".AddCategory" />
