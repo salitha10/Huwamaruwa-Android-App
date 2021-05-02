@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProductReviews.addProductReview">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="378dp"
+        android:layout_height="220dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="217dp">
+
+            <ImageView
+                android:id="@+id/productThumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="157dp"
+                android:scaleType="centerCrop"
+                android:src="@color/theme_green" />
+
+            <TextView
+                android:id="@+id/txtproduct"
+                android:layout_width="307dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/productThumbnail"
+                android:layout_marginTop="2dp"
+                android:maxLines="3"
+                android:paddingLeft="8dp"
+                android:paddingTop="6dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="2dp"
+                android:text="Product Name"
+                android:textColor="#222"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtseller"
+                android:layout_width="307dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtproduct"
+                android:layout_marginTop="0dp"
+                android:maxLines="3"
+                android:paddingLeft="8dp"
+                android:paddingTop="0dp"
+                android:paddingRight="8dp"
+                android:paddingBottom="8dp"
+                android:text="By Seller"
+                android:textColor="#666"
+                android:textSize="12dp" />
+
+            <com.like.LikeButton
+                android:id="@+id/btnFav"
+                android:layout_width="57dp"
+                android:layout_height="51dp"
+                android:layout_below="@+id/productThumbnail"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginStart="7dp"
+                android:layout_marginLeft="7dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginEnd="7dp"
+                android:layout_marginRight="7dp"
+                android:layout_marginBottom="5dp"
+                android:layout_toEndOf="@+id/txtproduct"
+                android:layout_toRightOf="@+id/txtproduct"
+                app:anim_scale_factor="2"
+                app:icon_size="10dp"
+                app:icon_type="heart" />
+
+
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/txtProductQuality"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/product_review1"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/pQualityRatingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view"
+        app:layout_constraintVertical_bias="0.83" />
+
+    <RatingBar
+        android:id="@+id/pPriceRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pUsabilityRatingBar" />
+
+    <TextView
+        android:id="@+id/txtPPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/product_review3"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/pPriceRatingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pUsabilityRatingBar"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <TextView
+        android:id="@+id/txtProductHandling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/buyer_review2"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/pUsabilityRatingBar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pQualityRatingBar"
+        app:layout_constraintVertical_bias="0.448" />
+
+    <RatingBar
+        android:id="@+id/pQualityRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/card_view" />
+
+    <RatingBar
+        android:id="@+id/pUsabilityRatingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pQualityRatingBar" />
+
+    <EditText
+        android:id="@+id/editTextProductComments"
+        android:layout_width="325dp"
+        android:layout_height="67dp"
+        android:ems="10"
+        android:hint="Comments (Optional)"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pPriceRatingBar"
+        app:layout_constraintVertical_bias="0.322" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:text="Done"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/button2"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:backgroundTint="#FFFFFF"
+        android:text="Cancel"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintHorizontal_bias="0.913"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

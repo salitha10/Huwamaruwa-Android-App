@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.huwamaruwa">
+
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -12,22 +13,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Huwamaruwa">
+
+        <activity android:name=".ProductReviews.addProductReview"
+        android:exported="true"> </activity>
+
         <activity android:name=".addProduct.addProduct">
 
         </activity>
         <activity
             android:name=".StudentActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true"></activity>
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
-        <activity android:name=".SplashScreen"></activity>
+        <activity android:name=".SplashScreen" />
         <activity android:name=".singleProduct.RequestRent">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+            </intent-filter>
 
         </activity>
 
@@ -36,17 +40,13 @@
         <activity android:name=".singleProduct.PremiumProduct" />
         <activity android:name=".MainActivity" >
 
-        <activity
-            android:name=".StudentActivity"
-            android:exported="true">
-
-        </activity>
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <meta-data
