@@ -1,8 +1,10 @@
-package com.example.huwamaruwa;
+package com.example.huwamaruwa.buyerRentalRequestManage;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.huwamaruwa.R;
 
 public class BuyerRentalRequest extends AppCompatActivity {
 

@@ -5,15 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".BuyerRentalRequestFragment">
+    tools:context=".buyerRentalRequestManage.BuyerRentalRequest">
 
     <!-- TODO: Update blank fragment layout -->
+
+    <include layout="@layout/toolbar"/>
 
     <TextView
         android:layout_width="172dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
         android:text="Buyer Requests"
+        android:textAlignment="center"
         android:textColor="@color/theme_green"
         android:textSize="18dp" />
 
