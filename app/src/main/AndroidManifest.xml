@@ -44,12 +44,16 @@
 
 
 
+
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />
         <activity android:name=".singleProduct.RequestRent" />
 
 
+
+
+        <activity android:name=".BuyerRentalRequest" />
 
         <activity android:name=".PaymentOption" />
         <activity android:name=".singleProduct.NonPremiumProduct" />
