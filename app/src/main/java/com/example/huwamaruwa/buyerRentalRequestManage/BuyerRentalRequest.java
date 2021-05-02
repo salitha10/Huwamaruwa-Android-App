@@ -89,6 +89,7 @@ public class BuyerRentalRequest extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Failed adding the request", Toast.LENGTH_SHORT).show();
 
         }
-    }
 
+
+    }
 }
