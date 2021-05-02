@@ -5,28 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-<<<<<<< HEAD
     tools:context=".buyerRentalRequestManage.BuyerRentalRequest">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <include layout="@layout/toolbar"/>
 
-=======
-    tools:context=".BuyerRentalRequestFragment">
+
+
 
     <!-- TODO: Update blank fragment layout -->
 
->>>>>>> 2768457 (update)
     <TextView
         android:layout_width="172dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
         android:text="Buyer Requests"
-<<<<<<< HEAD
         android:textAlignment="center"
-=======
->>>>>>> 2768457 (update)
         android:textColor="@color/theme_green"
         android:textSize="18dp" />
 
@@ -38,18 +32,13 @@
         android:layout_margin="8dp">
 
         <TextView
-            android:id="@+id/textView10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lblproductName"
             android:textSize="18dp"/>
 
         <EditText
-<<<<<<< HEAD
             android:id="@+id/prouctNameEdit"
-=======
-            android:id="@+id/editTextTextPersonName4"
->>>>>>> 2768457 (update)
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -58,18 +47,13 @@
             android:layout_marginBottom="30dp"/>
 
         <TextView
-            android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/category"
             android:textSize="18dp"/>
 
         <EditText
-<<<<<<< HEAD
             android:id="@+id/productCategoryEdit"
-=======
-            android:id="@+id/editTextTextPersonName5"
->>>>>>> 2768457 (update)
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -78,22 +62,13 @@
             android:layout_marginBottom="30dp"/>
 
         <TextView
-<<<<<<< HEAD
-            android:id="@+id/txtPremiumProduct_price"
-=======
-            android:id="@+id/textView12"
->>>>>>> 2768457 (update)
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lblQuantity"
             android:textSize="18dp"/>
 
         <EditText
-<<<<<<< HEAD
             android:id="@+id/productQuantityEdit"
-=======
-            android:id="@+id/editTextNumber4"
->>>>>>> 2768457 (update)
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -103,18 +78,14 @@
             android:layout_marginBottom="30dp"/>
 
         <TextView
-            android:id="@+id/textView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lblRequiredDate"
             android:textSize="18dp"/>
 
         <EditText
-<<<<<<< HEAD
+
             android:id="@+id/requiredDateEdit"
-=======
-            android:id="@+id/editTextDate2"
->>>>>>> 2768457 (update)
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -124,22 +95,13 @@
             android:layout_marginBottom="30dp"/>
 
         <TextView
-<<<<<<< HEAD
-            android:id="@+id/txtPremiumProduct_time"
-=======
-            android:id="@+id/textView14"
->>>>>>> 2768457 (update)
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/lblBudget"
             android:textSize="18dp"/>
 
         <EditText
-<<<<<<< HEAD
             android:id="@+id/budgetEdit"
-=======
-            android:id="@+id/editTextTextPersonName6"
->>>>>>> 2768457 (update)
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -153,29 +115,17 @@
             android:orientation="horizontal">
 
             <Button
-<<<<<<< HEAD
-                android:id="@+id/btnPremiumProduct_rentProduct"
-=======
-                android:id="@+id/button4"
->>>>>>> 2768457 (update)
+                android:id="@+id/buyerReqCancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lblCancel"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="100dp"/>
-<<<<<<< HEAD
-
             <Button
                 android:id="@+id/buyerReqsubmit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:onClick="Save"
-=======
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
->>>>>>> 2768457 (update)
                 android:text="@string/btnSubmit" />
         </LinearLayout>
 

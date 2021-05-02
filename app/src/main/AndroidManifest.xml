@@ -43,9 +43,6 @@
 
         </activity>
 
-
-        <activity android:name=".BuyerRentalRequest" />
-
         <activity android:name=".PaymentOption" />
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
