@@ -76,6 +76,9 @@ public class addProduct extends AppCompatActivity {
             public void onClick(View view) {
                 dbRef = FirebaseDatabase.getInstance().getReference().child("Product");
                 sdbRef = FirebaseStorage.getInstance().getReference().child("Product Images");
+
+              
+              
                 try {
                     if (TextUtils.isEmpty(edtTitle.getText().toString().trim())){
                         Toast.makeText(addProduct.this, "Title Required", Toast.LENGTH_SHORT).show();
@@ -96,6 +99,9 @@ public class addProduct extends AppCompatActivity {
                 }catch (Exception e){
 
                 }
+
+  
+  
             }
         });
     }
@@ -109,8 +115,10 @@ public class addProduct extends AppCompatActivity {
         product.setImages2(imgData[1]);
         product.setImages3(imgData[2]);
         product.setImages4(imgData[3]);
+
         product.setId(dbRef.push().getKey());
         dbRef.child(product.getId()).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {
+
             @Override
             public void onSuccess(Void aVoid) {
                 Toast.makeText(addProduct.this, "Product Added Successfully", Toast.LENGTH_SHORT).show();
@@ -127,6 +135,7 @@ public class addProduct extends AppCompatActivity {
 
 
     private void imageUploader(int i) {
+
         if(i >= prev_img_list.size()){
             dataUploader();
         } else{
@@ -160,6 +169,7 @@ public class addProduct extends AppCompatActivity {
             });
 
         }
+
     }
 
 
@@ -179,10 +189,12 @@ public class addProduct extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == 100 && resultCode == RESULT_OK){
+
             Toast.makeText(this, "Multiple Image selected", Toast.LENGTH_SHORT).show();
             prev_img_list = data.getParcelableArrayListExtra(FishBun.INTENT_PATH);
 
             initRecycler();
+
 
         }
     }

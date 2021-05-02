@@ -25,11 +25,23 @@
         <activity android:name=".SplashScreen"></activity>
         <activity android:name=".singleProduct.RequestRent">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+
         </activity>
+
         <activity android:name=".PaymentOption" />
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
         <activity android:name=".MainActivity" >
+
+        <activity
+            android:name=".StudentActivity"
+            android:exported="true">
+
+        </activity>
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
