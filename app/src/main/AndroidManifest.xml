@@ -32,7 +32,9 @@
             android:name=".StudentActivity"
             android:exported="true">
         </activity>
+
         <activity android:name=".SignUp" />
+
 
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
@@ -41,11 +43,13 @@
 
         </activity>
 
+
+        <activity android:name=".BuyerRentalRequest" />
+
         <activity android:name=".PaymentOption" />
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
         <activity android:name=".MainActivity" >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
