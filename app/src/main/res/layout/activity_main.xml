@@ -35,7 +35,7 @@
 
         <fragment
             android:id="@+id/fragmentDefault"
-            android:name="com.example.huwamaruwa.Home_fragment"
+            android:name="com.example.huwamaruwa.Home.Home_fragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 

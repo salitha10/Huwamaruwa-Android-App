@@ -1,6 +1,9 @@
 package com.example.huwamaruwa.Models;
 
 public class Product {
+
+    private String id;
+
     private String price;
     private String title;
     private String description;
@@ -10,6 +13,15 @@ public class Product {
     private String images4;
 
     public Product() {
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
 
