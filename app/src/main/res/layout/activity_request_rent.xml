@@ -217,7 +217,11 @@
     </LinearLayout>
 
     <Button
+<<<<<<< HEAD
         android:id="@+id/btnRequestRent_form_send_request"
+=======
+        android:id="@+id/btnPremiumProduct_rentProduct"
+>>>>>>> 004f463 (SignUp)
         android:layout_width="267dp"
         android:layout_height="56dp"
         android:layout_gravity="center_horizontal|center_vertical"
