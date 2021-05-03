@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,7 +58,7 @@ public class addProductReview extends AppCompatActivity {
         super.onResume();
 
         //Display product details
-        productID = "MZi84P5g9N1mXLXXbbL";
+        productID = "-MZiawuCVaZzERfmHlpn";
         dbfProduct = FirebaseDatabase.getInstance().getReference().child("Product").child(productID);
 
         //Get data from product
@@ -66,10 +67,26 @@ public class addProductReview extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 product.setText(snapshot.child("title").getValue().toString());
-                sellerID = snapshot.child("buyerId").getValue().toString();
-                imageURL = snapshot.child("images[3]").getValue().toString();
+                sellerID = snapshot.child("sellerID").getValue().toString();
 
-                //Glide.with(getApplicationContext()).load(imageURL).centerCrop().placeholder(R.drawable.ic_add_a_photo_gray_100dp).into(thumbnail);
+                imageURL = snapshot.child("images4").getValue().toString();
+                Log.d("URL", imageURL);
+                Glide.with(getApplicationContext()).load(imageURL).centerCrop().placeholder(R.drawable.ic_launcher_background).into(thumbnail);
+
+
+                //Seller details
+                dbfSeller = FirebaseDatabase.getInstance().getReference().child("Users").child("Seller").child(sellerID);
+                dbfSeller.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        seller.setText("By " + snapshot.child("username").getValue().toString());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
 
             @Override
@@ -78,19 +95,6 @@ public class addProductReview extends AppCompatActivity {
             }
         });
 
-        //Buyer details
-        dbfSeller = FirebaseDatabase.getInstance().getReference().child("User").child("Seller").child(sellerID);
-        dbfSeller.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                seller.setText(snapshot.child("name").getValue().toString());
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     public void Save(View view) {
