@@ -32,7 +32,9 @@
             android:name=".StudentActivity"
             android:exported="true">
         </activity>
+
         <activity android:name=".SignUp" />
+
 
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
