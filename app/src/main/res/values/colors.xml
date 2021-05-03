@@ -27,4 +27,7 @@
     <color name="vetorGreen">#88E9AF</color>
     <color name="txtLightGrey">#FF888686</color>
     <color name="lightBlack">#6B000000</color>
+
+    //kavindya
+    <color name="View_line">#A6A6A6</color>
 </resources>

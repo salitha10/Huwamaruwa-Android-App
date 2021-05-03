@@ -1,4 +1,4 @@
-package com.example.huwamaruwa.Progress;
+package com.example.huwamaruwa.progress;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -26,3 +26,4 @@ public class LoadingProgress {
         alertDialog.dismiss();
     }
 }
+
