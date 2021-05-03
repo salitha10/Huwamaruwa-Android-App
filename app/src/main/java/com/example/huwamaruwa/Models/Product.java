@@ -1,6 +1,9 @@
 package com.example.huwamaruwa.Models;
 
-public class Product {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Product implements Parcelable {
 
     private String id;
 
@@ -80,4 +83,40 @@ public class Product {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public Product(Parcel in){
+        String data[] = new String[7];
+        in.readStringArray(data);
+
+        this.price = data[0];
+        this.title = data[1];
+        this.description = data[2];
+        this.images1 = data[3];
+        this.images2 = data[4];
+        this.images3 = data[5];
+        this.images4 = data[6];
+    }
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringArray(new String[]{this.price,this.title,this.description,this.images1,this.images2,this.images3,this.images4});
+    }
+    public static final Parcelable.Creator<Product> CREATOR= new Parcelable.Creator<Product>() {
+
+        @Override
+        public Product createFromParcel(Parcel source) {
+// TODO Auto-generated method stub
+            return new Product(source);  //using parcelable constructor
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+// TODO Auto-generated method stub
+            return new Product[size];
+        }
+    };
 }

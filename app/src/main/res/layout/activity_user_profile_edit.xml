@@ -52,7 +52,7 @@
             android:layout_marginBottom="30dp"/>
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/txtPremiumProduct_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/user_name"
@@ -86,7 +86,7 @@
             android:layout_marginBottom="30dp"/>
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/txtPremiumProduct_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Re-enter password"
@@ -108,7 +108,7 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buyerReqCancel"
+                android:id="@+id/btnPremiumProduct_rentProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lblCancel"
