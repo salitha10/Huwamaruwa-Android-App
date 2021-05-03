@@ -151,11 +151,7 @@
                 android:elevation="0dp"
                 android:foreground="@drawable/rectangle"
                 app:cardCornerRadius="10dp"
-<<<<<<< HEAD
                 app:layout_constraintBottom_toTopOf="@+id/btnPremiumProduct_rentProduct"
-=======
-                app:layout_constraintBottom_toTopOf="@+id/buyerReqCancel"
->>>>>>> c50e1ad (Recycler View added)
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6">
@@ -441,11 +437,7 @@
             </LinearLayout>
 
             <Button
-<<<<<<< HEAD
                 android:id="@+id/btnPremiumProduct_rentProduct"
-=======
-                android:id="@+id/buyerReqCancel"
->>>>>>> c50e1ad (Recycler View added)
                 android:layout_width="267dp"
                 android:layout_height="56dp"
                 android:layout_gravity="center_horizontal|center_vertical"
