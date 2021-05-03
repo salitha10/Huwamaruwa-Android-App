@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.R;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -25,15 +26,17 @@ import java.util.ArrayList;
 
 public class Home_fragment extends Fragment {
 
-    RecyclerView recyclerView;
-    ArrayList<Product>product_list;
-    DatabaseReference dRef;
+    RecyclerView recyclerView1,recyclerView2,recyclerView3;
+    ArrayList<Product>product_list_latest;
+    ArrayList<Product>product_list_history;
+    ArrayList<Product>product_list_new;
+    DatabaseReference dRef_latest;
     Home_recycler_1_adapter home_recycler_1_adapter;
+    Home_recycler_2_adapter home_recycler_2_adapter;
 
     public Home_fragment() {
         // Required empty public constructor
     }
-
 
 
     @Override
@@ -43,11 +46,19 @@ public class Home_fragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.home_fragment, container, false);
-        recyclerView = view.findViewById(R.id.home_recycler_view_1);
-        product_list = new ArrayList<>();
-        dRef = FirebaseDatabase.getInstance().getReference();
+        recyclerView1 = view.findViewById(R.id.home_recycler_view_1);
+        recyclerView2 = view.findViewById(R.id.home_recycler_view_2);
+        recyclerView3 = view.findViewById(R.id.home_recycler_view_3);
 
-        Query query = dRef.child("Product");
+
+
+        product_list_latest = new ArrayList<>();
+        product_list_history = new ArrayList<>();
+        product_list_new = new ArrayList<>();
+
+        dRef_latest = FirebaseDatabase.getInstance().getReference();
+
+        Query query = dRef_latest.child("Product");
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -60,10 +71,14 @@ public class Home_fragment extends Fragment {
                     product.setImages2(dataSnapshot.child("images2").getValue().toString());
                     product.setImages3(dataSnapshot.child("images3").getValue().toString());
                     product.setImages4(dataSnapshot.child("images4").getValue().toString());
-                    product_list.add(product);
+                    product.setIsPremium(dataSnapshot.child("isPremium").getValue().toString());
+                    product_list_latest.add(product);
                 }
-                home_recycler_1_adapter = new Home_recycler_1_adapter(product_list, getContext());
-                recyclerView.setAdapter(home_recycler_1_adapter);
+                home_recycler_1_adapter = new Home_recycler_1_adapter(product_list_latest, getContext());
+                home_recycler_2_adapter = new Home_recycler_2_adapter(product_list_latest, getContext());
+                recyclerView1.setAdapter(home_recycler_1_adapter);
+                recyclerView2.setAdapter(home_recycler_2_adapter);
+                recyclerView3.setAdapter(home_recycler_2_adapter);
                 home_recycler_1_adapter.notifyDataSetChanged();
             }
 
@@ -73,7 +88,9 @@ public class Home_fragment extends Fragment {
             }
         });
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
+        recyclerView1.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
+        recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
+        recyclerView3.setLayoutManager(new LinearLayoutManager(getContext(),RecyclerView.HORIZONTAL,false));
         return view;
     }
 

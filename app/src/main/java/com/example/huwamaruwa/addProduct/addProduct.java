@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.icu.util.TimeZone;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,6 +17,7 @@ import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.example.huwamaruwa.Models.Product;
@@ -31,7 +33,9 @@ import com.google.firebase.storage.UploadTask;
 import com.sangcomz.fishbun.FishBun;
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 
 public class addProduct extends AppCompatActivity {
@@ -44,6 +48,7 @@ public class addProduct extends AppCompatActivity {
     StorageReference sdbRef;
     LoadingProgress loadingProgress;
     String imgData[];
+    Switch ifPremium;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +61,12 @@ public class addProduct extends AppCompatActivity {
         edtPrice = findViewById(R.id.edtPrice);
         edtDes = findViewById(R.id.edtDescription);
 
+        ifPremium = findViewById(R.id.switchPremiumAddProduct);
+
         prev_img_list = new ArrayList<>();
         imgData = new String[4];
         loadingProgress = new LoadingProgress(addProduct.this);
+
     }
 
     @Override
@@ -111,10 +119,13 @@ public class addProduct extends AppCompatActivity {
         product.setTitle(edtTitle.getText().toString().trim());
         product.setPrice(edtPrice.getText().toString().trim());
         product.setDescription(edtDes.getText().toString().trim());
+        Boolean isPremium = ifPremium.isChecked();
+        product.setIsPremium(isPremium.toString());
         product.setImages1(imgData[0]);
         product.setImages2(imgData[1]);
         product.setImages3(imgData[2]);
         product.setImages4(imgData[3]);
+        product.setDate(DateFormat.getDateInstance().getCalendar().getTime());
 
         product.setId(dbRef.push().getKey());
         dbRef.child(product.getId()).setValue(product).addOnSuccessListener(new OnSuccessListener<Void>() {

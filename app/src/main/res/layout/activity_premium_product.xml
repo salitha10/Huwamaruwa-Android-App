@@ -66,7 +66,7 @@
                 android:background="?android:attr/listDivider" />
 
             <ImageView
-                android:id="@+id/imageView15"
+                android:id="@+id/imgPremiumProduct_main"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:layout_margin="5dp"
@@ -79,30 +79,55 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:id="@+id/imageView16"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/imgPremiumProduct_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@color/lightGrayBtn"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
                     app:srcCompat="@drawable/product_logo" />
 
                 <ImageView
-                    android:id="@+id/imageView17"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/imgPremiumProduct_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@color/lightGrayBtn"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
                     app:srcCompat="@drawable/product_logo" />
 
                 <ImageView
-                    android:id="@+id/imageView18"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:id="@+id/imgPremiumProduct_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:background="@color/lightGrayBtn"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
+                    app:srcCompat="@drawable/product_logo" />
+
+                <ImageView
+                    android:id="@+id/imgPremiumProduct_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/lightGrayBtn"
+                    android:padding="5dp"
+                    android:scaleType="fitXY"
                     app:srcCompat="@drawable/product_logo" />
             </LinearLayout>
 
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                android:background="?android:attr/listDivider" />
+
             <TextView
-                android:id="@+id/textView26"
+                android:id="@+id/txtPremiumProduct_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
@@ -126,7 +151,7 @@
                 android:elevation="0dp"
                 android:foreground="@drawable/rectangle"
                 app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/buyerReqCancel"
+                app:layout_constraintBottom_toTopOf="@+id/btnPremiumProduct_rentProduct"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6">
@@ -137,7 +162,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/textView12"
+                        android:id="@+id/txtPremiumProduct_price"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -262,7 +287,7 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textView14"
+                        android:id="@+id/txtPremiumProduct_time"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
@@ -412,7 +437,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/buyerReqCancel"
+                android:id="@+id/btnPremiumProduct_rentProduct"
                 android:layout_width="267dp"
                 android:layout_height="56dp"
                 android:layout_gravity="center_horizontal|center_vertical"
