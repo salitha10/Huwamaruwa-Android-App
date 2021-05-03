@@ -16,6 +16,7 @@
 
         <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
 
+
         </activity>
         <activity android:name=".ProfileView" />
         <activity android:name=".UserProfileEdit" />
@@ -33,6 +34,7 @@
             android:exported="true">
         </activity>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
         <activity android:name=".SignUp" />
 
@@ -45,19 +47,32 @@
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />
         <activity android:name=".singleProduct.RequestRent">
+=======
+        <activity android:name=".SignUp" >
+>>>>>>> 40c78df (SignUp)
 
         </activity>
 
-        <activity android:name=".PaymentOption" />
-        <activity android:name=".singleProduct.NonPremiumProduct" />
-        <activity android:name=".singleProduct.PremiumProduct" />
-        <activity android:name=".MainActivity" >
+        <activity android:name=".customer_care.ChatActivity" />
+        <activity android:name=".Login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+<<<<<<< HEAD
+=======
         </activity>
+        <activity android:name=".SplashScreen" />
+        <activity android:name=".singleProduct.RequestRent">
+
+>>>>>>> 40c78df (SignUp)
+        </activity>
+
+        <activity android:name=".PaymentOption" />
+        <activity android:name=".singleProduct.NonPremiumProduct" />
+        <activity android:name=".singleProduct.PremiumProduct" />
+        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
