@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.productReview;
 import com.example.huwamaruwa.R;
 import com.google.firebase.database.DataSnapshot;
@@ -28,9 +29,9 @@ public class addProductReview extends AppCompatActivity {
     RatingBar quality, usability, price;
     ImageView thumbnail;
     productReview pr;
-    DatabaseReference dbfProduct, dbfReview;
+    DatabaseReference dbfProduct, dbfReview, dbfSeller;
 
-    String productID;  //Get this from intent
+    String productID, sellerID, imageURL;  //Get this from intent
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,12 +51,6 @@ public class addProductReview extends AppCompatActivity {
 
         pr = new productReview();
 
-
-    }
-
-    public void onResume() {
-        super.onResume();
-
         //Display product details
         productID = "MZi84P5g9N1mXLXXbbL";
         dbfProduct = FirebaseDatabase.getInstance().getReference().child("Product").child(productID);
@@ -65,6 +60,25 @@ public class addProductReview extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                product.setText(snapshot.child("title").getValue().toString());
+                sellerID = snapshot.child("buyerId").getValue().toString();
+                imageURL = snapshot.child("images[3]").getValue().toString();
+
+                //Glide.with(getApplicationContext()).load(imageURL).centerCrop().placeholder(R.drawable.ic_add_a_photo_gray_100dp).into(thumbnail);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        //Buyer details
+        dbfSeller = FirebaseDatabase.getInstance().getReference().child("User").child("Seller").child(sellerID);
+        dbfSeller.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                seller.setText(snapshot.child("name").getValue().toString());
             }
 
             @Override
