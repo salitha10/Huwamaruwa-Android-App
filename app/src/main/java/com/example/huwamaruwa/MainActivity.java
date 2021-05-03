@@ -1,7 +1,9 @@
 package com.example.huwamaruwa;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -16,6 +18,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
 import com.example.huwamaruwa.R;
+import com.example.huwamaruwa.addProduct.addProduct;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.storage.StorageReference;
 
@@ -28,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentTransaction fragmentTransaction;
     FragmentManager fragmentManager;
     StorageReference storageReference;
-
+    FloatingActionButton floatingActionButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
+        floatingActionButton = findViewById(R.id.floating_add_product);
         //set app name to toolbar
        // setSupportActionBar(toolbar);
 
@@ -53,6 +58,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
     //set when click back then close the nav drawer
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),addProduct.class);
+                startActivity(intent);
+            }
+        });
+    }
 
     @Override
     public void onBackPressed() {

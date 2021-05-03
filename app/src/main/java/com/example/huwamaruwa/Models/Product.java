@@ -3,21 +3,68 @@ package com.example.huwamaruwa.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.Date;
+
 public class Product implements Parcelable {
 
-    private String id;
+    public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
 
+        @Override
+        public Product createFromParcel(Parcel source) {
+// TODO Auto-generated method stub
+            return new Product(source);  //using parcelable constructor
+        }
+
+        @Override
+        public Product[] newArray(int size) {
+// TODO Auto-generated method stub
+            return new Product[size];
+        }
+    };
+    private String id;
+    private String isPremium;
     private String price;
     private String title;
+    private Date date;
     private String description;
     private String images1;
     private String images2;
     private String images3;
     private String images4;
 
+
     public Product() {
     }
 
+    public Product(Parcel in) {
+        String data[] = new String[8];
+        in.readStringArray(data);
+
+        this.price = data[0];
+        this.title = data[1];
+        this.description = data[2];
+        this.images1 = data[3];
+        this.images2 = data[4];
+        this.images3 = data[5];
+        this.images4 = data[6];
+        this.isPremium = data[7];
+    }
+
+    public String getIsPremium() {
+        return isPremium;
+    }
+
+    public void setIsPremium(String premium) {
+        isPremium = premium;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public String getId() {
         return id;
@@ -26,7 +73,6 @@ public class Product implements Parcelable {
     public void setId(String id) {
         this.id = id;
     }
-
 
     public String getImages1() {
         return images1;
@@ -89,34 +135,8 @@ public class Product implements Parcelable {
         return 0;
     }
 
-    public Product(Parcel in){
-        String data[] = new String[7];
-        in.readStringArray(data);
-
-        this.price = data[0];
-        this.title = data[1];
-        this.description = data[2];
-        this.images1 = data[3];
-        this.images2 = data[4];
-        this.images3 = data[5];
-        this.images4 = data[6];
-    }
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStringArray(new String[]{this.price,this.title,this.description,this.images1,this.images2,this.images3,this.images4});
+        parcel.writeStringArray(new String[]{this.price, this.title, this.description, this.images1, this.images2, this.images3, this.images4, this.isPremium});
     }
-    public static final Parcelable.Creator<Product> CREATOR= new Parcelable.Creator<Product>() {
-
-        @Override
-        public Product createFromParcel(Parcel source) {
-// TODO Auto-generated method stub
-            return new Product(source);  //using parcelable constructor
-        }
-
-        @Override
-        public Product[] newArray(int size) {
-// TODO Auto-generated method stub
-            return new Product[size];
-        }
-    };
 }
