@@ -214,11 +214,7 @@
     </LinearLayout>
 
     <Button
-<<<<<<< HEAD
         android:id="@+id/btnPremiumProduct_rentProduct"
-=======
-        android:id="@+id/buyerReqCancel"
->>>>>>> c50e1ad (Recycler View added)
         android:layout_width="267dp"
         android:layout_height="56dp"
         android:layout_gravity="center_horizontal|center_vertical"

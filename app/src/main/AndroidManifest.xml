@@ -16,6 +16,7 @@
 
         <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
 
+
         </activity>
         <activity android:name=".ProfileView" />
         <activity android:name=".UserProfileEdit" />
@@ -40,6 +41,7 @@
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />
         <activity android:name=".singleProduct.RequestRent">
+
 
         </activity>
 
