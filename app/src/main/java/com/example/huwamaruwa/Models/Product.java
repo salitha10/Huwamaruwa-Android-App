@@ -33,6 +33,7 @@ public class Product implements Parcelable {
     private String images3;
     private String images4;
 
+
     private int categoryID;
     private String location;
     private String deposit;
@@ -40,7 +41,6 @@ public class Product implements Parcelable {
     private int maxRentalTime;
     private int minRentalTime;
     private boolean perHour;
-
 
 
     public Product() {
