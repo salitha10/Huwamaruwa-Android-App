@@ -38,6 +38,7 @@
         <activity android:name=".SignUp">
             android:exported="true">
         </activity>
+<<<<<<< HEAD
 
             android:name=".ProductReviews.AllProductReviews"
             android:exported="true" />
@@ -45,6 +46,10 @@
 
 
 
+=======
+        <activity android:name=".SignUp" />
+
+>>>>>>> c50e1ad (Recycler View added)
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />
