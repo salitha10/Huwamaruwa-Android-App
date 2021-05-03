@@ -17,6 +17,10 @@
         <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
 
         </activity>
+        <activity android:name=".ProfileView" />
+        <activity android:name=".UserProfileEdit" />
+        <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest">
+        </activity>
 
         <activity android:name=".ProductReviews.addProductReview"
         android:exported="true"> </activity>
@@ -28,10 +32,8 @@
             android:name=".StudentActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".ProfileView" />
-        <activity android:name=".UserProfileEdit" />
-        <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest" />
         <activity android:name=".SignUp" />
+
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />

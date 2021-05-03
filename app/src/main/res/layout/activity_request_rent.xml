@@ -214,7 +214,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buyerReqCancel"
         android:layout_width="267dp"
         android:layout_height="56dp"
         android:layout_gravity="center_horizontal|center_vertical"
