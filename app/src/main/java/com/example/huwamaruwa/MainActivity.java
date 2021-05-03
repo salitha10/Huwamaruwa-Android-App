@@ -13,6 +13,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.huwamaruwa.Home.Customer_care_fragment;
+import com.example.huwamaruwa.Home.Home_fragment;
+import com.example.huwamaruwa.R;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.storage.StorageReference;
 
@@ -48,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         //set navigation view clickable
         navigationView.setNavigationItemSelectedListener(this);
     }
-
     //set when click back then close the nav drawer
 
 

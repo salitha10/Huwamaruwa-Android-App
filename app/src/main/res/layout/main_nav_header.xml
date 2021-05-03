@@ -27,15 +27,15 @@
             android:background="#FFFFFF"
             android:foreground="@drawable/user_logo"
             app:cardCornerRadius="100dp"
-            app:layout_constraintBottom_toBottomOf="@+id/button"
-            app:layout_constraintEnd_toStartOf="@+id/button"
+            app:layout_constraintBottom_toBottomOf="@+id/btnDone"
+            app:layout_constraintEnd_toStartOf="@+id/btnDone"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button" />
+            app:layout_constraintTop_toTopOf="@+id/btnDone" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnDone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="28dp"
@@ -57,7 +57,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/txtProductQuality"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/user_name"

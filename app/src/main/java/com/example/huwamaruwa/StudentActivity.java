@@ -60,16 +60,16 @@ public class StudentActivity extends AppCompatActivity {
             dbf = FirebaseDatabase.getInstance().getReference().child("Student");
 
             if (TextUtils.isEmpty(id.getText().toString())) {
-                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(id.getText().toString())) {
-                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT);
+            if (TextUtils.isEmpty(name.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(id.getText().toString())) {
-                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT);
+            if (TextUtils.isEmpty(address.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(id.getText().toString())) {
-                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT);
+            if (TextUtils.isEmpty(phone.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Empty", Toast.LENGTH_SHORT).show();
             } else {
 
                 student.setId(id.getText().toString().trim());
@@ -80,7 +80,7 @@ public class StudentActivity extends AppCompatActivity {
                 //dbf.push().setValue(student);
                 dbf.child("Std1").setValue(student);
 
-                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
 
                 /**
                  *  Put log messages
@@ -91,7 +91,7 @@ public class StudentActivity extends AppCompatActivity {
             }
         }
         catch (Exception e){
-            Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT);
+            Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -110,7 +110,7 @@ public class StudentActivity extends AppCompatActivity {
                         phone.setText(snapshot.child("conNo").getValue().toString());
                     }
                     else{
-                        Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT);
+                        Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -140,10 +140,10 @@ public class StudentActivity extends AppCompatActivity {
                     dbf.setValue(student);
                     clearContent();
 
-                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "Updated", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Update Failed", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "Update Failed", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -168,10 +168,10 @@ public class StudentActivity extends AppCompatActivity {
                     dbf = FirebaseDatabase.getInstance().getReference().child("Student").child("Std1");
                     dbf.removeValue();
                     clearContent();
-                    Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "Deleted", Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Delete Failed", Toast.LENGTH_SHORT);
+                    Toast.makeText(getApplicationContext(), "Delete Failed", Toast.LENGTH_SHORT).show();
                 }
 
             }
