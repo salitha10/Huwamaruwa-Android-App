@@ -32,7 +32,7 @@ public class BuyerRentalRequest extends AppCompatActivity {
         requiredDate = (EditText)findViewById(R.id.requiredDateEdit);
         budget = (EditText)findViewById(R.id.budgetEdit);
 
-        cancel =findViewById(R.id.buyerReqCancel);
+        cancel =findViewById(R.id.btnPremiumProduct_rentProduct);
         submit =findViewById(R.id.buyerReqsubmit);
 
         buyerRentalRequestsModel = new BuyerRentalRequestsModel();

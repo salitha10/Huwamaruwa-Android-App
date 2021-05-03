@@ -36,10 +36,10 @@
                 app:cardCornerRadius="10dp" >
 
                 <ImageView
-                    android:id="@+id/imageView28"
+                    android:id="@+id/imgRequest_rent_form_main"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scaleType="fitCenter"
+                    android:scaleType="fitXY"
                     app:srcCompat="@drawable/product_logo" />
             </androidx.cardview.widget.CardView>
 
@@ -50,7 +50,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView33"
+                    android:id="@+id/txtRequest_rent_form_title"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -64,7 +64,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView34"
+                    android:id="@+id/txtRequest_rent_form_description"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -73,7 +73,7 @@
                     android:text="@string/description" />
 
                 <TextView
-                    android:id="@+id/textView35"
+                    android:id="@+id/txtRequest_rent_form_price"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
@@ -214,7 +214,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/buyerReqCancel"
+        android:id="@+id/btnPremiumProduct_rentProduct"
         android:layout_width="267dp"
         android:layout_height="56dp"
         android:layout_gravity="center_horizontal|center_vertical"
