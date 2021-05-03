@@ -16,6 +16,7 @@
     <color name="card_ash3">#E0E0E0</color>
     <color name="chat_bar">#9BEFC7</color>
     <color name="purple">#6200EE</color>
+    <color name="rating_star">#ffff8800</color>
 
     //Danuja
     <color name="GreenMain">#1BB55C</color>

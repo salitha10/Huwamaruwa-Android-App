@@ -4,13 +4,16 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.productReview;
 import com.example.huwamaruwa.R;
 import com.google.firebase.database.DataSnapshot;
@@ -19,8 +22,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class addProductReview extends AppCompatActivity {
 
+    private static final String INVALID_DATA = "INVALID_DATA";
+    private static final String DB_ERROR = "DATABASE_ERROR" ;
     //Declare variables
     TextView seller, product;
     EditText comments;
@@ -28,9 +37,17 @@ public class addProductReview extends AppCompatActivity {
     RatingBar quality, usability, price;
     ImageView thumbnail;
     productReview pr;
-    DatabaseReference dbfProduct, dbfReview;
+    DatabaseReference dbfProduct, dbfReview, dbfSeller;
+    String productID, sellerID, imageURL, buyerComments, buyerID, date;
+    Float overallRating, qRating, uRating, pRating;
 
-    String productID;  //Get this from intent
+
+    /**
+     * Get buyer id from intents
+     * Get product ID from intents
+     */
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +65,8 @@ public class addProductReview extends AppCompatActivity {
         price = (RatingBar) findViewById(R.id.pPriceRatingBar);
         thumbnail = (ImageView) findViewById(R.id.productThumbnail);
 
-        pr = new productReview();
 
+        pr = new productReview();
 
     }
 
@@ -57,7 +74,7 @@ public class addProductReview extends AppCompatActivity {
         super.onResume();
 
         //Display product details
-        productID = "MZi84P5g9N1mXLXXbbL";
+        productID = "-MZml4o8n65POxbXFlcO";
         dbfProduct = FirebaseDatabase.getInstance().getReference().child("Product").child(productID);
 
         //Get data from product
@@ -65,6 +82,28 @@ public class addProductReview extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
+                //Product details for card view
+                product.setText(snapshot.child("title").getValue().toString());
+                sellerID = snapshot.child("sellerID").getValue().toString();
+
+                imageURL = snapshot.child("images4").getValue().toString();
+                Log.d("URL", imageURL);
+
+                Glide.with(getApplicationContext()).load(imageURL).centerCrop().placeholder(R.drawable.ic_launcher_background).into(thumbnail);
+
+                //Seller details for card view
+                dbfSeller = FirebaseDatabase.getInstance().getReference().child("Users").child("Seller").child(sellerID);
+                dbfSeller.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        seller.setText("By " + snapshot.child("username").getValue().toString());
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
             }
 
             @Override
@@ -72,11 +111,53 @@ public class addProductReview extends AppCompatActivity {
 
             }
         });
+
     }
 
     public void Save(View view) {
 
-        //Get product ID from intent
+        dbfReview = FirebaseDatabase.getInstance().getReference().child("ProductReviews");
+
+        //Get ratings
+        qRating = Float.parseFloat(String.valueOf(quality.getRating()));
+        uRating = Float.parseFloat(String.valueOf(usability.getRating()));
+        pRating = Float.parseFloat(String.valueOf(price.getRating()));
+
+        //Get comments
+        buyerComments = comments.getText().toString().trim();
+
+        //Calculate overall rating
+        overallRating = (qRating + uRating + pRating) / 3;
+        Log.d("OverallRating", String.valueOf(overallRating));
+
+
+        try{
+            //date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
+            //Set vales in model objest
+            pr.setBuyerID(buyerID);
+            pr.setProductID(productID);
+            pr.setQualityRating(qRating);
+            pr.setUsabilityRating(uRating);
+            pr.setPriceRating(pRating);
+            pr.setAverageRating(overallRating);
+            pr.setComment(buyerComments);
+            pr.setDate(date);
+
+            //Push to database
+            dbfReview.push().setValue(pr);
+
+            Toast.makeText(getApplicationContext(), "Review Added", Toast.LENGTH_SHORT).show();
+            //
+
+        }
+        catch(Exception e){
+            Log.d(DB_ERROR, "DATA SAVE FAILED - " + e.getMessage());
+            Toast.makeText(getApplicationContext(), "Review Not Added", Toast.LENGTH_SHORT).show();
+        }
+
+
+
 
 
     }

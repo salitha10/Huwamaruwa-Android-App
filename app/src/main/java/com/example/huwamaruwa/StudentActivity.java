@@ -86,7 +86,6 @@ public class StudentActivity extends AppCompatActivity {
                  *  Put log messages
                  */
 
-
                 clearContent();
             }
         }

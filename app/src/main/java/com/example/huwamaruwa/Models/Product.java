@@ -21,6 +21,7 @@ public class Product implements Parcelable {
             return new Product[size];
         }
     };
+
     private String id;
     private String isPremium;
     private String price;
@@ -31,6 +32,15 @@ public class Product implements Parcelable {
     private String images2;
     private String images3;
     private String images4;
+
+
+    private int categoryID;
+    private String location;
+    private String deposit;
+    private String sellerID;
+    private int maxRentalTime;
+    private int minRentalTime;
+    private boolean perHour;
 
 
     public Product() {

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductReviews.addProductReview">
+    tools:context=".ProductReviews.addProductReview"
+    android:background="@color/card_ash1">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -105,7 +106,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pUsabilityRatingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/pUsabilityRatingBar"
+       />
 
     <TextView
         android:id="@+id/txtPPrice"
@@ -153,24 +155,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pQualityRatingBar" />
 
-    <EditText
-        android:id="@+id/editTextProductComments"
-        android:layout_width="325dp"
-        android:layout_height="67dp"
-        android:ems="10"
-        android:hint="Comments (Optional)"
-        android:inputType="textPersonName"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="322dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="200"
+        app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pPriceRatingBar"
-        app:layout_constraintVertical_bias="0.322" />
+        app:layout_constraintTop_toBottomOf="@+id/pPriceRatingBar">
+
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextProductComments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Comments (Optional)"
+            android:maxHeight="500dp"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
+        android:onClick="Save"
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
