@@ -10,7 +10,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.productReview;
 import com.example.huwamaruwa.R;
@@ -30,8 +29,9 @@ public class addProductReview extends AppCompatActivity {
     ImageView thumbnail;
     productReview pr;
     DatabaseReference dbfProduct, dbfReview, dbfSeller;
-
     String productID, sellerID, imageURL;  //Get this from intent
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +50,11 @@ public class addProductReview extends AppCompatActivity {
         thumbnail = (ImageView) findViewById(R.id.productThumbnail);
 
         pr = new productReview();
+
+    }
+
+    public void onResume() {
+        super.onResume();
 
         //Display product details
         productID = "MZi84P5g9N1mXLXXbbL";
