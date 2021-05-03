@@ -74,7 +74,7 @@ public class addProductReview extends AppCompatActivity {
         super.onResume();
 
         //Display product details
-        productID = "-MZml958z-9vQIXnKWuh";
+        productID = "-MZml4o8n65POxbXFlcO";
         dbfProduct = FirebaseDatabase.getInstance().getReference().child("Product").child(productID);
 
         //Get data from product
@@ -88,8 +88,8 @@ public class addProductReview extends AppCompatActivity {
 
                 imageURL = snapshot.child("images4").getValue().toString();
                 Log.d("URL", imageURL);
-                Glide.with(getApplicationContext()).load(imageURL).centerCrop().placeholder(R.drawable.ic_launcher_background).into(thumbnail);
 
+                Glide.with(getApplicationContext()).load(imageURL).centerCrop().placeholder(R.drawable.ic_launcher_background).into(thumbnail);
 
                 //Seller details for card view
                 dbfSeller = FirebaseDatabase.getInstance().getReference().child("Users").child("Seller").child(sellerID);
