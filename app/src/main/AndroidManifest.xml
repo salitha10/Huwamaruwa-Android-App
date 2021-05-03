@@ -16,6 +16,7 @@
 
         <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
 
+
         </activity>
         <activity android:name=".ProfileView" />
         <activity android:name=".UserProfileEdit" />
@@ -32,10 +33,18 @@
             android:name=".StudentActivity"
             android:exported="true">
         </activity>
-        <activity android:name=".SignUp" />
+        <activity android:name=".SignUp" >
+
+        </activity>
 
         <activity android:name=".customer_care.ChatActivity" />
-        <activity android:name=".Login" />
+        <activity android:name=".Login" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".SplashScreen" />
         <activity android:name=".singleProduct.RequestRent">
 
@@ -44,14 +53,7 @@
         <activity android:name=".PaymentOption" />
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
-        <activity android:name=".MainActivity" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
