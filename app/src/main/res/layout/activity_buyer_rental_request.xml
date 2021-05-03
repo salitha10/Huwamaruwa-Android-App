@@ -84,7 +84,10 @@
             android:textSize="18dp"/>
 
         <EditText
+<<<<<<< HEAD
 
+=======
+>>>>>>> c50e1ad (Recycler View added)
             android:id="@+id/requiredDateEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -121,6 +124,7 @@
                 android:text="@string/lblCancel"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="100dp"/>
+
             <Button
                 android:id="@+id/buyerReqsubmit"
                 android:layout_width="wrap_content"

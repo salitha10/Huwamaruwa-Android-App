@@ -477,7 +477,8 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/cardView" />
+                app:layout_constraintTop_toBottomOf="@+id/cardView"
+                tools:ignore="RtlCompat" />
 
             <com.google.android.material.tabs.TabLayout
                 android:id="@+id/premiumProduct_tab_view"
