@@ -15,16 +15,21 @@
         android:theme="@style/Theme.Huwamaruwa">
         <activity android:name=".buyerRentalRequestManage.SendingOffer"></activity>
         <activity android:name=".buyerRentalRequestManage.AllBuyerRentalRequests">
+
+
+        <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller" />
+
         <activity android:name=".ProfileView" />
         <activity android:name=".UserProfileEdit" />
         <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest" />
+
+
 
 
 
@@ -38,22 +43,22 @@
         <activity android:name=".SignUp">
             android:exported="true">
         </activity>
-<<<<<<< HEAD
 
+
+        <activity
             android:name=".ProductReviews.AllProductReviews"
             android:exported="true" />
 
 
 
 
-=======
-        <activity android:name=".SignUp" />
 
->>>>>>> c50e1ad (Recycler View added)
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />
-        <activity android:name=".singleProduct.RequestRent" />
+        <activity android:name=".singleProduct.RequestRent"/>
+
+
 
 
 
@@ -66,6 +71,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity android:name=".addProduct.AddNewItem">
 
@@ -76,6 +82,8 @@
 
 
         </activity>
+
+
 
         <meta-data
             android:name="preloaded_fonts"
