@@ -29,7 +29,11 @@
             android:textSize="18dp"/>
 
         <EditText
+<<<<<<< HEAD
             android:id="@+id/profileName"
+=======
+            android:id="@+id/prouctNameEdit"
+>>>>>>> c50e1ad (Recycler View added)
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -44,7 +48,11 @@
             android:textSize="18dp"/>
 
         <EditText
+<<<<<<< HEAD
             android:id="@+id/profileEmail"
+=======
+            android:id="@+id/productCategoryEdit"
+>>>>>>> c50e1ad (Recycler View added)
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -59,7 +67,11 @@
             android:textSize="18dp"/>
 
         <EditText
+<<<<<<< HEAD
             android:id="@+id/Username"
+=======
+            android:id="@+id/productQuantityEdit"
+>>>>>>> c50e1ad (Recycler View added)
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -93,7 +105,11 @@
             android:textSize="18dp"/>
 
         <EditText
+<<<<<<< HEAD
             android:id="@+id/userConfirmPassword"
+=======
+            android:id="@+id/budgetEdit"
+>>>>>>> c50e1ad (Recycler View added)
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -108,14 +124,22 @@
             android:orientation="horizontal">
 
             <Button
+<<<<<<< HEAD
                 android:id="@+id/userCancel"
+=======
+                android:id="@+id/buyerReqCancel"
+>>>>>>> c50e1ad (Recycler View added)
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lblCancel"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="100dp"/>
             <Button
+<<<<<<< HEAD
                 android:id="@+id/userSave"
+=======
+                android:id="@+id/buyerReqsubmit"
+>>>>>>> c50e1ad (Recycler View added)
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lblSave" />

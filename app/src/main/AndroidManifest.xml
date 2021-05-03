@@ -31,10 +31,16 @@
             android:exported="true" />
 
         <activity
+            android:name=".StudentActivity"
+            android:exported="true">
+        </activity>
+
             android:name=".ProductReviews.AllProductReviews"
             android:exported="true" />
         <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller" />
         <activity android:name=".SignUp" />
+
+
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />

@@ -45,6 +45,7 @@ public class BuyerRentalRequest extends AppCompatActivity {
         quantity.setText("");
         requiredDate.setText("");
         budget.setText("");
+<<<<<<< HEAD
     }
 
 
@@ -89,5 +90,49 @@ public class BuyerRentalRequest extends AppCompatActivity {
         }
 
 
+=======
+>>>>>>> c50e1ad (Recycler View added)
     }
+
+    public void Save(View v){
+        try {
+            dbf = FirebaseDatabase.getInstance().getReference().child("BuyerRentalRequest");
+
+            if (TextUtils.isEmpty(productTitle.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Text Field is empty", Toast.LENGTH_SHORT).show();
+            }
+            if (TextUtils.isEmpty(category.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Text Field is empty", Toast.LENGTH_SHORT).show();
+            }
+            if (TextUtils.isEmpty(quantity.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Text Field is empty", Toast.LENGTH_SHORT).show();
+            }
+            if (TextUtils.isEmpty(requiredDate.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Text Field is empty", Toast.LENGTH_SHORT).show();
+            }
+            if (TextUtils.isEmpty(budget.getText().toString())) {
+                Toast.makeText(getApplicationContext(), "Text Field is empty", Toast.LENGTH_SHORT).show();
+            }
+            else{
+
+                buyerRentalRequestsModel.setProductTitle(productTitle.getText().toString().trim());
+                buyerRentalRequestsModel.setCategory(category.getText().toString().trim());
+                buyerRentalRequestsModel.setQuantity(quantity.getText().toString().trim());
+                buyerRentalRequestsModel.setRequiredDate(requiredDate.getText().toString().trim());
+                buyerRentalRequestsModel.setBudget(budget.getText().toString().trim());
+
+                dbf.push().setValue(buyerRentalRequestsModel);
+
+                clearContent();
+
+                Toast.makeText(getApplicationContext(), "Request added successfully", Toast.LENGTH_LONG).show();
+            }
+
+
+        }catch (Exception e){
+            Toast.makeText(getApplicationContext(), "Failed adding the request", Toast.LENGTH_SHORT).show();
+
+        }
+    }
+
 }
