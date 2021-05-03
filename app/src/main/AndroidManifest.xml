@@ -14,6 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Huwamaruwa">
 
+        <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
+
+        </activity>
+        <activity android:name=".ProfileView" />
+        <activity android:name=".UserProfileEdit" />
+        <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest">
+        </activity>
+
         <activity android:name=".ProductReviews.addProductReview"
         android:exported="true"> </activity>
 
@@ -22,16 +30,14 @@
         </activity>
         <activity
             android:name=".StudentActivity"
-            android:exported="true"></activity>
+            android:exported="true">
+        </activity>
+        <activity android:name=".SignUp" />
+
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />
         <activity android:name=".singleProduct.RequestRent">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-            </intent-filter>
 
         </activity>
 
@@ -39,8 +45,6 @@
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
         <activity android:name=".MainActivity" >
-
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
