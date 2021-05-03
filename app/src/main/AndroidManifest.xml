@@ -32,10 +32,15 @@
             android:name=".StudentActivity"
             android:exported="true">
         </activity>
+<<<<<<< HEAD
 
         <activity android:name=".SignUp" />
 
 
+=======
+        <activity android:name=".SignUp" />
+
+>>>>>>> c50e1ad (Recycler View added)
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />
