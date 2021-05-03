@@ -3,12 +3,24 @@ package com.example.huwamaruwa.Models;
 public class productReview {
     private String productID;
     private String buyerID;
+    private String comment;
+    private String thumbnailURL;
+    private String date;
     private float qualityRating;
     private float usabilityRating;
     private float priceRating;
     private float averageRating;
-    private String comment;
-    private String thumbnailURL;
+
+
+    //Getters and setters
+
+    public String getDate() { return date; }
+
+    public void setDate(String date) { this.date = date; }
+
+    public float getUsabilityRating() { return usabilityRating; }
+
+    public void setUsabilityRating(float usabilityRating) { this.usabilityRating = usabilityRating; }
 
     public float getAverageRating() {
         return averageRating;
@@ -50,14 +62,6 @@ public class productReview {
         this.qualityRating = qualityRating;
     }
 
-    public float getHandlingRating() {
-        return usabilityRating;
-    }
-
-    public void setHandlingRating(float usabilityRating) {
-        this.usabilityRating = usabilityRating;
-    }
-
     public float getPriceRating() {
         return priceRating;
     }
@@ -73,6 +77,5 @@ public class productReview {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
 
 }
