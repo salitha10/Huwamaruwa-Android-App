@@ -84,10 +84,6 @@
             android:textSize="18dp"/>
 
         <EditText
-<<<<<<< HEAD
-
-=======
->>>>>>> c50e1ad (Recycler View added)
             android:id="@+id/requiredDateEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
