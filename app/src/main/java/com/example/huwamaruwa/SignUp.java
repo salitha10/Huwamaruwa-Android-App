@@ -1,29 +1,38 @@
 package com.example.huwamaruwa;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.example.huwamaruwa.Models.SignUpModel;
+import com.example.huwamaruwa.Models.User;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUp extends AppCompatActivity {
 
-    TextInputLayout name, email, phoneNo, username, password, address, confirm_password;
+    TextInputLayout name, email, phoneNo, password, address, confirm_password;
     String userType;
     MaterialButton btnSignUp;
     DatabaseReference dbf;
-    SignUpModel signUpModel;
+    User user;
+
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,13 +42,14 @@ public class SignUp extends AppCompatActivity {
         email = findViewById(R.id.email);
         phoneNo = findViewById(R.id.phone);
         address = findViewById(R.id.address);
-        username = findViewById(R.id.Username);
         password =  findViewById(R.id.password);
         confirm_password = findViewById(R.id.confirm_password);
 
         btnSignUp = findViewById(R.id.btnSignUp);
 
-        signUpModel =  new SignUpModel();
+        user =  new User();
+
+        firebaseAuth = FirebaseAuth.getInstance();
     }
     public void signIn(View view){
         Intent intent = new Intent(this,Login.class);
@@ -93,10 +103,6 @@ public class SignUp extends AppCompatActivity {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Address Text Field is empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(username.getEditText().getText().toString())) {
-                check = false;
-                Toast.makeText(getApplicationContext(), "username Text Field is empty", Toast.LENGTH_SHORT).show();
-            }
             if (TextUtils.isEmpty(password.getEditText().getText().toString())) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Password Text Field is empty", Toast.LENGTH_SHORT).show();
@@ -111,26 +117,49 @@ public class SignUp extends AppCompatActivity {
             }
             else{
 
-                signUpModel.setName(name.getEditText().getText().toString().trim());
-                signUpModel.setEmail(email.getEditText().getText().toString().trim());
-                signUpModel.setPhoneNo(name.getEditText().getText().toString().trim());
-                signUpModel.setUserType(userType.trim());
-                signUpModel.setAddress(address.getEditText().getText().toString().trim());
-                signUpModel.setUsername(username.getEditText().getText().toString().trim());
-                signUpModel.setPassword(password.getEditText().getText().toString().trim());
-//                dbf.push().setValue(student);
+
 
                 if (check == true){
-                    dbf.child(userType).push().setValue(signUpModel);
-                    Intent intent = new Intent(this,MainActivity.class);
-                    startActivity(intent);
+
+                    firebaseAuth.createUserWithEmailAndPassword(email.getEditText().getText().toString(),
+                            password.getEditText().getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if(task.isSuccessful()){
+
+                                dbf.child(userType).push().setValue(user);
+                                Intent intent = new Intent(SignUp.this,MainActivity.class);
+                                startActivity(intent);
+
+                                Toast.makeText(SignUp.this, "Registered User Successful", Toast.LENGTH_SHORT).show();
+                            }else {
+                                Toast.makeText(SignUp.this, task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+
+
+                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+//                    user.setUserId(dbf.push().getKey());
+                    user.setUserId(currentUser.getUid());
+                    user.setUserImage("");
+                    user.setName(name.getEditText().getText().toString().trim());
+                    user.setEmail(email.getEditText().getText().toString().trim());
+                    user.setPhoneNo(name.getEditText().getText().toString().trim());
+                    user.setUserType(userType.trim());
+                    user.setAddress(address.getEditText().getText().toString().trim());
+                    user.setPassword(password.getEditText().getText().toString().trim());
+//                dbf.push().setValue(student);
+
+
+
                 }
             }
 
 
         }
         catch (Exception e){
-            System.out.println(e);
 
         }
     }

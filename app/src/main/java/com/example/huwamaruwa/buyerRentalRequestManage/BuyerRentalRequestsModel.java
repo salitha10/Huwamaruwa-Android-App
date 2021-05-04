@@ -1,8 +1,35 @@
 package com.example.huwamaruwa.buyerRentalRequestManage;
 
-public class BuyerRentalRequestsModel {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class BuyerRentalRequestsModel implements Parcelable {
 
     String productTitle, category, quantity, requiredDate, Budget;
+
+    protected BuyerRentalRequestsModel(Parcel in) {
+        productTitle = in.readString();
+        category = in.readString();
+        quantity = in.readString();
+        requiredDate = in.readString();
+        Budget = in.readString();
+    }
+
+    public static final Creator<BuyerRentalRequestsModel> CREATOR = new Creator<BuyerRentalRequestsModel>() {
+        @Override
+        public BuyerRentalRequestsModel createFromParcel(Parcel in) {
+            return new BuyerRentalRequestsModel(in);
+        }
+
+        @Override
+        public BuyerRentalRequestsModel[] newArray(int size) {
+            return new BuyerRentalRequestsModel[size];
+        }
+    };
+
+    public BuyerRentalRequestsModel(){
+
+    }
 
     public String getProductTitle() {
         return productTitle;
@@ -42,5 +69,19 @@ public class BuyerRentalRequestsModel {
 
     public void setBudget(String budget) {
         Budget = budget;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(productTitle);
+        parcel.writeString(category);
+        parcel.writeString(quantity);
+        parcel.writeString(requiredDate);
+        parcel.writeString(Budget);
     }
 }
