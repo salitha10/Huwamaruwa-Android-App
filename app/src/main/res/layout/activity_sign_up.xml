@@ -103,44 +103,6 @@
                     android:layout_height="wrap_content"
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
-            <!--            User Type-->
-            <RadioGroup
-                android:id="@+id/userType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-            <RadioButton
-                android:id="@+id/userSeller"
-                android:layout_marginLeft="100dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Seller"
-                android:onClick="onRadioButtonClicked"/>
-            <RadioButton
-                android:id="@+id/userBuyer"
-                android:layout_marginLeft="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Buyer"
-                android:onClick="onRadioButtonClicked"/>
-            </RadioGroup>
-
-<!--            Address-->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/address"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Address"
-                app:counterEnabled="true"
-                app:counterMaxLength="50"
-                android:paddingBottom="8dp">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="text" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <!--        Username-->
 <!--            <com.google.android.material.textfield.TextInputLayout-->

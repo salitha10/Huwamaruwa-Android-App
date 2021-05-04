@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.huwamaruwa">
-    <uses-feature android:name="android.hardware.camera2"
-        android:required="true"/>
-
-    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,34 +13,44 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Huwamaruwa">
-        <activity android:name=".buyerRentalRequestManage.SendingOffer" />
+        <activity android:name=".buyerRentalRequestManage.SendingOffer"></activity>
         <activity android:name=".buyerRentalRequestManage.AllBuyerRentalRequests">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-        <activity android:name=".ProfileView" >
-
-        </activity>
+        <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller" />
+        <activity android:name=".ProfileView" />
         <activity android:name=".UserProfileEdit" />
         <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest" />
+
+
+
         <activity
             android:name=".ProductReviews.AddProductReview"
             android:exported="true" />
 
         <activity
             android:name=".StudentActivity"
+            android:exported="true" />
+        <activity android:name=".SignUp">
             android:exported="true">
         </activity>
 
             android:name=".ProductReviews.AllProductReviews"
             android:exported="true" />
-        <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller" />
-        <activity android:name=".SignUp" />
+
 
 
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />
         <activity android:name=".singleProduct.RequestRent" />
+
+
+
         <activity android:name=".PaymentOption" />
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
