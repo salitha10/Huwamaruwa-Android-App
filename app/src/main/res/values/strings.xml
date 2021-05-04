@@ -119,6 +119,19 @@
     <string name="user_type">User Type</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="post_ad">Post AD</string>
+    <string name="categories">CATEGORY</string>
+    <string name="location_user">LOCATION</string>
+    <string name="depositamu">Deposit</string>
+    <string name="negotiable">Negotiable</string>
+    <string name="select_location_user">Select Location</string>
+    <string name="product_name">Product Name</string>
+    <string name="select_category_product">Select Category</string>
+    <string name="no">No</string>
+    <string name="premium_item">Premium Item</string>
+    <string name="yes">Yes</string>
+    <string name="gallery">gallery</string>
+    <string name="take_photo">take photo</string>
 
 
 </resources>
