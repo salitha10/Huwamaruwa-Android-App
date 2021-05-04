@@ -14,7 +14,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".AddNewIteam">
+        tools:context=".AddNewItem">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/crd1"
@@ -69,12 +69,40 @@
         <View
             android:layout_width="wrap_content"
             android:layout_height="1dp"
-            android:layout_marginBottom="648dp"
+            android:layout_marginBottom="940dp"
             android:background="@color/View_line"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txtIspremium"
+            android:layout_width="128dp"
+            android:layout_height="26dp"
+            android:layout_marginTop="50dp"
+            android:inputType="text"
+            android:text="@string/premium_item"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.055"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/crd1" />
+
+        <Switch
+            android:id="@+id/swhAddpost"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="180dp"
+            android:layout_marginTop="356dp"
+            android:layout_marginBottom="16dp"
+            android:text="Premium"
+            app:layout_constraintBottom_toTopOf="@+id/btnSelect"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/layout"
@@ -82,14 +110,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="20dp"
             android:hint="@string/categories"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.42000002">
+            app:layout_constraintVertical_bias="0.32999998">
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteText1"
@@ -109,7 +138,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="150dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="10dp"
             android:hint="@string/location_user"
@@ -117,7 +146,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.37">
+            app:layout_constraintVertical_bias="0.32999998">
 
             <AutoCompleteTextView
                 android:id="@+id/autoCompleteText2"
@@ -133,12 +162,13 @@
                 android:textSize="16sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <LinearLayout
             android:id="@+id/layoutProduct."
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="530dp"
+            android:layout_marginTop="580dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_input"
             android:gravity="center_vertical"
@@ -179,7 +209,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="600dp"
+            android:layout_marginTop="655dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_input"
             android:gravity="center_vertical"
@@ -198,7 +228,7 @@
                 app:tint="@color/View_line" />
 
             <EditText
-                android:id="@+id/rentFee1"
+                android:id="@+id/rentFee"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:background="@null"
@@ -206,7 +236,7 @@
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/View_line"
                 android:textSize="18sp"
 
                 android:textStyle="bold" />
@@ -219,7 +249,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="670dp"
+            android:layout_marginTop="740dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_input"
             android:gravity="center_vertical"
@@ -246,7 +276,7 @@
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/View_line"
                 android:textSize="18sp"
 
                 android:textStyle="bold" />
@@ -259,7 +289,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="740dp"
+            android:layout_marginTop="820dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_input"
             android:gravity="center_vertical"
@@ -286,7 +316,7 @@
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/View_line"
                 android:textSize="18sp"
 
                 android:textStyle="bold" />
@@ -299,7 +329,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="810dp"
+            android:layout_marginTop="940dp"
             android:layout_marginEnd="16dp"
             android:background="@drawable/background_input"
             android:gravity="center_vertical"
@@ -326,7 +356,87 @@
                 android:inputType="text"
                 android:paddingStart="10dp"
                 android:paddingEnd="10dp"
-                android:textColor="@color/black"
+                android:textColor="@color/View_line"
+                android:textSize="18sp"
+
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutMax"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1020dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_input"
+            android:gravity="center_vertical"
+
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_max"
+                app:tint="@color/View_line" />
+
+            <EditText
+                android:id="@+id/maxDate"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@null"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/View_line"
+                android:textSize="18sp"
+
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutMin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="1100dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/background_input"
+            android:gravity="center_vertical"
+
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginStart="10dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_min"
+                app:tint="@color/View_line" />
+
+            <EditText
+                android:id="@+id/minDate"
+                android:layout_width="match_parent"
+                android:layout_height="55dp"
+                android:background="@null"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"
+                android:textColor="@color/View_line"
                 android:textSize="18sp"
 
                 android:textStyle="bold" />
@@ -339,7 +449,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="520dp"
+            android:layout_marginTop="570dp"
             android:background="@color/white"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
@@ -355,7 +465,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="590dp"
+            android:layout_marginTop="640dp"
             android:background="@color/white"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
@@ -371,7 +481,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="660dp"
+            android:layout_marginTop="730dp"
             android:background="@color/white"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
@@ -387,7 +497,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="730dp"
+            android:layout_marginTop="810dp"
             android:background="@color/white"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
@@ -403,7 +513,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="800dp"
+            android:layout_marginTop="930dp"
             android:background="@color/white"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
@@ -414,20 +524,75 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/txtMax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="1010dp"
+            android:background="@color/white"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:text="Maximum Rental time"
+            android:textAllCaps="true"
+            android:textColor="@color/View_line"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="1090dp"
+            android:background="@color/white"
+            android:paddingStart="6dp"
+            android:paddingEnd="6dp"
+            android:text="Minimum Rental time"
+            android:textAllCaps="true"
+            android:textColor="@color/View_line"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
         <include
             layout="@layout/toolbar"
-            android:layout_marginTop="308dp"
+            app:layout_constraintBottom_toTopOf="@+id/crd1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:navigationIcon="@drawable/menu_icon" />
 
+        <!--        <RadioButton-->
+        <!--            android:id="@+id/radioButton1"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="80dp"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:text="@string/yes"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/textView6"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/crd1" />-->
+
+        <!--        <RadioButton-->
+        <!--            android:id="@+id/radioButton2"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginStart="36dp"-->
+        <!--            android:layout_marginTop="20dp"-->
+        <!--            android:text="@string/no"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="0.0"-->
+        <!--            app:layout_constraintStart_toEndOf="@+id/radioButton1"-->
+        <!--            app:layout_constraintTop_toBottomOf="@+id/crd1" />-->
+
         <TextView
             android:id="@+id/textView6"
             android:layout_width="128dp"
             android:layout_height="26dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="580dp"
             android:inputType="text"
             android:text="@string/premium_item"
             android:textSize="18sp"
@@ -437,34 +602,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/crd1" />
 
-<!--        <RadioButton-->
-<!--            android:id="@+id/radioButton1"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="80dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:text="@string/yes"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/textView6"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/crd1" />-->
-
-<!--        <RadioButton-->
-<!--            android:id="@+id/radioButton2"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginStart="36dp"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:text="@string/no"-->
-<!--            app:layout_constraintEnd_toEndOf="parent"-->
-<!--            app:layout_constraintHorizontal_bias="0.0"-->
-<!--            app:layout_constraintStart_toEndOf="@+id/radioButton1"-->
-<!--            app:layout_constraintTop_toBottomOf="@+id/crd1" />-->
-
         <RadioGroup
             android:id="@+id/radioGroup"
             android:layout_width="148dp"
             android:layout_height="35dp"
             android:layout_marginStart="240dp"
-            android:layout_marginTop="336dp"
+            android:layout_marginTop="880dp"
             android:layout_marginEnd="32dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -500,14 +643,15 @@
             android:id="@+id/btnPost"
             android:layout_width="299dp"
             android:layout_height="42dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
+            android:layout_marginTop="200dp"
+            android:layout_marginBottom="30dp"
             android:text="@string/post_ad"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.504"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutDeposit" />
+            app:layout_constraintTop_toBottomOf="@+id/layoutDeposit"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,11 +1,14 @@
 package com.example.huwamaruwa.Models;
 
+import java.util.Date;
+
 public class Post {
     private String postId;
-    private String premiumItem;
-    private String dropdown1;
-    private String getDropdown2;
-    private String productName;
+    private String itemType;
+    private int categoryID;
+    private Date date;
+    private String location;
+    private String title;
     private String rentalFee;
     private String contactNumber;
     private String description;
@@ -14,6 +17,42 @@ public class Post {
     private String images2;
     private String images3;
     private String images4;
+    private String sellerID;
+    private int maxRentalTime;
+    private int minRentalTime;
+    private boolean perHour;
+
+    public String getSellerID() {
+        return sellerID;
+    }
+
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
+    }
+
+    public int getMaxRentalTime() {
+        return maxRentalTime;
+    }
+
+    public void setMaxRentalTime(int maxRentalTime) {
+        this.maxRentalTime = maxRentalTime;
+    }
+
+    public int getMinRentalTime() {
+        return minRentalTime;
+    }
+
+    public void setMinRentalTime(int minRentalTime) {
+        this.minRentalTime = minRentalTime;
+    }
+
+    public boolean isPerHour() {
+        return perHour;
+    }
+
+    public void setPerHour(boolean perHour) {
+        this.perHour = perHour;
+    }
 
     public Post() {
     }
@@ -22,10 +61,10 @@ public class Post {
                 String rentalFee, String contactNumber, String description, String deposit,
                 String images1, String images2, String images3, String images4) {
         this.postId=postId;
-        this.premiumItem = premiumItem;
-        this.dropdown1 = dropdown1;
-        this.getDropdown2 = getDropdown2;
-        this.productName = productName;
+        this.itemType = premiumItem;
+        this.categoryID = categoryID;
+        this.location = location;
+        this.title = productName;
         this.rentalFee = rentalFee;
         this.contactNumber = contactNumber;
         this.description = description;
@@ -36,6 +75,13 @@ public class Post {
         this.images4 = images4;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
 
     public String getPostId() {
         return postId;
@@ -45,36 +91,36 @@ public class Post {
         this.postId = postId;
     }
 
-    public String getPremiumItem() {
-        return premiumItem;
+    public String getItemType() {
+        return itemType;
     }
 
-    public void setPremiumItem(String premiumItem) {
-        this.premiumItem = premiumItem;
+    public void setItemType(String itemType) {
+        this.itemType = itemType;
     }
 
-    public String getDropdown1() {
-        return dropdown1;
+    public int getCategoryID() {
+        return categoryID;
     }
 
-    public void setDropdown1(String dropdown1) {
-        this.dropdown1 = dropdown1;
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
     }
 
-    public String getGetDropdown2() {
-        return getDropdown2;
+    public String getLocation() {
+        return location;
     }
 
-    public void setGetDropdown2(String getDropdown2) {
-        this.getDropdown2 = getDropdown2;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getRentalFee() {

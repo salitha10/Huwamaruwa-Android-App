@@ -8,10 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.view.View;
 import android.webkit.MimeTypeMap;
@@ -19,39 +17,36 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
 import com.example.huwamaruwa.Models.Post;
-import com.example.huwamaruwa.progress.LoadingProgress;
+import com.example.huwamaruwa.Progress.LoadingProgress;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.sangcomz.fishbun.FishBun;
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 
-public class AddNewIteam extends AppCompatActivity {
+public class AddNewItem extends AppCompatActivity {
 
     AutoCompleteTextView autoCompleteTextCat , autoCompleteTextloc;
-    EditText ProductName1, rentFee1, contact, description, deposit;
+    EditText ProductName, rentFee, contact, description, deposit;
 
 
     private static final int CAMERA_REQEST = 1888;
     Button btnTakePhoto, btnGallery, btnPost;
-    ArrayList<Uri> prev_img_list;
+    ArrayList<Uri> img_list;
     Post post;
     DatabaseReference dbRefe;
-    StorageReference sdbRef;
+    StorageReference sdbRefe;
     LoadingProgress loadingProgress;
     String imgData[];
     RadioButton yes_radio,no_radio;
@@ -65,15 +60,16 @@ public class AddNewIteam extends AppCompatActivity {
         btnGallery = (Button) findViewById(R.id.btnGallery);
         btnPost = (Button) findViewById(R.id.btnPost);
 
-        ProductName1 = (EditText) findViewById(R.id.ProductName1);
-        rentFee1 = (EditText) findViewById(R.id.rentFee1);
+        ProductName = (EditText) findViewById(R.id.ProductName1);
+        rentFee = (EditText) findViewById(R.id.rentFee);
         contact = (EditText) findViewById(R.id.contact);
         description = (EditText) findViewById(R.id.description);
         deposit = (EditText) findViewById(R.id.deposit);
 
-        prev_img_list = new ArrayList<>();
+
+        img_list = new ArrayList<>();
         imgData = new String[4];
-        loadingProgress = new LoadingProgress(AddNewIteam.this);
+        loadingProgress = new LoadingProgress(AddNewItem.this);
 
 
         autoCompleteTextCat = findViewById(R.id.autoCompleteText1);
@@ -115,30 +111,24 @@ public class AddNewIteam extends AppCompatActivity {
             }
         });
 
-        btnGallery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //captureImg();
-            }
-        });
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 dbRefe = FirebaseDatabase.getInstance().getReference().child("Product");
-                sdbRef = FirebaseStorage.getInstance().getReference().child("Product Images");
+                sdbRefe = FirebaseStorage.getInstance().getReference().child("Product Images");
 
                 try {
-                    if (TextUtils.isEmpty(ProductName1.getText().toString().trim())){
-                        Toast.makeText(AddNewIteam.this, "Title Required", Toast.LENGTH_SHORT).show();
-                    }else if (TextUtils.isEmpty(rentFee1.getText().toString().trim())){
-                        Toast.makeText(AddNewIteam.this, "Price Required", Toast.LENGTH_SHORT).show();
+                    if (TextUtils.isEmpty(ProductName.getText().toString().trim())){
+                        Toast.makeText(AddNewItem.this, "Title Required", Toast.LENGTH_SHORT).show();
+                    }else if (TextUtils.isEmpty(rentFee.getText().toString().trim())){
+                        Toast.makeText(AddNewItem.this, "Price Required", Toast.LENGTH_SHORT).show();
 
                     }else if (TextUtils.isEmpty(description.getText().toString().trim())){
-                        Toast.makeText(AddNewIteam.this, "Description Required", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddNewItem.this, "Description Required", Toast.LENGTH_SHORT).show();
 
-                    }else if(prev_img_list.isEmpty()){
-                        Toast.makeText(AddNewIteam.this, "Image Required", Toast.LENGTH_SHORT).show();
+                    }else if(img_list.isEmpty()){
+                        Toast.makeText(AddNewItem.this, "Image Required", Toast.LENGTH_SHORT).show();
                     } else {
 
                         loadingProgress.startProgress();
@@ -152,45 +142,6 @@ public class AddNewIteam extends AppCompatActivity {
 
 
 
-
-            }
-        });
-//
-//        dbRefe = FirebaseDatabase.getInstance().getReference().child("Post");
-//        sdbRef = FirebaseStorage.getInstance().getReference().child("Post Images");
-//        dbRefe.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                if(snapshot.exists()){
-//                    i=(int)snapshot.getChildrenCount();
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//
-//            }
-//        });
-
-
-
-
-        btnPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String premiumP = yes_radio.getText().toString();
-                String nonPremiumP=no_radio.getText().toString();
-
-                if(yes_radio.isChecked()){
-                    post.setPremiumItem(premiumP);
-                    dbRefe.child(String.valueOf(i+1)).setValue(post);
-                }
-                else {
-                    post.setPremiumItem(nonPremiumP);
-                    dbRefe.child(String.valueOf(i+1)).setValue(post);
-
-                }
 
             }
         });
@@ -216,10 +167,12 @@ public class AddNewIteam extends AppCompatActivity {
 
     public void dataUploader(){
         post = new Post();
-        post.setDropdown1(autoCompleteTextCat.getText().toString().trim());
-        post.setGetDropdown2(autoCompleteTextloc.getText().toString().trim());
-        post.setProductName(ProductName1.getText().toString().trim());
-        post.setRentalFee(rentFee1.getText().toString().trim());
+//        post.setCategoryID(autoCompleteTextCat.);
+        int categoryID= Integer.parseInt(autoCompleteTextCat.getText().toString().trim());
+        post.setDate(DateFormat.getDateInstance().getCalendar().getTime());
+        post.setLocation(autoCompleteTextloc.getText().toString().trim());
+        post.setTitle(ProductName.getText().toString().trim());
+        post.setRentalFee(rentFee.getText().toString().trim());
         post.setContactNumber(contact.getText().toString().trim());
         post.setDeposit(deposit.getText().toString().trim());
         post.setDescription(description.getText().toString().trim());
@@ -232,14 +185,14 @@ public class AddNewIteam extends AppCompatActivity {
         dbRefe.child(post.getPostId()).setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                Toast.makeText(AddNewIteam.this, "Successfully Added...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddNewItem.this, "Successfully Added...", Toast.LENGTH_SHORT).show();
                 loadingProgress.dismissProgress();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-                Toast.makeText(AddNewIteam.this, "Unsuccessfully Failed", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddNewItem.this, "Unsuccessfully Failed", Toast.LENGTH_SHORT).show();
                 loadingProgress.dismissProgress();
 
             }
@@ -248,15 +201,15 @@ public class AddNewIteam extends AppCompatActivity {
 
     private void imageUploader(int i) {
 
-        if(i >= prev_img_list.size()){
+        if(i >= img_list.size()){
             dataUploader();
         } else{
-            StorageReference storageReference  = sdbRef.child(System.currentTimeMillis() +"."+ GetFileExtension(prev_img_list.get(i)));
+            StorageReference storageReference  = sdbRefe.child(System.currentTimeMillis() +"."+ GetFileExtension(img_list.get(i)));
             int imgfinal = i;
-            storageReference.putFile(prev_img_list.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            storageReference.putFile(img_list.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    Toast.makeText(AddNewIteam.this, "image "+ (imgfinal +1)+" uploaded", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNewItem.this, "image "+ (imgfinal +1)+" uploaded", Toast.LENGTH_SHORT).show();
                     storageReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
                         public void onSuccess(Uri uri) {
@@ -266,7 +219,7 @@ public class AddNewIteam extends AppCompatActivity {
                     }).addOnFailureListener(new OnFailureListener() {
                         @Override
                         public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(AddNewIteam.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddNewItem.this, e.getMessage(), Toast.LENGTH_SHORT).show();
                             imageUploader(imgfinal+1);
                         }
                     });
@@ -275,7 +228,7 @@ public class AddNewIteam extends AppCompatActivity {
             }).addOnFailureListener(new OnFailureListener() {
                 @Override
                 public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(AddNewIteam.this, "image "+(imgfinal +1 )+" uploading Failed", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(AddNewItem.this, "image "+(imgfinal +1 )+" uploading Failed", Toast.LENGTH_SHORT).show();
                     imageUploader(imgfinal+1);
                 }
             });
@@ -314,7 +267,7 @@ public class AddNewIteam extends AppCompatActivity {
         if (requestCode == 100 && resultCode == RESULT_OK) {
 
             Toast.makeText(this, "Multiple Image selected", Toast.LENGTH_SHORT).show();
-            prev_img_list = data.getParcelableArrayListExtra(FishBun.INTENT_PATH);
+            img_list = data.getParcelableArrayListExtra(FishBun.INTENT_PATH);
 
             initRecycler();
         }
@@ -322,7 +275,7 @@ public class AddNewIteam extends AppCompatActivity {
 
     private void initRecycler() {
         RecyclerView recyclerView = findViewById(R.id.img_prev_recycler);
-        NewAddAdapter postAdapter = new NewAddAdapter(this,prev_img_list);
+        NewAddAdapter postAdapter = new NewAddAdapter(this,img_list);
         recyclerView.setAdapter(postAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
     }
