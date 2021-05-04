@@ -49,20 +49,7 @@
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!--        email-->
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/email"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Email"
-                android:paddingBottom="8dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <!--        Phone-->
             <com.google.android.material.textfield.TextInputLayout
@@ -118,20 +105,35 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <!--        Username-->
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:id="@+id/Username"-->
+<!--                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:hint="Username"-->
+<!--                android:paddingBottom="8dp"-->
+<!--                app:counterEnabled="true"-->
+<!--                app:counterMaxLength="15">-->
+
+<!--                <com.google.android.material.textfield.TextInputEditText-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:inputType="text" />-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+            <!--        email-->
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/Username"
+                android:id="@+id/email"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Username"
-                android:paddingBottom="8dp"
-                app:counterEnabled="true"
-                app:counterMaxLength="15">
+                android:hint="Email"
+                android:paddingBottom="8dp">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text" />
+                    android:inputType="textEmailAddress" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!--        password-->
