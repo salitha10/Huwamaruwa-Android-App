@@ -17,18 +17,24 @@
         <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
 
         </activity>
+
+
+
         <activity android:name=".ProfileView" />
         <activity android:name=".UserProfileEdit" />
         <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest">
         </activity>
 
+        //Salitha
         <activity android:name=".ProductReviews.addProductReview"
             android:exported="true"> </activity>
-
         <activity android:name=".addProduct.addProduct">
-
         </activity>
+        <activity android:name=".ProductReviews.allProductReviews"
+            android:exported="true"></activity>
         <activity
+
+
             android:name=".StudentActivity"
             android:exported="true">
         </activity>
