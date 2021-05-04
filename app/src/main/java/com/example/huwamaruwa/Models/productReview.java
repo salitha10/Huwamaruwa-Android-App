@@ -6,10 +6,10 @@ public class productReview {
     private String comment;
     private String thumbnailURL;
     private String date;
-    private float qualityRating;
-    private float usabilityRating;
-    private float priceRating;
-    private float averageRating;
+    private double qualityRating;
+    private double usabilityRating;
+    private double priceRating;
+    private double averageRating;
 
 
     //Getters and setters
@@ -18,15 +18,15 @@ public class productReview {
 
     public void setDate(String date) { this.date = date; }
 
-    public float getUsabilityRating() { return usabilityRating; }
+    public double getUsabilityRating() { return usabilityRating; }
 
-    public void setUsabilityRating(float usabilityRating) { this.usabilityRating = usabilityRating; }
+    public void setUsabilityRating(double usabilityRating) { this.usabilityRating = usabilityRating; }
 
-    public float getAverageRating() {
+    public double getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(float averageRating) {
+    public void setAverageRating(double averageRating) {
         this.averageRating = averageRating;
     }
 
@@ -54,19 +54,19 @@ public class productReview {
         this.buyerID = buyerID;
     }
 
-    public float getQualityRating() {
+    public double getQualityRating() {
         return qualityRating;
     }
 
-    public void setQualityRating(float qualityRating) {
+    public void setQualityRating(double qualityRating) {
         this.qualityRating = qualityRating;
     }
 
-    public float getPriceRating() {
+    public double getPriceRating() {
         return priceRating;
     }
 
-    public void setPriceRating(float priceRating) {
+    public void setPriceRating(double priceRating) {
         this.priceRating = priceRating;
     }
 

@@ -39,7 +39,7 @@ public class addProductReview extends AppCompatActivity {
     productReview pr;
     DatabaseReference dbfProduct, dbfReview, dbfSeller;
     String productID, sellerID, imageURL, buyerComments, buyerID, date;
-    Float overallRating, qRating, uRating, pRating;
+    double overallRating, qRating, uRating, pRating;
 
 
     /**
@@ -127,7 +127,8 @@ public class addProductReview extends AppCompatActivity {
         buyerComments = comments.getText().toString().trim();
 
         //Calculate overall rating
-        overallRating = (qRating + uRating + pRating) / 3;
+        double overall = (qRating + uRating + pRating) / 3.0;
+        overallRating = Math.round(overall * 2) / 2.0;
         Log.d("OverallRating", String.valueOf(overallRating));
 
 
