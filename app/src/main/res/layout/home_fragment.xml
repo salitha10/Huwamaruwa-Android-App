@@ -324,6 +324,43 @@
         app:backgroundTint="@color/GreenMain"
         app:elevation="2dp" />
 
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_add_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="80dp"
+        android:clickable="true"
+        android:foreground="@drawable/edit_icon"
+        android:foregroundGravity="center"
+        android:visibility="invisible"
+        app:backgroundTint="@color/vetorGreen" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floating_buyer_req_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="145dp"
+        android:clickable="true"
+        android:foreground="@drawable/empty_icon"
+        android:foregroundGravity="center"
+        android:visibility="invisible"
+        app:backgroundTint="@color/vetorGreen" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:backgroundTint="@color/white"
+        android:background="@color/white"
+        android:layout_gravity="end|bottom"
+        android:visibility="invisible"
+        android:id="@+id/floating_bottom_sheet">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/txtfloating_req"
         android:layout_width="wrap_content"
@@ -349,31 +386,5 @@
         android:textColor="@color/GreenMain"
         android:textSize="26sp"
         android:textStyle="bold"/>
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_add_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="80dp"
-        android:clickable="true"
-        android:foreground="@drawable/edit_icon"
-        android:foregroundGravity="center"
-        android:visibility="invisible"
-        app:backgroundTint="@color/vetorGreen" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floating_buyer_req_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="145dp"
-        android:clickable="true"
-        android:foreground="@drawable/empty_icon"
-        android:foregroundGravity="center"
-        android:visibility="invisible"
-        app:backgroundTint="@color/vetorGreen" />
 
 </FrameLayout>
