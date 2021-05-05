@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Product implements Parcelable {
 
-    public static final Creator<Product> CREATOR = new Creator<Product>() {
+    public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
 
         @Override
         public Product createFromParcel(Parcel source) {
@@ -26,6 +26,7 @@ public class Product implements Parcelable {
     private boolean isPremium;
     private double price;
     private String title;
+    private Date date;
     private String description;
     private String images1;
     private String images2;
@@ -34,58 +35,174 @@ public class Product implements Parcelable {
     private int categoryID;
     private String contactNumber;
     private String location;
-    private double depositPercentage;
-    private String sellerId;
+    private double deposit;
+    private String sellerID;
     private int maxRentalTime;
     private int minRentalTime;
     private boolean perHour;
-    private int date_in_sec;
-    private int date_in_min;
-    private int date_in_hour;
-    private int date_in_day;
-    private int date_in_year;
-    private Date date;
+    private String contactNumber;
+
     public Product() {
     }
 
-    public int getDate_in_year() {
-        return date_in_year;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public void setDate_in_year(int date_in_year) {
-        this.date_in_year = date_in_year;
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
-    public int getDate_in_sec() {
-        return date_in_sec;
+    public Product(Parcel in) {
+        String data[] = new String[13];
+        in.readStringArray(data);
+
+        this.price =Double.parseDouble(data[0]) ;
+        this.title = data[1];
+        this.description = data[2];
+        this.images1 = data[3];
+        this.images2 = data[4];
+        this.images3 = data[5];
+        this.images4 = data[6];
+        this.isPremium =Boolean.parseBoolean(data[7]);
+        this.perHour = Boolean.parseBoolean(data[8]);
+        this.maxRentalTime = Integer.parseInt(data[9]);
+        this.minRentalTime = Integer.parseInt(data[10]);
+        this.id = data[11];
+        this.contactNumber = data[11];
     }
 
-    public void setDate_in_sec(int date_in_sec) {
-        this.date_in_sec = date_in_sec;
+    public int getCategoryID() {
+        return categoryID;
     }
 
-    public int getDate_in_min() {
-        return date_in_min;
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
     }
 
-    public void setDate_in_min(int date_in_min) {
-        this.date_in_min = date_in_min;
+    public String getLocation() {
+        return location;
     }
 
-    public int getDate_in_hour() {
-        return date_in_hour;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public void setDate_in_hour(int date_in_hour) {
-        this.date_in_hour = date_in_hour;
+    public double getDeposit() {
+        return deposit;
     }
 
-    public int getDate_in_day() {
-        return date_in_day;
+    public void setDeposit(double deposit) {
+        this.deposit = deposit;
     }
 
-    public void setDate_in_day(int date_in_day) {
-        this.date_in_day = date_in_day;
+    public String getSellerID() {
+        return sellerID;
+    }
+
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
+    }
+
+    public int getMaxRentalTime() {
+        return maxRentalTime;
+    }
+
+    public void setMaxRentalTime(int maxRentalTime) {
+        this.maxRentalTime = maxRentalTime;
+    }
+
+    public int getMinRentalTime() {
+        return minRentalTime;
+    }
+
+    public void setMinRentalTime(int minRentalTime) {
+        this.minRentalTime = minRentalTime;
+    }
+
+    public boolean isPerHour() {
+        return perHour;
+    }
+
+    public void setPerHour(boolean perHour) {
+        this.perHour = perHour;
+    }
+
+
+    public boolean getIsPremium() {
+        return isPremium;
+    }
+
+    public void setIsPremium(boolean premium) {
+        isPremium = premium;
+    }
+
+    public static Creator<Product> getCREATOR() {
+        return CREATOR;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public int getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(String deposit) {
+        this.deposit = deposit;
+    }
+
+    public String getSellerID() {
+        return sellerID;
+    }
+
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
+    }
+
+    public int getMaxRentalTime() {
+        return maxRentalTime;
+    }
+
+    public void setMaxRentalTime(int maxRentalTime) {
+        this.maxRentalTime = maxRentalTime;
+    }
+
+    public int getMinRentalTime() {
+        return minRentalTime;
+    }
+
+    public void setMinRentalTime(int minRentalTime) {
+        this.minRentalTime = minRentalTime;
+    }
+
+    public boolean isPerHour() {
+        return perHour;
+    }
+
+    public void setPerHour(boolean perHour) {
+        this.perHour = perHour;
     }
 
     public Date getDate() {
@@ -102,38 +219,6 @@ public class Product implements Parcelable {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public boolean getIsPremium() {
-        return isPremium;
-    }
-
-    public void setIsPremium(boolean premium) {
-        isPremium = premium;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getImages1() {
@@ -168,97 +253,29 @@ public class Product implements Parcelable {
         this.images4 = images4;
     }
 
-    public int getCategoryID() {
-        return categoryID;
+    public double getPrice() {
+        return price;
     }
 
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
+    public void setPrice(double price) {
+        this.price = price;
     }
 
-    public String getContactNumber() {
-        return contactNumber;
+    public String getTitle() {
+        return title;
     }
 
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getLocation() {
-        return location;
+    public String getDescription() {
+        return description;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setDescription(String description) {
+        this.description = description;
     }
-
-    public double getDepositPercentage() {
-        return depositPercentage;
-    }
-
-    public void setDepositPercentage(double deposit) {
-        this.depositPercentage = deposit;
-    }
-
-    public String getSellerId() {
-        return sellerId;
-    }
-
-    public void setSellerId(String sellerID) {
-        this.sellerId = sellerID;
-    }
-
-    public int getMaxRentalTime() {
-        return maxRentalTime;
-    }
-
-    public void setMaxRentalTime(int maxRentalTime) {
-        this.maxRentalTime = maxRentalTime;
-    }
-
-    public int getMinRentalTime() {
-        return minRentalTime;
-    }
-
-    public void setMinRentalTime(int minRentalTime) {
-        this.minRentalTime = minRentalTime;
-    }
-
-    public boolean isPerHour() {
-        return perHour;
-    }
-
-    public void setPerHour(boolean perHour) {
-        this.perHour = perHour;
-    }
-
-    public Product(Parcel in) {
-        String data[] = new String[21];
-        in.readStringArray(data);
-
-        this.price =Double.parseDouble(data[0]) ;
-        this.title = data[1];
-        this.description = data[2];
-        this.images1 = data[3];
-        this.images2 = data[4];
-        this.images3 = data[5];
-        this.images4 = data[6];
-        this.isPremium =Boolean.parseBoolean(data[7]);
-        this.perHour = Boolean.parseBoolean(data[8]);
-        this.maxRentalTime = Integer.parseInt(data[9]);
-        this.minRentalTime = Integer.parseInt(data[10]);
-        this.id = data[11];
-        this.contactNumber = data[12];
-        this.date_in_sec = Integer.parseInt(data[13]);;
-        this.date_in_year= Integer.parseInt(data[14]);
-        this.date_in_min= Integer.parseInt(data[15]);
-        this.date_in_hour= Integer.parseInt(data[16]);
-        this.date_in_day= Integer.parseInt(data[17]);
-        this.depositPercentage = Double.parseDouble(data[18]);
-        this.location = data[19];
-        this.sellerId = data[20];
-    }
-
 
     @Override
     public int describeContents() {
@@ -280,15 +297,7 @@ public class Product implements Parcelable {
                 String.valueOf(this.maxRentalTime),
                 String.valueOf(this.minRentalTime),
                 this.id,
-                this.contactNumber,
-                String.valueOf(this.date_in_sec),
-                String.valueOf(this.date_in_year),
-                String.valueOf(this.date_in_min),
-                String.valueOf(this.date_in_hour),
-                String.valueOf(this.date_in_day),
-                String.valueOf(this.depositPercentage),
-                this.location,
-                this.sellerId
+                this.contactNumber
         });
     }
 }
