@@ -23,126 +23,25 @@ public class Product implements Parcelable {
     };
 
     private String id;
-    private String isPremium;
-    private String price;
+    private boolean isPremium;
+    private double price;
     private String title;
-    private Date date;
+    private Long date;
     private String description;
     private String images1;
     private String images2;
     private String images3;
     private String images4;
-
-
     private int categoryID;
     private String contactNumber;
     private String location;
-    private String deposit;
+    private double depositPercentage;
     private String sellerID;
     private int maxRentalTime;
     private int minRentalTime;
     private boolean perHour;
 
-
     public Product() {
-    }
-
-    public Product(Parcel in) {
-        String data[] = new String[8];
-        in.readStringArray(data);
-
-        this.price = data[0];
-        this.title = data[1];
-        this.description = data[2];
-        this.images1 = data[3];
-        this.images2 = data[4];
-        this.images3 = data[5];
-        this.images4 = data[6];
-        this.isPremium = data[7];
-    }
-
-    public String getIsPremium() {
-        return isPremium;
-    }
-
-    public void setIsPremium(String premium) {
-        isPremium = premium;
-    }
-
-    public static Creator<Product> getCREATOR() {
-        return CREATOR;
-    }
-
-    public String getContactNumber() {
-        return contactNumber;
-    }
-
-    public void setContactNumber(String contactNumber) {
-        this.contactNumber = contactNumber;
-    }
-
-    public int getCategoryID() {
-        return categoryID;
-    }
-
-    public void setCategoryID(int categoryID) {
-        this.categoryID = categoryID;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getDeposit() {
-        return deposit;
-    }
-
-    public void setDeposit(String deposit) {
-        this.deposit = deposit;
-    }
-
-    public String getSellerID() {
-        return sellerID;
-    }
-
-    public void setSellerID(String sellerID) {
-        this.sellerID = sellerID;
-    }
-
-    public int getMaxRentalTime() {
-        return maxRentalTime;
-    }
-
-    public void setMaxRentalTime(int maxRentalTime) {
-        this.maxRentalTime = maxRentalTime;
-    }
-
-    public int getMinRentalTime() {
-        return minRentalTime;
-    }
-
-    public void setMinRentalTime(int minRentalTime) {
-        this.minRentalTime = minRentalTime;
-    }
-
-    public boolean isPerHour() {
-        return perHour;
-    }
-
-    public void setPerHour(boolean perHour) {
-        this.perHour = perHour;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getId() {
@@ -151,6 +50,46 @@ public class Product implements Parcelable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public boolean getIsPremium() {
+        return isPremium;
+    }
+
+    public void setIsPremium(boolean premium) {
+        isPremium = premium;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Long getDate() {
+        return date;
+    }
+
+    public void setDate(Long date) {
+        this.date = date;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getImages1() {
@@ -185,29 +124,89 @@ public class Product implements Parcelable {
         this.images4 = images4;
     }
 
-    public String getPrice() {
-        return price;
+    public int getCategoryID() {
+        return categoryID;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
     }
 
-    public String getTitle() {
-        return title;
+    public String getContactNumber() {
+        return contactNumber;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
     }
 
-    public String getDescription() {
-        return description;
+    public String getLocation() {
+        return location;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setLocation(String location) {
+        this.location = location;
     }
+
+    public double getDepositPercentage() {
+        return depositPercentage;
+    }
+
+    public void setDepositPercentage(double deposit) {
+        this.depositPercentage = deposit;
+    }
+
+    public String getSellerID() {
+        return sellerID;
+    }
+
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
+    }
+
+    public int getMaxRentalTime() {
+        return maxRentalTime;
+    }
+
+    public void setMaxRentalTime(int maxRentalTime) {
+        this.maxRentalTime = maxRentalTime;
+    }
+
+    public int getMinRentalTime() {
+        return minRentalTime;
+    }
+
+    public void setMinRentalTime(int minRentalTime) {
+        this.minRentalTime = minRentalTime;
+    }
+
+    public boolean isPerHour() {
+        return perHour;
+    }
+
+    public void setPerHour(boolean perHour) {
+        this.perHour = perHour;
+    }
+
+    public Product(Parcel in) {
+        String data[] = new String[13];
+        in.readStringArray(data);
+
+        this.price =Double.parseDouble(data[0]) ;
+        this.title = data[1];
+        this.description = data[2];
+        this.images1 = data[3];
+        this.images2 = data[4];
+        this.images3 = data[5];
+        this.images4 = data[6];
+        this.isPremium =Boolean.parseBoolean(data[7]);
+        this.perHour = Boolean.parseBoolean(data[8]);
+        this.maxRentalTime = Integer.parseInt(data[9]);
+        this.minRentalTime = Integer.parseInt(data[10]);
+        this.id = data[11];
+        this.contactNumber = data[12];
+    }
+
 
     @Override
     public int describeContents() {
@@ -216,6 +215,20 @@ public class Product implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStringArray(new String[]{this.price, this.title, this.description, this.images1, this.images2, this.images3, this.images4, this.isPremium});
+        parcel.writeStringArray(new String[]{
+                String.valueOf(this.price),
+                this.title,
+                this.description,
+                this.images1,
+                this.images2,
+                this.images3,
+                this.images4,
+                String.valueOf(this.isPremium),
+                String.valueOf(this.perHour),
+                String.valueOf(this.maxRentalTime),
+                String.valueOf(this.minRentalTime),
+                this.id,
+                this.contactNumber
+        });
     }
 }

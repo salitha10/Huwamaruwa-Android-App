@@ -36,7 +36,7 @@ public class PremiumProduct extends AppCompatActivity {
         txtPrice = findViewById(R.id.txtPremiumProduct_price);
         txtTime = findViewById(R.id.txtPremiumProduct_time);
 
-        btnRentProduct = findViewById(R.id.btnPremiumProduct_rentProduct);
+        btnRentProduct = findViewById(R.id.btnRequestRent_form_send_request);
 
         product = getIntent().getParcelableExtra(Home_recycler_1_adapter.SINGLE_PRODUCT_TAG);
 
@@ -47,7 +47,7 @@ public class PremiumProduct extends AppCompatActivity {
         Glide.with(this).load(product.getImages1()).into(imgMain);
 
         txtTitle.setText(product.getTitle());
-        txtPrice.setText(RS.concat(product.getPrice())+"/Per Day");
+        txtPrice.setText(RS.concat(String.valueOf(product.getPrice()))+"/Per Day");
 
 
     }

@@ -39,7 +39,7 @@ public class Home_recycler_1_adapter extends RecyclerView.Adapter<Home_recycler_
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(context).load(product_list.get(position).getImages1()).into(holder.mainImg);
-        holder.txtPrice.setText(product_list.get(position).getPrice());
+        holder.txtPrice.setText(String.valueOf(product_list.get(position).getPrice()));
         holder.txtTitle.setText(product_list.get(position).getTitle());
         holder.txtDescription.setText(product_list.get(position).getDescription());
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {

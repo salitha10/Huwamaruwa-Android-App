@@ -1,4 +1,4 @@
-package com.example.huwamaruwa;
+package com.example.huwamaruwa.addProduct;
 
 import android.content.Context;
 import android.net.Uri;
@@ -16,11 +16,11 @@ import com.example.huwamaruwa.R;
 
 import java.util.ArrayList;
 
-public class NewAddAdapter extends RecyclerView.Adapter<NewAddAdapter.ViewHolder> {
+public class AddNewItemAdapter extends RecyclerView.Adapter<AddNewItemAdapter.ViewHolder> {
     Context context;
     ArrayList<Uri>prev_img_list = new ArrayList<>();
 
-    public NewAddAdapter(Context context, ArrayList<Uri> prev_img_list) {
+    public AddNewItemAdapter(Context context, ArrayList<Uri> prev_img_list) {
         this.context = context;
         this.prev_img_list = prev_img_list;
     }
