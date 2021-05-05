@@ -35,6 +35,7 @@ public class Product implements Parcelable {
 
 
     private int categoryID;
+    private String contactNumber;
     private String location;
     private String deposit;
     private String sellerID;
@@ -66,6 +67,74 @@ public class Product implements Parcelable {
 
     public void setIsPremium(String premium) {
         isPremium = premium;
+    }
+
+    public static Creator<Product> getCREATOR() {
+        return CREATOR;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public int getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(String deposit) {
+        this.deposit = deposit;
+    }
+
+    public String getSellerID() {
+        return sellerID;
+    }
+
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
+    }
+
+    public int getMaxRentalTime() {
+        return maxRentalTime;
+    }
+
+    public void setMaxRentalTime(int maxRentalTime) {
+        this.maxRentalTime = maxRentalTime;
+    }
+
+    public int getMinRentalTime() {
+        return minRentalTime;
+    }
+
+    public void setMinRentalTime(int minRentalTime) {
+        this.minRentalTime = minRentalTime;
+    }
+
+    public boolean isPerHour() {
+        return perHour;
+    }
+
+    public void setPerHour(boolean perHour) {
+        this.perHour = perHour;
     }
 
     public Date getDate() {
