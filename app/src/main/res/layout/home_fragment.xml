@@ -323,69 +323,31 @@
         android:foregroundGravity="center"
         app:backgroundTint="@color/GreenMain"
         app:elevation="2dp" />
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/floating_bottom_sheet"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_gravity="end|bottom"
-        android:background="@color/white"
-        android:backgroundTint="@color/white"
-        android:foregroundTint="#FFFFFF"
-        android:visibility="invisible">
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_add_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_marginRight="14dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="80dp"
         android:clickable="true"
         android:foreground="@drawable/edit_icon"
         android:foregroundGravity="center"
         android:visibility="invisible"
-        app:backgroundTint="@color/vetorGreen" />
+        app:backgroundTint="@color/chat_bar" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_buyer_req_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_marginRight="14dp"
+        android:layout_marginRight="10dp"
         android:layout_marginBottom="145dp"
         android:clickable="true"
         android:foreground="@drawable/empty_icon"
         android:foregroundGravity="center"
         android:visibility="invisible"
-        app:backgroundTint="@color/vetorGreen" />
-
-
-    <TextView
-        android:id="@+id/txtfloating_req"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_marginRight="65dp"
-        android:layout_marginBottom="155dp"
-        android:text="@string/floatingMg_req"
-        android:textColor="@color/GreenMain"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:visibility="invisible" />
-
-    <TextView
-        android:id="@+id/txtfloating_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/floatingMg_add"
-        android:layout_gravity="end|bottom"
-        android:layout_marginRight="65dp"
-        android:layout_marginBottom="95dp"
-        android:visibility="invisible"
-        android:textColor="@color/GreenMain"
-        android:textSize="26sp"
-        android:textStyle="bold"/>
+        app:backgroundTint="@color/chat_bar" />
 
 </FrameLayout>

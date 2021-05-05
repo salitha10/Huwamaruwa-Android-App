@@ -1,5 +1,4 @@
 package com.example.huwamaruwa.Home;
-
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -8,17 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.singleProduct.PremiumProduct;
-
 import java.util.ArrayList;
 
 public class Home_recycler_2_adapter extends RecyclerView.Adapter<Home_recycler_2_adapter.ViewHolder> {
