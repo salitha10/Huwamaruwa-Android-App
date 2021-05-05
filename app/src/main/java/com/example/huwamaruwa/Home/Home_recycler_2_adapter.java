@@ -42,9 +42,9 @@ public class Home_recycler_2_adapter extends RecyclerView.Adapter<Home_recycler_
         String rs = "RS. ";
         Glide.with(context).load(product_list.get(position).getImages1()).into(holder.mainImg);
         holder.txtTitle.setText(product_list.get(position).getTitle());
-        holder.txtPrice.setText(rs.concat(product_list.get(position).getPrice()));
+        holder.txtPrice.setText(rs.concat(String.valueOf(product_list.get(position).getPrice())));
         //holder.txtTitle.setText(product_list.get(position).getPremium());
-        if (product_list.get(position).getIsPremium().equals("false")){
+        if (!product_list.get(position).getIsPremium()){
             holder.doneIcon.setVisibility(View.INVISIBLE);
             holder.careIcon.setVisibility(View.INVISIBLE);
             holder.deliveryIcon.setVisibility(View.INVISIBLE);

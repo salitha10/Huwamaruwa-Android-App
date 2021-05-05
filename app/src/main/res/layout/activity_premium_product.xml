@@ -151,7 +151,7 @@
                 android:elevation="0dp"
                 android:foreground="@drawable/rectangle"
                 app:cardCornerRadius="10dp"
-                app:layout_constraintBottom_toTopOf="@+id/btnPremiumProduct_rentProduct"
+                app:layout_constraintBottom_toTopOf="@+id/btnRequestRent_form_send_request"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6">
@@ -437,7 +437,7 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/btnPremiumProduct_rentProduct"
+                android:id="@+id/btnRequestRent_form_send_request"
                 android:layout_width="267dp"
                 android:layout_height="56dp"
                 android:layout_gravity="center_horizontal|center_vertical"

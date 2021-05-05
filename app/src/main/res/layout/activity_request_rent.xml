@@ -103,7 +103,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtRequesrtRent_form_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -118,6 +120,7 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edtRequesrtRent_form_contactnumber"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -184,7 +187,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView39"
+            android:id="@+id/txtRequestRent__form_total"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -204,7 +207,7 @@
             android:textSize="16sp" />
 
         <TextView
-            android:id="@+id/textView41"
+            android:id="@+id/txtRequestRent__form_deposit"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -214,7 +217,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/btnPremiumProduct_rentProduct"
+        android:id="@+id/btnRequestRent_form_send_request"
         android:layout_width="267dp"
         android:layout_height="56dp"
         android:layout_gravity="center_horizontal|center_vertical"
@@ -238,7 +241,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView" />
     <Button
-        android:id="@+id/premium_pay_btn"
+        android:id="@+id/btnRequestRent_form_pay"
         android:layout_width="169dp"
         android:layout_height="56dp"
         android:layout_gravity="center_horizontal|center_vertical"
