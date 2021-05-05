@@ -1,11 +1,11 @@
 package com.example.huwamaruwa.Models;
 
-public class productReview {
+public class ProductReviews {
     private String productID;
-    private String buyerID;
+    //private String buyerID;
     private String comment;
     private String thumbnailURL;
-    private String date;
+    //private String date;
     private double qualityRating;
     private double usabilityRating;
     private double priceRating;
@@ -14,9 +14,9 @@ public class productReview {
 
     //Getters and setters
 
-    public String getDate() { return date; }
+    //public String getDate() { return date; }
 
-    public void setDate(String date) { this.date = date; }
+    //public void setDate(String date) { this.date = date; }
 
     public double getUsabilityRating() { return usabilityRating; }
 
@@ -46,13 +46,9 @@ public class productReview {
         this.productID = productID;
     }
 
-    public String getBuyerID() {
-        return buyerID;
-    }
+    //public String getBuyerID() { return buyerID; }
 
-    public void setBuyerID(String buyerID) {
-        this.buyerID = buyerID;
-    }
+    //public void setBuyerID(String buyerID) { this.buyerID = buyerID; }
 
     public double getQualityRating() {
         return qualityRating;
