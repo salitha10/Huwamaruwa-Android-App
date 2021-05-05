@@ -2,673 +2,679 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="414dp"
-    android:layout_height="730dp"
-    android:layout_marginBottom="220dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:fillViewport="true"
     tools:layout_editor_absoluteX="-3dp"
     tools:layout_editor_absoluteY="-3dp">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".AddNewItem">
+        android:orientation="vertical">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/crd1"
-            android:layout_width="392dp"
-            android:layout_height="226dp"
-            android:layout_marginTop="80dp"
-            app:cardElevation="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".addProduct.AddNewItem">
 
-            <Button
-                android:id="@+id/btnGallery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="150dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginBottom="20dp"
-                android:text="@string/gallery"
-                app:icon="@android:drawable/ic_menu_gallery"
-                app:layout_constraintBottom_toTopOf="@+id/imageView2"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/crd1"
+                android:layout_width="392dp"
+                android:layout_height="226dp"
+                android:layout_marginTop="80dp"
+                app:cardElevation="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+                app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/btnTakePhoto"
+
+                <Button
+                    android:id="@+id/btnGallery"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="@string/gallery"
+                    app:icon="@android:drawable/ic_menu_gallery"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+                <Button
+                    android:id="@+id/btnTakePhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="220dp"
+                    android:layout_marginTop="150dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="20dp"
+                    android:text="camera"
+                    app:icon="@android:drawable/ic_menu_camera"
+                    app:layout_constraintBottom_toTopOf="@+id/img1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img1" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/img_prev_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="136dp"
+                    android:orientation="horizontal" />
+
+
+            </androidx.cardview.widget.CardView>
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_marginBottom="940dp"
+                android:background="@color/View_line"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/txtIspremium"
+                android:layout_width="128dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="50dp"
+                android:inputType="text"
+                android:text="@string/premium_item"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.055"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/crd1" />
+
+            <Switch
+                android:id="@+id/swhAddpost"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="220dp"
-                android:layout_marginTop="150dp"
+                android:layout_marginStart="180dp"
+                android:layout_marginTop="356dp"
+                android:layout_marginBottom="16dp"
+                android:text="Premium"
+                app:layout_constraintBottom_toTopOf="@+id/btnSelect"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.503"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginBottom="20dp"
-                android:text="camera"
-                app:icon="@android:drawable/ic_menu_camera"
-                app:layout_constraintBottom_toTopOf="@+id/img1"
+                android:hint="@string/categories"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/img1" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.32999998">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/img_prev_recycler"
-                android:layout_width="match_parent"
-                android:layout_height="136dp"
-                android:orientation="horizontal" />
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteText1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="none"
+                    android:padding="16dp"
+                    android:paddingBottom="10dp"
+                    android:text="@string/select_category_product"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-
-        </androidx.cardview.widget.CardView>
-
-        <View
-            android:layout_width="wrap_content"
-            android:layout_height="1dp"
-            android:layout_marginBottom="940dp"
-            android:background="@color/View_line"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <TextView
-            android:id="@+id/txtIspremium"
-            android:layout_width="128dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="50dp"
-            android:inputType="text"
-            android:text="@string/premium_item"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.055"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/crd1" />
-
-        <Switch
-            android:id="@+id/swhAddpost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="180dp"
-            android:layout_marginTop="356dp"
-            android:layout_marginBottom="16dp"
-            android:text="Premium"
-            app:layout_constraintBottom_toTopOf="@+id/btnSelect"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="40dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="20dp"
-            android:hint="@string/categories"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.32999998">
-
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteText1"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutPlace"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:inputType="none"
-                android:padding="16dp"
-                android:paddingBottom="10dp"
-                android:text="@string/select_category_product"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="150dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="10dp"
+                android:hint="@string/location_user"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.32999998">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layoutPlace"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="10dp"
-            android:hint="@string/location_user"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.32999998">
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#1BB55C"
+                    android:inputType="none"
+                    android:padding="16dp"
+                    android:paddingBottom="10dp"
 
-            <AutoCompleteTextView
-                android:id="@+id/autoCompleteText2"
+                    android:text="@string/select_location_user"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layoutProduct."
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="#1BB55C"
-                android:inputType="none"
-                android:padding="16dp"
-                android:paddingBottom="10dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="580dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_input"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:context=".drop_down"
+                tools:ignore="DuplicateIds">
 
-                android:text="@string/select_location_user"
-                android:textSize="16sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_description"
+                    app:tint="@color/View_line" />
+
+                <EditText
+                    android:id="@+id/ProductName1"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@null"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/View_line"
+                    android:textSize="18sp"
+
+                    android:textStyle="bold" />
 
 
-        <LinearLayout
-            android:id="@+id/layoutProduct."
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="580dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/background_input"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:context=".drop_down"
-            tools:ignore="DuplicateIds">
+            </LinearLayout>
 
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_description"
-                app:tint="@color/View_line" />
-
-            <EditText
-                android:id="@+id/ProductName1"
+            <LinearLayout
+                android:id="@+id/layoutDescription"
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@null"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColor="@color/View_line"
-                android:textSize="18sp"
-
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="655dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/background_input"
-            android:gravity="center_vertical"
-
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_doller"
-                app:tint="@color/View_line" />
-
-            <EditText
-                android:id="@+id/rentFee"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@null"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColor="@color/View_line"
-                android:textSize="18sp"
-
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutcontact"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="740dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/background_input"
-            android:gravity="center_vertical"
-
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_phone"
-                app:tint="@color/View_line" />
-
-            <EditText
-                android:id="@+id/contact"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@null"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColor="@color/View_line"
-                android:textSize="18sp"
-
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutDesc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="820dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/background_input"
-            android:gravity="center_vertical"
-
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_write"
-                app:tint="@color/View_line" />
-
-            <EditText
-                android:id="@+id/description"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@null"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColor="@color/View_line"
-                android:textSize="18sp"
-
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutDeposit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="940dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/background_input"
-            android:gravity="center_vertical"
-
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_deposit"
-                app:tint="@color/View_line" />
-
-            <EditText
-                android:id="@+id/deposit"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@null"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:paddingStart="10dp"
-
-                android:hint="%"
-
-                android:paddingEnd="10dp"
-                android:textColor="@color/View_line"
-                android:textSize="18sp"
-
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutMax"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="1020dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/background_input"
-            android:gravity="center_vertical"
-
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_max"
-                app:tint="@color/View_line" />
-
-            <EditText
-                android:id="@+id/maxDate"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@null"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColor="@color/View_line"
-                android:textSize="18sp"
-
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layoutMin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="1100dp"
-            android:layout_marginEnd="16dp"
-            android:background="@drawable/background_input"
-            android:gravity="center_vertical"
-
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginStart="10dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/ic_min"
-                app:tint="@color/View_line" />
-
-            <EditText
-                android:id="@+id/minDate"
-                android:layout_width="match_parent"
-                android:layout_height="55dp"
-                android:background="@null"
-                android:importantForAutofill="no"
-                android:inputType="text"
-                android:paddingStart="10dp"
-                android:paddingEnd="10dp"
-                android:textColor="@color/View_line"
-                android:textSize="18sp"
-
-                android:textStyle="bold" />
-
-
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="570dp"
-            android:background="@color/white"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:text="@string/product_name"
-            android:textAllCaps="true"
-            android:textColor="@color/View_line"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="640dp"
-            android:background="@color/white"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:text="@string/Rental_fee"
-            android:textAllCaps="true"
-            android:textColor="@color/View_line"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="730dp"
-            android:background="@color/white"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:text="@string/contact_number"
-            android:textAllCaps="true"
-            android:textColor="@color/View_line"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="810dp"
-            android:background="@color/white"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:text="@string/description"
-            android:textAllCaps="true"
-            android:textColor="@color/View_line"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="930dp"
-            android:background="@color/white"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-
-            android:text="Deposit Percentage"
-
-            android:textAllCaps="true"
-            android:textColor="@color/View_line"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtMax"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="1010dp"
-            android:background="@color/white"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:text="Maximum Rental time"
-            android:textAllCaps="true"
-            android:textColor="@color/View_line"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/txtMin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="64dp"
-            android:layout_marginTop="1090dp"
-            android:background="@color/white"
-            android:paddingStart="6dp"
-            android:paddingEnd="6dp"
-            android:text="Minimum Rental time"
-            android:textAllCaps="true"
-            android:textColor="@color/View_line"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <include
-            layout="@layout/toolbar"
-            app:layout_constraintBottom_toTopOf="@+id/crd1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:navigationIcon="@drawable/menu_icon" />
-
-        <!--        <RadioButton-->
-        <!--            android:id="@+id/radioButton1"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="80dp"-->
-        <!--            android:layout_marginTop="20dp"-->
-        <!--            android:text="@string/yes"-->
-        <!--            app:layout_constraintStart_toEndOf="@+id/textView6"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/crd1" />-->
-
-        <!--        <RadioButton-->
-        <!--            android:id="@+id/radioButton2"-->
-        <!--            android:layout_width="wrap_content"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:layout_marginStart="36dp"-->
-        <!--            android:layout_marginTop="20dp"-->
-        <!--            android:text="@string/no"-->
-        <!--            app:layout_constraintEnd_toEndOf="parent"-->
-        <!--            app:layout_constraintHorizontal_bias="0.0"-->
-        <!--            app:layout_constraintStart_toEndOf="@+id/radioButton1"-->
-        <!--            app:layout_constraintTop_toBottomOf="@+id/crd1" />-->
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="128dp"
-            android:layout_height="26dp"
-            android:layout_marginTop="580dp"
-            android:inputType="text"
-
-            android:text="Rental Fee For"
-
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.055"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/crd1" />
-
-        <RadioGroup
-            android:id="@+id/radioGroup"
-
-            android:layout_width="206dp"
-            android:layout_height="29dp"
-            android:layout_marginStart="300dp"
-            android:layout_marginTop="885dp"
-
-            android:layout_marginEnd="32dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <RadioButton
-
-                android:id="@+id/perDay_radio"
-                android:layout_width="95dp"
                 android:layout_height="wrap_content"
-                android:onClick="onRadioButton"
-                android:text="Per Day"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="655dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_input"
+                android:gravity="center_vertical"
 
-                tools:layout_conversion_absoluteHeight="30dp"
-                tools:layout_conversion_absoluteWidth="142dp"
-                tools:layout_editor_absoluteX="240dp"
-                tools:layout_editor_absoluteY="336dp" />
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <RadioButton
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_doller"
+                    app:tint="@color/View_line" />
 
-                android:id="@+id/RentperHour_radio"
+                <EditText
+                    android:id="@+id/rentFee"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@null"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/View_line"
+                    android:textSize="18sp"
 
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutcontact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="740dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_input"
+                android:gravity="center_vertical"
+
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_phone"
+                    app:tint="@color/View_line" />
+
+                <EditText
+                    android:id="@+id/contact"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@null"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/View_line"
+                    android:textSize="18sp"
+
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="820dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_input"
+                android:gravity="center_vertical"
+
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_write"
+                    app:tint="@color/View_line" />
+
+                <EditText
+                    android:id="@+id/description"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@null"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/View_line"
+                    android:textSize="18sp"
+
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutDeposit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="940dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_input"
+                android:gravity="center_vertical"
+
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_deposit"
+                    app:tint="@color/View_line" />
+
+                <EditText
+                    android:id="@+id/deposit"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@null"
+                    android:hint="%"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+
+                    android:paddingStart="10dp"
+
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/View_line"
+                    android:textSize="18sp"
+
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutMax"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="1020dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_input"
+                android:gravity="center_vertical"
+
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_max"
+                    app:tint="@color/View_line" />
+
+                <EditText
+                    android:id="@+id/maxDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@null"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/View_line"
+                    android:textSize="18sp"
+
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutMin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="1100dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/background_input"
+                android:gravity="center_vertical"
+
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/ic_min"
+                    app:tint="@color/View_line" />
+
+                <EditText
+                    android:id="@+id/minDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="55dp"
+                    android:background="@null"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:textColor="@color/View_line"
+                    android:textSize="18sp"
+
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:onClick="onRadioButton"
-                         
-                android:text="Per Hour"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="570dp"
+                android:background="@color/white"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="@string/product_name"
+                android:textAllCaps="true"
+                android:textColor="@color/View_line"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                tools:layout_conversion_absoluteHeight="0dp"
-                tools:layout_conversion_absoluteWidth="142dp"
-                tools:layout_editor_absoluteX="240dp"
-                tools:layout_editor_absoluteY="366dp" />
-        </RadioGroup>
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="640dp"
+                android:background="@color/white"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="@string/Rental_fee"
+                android:textAllCaps="true"
+                android:textColor="@color/View_line"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/btnPost"
-            android:layout_width="299dp"
-            android:layout_height="42dp"
-            android:layout_marginTop="200dp"
-            android:layout_marginBottom="30dp"
-            android:text="@string/post_ad"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.504"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layoutDeposit"
-            app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="730dp"
+                android:background="@color/white"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="@string/contact_number"
+                android:textAllCaps="true"
+                android:textColor="@color/View_line"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="810dp"
+                android:background="@color/white"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="@string/description"
+                android:textAllCaps="true"
+                android:textColor="@color/View_line"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="930dp"
+                android:background="@color/white"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+
+                android:text="Deposit Percentage"
+
+                android:textAllCaps="true"
+                android:textColor="@color/View_line"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtMax"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="1010dp"
+                android:background="@color/white"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="Maximum Rental time"
+                android:textAllCaps="true"
+                android:textColor="@color/View_line"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/txtMin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="1090dp"
+                android:background="@color/white"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:text="Minimum Rental time"
+                android:textAllCaps="true"
+                android:textColor="@color/View_line"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <include
+                layout="@layout/toolbar"
+                app:layout_constraintBottom_toTopOf="@+id/crd1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/menu_icon" />
 
+            <!--        <RadioButton-->
+            <!--            android:id="@+id/radioButton1"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="80dp"-->
+            <!--            android:layout_marginTop="20dp"-->
+            <!--            android:text="@string/yes"-->
+            <!--            app:layout_constraintStart_toEndOf="@+id/textView6"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/crd1" />-->
+
+            <!--        <RadioButton-->
+            <!--            android:id="@+id/radioButton2"-->
+            <!--            android:layout_width="wrap_content"-->
+            <!--            android:layout_height="wrap_content"-->
+            <!--            android:layout_marginStart="36dp"-->
+            <!--            android:layout_marginTop="20dp"-->
+            <!--            android:text="@string/no"-->
+            <!--            app:layout_constraintEnd_toEndOf="parent"-->
+            <!--            app:layout_constraintHorizontal_bias="0.0"-->
+            <!--            app:layout_constraintStart_toEndOf="@+id/radioButton1"-->
+            <!--            app:layout_constraintTop_toBottomOf="@+id/crd1" />-->
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="128dp"
+                android:layout_height="26dp"
+                android:layout_marginTop="580dp"
+                android:inputType="text"
+
+                android:text="Rental Fee For"
+
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.055"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/crd1" />
+
+            <RadioGroup
+                android:id="@+id/radioGroup"
+
+                android:layout_width="206dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="300dp"
+                android:layout_marginTop="885dp"
+
+                android:layout_marginEnd="32dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <RadioButton
+
+                    android:id="@+id/perDay_radio"
+                    android:layout_width="95dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="onRadioButton"
+                    android:text="Per Day"
+
+                    tools:layout_conversion_absoluteHeight="30dp"
+                    tools:layout_conversion_absoluteWidth="142dp"
+                    tools:layout_editor_absoluteX="240dp"
+                    tools:layout_editor_absoluteY="336dp" />
+
+                <RadioButton
+
+                    android:id="@+id/RentperHour_radio"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:onClick="onRadioButton"
+
+                    android:text="Per Hour"
+
+                    tools:layout_conversion_absoluteHeight="0dp"
+                    tools:layout_conversion_absoluteWidth="142dp"
+                    tools:layout_editor_absoluteX="240dp"
+                    tools:layout_editor_absoluteY="366dp" />
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btnPost"
+                android:layout_width="299dp"
+                android:layout_height="42dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginBottom="30dp"
+                android:text="@string/post_ad"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.504"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layoutDeposit"
+                app:layout_constraintVertical_bias="0.0" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
 </ScrollView>

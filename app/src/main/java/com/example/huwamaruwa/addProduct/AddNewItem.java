@@ -1,4 +1,4 @@
-package com.example.huwamaruwa;
+package com.example.huwamaruwa.addProduct;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,12 +22,13 @@ import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import com.example.huwamaruwa.Models.Post;
 import com.example.huwamaruwa.Models.Product;
 
 import com.example.huwamaruwa.Progress.LoadingProgress;
+import com.example.huwamaruwa.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -36,7 +37,6 @@ import com.google.firebase.storage.UploadTask;
 import com.sangcomz.fishbun.FishBun;
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter;
 
-import java.text.DateFormat;
 import java.util.ArrayList;
 
 public class AddNewItem extends AppCompatActivity {
@@ -45,9 +45,6 @@ public class AddNewItem extends AppCompatActivity {
 
     EditText addProductName, rentFee, addProdcontact, prodDescription, deposit,edtmaxDate,edtminRentTime;
     Switch  swhAddpost;
-
-
-
     private static final int CAMERA_REQEST = 1888;
     Button btnTakePhoto, btnGallery, btnPost;
     ArrayList<Uri> img_list;
@@ -58,7 +55,6 @@ public class AddNewItem extends AppCompatActivity {
     StorageReference sdbRefe;
     LoadingProgress loadingProgress;
     String imgData[];
-
     RadioButton RentperDay_radio,RentperHour_radio;
 
     int i=0;
@@ -129,12 +125,12 @@ public class AddNewItem extends AppCompatActivity {
         });
 
 
-        btnTakePhoto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                captureImg();
-            }
-        });
+//        btnTakePhoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                captureImg();
+//            }
+//        });
 
 
 
@@ -200,15 +196,14 @@ public class AddNewItem extends AppCompatActivity {
 
         post = new Product();
         Boolean isPremium = swhAddpost.isChecked();
-        post.setIsPremium(isPremium.toString().trim());
-        post.setDate(DateFormat.getDateInstance().getCalendar().getTime());
+        post.setIsPremium(isPremium);
         post.setLocation(autoCompleteTextloc.getText().toString().trim());
         post.setTitle(addProductName.getText().toString().trim());
-        post.setPrice(rentFee.getText().toString().trim());
+        post.setPrice(Double.parseDouble(rentFee.getText().toString().trim()));
         post.setContactNumber(addProdcontact.getText().toString().trim());
-        post.setDeposit(deposit.getText().toString().trim());
+        post.setDepositPercentage(Double.parseDouble(deposit.getText().toString().trim()));
         post.setDescription(prodDescription.getText().toString().trim());
-
+        post.setDate(MaterialDatePicker.todayInUtcMilliseconds());
         post.setImages1(imgData[0]);
         post.setImages2(imgData[1]);
         post.setImages3(imgData[2]);
@@ -314,7 +309,7 @@ public class AddNewItem extends AppCompatActivity {
 
     private void initRecycler() {
         RecyclerView recyclerView = findViewById(R.id.img_prev_recycler);
-        NewAddAdapter postAdapter = new NewAddAdapter(this,img_list);
+        AddNewItemAdapter postAdapter = new AddNewItemAdapter(this,img_list);
         recyclerView.setAdapter(postAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
     }
