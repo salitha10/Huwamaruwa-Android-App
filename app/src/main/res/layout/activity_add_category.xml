@@ -60,8 +60,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/crd1"
-            android:layout_width="364dp"
-            android:layout_height="385dp"
+            android:layout_width="361dp"
+            android:layout_height="451dp"
             android:layout_marginTop="240dp"
             app:cardElevation="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -171,6 +171,28 @@
                     android:layout_height="wrap_content">
 
                 </com.google.android.material.textfield.TextInputEditText>
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/txtcatType6"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="350dp"
+                android:layout_marginEnd="16dp"
+                android:hint="Type 6"
+                app:boxBackgroundMode="filled"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                </com.google.android.material.textfield.TextInputEditText>
             </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -180,12 +202,15 @@
             android:id="@+id/btnCatsub"
             android:layout_width="159dp"
             android:layout_height="47dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="50dp"
             android:text="Submit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_bias="0.464"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/crd1" />
+            app:layout_constraintTop_toBottomOf="@+id/crd1"
+            app:layout_constraintVertical_bias="0.0" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
