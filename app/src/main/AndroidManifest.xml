@@ -13,12 +13,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Huwamaruwa">
+        <activity android:name=".buyerRentalRequestManage.SendingOffer"></activity>
+        <activity android:name=".buyerRentalRequestManage.AllBuyerRentalRequests">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-        <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
-
-
 
         <activity android:name=".ProfileView" />
         <activity android:name=".UserProfileEdit" />
@@ -32,26 +34,19 @@
         </activity>
         <activity android:name=".ProductReviews.allProductReviews"
             android:exported="true"></activity>
-        <activity
 
+        <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller" />
 
-            android:name=".StudentActivity"
-            android:exported="true">
-        </activity>
-        <activity android:name=".SignUp" />
-
+        <activity android:name=".SignUp"></activity>
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />
-        <activity android:name=".singleProduct.RequestRent">
-
-        </activity>
+        <activity android:name=".singleProduct.RequestRent" />
 
         <activity android:name=".PaymentOption" />
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
         <activity android:name=".MainActivity" >
-
 
         </activity>
         <activity android:name=".AddNewItem">
@@ -62,7 +57,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
 
         <meta-data
             android:name="preloaded_fonts"
