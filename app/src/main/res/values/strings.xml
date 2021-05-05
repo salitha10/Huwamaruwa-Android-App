@@ -89,6 +89,8 @@
     <string name="paymentOptionNote1">You can Pay Initial Deposit via cash on dilevry Method</string>
     <string name="paymentOptionNote2">Only You Have to do ,Make Payment To Our Dilevry Agent</string>
     <string name="nav_request_rentals">Rental Requests</string>
+    <string name="floatingMg_req">Request Product</string>
+    <string name="floatingMg_add">Add Product</string>
 
     //Kavindya
     <string name="select_category">select Category</string>

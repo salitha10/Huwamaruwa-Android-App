@@ -17,10 +17,7 @@
             android:id="@+id/nav_notifications"
             android:icon="@drawable/notifications_icon"
             android:title="@string/nav_notifications_title" />
-        <item
-            android:id="@+id/nav_rental_requests"
-            android:icon="@drawable/rental_request_icon"
-            android:title="@string/nav_rental_requests_title" />
+
         <item
             android:id="@+id/nav_favorites"
             android:icon="@drawable/favorite_icon"
@@ -40,7 +37,7 @@
                     android:title="@string/nav_categories_title" />
                     <item
                         android:id="@+id/admin_Rental_requests"
-                        android:icon="@drawable/category_icon"
+                        android:icon="@drawable/rental_request_icon"
                         android:title="@string/nav_request_rentals" />
                 </group>
             </menu>
