@@ -57,21 +57,26 @@ public class Home_fragment extends Fragment {
         product_list_new = new ArrayList<>();
 
         dRef_latest = FirebaseDatabase.getInstance().getReference();
-
+        dRef_latest.keepSynced(true);
         Query query = dRef_latest.child("Product");
+
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
                     Product product = new Product();
                     product.setTitle(dataSnapshot.child("title").getValue().toString());
-                    product.setPrice(dataSnapshot.child("price").getValue().toString());
+                    product.setPrice(Double.parseDouble(dataSnapshot.child("price").getValue().toString()));
                     product.setDescription(dataSnapshot.child("description").getValue().toString());
                     product.setImages1(dataSnapshot.child("images1").getValue().toString());
                     product.setImages2(dataSnapshot.child("images2").getValue().toString());
                     product.setImages3(dataSnapshot.child("images3").getValue().toString());
                     product.setImages4(dataSnapshot.child("images4").getValue().toString());
-                    product.setIsPremium(dataSnapshot.child("isPremium").getValue().toString());
+                    product.setIsPremium(Boolean.parseBoolean(dataSnapshot.child("isPremium").getValue().toString()));
+                    product.setMinRentalTime(Integer.parseInt(dataSnapshot.child("minRentalTime").getValue().toString()));
+                    product.setMaxRentalTime(Integer.parseInt(dataSnapshot.child("maxRentalTime").getValue().toString()));
+                    product.setId(dataSnapshot.child("id").getValue().toString());
+                    product.setContactNumber(dataSnapshot.child("contactNumber").getValue().toString());
                     product_list_latest.add(product);
                 }
                 home_recycler_1_adapter = new Home_recycler_1_adapter(product_list_latest, getContext());

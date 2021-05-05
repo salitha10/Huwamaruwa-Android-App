@@ -38,6 +38,10 @@
                     android:id="@+id/admin_categories"
                     android:icon="@drawable/category_icon"
                     android:title="@string/nav_categories_title" />
+                    <item
+                        android:id="@+id/admin_Rental_requests"
+                        android:icon="@drawable/category_icon"
+                        android:title="@string/nav_request_rentals" />
                 </group>
             </menu>
         </item>

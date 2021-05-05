@@ -23,8 +23,8 @@ public class Product implements Parcelable {
     };
 
     private String id;
-    private String isPremium;
-    private String price;
+    private boolean isPremium;
+    private double price;
     private String title;
     private Date date;
     private String description;
@@ -32,39 +32,107 @@ public class Product implements Parcelable {
     private String images2;
     private String images3;
     private String images4;
-
-
     private int categoryID;
     private String location;
-    private String deposit;
+    private double deposit;
     private String sellerID;
     private int maxRentalTime;
     private int minRentalTime;
     private boolean perHour;
-
+    private String contactNumber;
 
     public Product() {
     }
 
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
     public Product(Parcel in) {
-        String data[] = new String[8];
+        String data[] = new String[13];
         in.readStringArray(data);
 
-        this.price = data[0];
+        this.price =Double.parseDouble(data[0]) ;
         this.title = data[1];
         this.description = data[2];
         this.images1 = data[3];
         this.images2 = data[4];
         this.images3 = data[5];
         this.images4 = data[6];
-        this.isPremium = data[7];
+        this.isPremium =Boolean.parseBoolean(data[7]);
+        this.perHour = Boolean.parseBoolean(data[8]);
+        this.maxRentalTime = Integer.parseInt(data[9]);
+        this.minRentalTime = Integer.parseInt(data[10]);
+        this.id = data[11];
+        this.contactNumber = data[11];
     }
 
-    public String getIsPremium() {
+    public int getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(int categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public double getDeposit() {
+        return deposit;
+    }
+
+    public void setDeposit(double deposit) {
+        this.deposit = deposit;
+    }
+
+    public String getSellerID() {
+        return sellerID;
+    }
+
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
+    }
+
+    public int getMaxRentalTime() {
+        return maxRentalTime;
+    }
+
+    public void setMaxRentalTime(int maxRentalTime) {
+        this.maxRentalTime = maxRentalTime;
+    }
+
+    public int getMinRentalTime() {
+        return minRentalTime;
+    }
+
+    public void setMinRentalTime(int minRentalTime) {
+        this.minRentalTime = minRentalTime;
+    }
+
+    public boolean isPerHour() {
+        return perHour;
+    }
+
+    public void setPerHour(boolean perHour) {
+        this.perHour = perHour;
+    }
+
+
+    public boolean getIsPremium() {
         return isPremium;
     }
 
-    public void setIsPremium(String premium) {
+    public void setIsPremium(boolean premium) {
         isPremium = premium;
     }
 
@@ -116,11 +184,11 @@ public class Product implements Parcelable {
         this.images4 = images4;
     }
 
-    public String getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -147,6 +215,20 @@ public class Product implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStringArray(new String[]{this.price, this.title, this.description, this.images1, this.images2, this.images3, this.images4, this.isPremium});
+        parcel.writeStringArray(new String[]{
+                String.valueOf(this.price),
+                this.title,
+                this.description,
+                this.images1,
+                this.images2,
+                this.images3,
+                this.images4,
+                String.valueOf(this.isPremium),
+                String.valueOf(this.perHour),
+                String.valueOf(this.maxRentalTime),
+                String.valueOf(this.minRentalTime),
+                this.id,
+                this.contactNumber
+        });
     }
 }

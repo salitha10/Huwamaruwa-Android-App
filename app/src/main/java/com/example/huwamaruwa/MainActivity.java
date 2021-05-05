@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
 import com.example.huwamaruwa.R;
+import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
 import com.example.huwamaruwa.addProduct.addProduct;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
@@ -94,6 +95,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_customer_care:
                 fragment = new Customer_care_fragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentDefault,fragment);
+                fragmentTransaction.commit();
+                break;
+            case R.id.admin_Rental_requests:
+                fragment = new PremiumProductRentalRequestFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentDefault,fragment);

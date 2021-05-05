@@ -117,10 +117,10 @@ public class addProduct extends AppCompatActivity {
     private void dataUploader() {
         product = new Product();
         product.setTitle(edtTitle.getText().toString().trim());
-        product.setPrice(edtPrice.getText().toString().trim());
+        product.setPrice(Double.parseDouble(edtPrice.getText().toString().trim()));
         product.setDescription(edtDes.getText().toString().trim());
         Boolean isPremium = ifPremium.isChecked();
-        product.setIsPremium(isPremium.toString());
+        product.setIsPremium(Boolean.parseBoolean(isPremium.toString()));
         product.setImages1(imgData[0]);
         product.setImages2(imgData[1]);
         product.setImages3(imgData[2]);

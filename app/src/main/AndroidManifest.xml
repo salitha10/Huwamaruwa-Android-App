@@ -13,34 +13,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Huwamaruwa">
-
-        <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
-
-        </activity>
+        <activity android:name=".PremiumStore.PremiumStore"></activity>
+        <activity android:name=".RentalHistory.RentalHistory" />
+        <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller" />
         <activity android:name=".ProfileView" />
         <activity android:name=".UserProfileEdit" />
-        <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest">
-        </activity>
-
-        <activity android:name=".ProductReviews.addProductReview"
-            android:exported="true"> </activity>
-
-        <activity android:name=".addProduct.addProduct">
-
-        </activity>
+        <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest" />
+        <activity
+            android:name=".ProductReviews.addProductReview"
+            android:exported="true" />
+        <activity android:name=".addProduct.addProduct" />
         <activity
             android:name=".StudentActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
         <activity android:name=".SignUp" />
-
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
         <activity android:name=".SplashScreen" />
         <activity android:name=".singleProduct.RequestRent">
 
         </activity>
-
         <activity android:name=".PaymentOption" />
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
@@ -51,6 +43,7 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <meta-data
