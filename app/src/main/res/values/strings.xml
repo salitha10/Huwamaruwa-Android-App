@@ -104,6 +104,7 @@
     <string name="specs_min_rent">Minimum Rental Time (Days) :</string>
     <string name="specs_price">Price :</string>
 
+    <string name="nav_request_rentals">Rental Requests</string>
 
     //Kavindya
     <string name="select_category">select Category</string>
@@ -142,6 +143,11 @@
     <string name="view_product">View Product</string>
     <string name="seller_id">Seller Id</string>
     <string name="seller_email">Seller Email</string>
+    <string name="seller_contact">Seller Contact Number</string>
+    <string name="premiumRentalRequestsTitle">Rental Request Manager</string>
+    <string name="initialDeposit" >Initial Deposit :</string>
+    <string name="view_product">View Product</string>
+    <string name="seller_id">Seller Id</string>
     <string name="seller_contact">Seller Contact Number</string>
     <string name="post_ad">Post AD</string>
     <string name="categories">CATEGORY</string>
