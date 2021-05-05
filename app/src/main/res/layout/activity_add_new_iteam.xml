@@ -522,7 +522,7 @@
             android:paddingEnd="6dp"
 
             android:text="Deposit Percentage"
-n
+
             android:textAllCaps="true"
             android:textColor="@color/View_line"
             android:textStyle="bold"

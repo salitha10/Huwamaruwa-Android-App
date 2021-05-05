@@ -38,6 +38,15 @@ public class AllProductReviews extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_product_reviews);
 
+        //Top fragment
+        FragmentManager fm = getSupportFragmentManager();
+        FragmentTransaction ft1 = fm.beginTransaction();
+        ft1.add(R.id.myReviewLayout, new MyReviewFragment());
+        ft1.commit();
+
+
+
+        //Bottom recycler view
         recyclerView = findViewById(R.id.allReviewsRecycle);
         database = FirebaseDatabase.getInstance().getReference("ProductReviews");
 
