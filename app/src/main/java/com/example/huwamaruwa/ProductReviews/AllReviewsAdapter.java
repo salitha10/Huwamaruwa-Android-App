@@ -80,7 +80,6 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
     public static class ViewAdapter  extends RecyclerView.ViewHolder{
 
         TextView reviewer, comments;
-        Button done, cancel;
         RatingBar rating;
         ImageView reviewerPic;
 

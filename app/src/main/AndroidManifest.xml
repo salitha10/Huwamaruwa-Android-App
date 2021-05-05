@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.huwamaruwa">
-    <uses-feature android:name="android.hardware.camera2"
-        android:required="true"/>
 
-    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-feature
+        android:name="android.hardware.camera2"
+        android:required="true" />
+
+    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -17,6 +19,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Huwamaruwa">
+        <activity android:name=".ProductReviews.EditReview"></activity>
         <activity android:name=".buyerRentalRequestManage.SendingOffer" />
         <activity android:name=".buyerRentalRequestManage.AllBuyerRentalRequests">
             <intent-filter>
@@ -27,11 +30,11 @@
         </activity>
         <activity android:name=".ProfileView" />
         <activity android:name=".UserProfileEdit" />
-        <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest"></activity>
+        <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest" />
         <activity
             android:name=".ProductReviews.AddProductReview"
-            android:exported="true"></activity>
-        <activity android:name=".addProduct.addProduct"></activity>
+            android:exported="true" />
+        <activity android:name=".addProduct.addProduct" />
         <activity
             android:name=".ProductReviews.AllProductReviews"
             android:exported="true" />
@@ -44,21 +47,15 @@
         <activity android:name=".PaymentOption" />
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".AddNewItem">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
-
-        <activity android:name=".AddCategory">
-
-
-        </activity>
-
+        <activity android:name=".AddCategory"></activity>
 
         <meta-data
             android:name="preloaded_fonts"

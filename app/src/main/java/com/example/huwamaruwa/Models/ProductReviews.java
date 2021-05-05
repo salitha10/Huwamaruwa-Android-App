@@ -1,6 +1,8 @@
 package com.example.huwamaruwa.Models;
 
-public class ProductReviews {
+import java.io.Serializable;
+
+public class ProductReviews implements Serializable {
     private String productID;
     //private String buyerID;
     private String comment;
