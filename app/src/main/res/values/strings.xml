@@ -105,6 +105,8 @@
     <string name="specs_price">Price :</string>
 
     <string name="nav_request_rentals">Rental Requests</string>
+    <string name="floatingMg_req">Request Product</string>
+    <string name="floatingMg_add">Add Product</string>
 
     //Kavindya
     <string name="select_category">select Category</string>

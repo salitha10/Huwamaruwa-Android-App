@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FloatingActionButton floatingActionButton;
     FloatingActionButton floatingActionButton_add;
     FloatingActionButton floatingActionButton_req;
+    TextView txtFloatingAdd,txtFloatingReq;
     Animation rotateOpenAnim;
     Animation rotateCloseAnim;
     Animation fromBottomAnim;
@@ -58,10 +60,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         floatingActionButton = findViewById(R.id.floating_add_product);
         floatingActionButton_add = findViewById(R.id.floating_add_button);
         floatingActionButton_req = findViewById(R.id.floating_buyer_req_button);
-        rotateOpenAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_open_floating_anim);
-        rotateCloseAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_closefloating_anim);
-        fromBottomAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.from_bottom_floating_anim);
-        toBottomAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.to_bottom_floating_anim);
+        txtFloatingAdd = findViewById(R.id.txtfloating_add);
+        txtFloatingReq = findViewById(R.id.txtfloating_req);
         //set app name to toolbar
        // setSupportActionBar(toolbar);
 
@@ -83,6 +83,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                rotateOpenAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_open_floating_anim);
+                rotateCloseAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_closefloating_anim);
+                fromBottomAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.from_bottom_floating_anim);
+                toBottomAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.to_bottom_floating_anim);
                 setVisibility(clicker);
 //                Intent intent = new Intent(getApplicationContext(), AddNewItem.class);
 //                startActivity(intent);
@@ -95,14 +99,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (cli == 0){
             floatingActionButton_add.setVisibility(View.VISIBLE);
             floatingActionButton_req.setVisibility(View.VISIBLE);
+            txtFloatingAdd.setVisibility(View.VISIBLE);
+            txtFloatingReq.setVisibility(View.VISIBLE);
             floatingActionButton.setAnimation(rotateOpenAnim);
             floatingActionButton_add.setAnimation(fromBottomAnim);
+            txtFloatingAdd.setAnimation(fromBottomAnim);
             floatingActionButton_req.setAnimation(fromBottomAnim);
+            txtFloatingReq.setAnimation(fromBottomAnim);
             clicker = 1;
 
         }else{
             floatingActionButton.setAnimation(rotateCloseAnim);
+            txtFloatingAdd.setAnimation(toBottomAnim);
             floatingActionButton_add.setAnimation(toBottomAnim);
+            txtFloatingReq.setAnimation(toBottomAnim);
             floatingActionButton_req.setAnimation(toBottomAnim);
             floatingActionButton_add.setVisibility(View.GONE);
             floatingActionButton_req.setVisibility(View.GONE);
