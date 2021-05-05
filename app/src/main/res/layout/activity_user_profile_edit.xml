@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -22,14 +21,13 @@
         android:layout_margin="8dp">
 
         <TextView
-            android:id="@+id/textView10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Name"
             android:textSize="18dp"/>
 
         <EditText
-            android:id="@+id/prouctNameEdit"
+            android:id="@+id/profileName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -37,14 +35,13 @@
             android:layout_marginBottom="30dp"/>
 
         <TextView
-            android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Email"
             android:textSize="18dp"/>
 
         <EditText
-            android:id="@+id/productCategoryEdit"
+            android:id="@+id/profileEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -52,14 +49,13 @@
             android:layout_marginBottom="30dp"/>
 
         <TextView
-            android:id="@+id/txtPremiumProduct_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/user_name"
             android:textSize="18dp"/>
 
         <EditText
-            android:id="@+id/productQuantityEdit"
+            android:id="@+id/Username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -69,14 +65,13 @@
             android:layout_marginBottom="30dp"/>
 
         <TextView
-            android:id="@+id/textView13"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Password"
             android:textSize="18dp"/>
 
         <EditText
-            android:id="@+id/editTextPassword2"
+            android:id="@+id/userpassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -86,14 +81,13 @@
             android:layout_marginBottom="30dp"/>
 
         <TextView
-            android:id="@+id/txtPremiumProduct_time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Re-enter password"
             android:textSize="18dp"/>
 
         <EditText
-            android:id="@+id/budgetEdit"
+            android:id="@+id/userConfirmPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
@@ -108,14 +102,15 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btnPremiumProduct_rentProduct"
+                android:id="@+id/userCancel"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lblCancel"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="100dp"/>
             <Button
-                android:id="@+id/buyerReqsubmit"
+                android:id="@+id/userSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/lblSave" />

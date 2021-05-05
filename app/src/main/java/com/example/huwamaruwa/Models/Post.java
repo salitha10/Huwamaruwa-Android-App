@@ -3,26 +3,29 @@ package com.example.huwamaruwa.Models;
 import java.util.Date;
 
 public class Post {
+
     private String id;
     private String isPremium;
     private String price;
     private String title;
     private Date date;
     private String description;
+
     private String images1;
     private String images2;
     private String images3;
     private String images4;
 
-
     private int categoryID;
     private String contactNumber;
     private String location;
     private String deposit;
+
     private String sellerID;
     private int maxRentalTime;
     private int minRentalTime;
     private boolean perHour;
+
 
     public String getId() {
         return id;
@@ -54,6 +57,7 @@ public class Post {
 
     public void setTitle(String title) {
         this.title = title;
+
     }
 
     public Date getDate() {
@@ -63,6 +67,7 @@ public class Post {
     public void setDate(Date date) {
         this.date = date;
     }
+
 
     public String getDescription() {
         return description;
@@ -110,6 +115,7 @@ public class Post {
 
     public void setCategoryID(int categoryID) {
         this.categoryID = categoryID;
+
     }
 
     public String getContactNumber() {
@@ -120,12 +126,14 @@ public class Post {
         this.contactNumber = contactNumber;
     }
 
+
     public String getLocation() {
         return location;
     }
 
     public void setLocation(String location) {
         this.location = location;
+
     }
 
     public String getDeposit() {
@@ -166,5 +174,6 @@ public class Post {
 
     public void setPerHour(boolean perHour) {
         this.perHour = perHour;
+
     }
 }

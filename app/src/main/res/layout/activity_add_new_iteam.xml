@@ -355,7 +355,9 @@
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:paddingStart="10dp"
+
                 android:hint="%"
+
                 android:paddingEnd="10dp"
                 android:textColor="@color/View_line"
                 android:textSize="18sp"
@@ -518,7 +520,9 @@
             android:background="@color/white"
             android:paddingStart="6dp"
             android:paddingEnd="6dp"
+
             android:text="Deposit Percentage"
+n
             android:textAllCaps="true"
             android:textColor="@color/View_line"
             android:textStyle="bold"
@@ -595,7 +599,9 @@
             android:layout_height="26dp"
             android:layout_marginTop="580dp"
             android:inputType="text"
+
             android:text="Rental Fee For"
+
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -605,10 +611,12 @@
 
         <RadioGroup
             android:id="@+id/radioGroup"
+
             android:layout_width="206dp"
             android:layout_height="29dp"
             android:layout_marginStart="300dp"
             android:layout_marginTop="885dp"
+
             android:layout_marginEnd="32dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -617,23 +625,29 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <RadioButton
+
                 android:id="@+id/perDay_radio"
                 android:layout_width="95dp"
                 android:layout_height="wrap_content"
                 android:onClick="onRadioButton"
                 android:text="Per Day"
+
                 tools:layout_conversion_absoluteHeight="30dp"
                 tools:layout_conversion_absoluteWidth="142dp"
                 tools:layout_editor_absoluteX="240dp"
                 tools:layout_editor_absoluteY="336dp" />
 
             <RadioButton
+
                 android:id="@+id/RentperHour_radio"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:onClick="onRadioButton"
+                         
                 android:text="Per Hour"
+
                 tools:layout_conversion_absoluteHeight="0dp"
                 tools:layout_conversion_absoluteWidth="142dp"
                 tools:layout_editor_absoluteX="240dp"

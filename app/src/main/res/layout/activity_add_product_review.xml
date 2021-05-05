@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProductReviews.addProductReview"
-    android:background="@color/card_ash1">
+    android:background="@color/card_ash1"
+    tools:context=".ProductReviews.addProductReview">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
@@ -93,10 +93,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/pQualityRatingBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_view"
-        app:layout_constraintVertical_bias="0.83" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <RatingBar
         android:id="@+id/pPriceRatingBar"
@@ -106,8 +106,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pUsabilityRatingBar"
-       />
+        app:layout_constraintTop_toBottomOf="@+id/pUsabilityRatingBar" />
 
     <TextView
         android:id="@+id/txtPPrice"
@@ -117,10 +116,10 @@
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/pPriceRatingBar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.488"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pUsabilityRatingBar"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/txtProductHandling"
@@ -139,9 +138,9 @@
         android:id="@+id/pQualityRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="75dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/card_view" />
 
@@ -149,13 +148,14 @@
         android:id="@+id/pUsabilityRatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pQualityRatingBar" />
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="322dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -163,7 +163,7 @@
         app:counterMaxLength="200"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/pPriceRatingBar">
 
@@ -173,7 +173,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Comments (Optional)"
-            android:maxHeight="500dp"/>
+            android:inputType="textFilter"
+            android:maxHeight="200dp"
+            android:maxLength="200" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

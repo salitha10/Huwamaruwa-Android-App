@@ -60,8 +60,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/crd1"
+
             android:layout_width="361dp"
             android:layout_height="451dp"
+
             android:layout_marginTop="240dp"
             app:cardElevation="20dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -172,6 +174,7 @@
 
                 </com.google.android.material.textfield.TextInputEditText>
 
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -193,6 +196,7 @@
                     android:layout_height="wrap_content">
 
                 </com.google.android.material.textfield.TextInputEditText>
+
             </com.google.android.material.textfield.TextInputLayout>
 
 

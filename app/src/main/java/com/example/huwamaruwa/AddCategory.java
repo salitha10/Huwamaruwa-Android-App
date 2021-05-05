@@ -32,7 +32,6 @@ public class AddCategory extends AppCompatActivity {
     Categories cat;
     int i =0;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,3 +111,4 @@ public class AddCategory extends AppCompatActivity {
 
 
 }
+
