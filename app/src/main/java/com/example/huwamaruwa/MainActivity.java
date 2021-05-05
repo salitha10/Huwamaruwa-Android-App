@@ -86,26 +86,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 setVisibility(clicker);
 //                Intent intent = new Intent(getApplicationContext(), AddNewItem.class);
 //                startActivity(intent);
+               //
             }
         });
     }
 
     private void setVisibility(int cli) {
         if (cli == 0){
-            floatingActionButton_add.setAnimation(fromBottomAnim);
-            floatingActionButton_req.setAnimation(fromBottomAnim);
-
             floatingActionButton_add.setVisibility(View.VISIBLE);
             floatingActionButton_req.setVisibility(View.VISIBLE);
-            clicker = 1;
             floatingActionButton.setAnimation(rotateOpenAnim);
-        }else{
+            floatingActionButton_add.setAnimation(fromBottomAnim);
+            floatingActionButton_req.setAnimation(fromBottomAnim);
+            clicker = 1;
 
+        }else{
+            floatingActionButton.setAnimation(rotateCloseAnim);
             floatingActionButton_add.setAnimation(toBottomAnim);
             floatingActionButton_req.setAnimation(toBottomAnim);
-            floatingActionButton.setAnimation(rotateCloseAnim);
-            floatingActionButton_add.setVisibility(View.INVISIBLE);
-            floatingActionButton_req.setVisibility(View.INVISIBLE);
+            floatingActionButton_add.setVisibility(View.GONE);
+            floatingActionButton_req.setVisibility(View.GONE);
             clicker = 0;
         }
     }

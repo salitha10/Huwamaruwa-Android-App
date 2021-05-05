@@ -335,7 +335,7 @@
         android:foreground="@drawable/edit_icon"
         android:foregroundGravity="center"
         android:visibility="invisible"
-        app:backgroundTint="@color/chat_bar" />
+        app:backgroundTint="@color/vetorGreen" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floating_buyer_req_button"
@@ -348,6 +348,6 @@
         android:foreground="@drawable/empty_icon"
         android:foregroundGravity="center"
         android:visibility="invisible"
-        app:backgroundTint="@color/chat_bar" />
+        app:backgroundTint="@color/vetorGreen" />
 
 </FrameLayout>
