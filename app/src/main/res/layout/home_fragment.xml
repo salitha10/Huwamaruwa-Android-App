@@ -360,6 +360,7 @@
         android:id="@+id/floating_bottom_sheet">
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <TextView
         android:id="@+id/txtfloating_req"
         android:layout_width="wrap_content"
