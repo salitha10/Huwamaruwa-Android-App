@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/card_ash1"
-    tools:context=".ProductReviews.addProductReview">
+    tools:context=".ProductReviews.AddProductReview">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"

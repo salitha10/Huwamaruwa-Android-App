@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.huwamaruwa.Models.productReview;
+import com.example.huwamaruwa.Models.ProductReviews;
 import com.example.huwamaruwa.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -22,11 +22,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-public class addProductReview extends AppCompatActivity {
+public class AddProductReview extends AppCompatActivity {
 
     private static final String INVALID_DATA = "INVALID_DATA";
     private static final String DB_ERROR = "DATABASE_ERROR" ;
@@ -36,7 +32,7 @@ public class addProductReview extends AppCompatActivity {
     Button done, cancel;
     RatingBar quality, usability, price;
     ImageView thumbnail;
-    productReview pr;
+    ProductReviews pr;
     DatabaseReference dbfProduct, dbfReview, dbfSeller;
     String productID, sellerID, imageURL, buyerComments, buyerID, date;
     double overallRating, qRating, uRating, pRating;
@@ -66,7 +62,7 @@ public class addProductReview extends AppCompatActivity {
         thumbnail = (ImageView) findViewById(R.id.productThumbnail);
 
 
-        pr = new productReview();
+        pr = new ProductReviews();
 
     }
 
@@ -136,14 +132,14 @@ public class addProductReview extends AppCompatActivity {
             //date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
             //Set vales in model objest
-            pr.setBuyerID(buyerID);
+            //pr.setBuyerID(buyerID);
             pr.setProductID(productID);
             pr.setQualityRating(qRating);
             pr.setUsabilityRating(uRating);
             pr.setPriceRating(pRating);
             pr.setAverageRating(overallRating);
             pr.setComment(buyerComments);
-            pr.setDate(date);
+            //pr.setDate(date);
 
             //Push to database
             dbfReview.push().setValue(pr);
