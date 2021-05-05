@@ -225,7 +225,7 @@ public class MyPremiumProductRentalRequestRecyclerViewAdapter extends RecyclerVi
         public ViewHolder(View view) {
             super(view);
 
-            //imgMain = view.findViewById(R.id.imgRequestRent_list_main);
+            imgMain = view.findViewById(R.id.imgRequestRent_list_main);
             txtTitle = view.findViewById(R.id.txtRequestRent_list_title);
             txtDuration = view.findViewById(R.id.txtRequestRent_list_duration);
             txtTotal = view.findViewById(R.id.txtRequestRent_list_total);
