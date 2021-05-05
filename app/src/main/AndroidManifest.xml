@@ -15,11 +15,7 @@
         android:theme="@style/Theme.Huwamaruwa">
         <activity android:name=".buyerRentalRequestManage.SendingOffer"></activity>
         <activity android:name=".buyerRentalRequestManage.AllBuyerRentalRequests">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller" />
         <activity android:name=".ProfileView" />
@@ -35,7 +31,13 @@
         <activity android:name=".SignUp"></activity>
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
-        <activity android:name=".SplashScreen" />
+        <activity android:name=".SplashScreen" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".singleProduct.RequestRent" />
 
 

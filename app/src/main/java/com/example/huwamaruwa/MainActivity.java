@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -21,6 +23,13 @@ import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.addProduct.addProduct;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -33,6 +42,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fragmentManager;
     StorageReference storageReference;
     FloatingActionButton floatingActionButton;
+
+    //Login Auth Variables
+    FirebaseAuth firebaseAuth;
+    FirebaseUser currentUser;
+    TextView loginName, loginSellerType;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +57,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+
+        //Login Ids
+        loginName = findViewById(R.id.LoginName);
+        loginSellerType = findViewById(R.id.LoginSellerType);
+
 
         floatingActionButton = findViewById(R.id.floating_add_product);
         //set app name to toolbar
@@ -55,6 +75,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //set navigation view clickable
         navigationView.setNavigationItemSelectedListener(this);
+
+        currentUser = firebaseAuth.getInstance().getCurrentUser();
+//        loginName.setText(currentUser.getEmail().toString());
+        Query LoginQuery = FirebaseDatabase.getInstance().getReference("Users").child("Seller").orderByChild("userId").equalTo(currentUser.getUid());
+        LoginQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChildren()){
+                    loginName.setText(snapshot.child("userId").getValue().toString());
+                    loginSellerType.setText(snapshot.child("name").getValue().toString());
+                }
+
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+
+        });
     }
     //set when click back then close the nav drawer
 
@@ -81,6 +122,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        currentUser = firebaseAuth.getInstance().getCurrentUser();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        if(currentUser != null){
+            Toast.makeText(getApplicationContext(), "User logged", Toast.LENGTH_SHORT).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
         switch (item.getItemId()){
@@ -102,5 +157,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void LogoutMethod(View view){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(MainActivity.this, Login.class));
     }
 }
