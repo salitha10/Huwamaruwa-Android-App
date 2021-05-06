@@ -26,6 +26,7 @@ public class Product implements Parcelable {
     private boolean isPremium;
     private double price;
     private String title;
+
     private String description;
     private String images1;
     private String images2;
@@ -39,6 +40,7 @@ public class Product implements Parcelable {
     private int maxRentalTime;
     private int minRentalTime;
     private boolean perHour;
+
     private int date_in_sec;
     private int date_in_min;
     private int date_in_hour;
@@ -134,38 +136,39 @@ public class Product implements Parcelable {
 
     public void setDescription(String description) {
         this.description = description;
+
     }
 
-    public String getImages1() {
-        return images1;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public void setImages1(String images1) {
-        this.images1 = images1;
+    public double getDepositPercentage() {
+        return depositPercentage;
     }
 
-    public String getImages2() {
-        return images2;
+    public void setDepositPercentage(double deposit) {
+        this.depositPercentage = deposit;
     }
 
-    public void setImages2(String images2) {
-        this.images2 = images2;
+    public String getSellerID() {
+        return sellerID;
     }
 
-    public String getImages3() {
-        return images3;
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
     }
 
-    public void setImages3(String images3) {
-        this.images3 = images3;
+    public int getMaxRentalTime() {
+        return maxRentalTime;
     }
 
-    public String getImages4() {
-        return images4;
+    public void setMaxRentalTime(int maxRentalTime) {
+        this.maxRentalTime = maxRentalTime;
     }
 
-    public void setImages4(String images4) {
-        this.images4 = images4;
+    public int getMinRentalTime() {
+        return minRentalTime;
     }
 
     public int getCategoryID() {

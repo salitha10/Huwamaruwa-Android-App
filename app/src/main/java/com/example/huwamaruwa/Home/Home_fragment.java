@@ -83,11 +83,13 @@ public class Home_fragment extends Fragment {
                     product.setMaxRentalTime(Integer.parseInt(dataSnapshot.child("maxRentalTime").getValue().toString()));
                     product.setId(dataSnapshot.child("id").getValue().toString());
                     product.setContactNumber(dataSnapshot.child("contactNumber").getValue().toString());
+
                     product.setDate_in_day(Integer.parseInt(dataSnapshot.child("date_in_day").getValue().toString()));
                     product.setDate_in_hour(Integer.parseInt(dataSnapshot.child("date_in_hour").getValue().toString()));
                     product.setDate_in_min(Integer.parseInt(dataSnapshot.child("date_in_min").getValue().toString()));
                     product.setDate_in_sec(Integer.parseInt(dataSnapshot.child("date_in_sec").getValue().toString()));
                     product.setDate_in_year(Integer.parseInt(dataSnapshot.child("date_in_year").getValue().toString()));
+
                     product_list_latest.add(product);
                 }
                 home_recycler_1_adapter = new Home_recycler_1_adapter(product_list_latest, getContext());

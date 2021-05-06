@@ -1,6 +1,7 @@
 package com.example.huwamaruwa;
 
 import android.content.Context;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.AttributeSet;
@@ -57,9 +58,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
 
         setContentView(R.layout.activity_main);
         //get values by id
@@ -139,6 +142,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AddNewItem.class);
                 startActivity(intent);
+
             }
         });
     }
