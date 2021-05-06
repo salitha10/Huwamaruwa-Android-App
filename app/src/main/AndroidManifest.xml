@@ -70,6 +70,7 @@
             android:name=".ReviewUser.ReviewSeller"
 
             android:exported="true" />
+
         <activity
             android:name=".ReviewUser.ReviewBuyer"
             android:exported="true" />
