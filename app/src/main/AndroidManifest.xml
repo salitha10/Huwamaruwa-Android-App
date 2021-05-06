@@ -34,9 +34,8 @@
             android:name=".StudentActivity"
             android:exported="true" />
         <activity android:name=".customer_care.ChatActivity" />
-        <activity android:name=".Login" />
-        <activity android:name=".SplashScreen" />
-        <activity android:name=".SignUp" >
+        <activity android:name=".Login">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,6 +48,18 @@
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
         <activity android:name=".MainActivity">
+
+        </activity>
+
+
+        <activity
+            android:name=".ProductReviews.AddProductReview"
+            android:exported="true"/>
+        <activity
+            android:name=".ProductReviews.AllProductReviews"
+            android:exported="true" />
+
+        <activity android:name=".SignUp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -56,6 +67,21 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".SplashScreen" />
+
+
+
+
+
+        <activity android:name=".addProduct.AddNewItem">
+
+
+        </activity>
+
+        <activity android:name=".AddCategory">
+
+
+        </activity>
 
 
         <meta-data

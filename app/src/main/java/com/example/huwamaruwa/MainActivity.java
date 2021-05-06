@@ -30,7 +30,6 @@ import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
 import com.example.huwamaruwa.Models.User;
 import com.example.huwamaruwa.R;
-import com.example.huwamaruwa.addProduct.addProduct;
 import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
 import com.example.huwamaruwa.RentalRequests.nonPremium_Requests_seller_sideFragment;
 import com.example.huwamaruwa.addProduct.AddNewItem;
