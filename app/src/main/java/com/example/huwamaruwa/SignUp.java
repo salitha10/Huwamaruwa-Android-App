@@ -31,6 +31,7 @@ public class SignUp extends AppCompatActivity {
     MaterialButton btnSignUp;
     DatabaseReference dbf;
     User user;
+    FirebaseUser currentUser;
 
     FirebaseAuth firebaseAuth;
     @Override
@@ -126,8 +127,20 @@ public class SignUp extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful()){
+                                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
-                                dbf.child(userType).push().setValue(user);
+
+//                                dbf.child(userType).push().setValue(user);
+                                user.setUserId(currentUser.getUid());
+                                user.setUserImage("");
+                                user.setName(name.getEditText().getText().toString().trim());
+                                user.setEmail(email.getEditText().getText().toString().trim());
+                                user.setPhoneNo(name.getEditText().getText().toString().trim());
+                                user.setUserType(userType.trim());
+                                user.setAddress(address.getEditText().getText().toString().trim());
+                                user.setPassword(password.getEditText().getText().toString().trim());
+
+                                dbf.child(currentUser.getUid()).setValue(user);
                                 Intent intent = new Intent(SignUp.this,MainActivity.class);
                                 startActivity(intent);
 
@@ -139,17 +152,9 @@ public class SignUp extends AppCompatActivity {
                     });
 
 
-                    FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
 
 //                    user.setUserId(dbf.push().getKey());
-                    user.setUserId(currentUser.getUid());
-                    user.setUserImage("");
-                    user.setName(name.getEditText().getText().toString().trim());
-                    user.setEmail(email.getEditText().getText().toString().trim());
-                    user.setPhoneNo(name.getEditText().getText().toString().trim());
-                    user.setUserType(userType.trim());
-                    user.setAddress(address.getEditText().getText().toString().trim());
-                    user.setPassword(password.getEditText().getText().toString().trim());
+
 //                dbf.push().setValue(student);
 
 

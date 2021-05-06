@@ -2,6 +2,7 @@ package com.example.huwamaruwa;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
@@ -19,6 +20,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
+import com.example.huwamaruwa.Models.User;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.addProduct.addProduct;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -27,6 +29,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
@@ -43,10 +46,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     StorageReference storageReference;
     FloatingActionButton floatingActionButton;
 
-    //Login Auth Variables
-    FirebaseAuth firebaseAuth;
     FirebaseUser currentUser;
+    DatabaseReference reference;
+
     TextView loginName, loginSellerType;
+    String userId, name, userType;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +63,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
-        //Login Ids
-        loginName = findViewById(R.id.LoginName);
-        loginSellerType = findViewById(R.id.LoginSellerType);
 
 
         floatingActionButton = findViewById(R.id.floating_add_product);
@@ -75,26 +77,38 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //set navigation view clickable
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        loginName = (TextView) headerView.findViewById(R.id.LoginName);
+        loginSellerType = (TextView) headerView.findViewById(R.id.LoginSellerType);
 
-        currentUser = firebaseAuth.getInstance().getCurrentUser();
-//        loginName.setText(currentUser.getEmail().toString());
-        Query LoginQuery = FirebaseDatabase.getInstance().getReference("Users").child("Seller").orderByChild("userId").equalTo(currentUser.getUid());
-        LoginQuery.addListenerForSingleValueEvent(new ValueEventListener() {
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.e("login",user.getUid());
+        userId = user.getUid();
+
+        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
+
+        reference = FirebaseDatabase.getInstance().getReference();
+        Query query = reference.child("Users").orderByChild("userId").equalTo(userId).limitToFirst(1);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if(snapshot.hasChildren()){
-                    loginName.setText(snapshot.child("userId").getValue().toString());
-                    loginSellerType.setText(snapshot.child("name").getValue().toString());
-                }
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    name = dataSnapshot.child("name").getValue().toString();
+                    userType = dataSnapshot.child("userType").getValue().toString();
 
+                }
+                loginName.setText(name);
+                loginSellerType.setText(userType);
+
+                    Toast.makeText(getApplicationContext(), "Set values", Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
-
         });
     }
     //set when click back then close the nav drawer
@@ -110,6 +124,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
             }
         });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+//            Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -121,19 +143,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        currentUser = firebaseAuth.getInstance().getCurrentUser();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        if(currentUser != null){
-            Toast.makeText(getApplicationContext(), "User logged", Toast.LENGTH_SHORT).show();
-        }else{
-            Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
-        }
 
-
-    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {

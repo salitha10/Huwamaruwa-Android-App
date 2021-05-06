@@ -1,24 +1,38 @@
 package com.example.huwamaruwa.buyerRentalRequestManage;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.huwamaruwa.Models.SendingOffersModel;
 import com.example.huwamaruwa.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 public class SentRentalRequestBySellerAdapter extends RecyclerView.Adapter<SentRentalRequestBySellerAdapter.ViewAdapter> {
 
-    ArrayList<SentRentalRequestsByASellerModel> arraylist;
+    ArrayList<SendingOffersModel> list;
+    Context context;
+    DatabaseReference dbf;
+    public static final String EXTRA_MESSAGE1 = "aaa";
 
-    public SentRentalRequestBySellerAdapter(ArrayList<SentRentalRequestsByASellerModel> arraylist) {
-        this.arraylist = arraylist;
+    public SentRentalRequestBySellerAdapter(ArrayList<SendingOffersModel> list, Context context) {
+        this.list = list;
+        this.context = context;
     }
 
     @NonNull
@@ -32,35 +46,73 @@ public class SentRentalRequestBySellerAdapter extends RecyclerView.Adapter<SentR
     @Override
     public void onBindViewHolder(@NonNull ViewAdapter holder, int position) {
 
-        SentRentalRequestsByASellerModel sentRentalRequestsByASellerModel = arraylist.get(position);
+        SendingOffersModel sendingOffersModel = list.get(position);
 
-        holder.image.setImageResource(sentRentalRequestsByASellerModel.getImage());
-        holder.productTitle.setText(sentRentalRequestsByASellerModel.getProductTitle());
-        holder.category.setText(sentRentalRequestsByASellerModel.getCategory());
-        holder.requiredDate.setText(sentRentalRequestsByASellerModel.getDate());
-        holder.rentalPrice.setText(sentRentalRequestsByASellerModel.getRentalPrice());
+//        holder.image.setImageResource(sendingOffersModel.getProductImage());
+        holder.productTitle.setText(sendingOffersModel.getProductName());
+        holder.requestId.setText(sendingOffersModel.getProductRequestId());
+        holder.quantity.setText(sendingOffersModel.getQuantity());
+        holder.rentalPrice.setText(sendingOffersModel.getRental());
+        holder.deleteDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dbf = FirebaseDatabase.getInstance().getReference().child("SentOffersForProductRequest");
+                dbf.keepSynced(true);
+                dbf.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.hasChild(sendingOffersModel.getProductRequestId())){
+                            dbf = FirebaseDatabase.getInstance().getReference().child("SentOffersForProductRequest").child(sendingOffersModel.getProductRequestId());
+                            dbf.removeValue();
+
+                            Toast.makeText(context, "Deleted Successfully", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(context,SentRentalRequestBySeller.class);
+                            context.startActivity(intent);
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+        holder.updateDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context,EditSingleSellerRequest.class);
+                intent.putExtra(EXTRA_MESSAGE1,list.get(position));
+                context.startActivity(intent);
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return arraylist.size();
+        return list.size();
     }
 
     public static class ViewAdapter  extends RecyclerView.ViewHolder{
 
         ImageView image;
-        TextView productTitle, category, requiredDate, rentalPrice;
+        TextView productTitle, quantity, rentalPrice, requestId;
+        Button updateDetails, deleteDetails;
 
         public ViewAdapter(@NonNull View itemView) {
             super(itemView);
 
             //hooks
             image = itemView.findViewById(R.id.imageViewProduct);
-            productTitle = itemView.findViewById(R.id.productTitle);
-            category = itemView.findViewById(R.id.category);
-            requiredDate = itemView.findViewById(R.id.requiredDate1);
-            rentalPrice = itemView.findViewById(R.id.rentalFee);
+            productTitle = itemView.findViewById(R.id.SellerRequests_productTitle);
+            quantity = itemView.findViewById(R.id.SellerRequests_Quantity);
+            rentalPrice = itemView.findViewById(R.id.SellerRequests_rentalFee);
+            requestId = itemView.findViewById(R.id.SellerRequests_requestId);
+            updateDetails = itemView.findViewById(R.id.btnSellerRequests_edit);
+            deleteDetails = itemView.findViewById(R.id.btnSellerRequests_delete);
+
         }
     }
 }
