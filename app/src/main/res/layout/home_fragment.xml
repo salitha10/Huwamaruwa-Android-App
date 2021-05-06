@@ -323,6 +323,18 @@
         android:foregroundGravity="center"
         app:backgroundTint="@color/GreenMain"
         app:elevation="2dp" />
+  
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/floating_bottom_sheet"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_gravity="end|bottom"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:foregroundTint="#FFFFFF"
+        android:visibility="invisible">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -350,16 +362,8 @@
         android:foregroundGravity="center"
         android:visibility="invisible"
         app:backgroundTint="@color/vetorGreen" />
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:backgroundTint="@color/white"
-        android:background="@color/white"
-        android:layout_gravity="end|bottom"
-        android:visibility="invisible"
-        android:id="@+id/floating_bottom_sheet">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <TextView
         android:id="@+id/txtfloating_req"

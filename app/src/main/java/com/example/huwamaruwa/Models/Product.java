@@ -26,7 +26,7 @@ public class Product implements Parcelable {
     private boolean isPremium;
     private double price;
     private String title;
-    private Long date;
+
     private String description;
     private String images1;
     private String images2;
@@ -41,7 +41,61 @@ public class Product implements Parcelable {
     private int minRentalTime;
     private boolean perHour;
 
+    private int date_in_sec;
+    private int date_in_min;
+    private int date_in_hour;
+    private int date_in_day;
+    private int date_in_year;
+    private Date date;
     public Product() {
+    }
+
+    public int getDate_in_year() {
+        return date_in_year;
+    }
+
+    public void setDate_in_year(int date_in_year) {
+        this.date_in_year = date_in_year;
+    }
+
+    public int getDate_in_sec() {
+        return date_in_sec;
+    }
+
+    public void setDate_in_sec(int date_in_sec) {
+        this.date_in_sec = date_in_sec;
+    }
+
+    public int getDate_in_min() {
+        return date_in_min;
+    }
+
+    public void setDate_in_min(int date_in_min) {
+        this.date_in_min = date_in_min;
+    }
+
+    public int getDate_in_hour() {
+        return date_in_hour;
+    }
+
+    public void setDate_in_hour(int date_in_hour) {
+        this.date_in_hour = date_in_hour;
+    }
+
+    public int getDate_in_day() {
+        return date_in_day;
+    }
+
+    public void setDate_in_day(int date_in_day) {
+        this.date_in_day = date_in_day;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getId() {
@@ -76,52 +130,45 @@ public class Product implements Parcelable {
         this.title = title;
     }
 
-    public Long getDate() {
-        return date;
-    }
-
-    public void setDate(Long date) {
-        this.date = date;
-    }
-
     public String getDescription() {
         return description;
     }
 
     public void setDescription(String description) {
         this.description = description;
+
     }
 
-    public String getImages1() {
-        return images1;
+    public void setLocation(String location) {
+        this.location = location;
     }
 
-    public void setImages1(String images1) {
-        this.images1 = images1;
+    public double getDepositPercentage() {
+        return depositPercentage;
     }
 
-    public String getImages2() {
-        return images2;
+    public void setDepositPercentage(double deposit) {
+        this.depositPercentage = deposit;
     }
 
-    public void setImages2(String images2) {
-        this.images2 = images2;
+    public String getSellerID() {
+        return sellerID;
     }
 
-    public String getImages3() {
-        return images3;
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
     }
 
-    public void setImages3(String images3) {
-        this.images3 = images3;
+    public int getMaxRentalTime() {
+        return maxRentalTime;
     }
 
-    public String getImages4() {
-        return images4;
+    public void setMaxRentalTime(int maxRentalTime) {
+        this.maxRentalTime = maxRentalTime;
     }
 
-    public void setImages4(String images4) {
-        this.images4 = images4;
+    public int getMinRentalTime() {
+        return minRentalTime;
     }
 
     public int getCategoryID() {

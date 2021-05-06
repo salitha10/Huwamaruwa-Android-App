@@ -37,7 +37,13 @@ import com.google.firebase.storage.UploadTask;
 import com.sangcomz.fishbun.FishBun;
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter;
 
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
+
 
 public class AddNewItem extends AppCompatActivity {
 
@@ -194,7 +200,23 @@ public class AddNewItem extends AppCompatActivity {
 
     public void dataUploader(){
 
+
+
         post = new Product();
+
+        SimpleDateFormat dateTimeInGMT = new SimpleDateFormat("dd");
+        //Setting the time zone
+        dateTimeInGMT.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
+        post.setDate_in_day(Integer.parseInt(dateTimeInGMT.format(new Date())));
+        dateTimeInGMT = new SimpleDateFormat("hh");
+        post.setDate_in_hour(Integer.parseInt(dateTimeInGMT.format(new Date())));
+        dateTimeInGMT = new SimpleDateFormat("mm");
+        post.setDate_in_min(Integer.parseInt(dateTimeInGMT.format(new Date())));
+        dateTimeInGMT = new SimpleDateFormat("ss");
+        post.setDate_in_sec(Integer.parseInt(dateTimeInGMT.format(new Date())));
+        dateTimeInGMT = new SimpleDateFormat("yyy");
+        post.setDate_in_year(Integer.parseInt(dateTimeInGMT.format(new Date())));
+
         Boolean isPremium = swhAddpost.isChecked();
         post.setIsPremium(isPremium);
         post.setLocation(autoCompleteTextloc.getText().toString().trim());
@@ -203,7 +225,7 @@ public class AddNewItem extends AppCompatActivity {
         post.setContactNumber(addProdcontact.getText().toString().trim());
         post.setDepositPercentage(Double.parseDouble(deposit.getText().toString().trim()));
         post.setDescription(prodDescription.getText().toString().trim());
-        post.setDate(MaterialDatePicker.todayInUtcMilliseconds());
+
         post.setImages1(imgData[0]);
         post.setImages2(imgData[1]);
         post.setImages3(imgData[2]);

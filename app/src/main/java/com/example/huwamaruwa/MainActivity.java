@@ -1,12 +1,16 @@
 package com.example.huwamaruwa;
 
 
+import android.content.Context;
+
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.annotation.SuppressLint;
+
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -14,6 +18,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -33,6 +38,8 @@ import com.example.huwamaruwa.addProduct.AddNewItem;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.TimeZone;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //define variables
@@ -59,9 +66,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Animation bottomSheet;
     Animation topSheet;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_main);
 
         //get values by id
@@ -105,10 +114,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
                 bottomSheet = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floating_bottom_top_animation);
                 topSheet = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floating_bottom_bottom_animation);
-
                 setVisibility(clicker);
-//                Intent intent = new Intent(getApplicationContext(), AddNewItem.class);
-//                startActivity(intent);
+
                //
             }
         });
@@ -116,10 +123,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setVisibility(int cli) {
         if (cli == 0){
-
             floatingSheet.setVisibility(View.VISIBLE);
             floatingSheet.setAnimation(bottomSheet);
-
             floatingActionButton_add.setVisibility(View.VISIBLE);
             floatingActionButton_req.setVisibility(View.VISIBLE);
             txtFloatingAdd.setVisibility(View.VISIBLE);
@@ -137,14 +142,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             floatingActionButton_add.setAnimation(toBottomAnim);
             txtFloatingReq.setAnimation(toBottomAnim);
             floatingActionButton_req.setAnimation(toBottomAnim);
-
             floatingSheet.setAnimation(topSheet);
             floatingActionButton_add.setVisibility(View.GONE);
             floatingActionButton_req.setVisibility(View.GONE);
             floatingSheet.setVisibility(View.GONE);
-
             clicker = 0;
         }
+        floatingActionButton_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AddNewItem.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
 
