@@ -1,14 +1,8 @@
 package com.example.huwamaruwa;
 
-
 import android.content.Context;
 
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
-import android.annotation.SuppressLint;
-
 import android.content.Intent;
-
 import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.MenuItem;
@@ -32,9 +26,8 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
 import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
-
+import com.example.huwamaruwa.RentalRequests.nonPremium_Requests_seller_sideFragment;
 import com.example.huwamaruwa.addProduct.AddNewItem;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.storage.StorageReference;
@@ -55,24 +48,23 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FloatingActionButton floatingActionButton_add;
     FloatingActionButton floatingActionButton_req;
     TextView txtFloatingAdd,txtFloatingReq;
-
     ConstraintLayout floatingSheet;
-
     Animation rotateOpenAnim;
     Animation rotateCloseAnim;
     Animation fromBottomAnim;
     Animation toBottomAnim;
-
     Animation bottomSheet;
     Animation topSheet;
+
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
         //get values by id
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -83,9 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         floatingActionButton_req = findViewById(R.id.floating_buyer_req_button);
         txtFloatingAdd = findViewById(R.id.txtfloating_add);
         txtFloatingReq = findViewById(R.id.txtfloating_req);
-
         floatingSheet = findViewById(R.id.floating_bottom_sheet);
-
         //set app name to toolbar
        // setSupportActionBar(toolbar);
 
@@ -111,7 +101,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 rotateCloseAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_closefloating_anim);
                 fromBottomAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.from_bottom_floating_anim);
                 toBottomAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.to_bottom_floating_anim);
-
                 bottomSheet = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floating_bottom_top_animation);
                 topSheet = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floating_bottom_bottom_animation);
                 setVisibility(clicker);
@@ -189,6 +178,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.admin_Rental_requests:
                 fragment = new PremiumProductRentalRequestFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentDefault,fragment);
+                fragmentTransaction.commit();
+                break;
+                case R.id.nav_seller_requests:
+                fragment = new nonPremium_Requests_seller_sideFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentDefault,fragment);

@@ -89,8 +89,11 @@
     <string name="paymentOptionNote1">You can Pay Initial Deposit via cash on dilevry Method</string>
     <string name="paymentOptionNote2">Only You Have to do ,Make Payment To Our Dilevry Agent</string>
     <string name="nav_request_rentals">Rental Requests</string>
+    <string name="nav_seller_request_rentals">Rental Requests</string>
     <string name="floatingMg_req">Request Product</string>
     <string name="floatingMg_add">Add Product</string>
+    <string name="nav_seller_panel_title">Seller</string>
+    <string name="no_data">Data Not Available</string>
 
     //Kavindya
     <string name="select_category">select Category</string>
@@ -123,7 +126,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="premiumRentalRequestsTitle">Rental Request Manager</string>
-  
+
     <string name="initialDeposit">Initial Deposit :</string>
 
     <string name="view_product">View Product</string>
@@ -151,6 +154,5 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
 
 </resources>

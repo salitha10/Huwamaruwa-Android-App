@@ -42,6 +42,17 @@
                 </group>
             </menu>
         </item>
-
+    <item
+        android:id="@+id/nav_seller"
+        android:title="@string/nav_seller_panel_title">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_seller_requests"
+                    android:icon="@drawable/rental_request_icon"
+                    android:title="@string/nav_seller_request_rentals" />
+            </group>
+        </menu>
+    </item>
 
 </menu>
