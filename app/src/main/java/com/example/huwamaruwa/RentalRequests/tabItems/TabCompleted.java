@@ -45,24 +45,19 @@ public class TabCompleted extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChildren()){
                     for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
+                        RequestRentModel request = new RequestRentModel();
+                        request.setAddress(dataSnapshot.child("address").getValue().toString());
+                        request.setContactNumber(dataSnapshot.child("contactNumber").getValue().toString());
+                        request.setDuration(dataSnapshot.child("duration").getValue().toString());
+                        request.setInitialDeposit(Double.parseDouble(dataSnapshot.child("initialDeposit").getValue().toString()));
+                        request.setTotal(Double.parseDouble(dataSnapshot.child("total").getValue().toString()));
+                        request.setIsPremium(dataSnapshot.child("isPremium").getValue().toString());
+                        request.setProductId(dataSnapshot.child("productId").getValue().toString());
+                        request.setDateDif(dataSnapshot.child("dateDif").getValue().toString());
+                        request.setStatus(dataSnapshot.child("status").getValue().toString());
+                        request.setId(dataSnapshot.child("id").getValue().toString());
 
-                        if (dataSnapshot.child("status").getValue().toString().equals("Delivered")){
-                            RequestRentModel request = new RequestRentModel();
-                            request.setAddress(dataSnapshot.child("address").getValue().toString());
-                            request.setContactNumber(dataSnapshot.child("contactNumber").getValue().toString());
-                            request.setDuration(dataSnapshot.child("duration").getValue().toString());
-                            request.setInitialDeposit(Double.parseDouble(dataSnapshot.child("initialDeposit").getValue().toString()));
-                            request.setTotal(Double.parseDouble(dataSnapshot.child("total").getValue().toString()));
-                            request.setIsPremium(dataSnapshot.child("isPremium").getValue().toString());
-                            request.setProductId(dataSnapshot.child("productId").getValue().toString());
-                            request.setDateDif(dataSnapshot.child("dateDif").getValue().toString());
-                            request.setStatus(dataSnapshot.child("status").getValue().toString());
-                            request.setId(dataSnapshot.child("id").getValue().toString());
-                            request.setUserId(dataSnapshot.child("userId").getValue().toString());
-                            request_list.add(request);
-                        }
-
-
+                        request_list.add(request);
                     }
                 }
                 else request_list = null;
