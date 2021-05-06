@@ -139,38 +139,6 @@ public class Product implements Parcelable {
 
     }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public double getDepositPercentage() {
-        return depositPercentage;
-    }
-
-    public void setDepositPercentage(double deposit) {
-        this.depositPercentage = deposit;
-    }
-
-    public String getSellerID() {
-        return sellerID;
-    }
-
-    public void setSellerID(String sellerID) {
-        this.sellerID = sellerID;
-    }
-
-    public int getMaxRentalTime() {
-        return maxRentalTime;
-    }
-
-    public void setMaxRentalTime(int maxRentalTime) {
-        this.maxRentalTime = maxRentalTime;
-    }
-
-    public int getMinRentalTime() {
-        return minRentalTime;
-    }
-
     public int getCategoryID() {
         return categoryID;
     }
