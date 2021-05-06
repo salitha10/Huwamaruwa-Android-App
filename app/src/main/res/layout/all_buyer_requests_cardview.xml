@@ -18,6 +18,13 @@
             android:text="text"
             android:layout_marginBottom="20sp"
             android:textSize="30sp"/>
+
+        <TextView
+            android:id="@+id/allBuyerRequests_requestId"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Id"
+            android:visibility="visible"/>
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

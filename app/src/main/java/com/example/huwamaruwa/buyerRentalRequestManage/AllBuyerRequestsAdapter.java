@@ -39,6 +39,7 @@ public class AllBuyerRequestsAdapter extends RecyclerView.Adapter <AllBuyerReque
         BuyerRentalRequestsModel buyerRentalRequestsModel= list.get(position);
 
         holder.productName.setText(buyerRentalRequestsModel.getProductTitle());
+        holder.buyerRequestId.setText(buyerRentalRequestsModel.getBuyerRequestId());
         holder.category.setText(buyerRentalRequestsModel.getCategory());
         holder.quantity.setText(buyerRentalRequestsModel.getQuantity());
         holder.requiredDate.setText(buyerRentalRequestsModel.getRequiredDate());
@@ -62,7 +63,7 @@ public class AllBuyerRequestsAdapter extends RecyclerView.Adapter <AllBuyerReque
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
-        TextView productName, category, quantity, requiredDate, budget;
+        TextView productName, category, quantity, requiredDate, budget, buyerRequestId;
         Button sendOffer;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -74,6 +75,7 @@ public class AllBuyerRequestsAdapter extends RecyclerView.Adapter <AllBuyerReque
             requiredDate = itemView.findViewById(R.id.allBuyerRequests_requiredDate);
             budget = itemView.findViewById(R.id.allBuyerRequests_budget);
             sendOffer = itemView.findViewById(R.id.allBuyerRequests_sendOffer);
+            buyerRequestId = itemView.findViewById(R.id.allBuyerRequests_requestId);
 
         }
     }
