@@ -85,6 +85,7 @@
         <activity
             android:name=".StudentActivity"
             android:exported="true" />
+
         <activity
             android:name=".customer_care.ChatActivity"
             android:exported="true" />
