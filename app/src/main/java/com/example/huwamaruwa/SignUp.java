@@ -34,6 +34,10 @@ public class SignUp extends AppCompatActivity {
     FirebaseUser currentUser;
 
     FirebaseAuth firebaseAuth;
+
+    public SignUp() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
