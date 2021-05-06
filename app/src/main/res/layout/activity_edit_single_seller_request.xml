@@ -17,7 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Update My Offer"
+            android:text="My Offer"
             android:textSize="20sp"
             android:textAlignment="center"/>
 
@@ -28,14 +28,10 @@
             >
 
             <ImageView
-                android:id="@+id/EditView_Image"
-                android:layout_width="200dp"
-                android:layout_height="200dp"
-                android:src="@drawable/product_logo" />
+                android:layout_width="126dp"
+                android:layout_height="56dp"
+                android:src="@drawable/aaa" />
             <Button
-                android:id="@+id/EditView_gallery"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="75dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Add Photo"/>
@@ -46,8 +42,7 @@
             android:layout_height="wrap_content"
             android:text="Product name"
             android:layout_marginTop="20sp"
-            android:textSize="17sp"
-            android:visibility="invisible"/>
+            android:textSize="17sp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -79,8 +74,7 @@
         <EditText
             android:id="@+id/sendingForm_rental"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"/>
+            android:layout_height="wrap_content" />
 
 
         <Button

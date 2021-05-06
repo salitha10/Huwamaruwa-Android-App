@@ -8,22 +8,13 @@
     tools:context=".buyerRentalRequestManage.SendingOffer">
 
     <include layout="@layout/toolbar"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Sending Offer"
-        android:textSize="20sp"
-        android:textColor="@color/theme_green"
-        android:textAlignment="center"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"/>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="15dp"
         app:cardElevation="20sp"
-        app:cardCornerRadius="30dp">
+        app:cardCornerRadius="50dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,8 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="Id :"
                 android:textColor="@color/theme_green"
-                android:textSize="17sp"
-                android:visibility="invisible"/>
+                android:textSize="17sp"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -143,7 +133,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="15dp"
-        app:cardCornerRadius="30dp"
+        app:cardCornerRadius="50dp"
         app:cardElevation="20sp">
 
         <ScrollView
@@ -168,18 +158,13 @@
                 android:orientation="horizontal"
                 >
 
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:id="@+id/sendingForm_photo"
-                    android:layout_width="200dp"
-                    android:layout_height="150dp"
-                    android:src="@drawable/product_logo"
-                    />
+                <ImageView
+                    android:layout_width="126dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/aaa" />
                 <Button
-                    android:id="@+id/btnSendingForm_selectPhoto"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20sp"
-                    android:layout_marginTop="40dp"
                     android:text="Add Photo"/>
             </LinearLayout>
             <TextView
@@ -213,8 +198,7 @@
             <EditText
                 android:id="@+id/sendingForm_rental"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="number"/>
+                android:layout_height="wrap_content" />
 
 
             <Button
