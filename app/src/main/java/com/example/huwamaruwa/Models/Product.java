@@ -41,6 +41,26 @@ public class Product implements Parcelable {
     private int minRentalTime;
     private boolean perHour;
 
+    public boolean isPremium() {
+        return isPremium;
+    }
+
+    public void setPremium(boolean premium) {
+        isPremium = premium;
+    }
+
+    public String getImages2() {
+        return images2;
+    }
+
+    public String getImages3() {
+        return images3;
+    }
+
+    public String getImages4() {
+        return images4;
+    }
+
     private int date_in_sec;
     private int date_in_min;
     private int date_in_hour;
@@ -246,4 +266,7 @@ public class Product implements Parcelable {
                 this.contactNumber
         });
     }
+
+
+
 }
