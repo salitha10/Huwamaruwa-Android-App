@@ -95,6 +95,8 @@
     <string name="nav_seller_request_rentals">Rental Requests</string>
     <string name="floatingMg_req">Request Product</string>
     <string name="floatingMg_add">Add Product</string>
+    <string name="nav_seller_panel_title">Seller</string>
+    <string name="no_data">Data Not Available</string>
 
     <string name="no_data">Data Not Available</string>
     <string name="specs_location">Item Location :</string>
