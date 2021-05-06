@@ -5,7 +5,15 @@ import android.os.Parcelable;
 
 public class BuyerRentalRequestsModel implements Parcelable {
 
-    String productTitle, category, quantity, requiredDate, Budget;
+    String productTitle, category, quantity, requiredDate, Budget, buyerRequestId;
+
+    public String getBuyerRequestId() {
+        return buyerRequestId;
+    }
+
+    public void setBuyerRequestId(String buyerRequestId) {
+        this.buyerRequestId = buyerRequestId;
+    }
 
     protected BuyerRentalRequestsModel(Parcel in) {
         productTitle = in.readString();
@@ -13,6 +21,7 @@ public class BuyerRentalRequestsModel implements Parcelable {
         quantity = in.readString();
         requiredDate = in.readString();
         Budget = in.readString();
+        buyerRequestId = in.readString();
     }
 
     public static final Creator<BuyerRentalRequestsModel> CREATOR = new Creator<BuyerRentalRequestsModel>() {
@@ -83,5 +92,6 @@ public class BuyerRentalRequestsModel implements Parcelable {
         parcel.writeString(quantity);
         parcel.writeString(requiredDate);
         parcel.writeString(Budget);
+        parcel.writeString(buyerRequestId);
     }
 }

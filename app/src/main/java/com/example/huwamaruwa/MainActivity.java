@@ -10,12 +10,15 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -31,12 +34,22 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
+import com.example.huwamaruwa.Models.User;
+import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
 import com.example.huwamaruwa.RentalRequests.nonPremium_Requests_seller_sideFragment;
 import com.example.huwamaruwa.addProduct.AddNewItem;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.TimeZone;
@@ -52,6 +65,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fragmentManager;
     StorageReference storageReference;
     FloatingActionButton floatingActionButton;
+
+    FirebaseUser currentUser;
+    DatabaseReference reference;
+
+    TextView loginName, loginSellerType;
+    String userId, name, userType;
+
+
     FloatingActionButton floatingActionButton_add;
     FloatingActionButton floatingActionButton_req;
     TextView txtFloatingAdd,txtFloatingReq;
@@ -77,6 +98,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+
+
+
         clicker = 0;
         floatingActionButton = findViewById(R.id.floating_add_product);
         floatingActionButton_add = findViewById(R.id.floating_add_button);
@@ -97,6 +121,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         //set navigation view clickable
         navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        loginName = (TextView) headerView.findViewById(R.id.LoginName);
+        loginSellerType = (TextView) headerView.findViewById(R.id.LoginSellerType);
+
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.e("login",user.getUid());
+        userId = user.getUid();
+
+        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
+
+        reference = FirebaseDatabase.getInstance().getReference();
+        Query query = reference.child("Users").orderByChild("userId").equalTo(userId).limitToFirst(1);
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                    name = dataSnapshot.child("name").getValue().toString();
+                    userType = dataSnapshot.child("userType").getValue().toString();
+
+                }
+                loginName.setText(name);
+                loginSellerType.setText(userType);
+
+                    Toast.makeText(getApplicationContext(), "Set values", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
     //set when click back then close the nav drawer
 
@@ -156,6 +213,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+//            Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
     }
 
 
@@ -167,6 +232,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -204,5 +271,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public void LogoutMethod(View view){
+        FirebaseAuth.getInstance().signOut();
+        startActivity(new Intent(MainActivity.this, Login.class));
     }
 }

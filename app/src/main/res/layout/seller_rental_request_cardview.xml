@@ -6,8 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
-    app:cardCornerRadius="2dp"
-    app:cardElevation="20sp">
+    app:cardCornerRadius="20dp"
+    app:cardElevation="25sp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
 
 
         <TextView
-            android:id="@+id/productTitle"
+            android:id="@+id/SellerRequests_productTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -29,24 +29,12 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="28dp"
-            android:layout_marginBottom="76dp"
-            android:text="@string/lblRequiredDate"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
-            app:layout_constraintVertical_bias="0.341" />
-
-        <TextView
             android:id="@+id/category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginBottom="136dp"
-            android:text="@string/category"
+            android:layout_marginStart="24dp"
+            android:layout_marginBottom="128dp"
+            android:text="Quantity :"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -64,48 +52,56 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="76dp"
-            android:layout_marginBottom="52dp"
-            android:text="@string/Rental_fee"
+            android:layout_marginEnd="252dp"
+            android:layout_marginBottom="84dp"
+            android:text="Rental Fee :"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnSellerRequests_delete"
             android:layout_width="99dp"
             android:layout_height="40dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginBottom="32dp"
             android:text="@string/btnDelete"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/btnSellerRequests_edit"
             android:layout_width="99dp"
             android:layout_height="40dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="4dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="32dp"
             android:text="@string/btnEdit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/requiredDate1"
+            android:id="@+id/SellerRequests_rentalFee"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="128dp"
-            android:layout_marginBottom="76dp"
+            android:layout_marginEnd="184dp"
+            android:layout_marginBottom="84dp"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
-            android:id="@+id/rentalFee"
+            android:id="@+id/SellerRequests_Quantity"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="52dp"
+            android:layout_marginStart="92dp"
+            android:layout_marginTop="52dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/SellerRequests_requestId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="TextView"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
