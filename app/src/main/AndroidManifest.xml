@@ -23,8 +23,15 @@
         <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
 
         </activity>
-        <activity android:name=".ProfileView" />
+        <activity android:name=".ProfileView" >
+
+        </activity>
         <activity android:name=".UserProfileEdit" />
+        <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest" />
+        <activity
+            android:name=".ProductReviews.AddProductReview"
+            android:exported="true" />
+
         <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest">
 
         </activity>
