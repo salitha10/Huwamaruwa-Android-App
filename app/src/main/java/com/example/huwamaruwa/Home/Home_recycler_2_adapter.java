@@ -14,9 +14,7 @@ import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.singleProduct.PremiumProduct;
 
-
 import java.text.SimpleDateFormat;
-
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
@@ -43,7 +41,6 @@ public class Home_recycler_2_adapter extends RecyclerView.Adapter<Home_recycler_
         Glide.with(context).load(product_list.get(position).getImages1()).into(holder.mainImg);
         holder.txtTitle.setText(product_list.get(position).getTitle());
         holder.txtPrice.setText(rs.concat(String.valueOf(product_list.get(position).getPrice())));
-
         if (!product_list.get(position).getIsPremium()){
             holder.doneIcon.setVisibility(View.INVISIBLE);
             holder.careIcon.setVisibility(View.INVISIBLE);
