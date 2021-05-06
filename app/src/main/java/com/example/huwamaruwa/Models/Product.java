@@ -41,6 +41,26 @@ public class Product implements Parcelable {
     private int minRentalTime;
     private boolean perHour;
 
+    public String getImages1() {
+        return images1;
+    }
+
+    public void setImages1(String images1) {
+        this.images1 = images1;
+    }
+
+    public void setImages2(String images2) {
+        this.images2 = images2;
+    }
+
+    public void setImages3(String images3) {
+        this.images3 = images3;
+    }
+
+    public void setImages4(String images4) {
+        this.images4 = images4;
+    }
+
     public boolean isPremium() {
         return isPremium;
     }
