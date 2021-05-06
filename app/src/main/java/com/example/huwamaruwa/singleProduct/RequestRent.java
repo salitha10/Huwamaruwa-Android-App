@@ -73,6 +73,7 @@ public class RequestRent extends AppCompatActivity {
         product = getIntent().getParcelableExtra(PremiumProduct.REQUEST_RENT_TAG);
 
 
+
         Glide.with(this).load(product.getImages1()).into(imgMain);
         txtTitle.setText(product.getTitle());
         txtDescription.setText(product.getDescription());

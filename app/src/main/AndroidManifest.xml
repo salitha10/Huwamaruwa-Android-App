@@ -29,6 +29,7 @@
         <activity
             android:name=".ProductReviews.AddProductReview"
             android:exported="true" />
+
         <activity
             android:name=".ProductReviews.AllProductReviews"
             android:exported="true" />
