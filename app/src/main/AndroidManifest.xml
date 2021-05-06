@@ -23,15 +23,8 @@
         <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
 
         </activity>
-        <activity android:name=".ProfileView" >
-
-        </activity>
+        <activity android:name=".ProfileView" />
         <activity android:name=".UserProfileEdit" />
-        <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest" />
-        <activity
-            android:name=".ProductReviews.AddProductReview"
-            android:exported="true" />
-
         <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest">
 
         </activity>
@@ -43,18 +36,21 @@
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login">
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".singleProduct.RequestRent" />
-        <activity android:name=".payment.PaymentOption" >
-
-        </activity>
+        <activity android:name=".PaymentOption" />
+        <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
         <activity android:name=".MainActivity">
 
         </activity>
-<activity android:name=".RentalHistory.RentalHistory"/>
-        <activity android:name=".PremiumStore.PremiumStore"/>
+
 
         <activity
             android:name=".ProductReviews.AddProductReview"
@@ -64,16 +60,14 @@
             android:exported="true" />
 
         <activity android:name=".SignUp">
-
-        </activity>
-
-        <activity android:name=".SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".SplashScreen" />
 
 
 
