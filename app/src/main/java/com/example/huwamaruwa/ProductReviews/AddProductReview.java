@@ -52,12 +52,12 @@ public class AddProductReview extends AppCompatActivity {
         //Initialize components
         product = (TextView) findViewById(R.id.txtproduct);
         seller = (TextView) findViewById(R.id.txtseller);
-        comments = (EditText) findViewById(R.id.editTextProductComments);
+        comments = (EditText) findViewById(R.id.editTextBuyerReview);
         done = (Button) findViewById(R.id.btnDone);
         cancel = (Button) findViewById(R.id.btnCancel);
-        quality = (RatingBar) findViewById(R.id.pQualityRatingBar);
-        usability = (RatingBar) findViewById(R.id.pUsabilityRatingBar);
-        price = (RatingBar) findViewById(R.id.pPriceRatingBar);
+        quality = (RatingBar) findViewById(R.id.pRBBuyerReview);
+        usability = (RatingBar) findViewById(R.id.hRBBuyerReview);
+        price = (RatingBar) findViewById(R.id.cRBBuyerReview);
         thumbnail = (ImageView) findViewById(R.id.productThumbnail);
 
 

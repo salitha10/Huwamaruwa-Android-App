@@ -86,12 +86,12 @@
     </androidx.cardview.widget.CardView>
 
     <TextView
-        android:id="@+id/txtProductQuality"
+        android:id="@+id/txtPaymentReviewBuyer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/product_review1"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/pQualityRatingBar"
+        app:layout_constraintBottom_toTopOf="@+id/pRBBuyerReview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -99,43 +99,43 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <RatingBar
-        android:id="@+id/pPriceRatingBar"
+        android:id="@+id/cRBBuyerReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pUsabilityRatingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/hRBBuyerReview" />
 
     <TextView
-        android:id="@+id/txtPPrice"
+        android:id="@+id/txtCommunicationBuyerReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/product_review3"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/pPriceRatingBar"
+        app:layout_constraintBottom_toTopOf="@+id/cRBBuyerReview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pUsabilityRatingBar"
+        app:layout_constraintTop_toBottomOf="@+id/hRBBuyerReview"
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/txtProductHandling"
+        android:id="@+id/txtProductHandlingBuyerReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/buyer_review2"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/pUsabilityRatingBar"
+        app:layout_constraintBottom_toTopOf="@+id/hRBBuyerReview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pQualityRatingBar"
+        app:layout_constraintTop_toBottomOf="@+id/pRBBuyerReview"
         app:layout_constraintVertical_bias="0.448" />
 
     <RatingBar
-        android:id="@+id/pQualityRatingBar"
+        android:id="@+id/pRBBuyerReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="75dp"
@@ -145,14 +145,14 @@
         app:layout_constraintTop_toBottomOf="@+id/card_view" />
 
     <RatingBar
-        android:id="@+id/pUsabilityRatingBar"
+        android:id="@+id/hRBBuyerReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pQualityRatingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/pRBBuyerReview" />
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -161,15 +161,15 @@
         android:layout_marginTop="8dp"
         app:counterEnabled="true"
         app:counterMaxLength="200"
-        app:layout_constraintBottom_toTopOf="@+id/button2"
+        app:layout_constraintBottom_toTopOf="@+id/btnCancelBuyerReview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pPriceRatingBar">
+        app:layout_constraintTop_toBottomOf="@+id/cRBBuyerReview">
 
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextProductComments"
+            android:id="@+id/editTextBuyerReview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Comments (Optional)"
@@ -180,7 +180,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnDoneBuyerReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
@@ -188,11 +188,11 @@
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/button2"
+        app:layout_constraintTop_toTopOf="@+id/btnCancelBuyerReview"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnCancelBuyerReview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -200,7 +200,7 @@
         android:text="Cancel"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintEnd_toStartOf="@+id/btnDoneBuyerReview"
         app:layout_constraintHorizontal_bias="0.913"
         app:layout_constraintStart_toStartOf="parent" />
 

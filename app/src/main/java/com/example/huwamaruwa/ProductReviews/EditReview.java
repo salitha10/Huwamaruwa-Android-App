@@ -3,7 +3,6 @@ package com.example.huwamaruwa.ProductReviews;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,7 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.Models.ProductReviews;
 import com.example.huwamaruwa.R;
 import com.google.firebase.database.DataSnapshot;
@@ -54,12 +52,12 @@ public class EditReview extends AppCompatActivity {
         //Initialize components
         product = (TextView) findViewById(R.id.txtproduct);
         seller = (TextView) findViewById(R.id.txtseller);
-        comments = (EditText) findViewById(R.id.editTextProductComments);
+        comments = (EditText) findViewById(R.id.editTextBuyerReview);
         done = (Button) findViewById(R.id.btnDone);
         cancel = (Button) findViewById(R.id.btnCancel);
-        quality = (RatingBar) findViewById(R.id.pQualityRatingBar);
-        usability = (RatingBar) findViewById(R.id.pUsabilityRatingBar);
-        price = (RatingBar) findViewById(R.id.pPriceRatingBar);
+        quality = (RatingBar) findViewById(R.id.pRBBuyerReview);
+        usability = (RatingBar) findViewById(R.id.hRBBuyerReview);
+        price = (RatingBar) findViewById(R.id.cRBBuyerReview);
         thumbnail = (ImageView) findViewById(R.id.productThumbnail);
 
         pr = new ProductReviews();
@@ -69,11 +67,14 @@ public class EditReview extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
-        Intent i = getIntent();
-        pr = (ProductReviews)i.getSerializableExtra("MyReview");
+        //Intent i = getIntent();
+        //pr = (ProductReviews)i.getSerializableExtra("MyReview");
+        pr = new ProductReviews();
 
         //Set existing values
         quality.setRating(pr.getQualityRating());
+        usability.setRating(pr.getUsabilityRating());
+        price.setRating(pr.getPriceRating());
 
 
 

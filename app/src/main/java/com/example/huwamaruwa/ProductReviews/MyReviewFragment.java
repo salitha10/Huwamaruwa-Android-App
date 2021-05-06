@@ -45,7 +45,7 @@ public class MyReviewFragment extends Fragment {
     ImageView reviewerPic;
     DatabaseReference dbf1, dbf2, dbf3;
 
-    ProductReviews pr;
+    ProductReviews pr = new ProductReviews();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -84,7 +84,7 @@ public class MyReviewFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-            pr = new ProductReviews();
+
         }
     }
 
@@ -102,8 +102,6 @@ public class MyReviewFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
-
-
         //Initialize elements
         reviewer = (TextView) getView().findViewById(R.id.reviewerNameMyReviews);
         edit = (TextView) getView().findViewById(R.id.myReviewEdit);
@@ -111,12 +109,20 @@ public class MyReviewFragment extends Fragment {
         rating = (RatingBar) getView().findViewById(R.id.myRatingBarMyRating);
         reviewerPic = (ImageView) getView().findViewById(R.id.ReviewerImageMyReview);
 
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goToEdit();
+            }
+        });
+
         //Get data from review
         String reviewID = "-MZmdgRqUDg3QrQU1Gmm";
 
-        dbf1 = FirebaseDatabase.getInstance().getReference().child("ProductReviews").child(reviewID);
+        dbf1 = FirebaseDatabase.getInstance().getReference().child("ProductReviews").child("reviewID");
         dbf2 = FirebaseDatabase.getInstance().getReference().child("Users");
         dbf3 = FirebaseDatabase.getInstance().getReference().child("Product");
+
         dbf1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -127,14 +133,12 @@ public class MyReviewFragment extends Fragment {
                     pr.setComment(snapshot.child("comment").getValue().toString());
                     //pr.setBuyerID(snapshot.child("buyerID").getValue().toString());
                     pr.setProductID(snapshot.child("productID").getValue().toString());
-                    pr.setID(snapshot.child("comment").getValue().toString());
+                    pr.setID(snapshot.child("ID").getValue().toString());
                     pr.setPriceRating(Float.parseFloat(snapshot.child("priceRating").getValue().toString()));
                     pr.setQualityRating(Float.parseFloat(snapshot.child("qualityRating").getValue().toString()));
                     pr.setUsabilityRating(Float.parseFloat(snapshot.child("usabilityRating").getValue().toString()));
                     pr.setAverageRating(Float.parseFloat(snapshot.child("averageRating").getValue().toString()));
                     pr.setReviewerID(snapshot.child("reviewerID").getValue().toString());
-
-
 
                     comments.setText(pr.getComment());
                     rating.setRating(Float.parseFloat(String.valueOf(pr.getAverageRating())));
@@ -175,7 +179,7 @@ public class MyReviewFragment extends Fragment {
         });
     }
 
-    public void goToEdit(View view){
+    public void goToEdit(){
         Intent intent = new Intent(getContext(), EditReview.class);
         intent.putExtra("MyReview", pr);
         startActivity(intent);
@@ -183,6 +187,23 @@ public class MyReviewFragment extends Fragment {
 
     public void delete(View view){
 
-    }
+        dbf1.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                //Get data from Std1
+                if(snapshot.hasChild("Std1")){ ;
+                    dbf1.removeValue();
+                    Toast.makeText(view.getContext(), "Deleted", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(view.getContext(), "Delete Failed", Toast.LENGTH_SHORT).show();
+                }
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 }

@@ -3,10 +3,10 @@
     //Salitha
     <string name="app_name">Huwamaruwa</string>
     <string name="product_review1">Quality</string>
-    <string name="product_review2">Support</string>
+    <string name="product_review2">Usability</string>
     <string name="product_review3">Price</string>
     <string name="buyer_review1">Payment</string>
-    <string name="buyer_review2">Usability</string>
+    <string name="buyer_review2">Product Handling</string>
     <string name="buyer_review3">Communication</string>
     <string name="btn_done">Done</string>
     <string name="btn_cancel">Cancel</string>

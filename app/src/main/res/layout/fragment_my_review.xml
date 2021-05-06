@@ -103,6 +103,7 @@
                         android:layout_marginStart="288dp"
                         android:layout_marginTop="29dp"
                         android:layout_marginEnd="17dp"
+                        android:onClick="delete"
                         app:srcCompat="@drawable/ic_baseline_delete_24" />
 
                 </RelativeLayout>
