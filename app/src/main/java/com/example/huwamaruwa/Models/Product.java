@@ -26,7 +26,6 @@ public class Product implements Parcelable {
     private boolean isPremium;
     private double price;
     private String title;
-    private Long date;
     private String description;
     private String images1;
     private String images2;
@@ -40,8 +39,61 @@ public class Product implements Parcelable {
     private int maxRentalTime;
     private int minRentalTime;
     private boolean perHour;
-
+    private int date_in_sec;
+    private int date_in_min;
+    private int date_in_hour;
+    private int date_in_day;
+    private int date_in_year;
+    private Date date;
     public Product() {
+    }
+
+    public int getDate_in_year() {
+        return date_in_year;
+    }
+
+    public void setDate_in_year(int date_in_year) {
+        this.date_in_year = date_in_year;
+    }
+
+    public int getDate_in_sec() {
+        return date_in_sec;
+    }
+
+    public void setDate_in_sec(int date_in_sec) {
+        this.date_in_sec = date_in_sec;
+    }
+
+    public int getDate_in_min() {
+        return date_in_min;
+    }
+
+    public void setDate_in_min(int date_in_min) {
+        this.date_in_min = date_in_min;
+    }
+
+    public int getDate_in_hour() {
+        return date_in_hour;
+    }
+
+    public void setDate_in_hour(int date_in_hour) {
+        this.date_in_hour = date_in_hour;
+    }
+
+    public int getDate_in_day() {
+        return date_in_day;
+    }
+
+    public void setDate_in_day(int date_in_day) {
+        this.date_in_day = date_in_day;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     public String getId() {
@@ -74,14 +126,6 @@ public class Product implements Parcelable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Long getDate() {
-        return date;
-    }
-
-    public void setDate(Long date) {
-        this.date = date;
     }
 
     public String getDescription() {
