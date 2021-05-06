@@ -29,6 +29,13 @@
                 android:textColor="@color/theme_green"
                 android:layout_marginBottom="20sp"
                 android:textSize="30sp"/>
+            <TextView
+                android:id="@+id/sendingOffer_buyerRequestId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Id :"
+                android:textColor="@color/theme_green"
+                android:textSize="17sp"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -167,6 +174,7 @@
                 android:layout_marginTop="20sp"
                 android:textSize="17sp"/>
             <EditText
+                android:id="@+id/sendingForm_productName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <TextView
@@ -176,6 +184,7 @@
                 android:layout_marginTop="20sp"
                 android:textSize="17sp"/>
             <EditText
+                android:id="@+id/sendingForm_quantity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
@@ -187,16 +196,19 @@
                 android:layout_marginTop="20sp"
                 android:textSize="17sp"/>
             <EditText
+                android:id="@+id/sendingForm_rental"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
 
             <Button
+                android:id="@+id/btnSendingForm_sendOffer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="send Offer"
-                />
+                android:onClick="sendOffer"
+                android:text="send Offer" />
             <Button
+                android:id="@+id/btnSendingForm_cancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Cancel"

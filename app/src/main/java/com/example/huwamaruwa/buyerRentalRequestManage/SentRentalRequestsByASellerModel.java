@@ -12,6 +12,7 @@ public class SentRentalRequestsByASellerModel {
         this.date = date;
     }
 
+
     public int getImage() {
         return image;
     }

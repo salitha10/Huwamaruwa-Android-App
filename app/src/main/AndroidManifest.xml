@@ -13,31 +13,50 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Huwamaruwa">
-        <activity android:name=".buyerRentalRequestManage.SendingOffer"></activity>
+        <activity android:name=".buyerRentalRequestManage.EditSingleSellerRequest">
+
+        </activity>
+        <activity android:name=".buyerRentalRequestManage.SendingOffer" />
         <activity android:name=".buyerRentalRequestManage.AllBuyerRentalRequests">
 
         </activity>
-        <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller" />
+        <activity android:name=".buyerRentalRequestManage.SentRentalRequestBySeller">
+
+        </activity>
         <activity android:name=".ProfileView" />
         <activity android:name=".UserProfileEdit" />
-        <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest" />
+        <activity android:name=".buyerRentalRequestManage.BuyerRentalRequest">
+
+        </activity>
+
+        <activity
 
             android:name=".StudentActivity"
             android:exported="true" />
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login" />
-        <activity android:name=".SplashScreen" >
+        <activity android:name=".SplashScreen" />
+        <activity android:name=".SignUp" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".singleProduct.RequestRent" />
         <activity android:name=".PaymentOption" />
         <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+
 
         <meta-data
             android:name="preloaded_fonts"

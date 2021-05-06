@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".buyerRentalRequestManage.EditSingleSellerRequest">
+
+    <include layout="@layout/toolbar"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="25dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Offer"
+            android:textSize="20sp"
+            android:textAlignment="center"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <ImageView
+                android:layout_width="126dp"
+                android:layout_height="56dp"
+                android:src="@drawable/aaa" />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Add Photo"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/sendingForm_requestId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Product name"
+            android:layout_marginTop="20sp"
+            android:textSize="17sp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Product name"
+            android:layout_marginTop="20sp"
+            android:textSize="17sp"/>
+        <EditText
+            android:id="@+id/sendingForm_productName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Quantity"
+            android:layout_marginTop="20sp"
+            android:textSize="17sp"/>
+        <EditText
+            android:id="@+id/sendingForm_quantity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:maxLength="2" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rental"
+            android:layout_marginTop="20sp"
+            android:textSize="17sp"/>
+        <EditText
+            android:id="@+id/sendingForm_rental"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:id="@+id/btnSendingForm_sendOffer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="UpdateUser"
+            android:text="Update" />
+        <Button
+            android:id="@+id/btnSendingForm_cancel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            />
+
+    </LinearLayout>
+</LinearLayout>
