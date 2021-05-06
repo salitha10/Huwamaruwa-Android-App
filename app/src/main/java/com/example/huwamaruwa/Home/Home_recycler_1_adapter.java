@@ -17,8 +17,13 @@ import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.singleProduct.PremiumProduct;
+import com.example.huwamaruwa.singleProduct.RequestRent;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class Home_recycler_1_adapter extends RecyclerView.Adapter<Home_recycler_1_adapter.ViewHolder> {
     public static final String SINGLE_PRODUCT_TAG = "com.example.huwamaruwa.singleProduct";
@@ -42,6 +47,34 @@ public class Home_recycler_1_adapter extends RecyclerView.Adapter<Home_recycler_
         holder.txtPrice.setText(String.valueOf(product_list.get(position).getPrice()));
         holder.txtTitle.setText(product_list.get(position).getTitle());
         holder.txtDescription.setText(product_list.get(position).getDescription());
+
+            Product product = product_list.get(position);
+        SimpleDateFormat dateTimeInGMT = new SimpleDateFormat("dd");
+        //Setting the time zone
+        dateTimeInGMT.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
+        int day = Integer.parseInt(dateTimeInGMT.format(new Date()));
+        dateTimeInGMT = new SimpleDateFormat("hh");
+        int hour =Integer.parseInt(dateTimeInGMT.format(new Date()));
+        dateTimeInGMT = new SimpleDateFormat("mm");
+        int min =Integer.parseInt(dateTimeInGMT.format(new Date()));
+        dateTimeInGMT = new SimpleDateFormat("ss");
+        int sec =Integer.parseInt(dateTimeInGMT.format(new Date()));
+        dateTimeInGMT = new SimpleDateFormat("yyy");
+        int year =Integer.parseInt(dateTimeInGMT.format(new Date()));
+
+            if ((year - product.getDate_in_year())>0){
+                holder.txtTime.setText((year - product.getDate_in_year())+" years ago");
+            }else if ((day - product.getDate_in_day()) > 0){
+                holder.txtTime.setText((day - product.getDate_in_day())+" days ago");
+            }else if ((hour - product.getDate_in_hour()) > 0){
+                holder.txtTime.setText((hour - product.getDate_in_hour())+" hours ago");
+            }else if ((min - product.getDate_in_min()) > 0){
+                holder.txtTime.setText((min - product.getDate_in_min())+" minutes ago");
+            }else if ((sec - product.getDate_in_sec()) > 0){
+                holder.txtTime.setText((sec - product.getDate_in_sec())+" seconds ago");
+            }
+
+
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +92,7 @@ public class Home_recycler_1_adapter extends RecyclerView.Adapter<Home_recycler_
 
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView mainImg;
-        TextView txtTitle,txtDescription,txtPrice;
+        TextView txtTitle,txtDescription,txtPrice,txtTime;
         ConstraintLayout parentLayout;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -67,6 +100,7 @@ public class Home_recycler_1_adapter extends RecyclerView.Adapter<Home_recycler_
             txtPrice = itemView.findViewById(R.id.txt_home_recycler_1_price);
             txtTitle = itemView.findViewById(R.id.txt_home_recycler_1_title);
             txtDescription = itemView.findViewById(R.id.txt_home_recycler_1_description);
+            txtTime = itemView.findViewById(R.id.txt_home_recycler_1_time);
             parentLayout = itemView.findViewById(R.id.home_recycer_1_parentLayout);
         }
     }

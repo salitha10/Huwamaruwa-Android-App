@@ -71,16 +71,6 @@ public class RequestRent extends AppCompatActivity {
 
 
         product = getIntent().getParcelableExtra(PremiumProduct.REQUEST_RENT_TAG);
-//        product = new Product();
-//        product.setIsPremium("true");
-//        product.setImages1("https://firebasestorage.googleapis.com/v0/b/huwamaruwa-3e019.appspot.com/o/Product%20Images%2F1619984581484.jpg?alt=media&token=07f07eae-ed68-422c-92e5-86f8fcb0b7fe");
-//        product.setTitle("Fake Obj Title");
-//        product.setPrice("1200");
-//        product.setDescription("This Is a Fake Object.Remain me to fix this after created add product");
-//        product.setPerHour(false);
-//        product.setMaxRentalTime(60);
-//        product.setMinRentalTime(3);
-//        product.setId("-MZn_7u_6gZZ8bqiVkLx");
 
 
         Glide.with(this).load(product.getImages1()).into(imgMain);

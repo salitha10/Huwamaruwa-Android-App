@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class PremiumProduct extends AppCompatActivity {
     TextView txtTitle,txtPrice,txtTime;
     Button btnRentProduct;
     Product product;
+    LinearLayout premiumDescription,premiumStores,premiumLogo;
     public static final String RS="RS. ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,10 +38,18 @@ public class PremiumProduct extends AppCompatActivity {
         txtPrice = findViewById(R.id.txtPremiumProduct_price);
         txtTime = findViewById(R.id.txtPremiumProduct_time);
 
+        premiumDescription = findViewById(R.id.premiumProduct_description);
+        premiumStores = findViewById(R.id.premium_product_store_and_recent);
+        premiumLogo = findViewById(R.id.premium_product_logo_icons);
+
         btnRentProduct = findViewById(R.id.btnRequestRent_form_send_request);
 
         product = getIntent().getParcelableExtra(Home_recycler_1_adapter.SINGLE_PRODUCT_TAG);
-
+        if (!product.getIsPremium()){
+            premiumDescription.setVisibility(View.GONE);
+            premiumStores.setVisibility(View.GONE);
+            premiumLogo.setVisibility(View.GONE);
+        }
         Glide.with(this).load(product.getImages1()).into(img1);
         Glide.with(this).load(product.getImages2()).into(img2);
         Glide.with(this).load(product.getImages3()).into(img3);

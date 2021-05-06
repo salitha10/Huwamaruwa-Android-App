@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -22,7 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class Home_fragment extends Fragment {
 
@@ -33,6 +38,8 @@ public class Home_fragment extends Fragment {
     DatabaseReference dRef_latest;
     Home_recycler_1_adapter home_recycler_1_adapter;
     Home_recycler_2_adapter home_recycler_2_adapter;
+
+
 
     public Home_fragment() {
         // Required empty public constructor
@@ -49,7 +56,6 @@ public class Home_fragment extends Fragment {
         recyclerView1 = view.findViewById(R.id.home_recycler_view_1);
         recyclerView2 = view.findViewById(R.id.home_recycler_view_2);
         recyclerView3 = view.findViewById(R.id.home_recycler_view_3);
-
 
 
         product_list_latest = new ArrayList<>();
@@ -77,6 +83,11 @@ public class Home_fragment extends Fragment {
                     product.setMaxRentalTime(Integer.parseInt(dataSnapshot.child("maxRentalTime").getValue().toString()));
                     product.setId(dataSnapshot.child("id").getValue().toString());
                     product.setContactNumber(dataSnapshot.child("contactNumber").getValue().toString());
+                    product.setDate_in_day(Integer.parseInt(dataSnapshot.child("date_in_day").getValue().toString()));
+                    product.setDate_in_hour(Integer.parseInt(dataSnapshot.child("date_in_hour").getValue().toString()));
+                    product.setDate_in_min(Integer.parseInt(dataSnapshot.child("date_in_min").getValue().toString()));
+                    product.setDate_in_sec(Integer.parseInt(dataSnapshot.child("date_in_sec").getValue().toString()));
+                    product.setDate_in_year(Integer.parseInt(dataSnapshot.child("date_in_year").getValue().toString()));
                     product_list_latest.add(product);
                 }
                 home_recycler_1_adapter = new Home_recycler_1_adapter(product_list_latest, getContext());
