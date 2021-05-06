@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.huwamaruwa.R;
@@ -31,7 +32,6 @@ public class BuyerRentalRequest extends AppCompatActivity {
         quantity = (EditText)findViewById(R.id.productQuantityEdit);
         requiredDate = (EditText)findViewById(R.id.requiredDateEdit);
         budget = (EditText)findViewById(R.id.budgetEdit);
-
         cancel =findViewById(R.id.buyerReqCancel);
         submit =findViewById(R.id.buyerReqsubmit);
 
@@ -73,8 +73,11 @@ public class BuyerRentalRequest extends AppCompatActivity {
                 buyerRentalRequestsModel.setQuantity(quantity.getText().toString().trim());
                 buyerRentalRequestsModel.setRequiredDate(requiredDate.getText().toString().trim());
                 buyerRentalRequestsModel.setBudget(budget.getText().toString().trim());
+                buyerRentalRequestsModel.setBuyerRequestId(dbf.push().getKey());
 
-                dbf.push().setValue(buyerRentalRequestsModel);
+
+//                dbf.push().setValue(buyerRentalRequestsModel);
+                dbf.child(buyerRentalRequestsModel.getBuyerRequestId()).setValue(buyerRentalRequestsModel);
 
                 clearContent();
 
