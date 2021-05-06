@@ -288,5 +288,5 @@ public class Product implements Parcelable {
     }
 
 
-
 }
+
