@@ -1,7 +1,7 @@
 package com.example.huwamaruwa.ProductReviews;
 
+import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
@@ -14,6 +14,8 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Models.ProductReviews;
 import com.example.huwamaruwa.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,6 +25,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import androidx.fragment.app.Fragment;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import com.example.huwamaruwa.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,13 +39,13 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class MyReviewFragment extends Fragment {
 
-
     //Variables
     TextView reviewer, comments, edit;
     RatingBar rating;
     ImageView reviewerPic;
     DatabaseReference dbf1, dbf2, dbf3;
 
+    ProductReviews pr;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,8 +84,8 @@ public class MyReviewFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            pr = new ProductReviews();
         }
-
     }
 
     @Override
@@ -94,6 +102,8 @@ public class MyReviewFragment extends Fragment {
     public void onResume() {
         super.onResume();
 
+
+
         //Initialize elements
         reviewer = (TextView) getView().findViewById(R.id.reviewerNameMyReviews);
         edit = (TextView) getView().findViewById(R.id.myReviewEdit);
@@ -106,15 +116,55 @@ public class MyReviewFragment extends Fragment {
 
         dbf1 = FirebaseDatabase.getInstance().getReference().child("ProductReviews").child(reviewID);
         dbf2 = FirebaseDatabase.getInstance().getReference().child("Users");
+        dbf3 = FirebaseDatabase.getInstance().getReference().child("Product");
         dbf1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChildren()) {
                     //reviewer.setText(snapshot.child("id").getValue().toString());
-                    comments.setText(snapshot.child("comment").getValue().toString());
-                    rating.setRating(Float.parseFloat(String.valueOf(snapshot.child("averageRating").getValue())));
-                    String reviewerID = snapshot.child("reviewerID").getValue().toString();
 
+                    //Set object values
+                    pr.setComment(snapshot.child("comment").getValue().toString());
+                    //pr.setBuyerID(snapshot.child("buyerID").getValue().toString());
+                    pr.setProductID(snapshot.child("productID").getValue().toString());
+                    pr.setID(snapshot.child("comment").getValue().toString());
+                    pr.setPriceRating(Float.parseFloat(snapshot.child("priceRating").getValue().toString()));
+                    pr.setQualityRating(Float.parseFloat(snapshot.child("qualityRating").getValue().toString()));
+                    pr.setUsabilityRating(Float.parseFloat(snapshot.child("usabilityRating").getValue().toString()));
+                    pr.setAverageRating(Float.parseFloat(snapshot.child("averageRating").getValue().toString()));
+                    pr.setReviewerID(snapshot.child("reviewerID").getValue().toString());
+
+
+
+                    comments.setText(pr.getComment());
+                    rating.setRating(Float.parseFloat(String.valueOf(pr.getAverageRating())));
+                    String reviewerID = pr.getReviewerID();
+                    String productID = pr.getProductID();
+
+                    dbf2.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            reviewer.setText(snapshot.child(reviewerID).child("name").getValue().toString());
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+
+                    dbf3.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            String url = snapshot.child(productID).child("images1").getValue().toString();
+                            Glide.with(getContext()).load(url).circleCrop().placeholder(R.drawable.ic_launcher_background).into(reviewerPic);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
                 }
             }
 
@@ -123,6 +173,16 @@ public class MyReviewFragment extends Fragment {
 
             }
         });
+    }
+
+    public void goToEdit(View view){
+        Intent intent = new Intent(getContext(), EditReview.class);
+        intent.putExtra("MyReview", pr);
+        startActivity(intent);
+    }
+
+    public void delete(View view){
+
     }
 
 }

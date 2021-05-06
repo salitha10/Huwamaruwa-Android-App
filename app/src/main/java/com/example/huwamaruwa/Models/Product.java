@@ -33,7 +33,6 @@ public class Product implements Parcelable {
     private String images3;
     private String images4;
 
-
     private int categoryID;
     private String contactNumber;
     private String location;

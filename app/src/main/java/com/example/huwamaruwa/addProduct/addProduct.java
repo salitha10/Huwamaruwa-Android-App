@@ -49,6 +49,7 @@ public class addProduct extends AppCompatActivity {
     LoadingProgress loadingProgress;
     String imgData[];
     Switch ifPremium;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -3,32 +3,61 @@ package com.example.huwamaruwa.Models;
 import java.io.Serializable;
 
 public class ProductReviews implements Serializable {
+
     private String productID;
-    //private String buyerID;
     private String comment;
     private String thumbnailURL;
-    //private String date;
-    private double qualityRating;
-    private double usabilityRating;
-    private double priceRating;
-    private double averageRating;
+    private String date;
+    private float qualityRating;
+    private float usabilityRating;
+    private float priceRating;
+    private float averageRating;
+    private String reviewerID;
+    private String ID;
 
+    public String getID() {
+        return ID;
+    }
 
-    //Getters and setters
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getReviewerID() {
+        return reviewerID;
+    }
+
+    public void setReviewerID(String reviewerID) {
+        this.reviewerID = reviewerID;
+    }
+
+//Getters and setters
 
     //public String getDate() { return date; }
 
     //public void setDate(String date) { this.date = date; }
 
-    public double getUsabilityRating() { return usabilityRating; }
+    public float getUsabilityRating() {
+        return usabilityRating;
+    }
 
-    public void setUsabilityRating(double usabilityRating) { this.usabilityRating = usabilityRating; }
+    public void setUsabilityRating(float usabilityRating) {
+        this.usabilityRating = usabilityRating;
+    }
 
-    public double getAverageRating() {
+    public float getAverageRating() {
         return averageRating;
     }
 
-    public void setAverageRating(double averageRating) {
+    public void setAverageRating(float averageRating) {
         this.averageRating = averageRating;
     }
 
@@ -48,23 +77,27 @@ public class ProductReviews implements Serializable {
         this.productID = productID;
     }
 
-    //public String getBuyerID() { return buyerID; }
+    //public String getBuyerID() { return reviewerID
+    // ; }
 
-    //public void setBuyerID(String buyerID) { this.buyerID = buyerID; }
+    //public void setBuyerID(String reviewerID
+    // ) { this.reviewerID
+    // = reviewerID
+    // ; }
 
-    public double getQualityRating() {
+    public float getQualityRating() {
         return qualityRating;
     }
 
-    public void setQualityRating(double qualityRating) {
+    public void setQualityRating(float qualityRating) {
         this.qualityRating = qualityRating;
     }
 
-    public double getPriceRating() {
+    public float getPriceRating() {
         return priceRating;
     }
 
-    public void setPriceRating(double priceRating) {
+    public void setPriceRating(float priceRating) {
         this.priceRating = priceRating;
     }
 
@@ -76,4 +109,15 @@ public class ProductReviews implements Serializable {
         this.comment = comment;
     }
 
+    public String getBuyerID() {
+        return reviewerID
+                ;
+    }
+
+    public void setBuyerID(String reviewerID
+    ) {
+        this.reviewerID
+                = reviewerID
+        ;
+    }
 }

@@ -3,6 +3,7 @@ package com.example.huwamaruwa.ProductReviews;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.Models.ProductReviews;
 import com.example.huwamaruwa.R;
 import com.google.firebase.database.DataSnapshot;
@@ -35,7 +37,7 @@ public class EditReview extends AppCompatActivity {
     ProductReviews pr;
     DatabaseReference dbfProduct, dbfReview, dbfSeller;
     String productID, sellerID, imageURL, buyerComments, buyerID, date;
-    double overallRating, qRating, uRating, pRating;
+    float overallRating, qRating, uRating, pRating;
 
 
     /**
@@ -67,8 +69,16 @@ public class EditReview extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
+        Intent i = getIntent();
+        pr = (ProductReviews)i.getSerializableExtra("MyReview");
+
+        //Set existing values
+        quality.setRating(pr.getQualityRating());
+
+
+
         //Display product details
-        productID = "-MZml4o8n65POxbXFlcO";
+        productID = pr.getProductID();
         dbfProduct = FirebaseDatabase.getInstance().getReference().child("Product").child(productID);
 
         //Get data from product
@@ -110,19 +120,17 @@ public class EditReview extends AppCompatActivity {
 
     public void Save(View view) {
 
-        dbfReview = FirebaseDatabase.getInstance().getReference().child("ProductReviews");
 
         //Get ratings
         qRating = Float.parseFloat(String.valueOf(quality.getRating()));
         uRating = Float.parseFloat(String.valueOf(usability.getRating()));
         pRating = Float.parseFloat(String.valueOf(price.getRating()));
-
         //Get comments
         buyerComments = comments.getText().toString().trim();
 
         //Calculate overall rating
         double overall = (qRating + uRating + pRating) / 3.0;
-        overallRating = Math.round(overall * 2) / 2.0;
+        overallRating = (float)(Math.round(overall * 2) / 2.0);
         Log.d("OverallRating", String.valueOf(overallRating));
 
 
@@ -131,7 +139,6 @@ public class EditReview extends AppCompatActivity {
 
             //Set vales in model objest
             //pr.setBuyerID(buyerID);
-            pr.setProductID(productID);
             pr.setQualityRating(qRating);
             pr.setUsabilityRating(uRating);
             pr.setPriceRating(pRating);
@@ -139,8 +146,9 @@ public class EditReview extends AppCompatActivity {
             pr.setComment(buyerComments);
             //pr.setDate(date);
 
+            dbfReview = FirebaseDatabase.getInstance().getReference().child("ProductReviews").child(pr.getID());
             //Push to database
-            dbfReview.push().setValue(pr);
+            dbfReview.setValue(pr);
 
             Toast.makeText(getApplicationContext(), "Review Added", Toast.LENGTH_SHORT).show();
             //

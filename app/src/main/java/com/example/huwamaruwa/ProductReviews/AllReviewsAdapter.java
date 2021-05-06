@@ -52,7 +52,7 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
 
         /*
         String buyerID = model.getBuyerID();
-        dbfBuyer = FirebaseDatabase.getInstance().getReference().child("Users").child("Seller").child(buyerID);
+        DatabaseReference dbfBuyer = FirebaseDatabase.getInstance().getReference().child("Users").child("Seller").child("5seDqM9fHNb87rriqXq1oIN7drA3");
         dbfBuyer.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -63,12 +63,30 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
-        });*/
+        });
+         */
+
+        /*
+        //User Image
+        DatabaseReference dbf3 = FirebaseDatabase.getInstance().getReference().child("Product");
+        dbf3.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String url = snapshot.child(productID).child("images1").getValue().toString();
+                Glide.with(getContext()).load(url).circleCrop().placeholder(R.drawable.ic_launcher_background).into(reviewerPic);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        */
 
         //Set data
         holder.comments.setText(model.getComment());
         Glide.with(holder.itemView.getContext()).load(model.getThumbnailURL()).circleCrop().placeholder(R.drawable.ic_launcher_background).into(holder.reviewerPic);
-        holder.rating.setRating((float)model.getAverageRating());
+        holder.rating.setRating(model.getAverageRating());
 
     }
 
@@ -80,6 +98,7 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
     public static class ViewAdapter  extends RecyclerView.ViewHolder{
 
         TextView reviewer, comments;
+        Button done, cancel;
         RatingBar rating;
         ImageView reviewerPic;
 

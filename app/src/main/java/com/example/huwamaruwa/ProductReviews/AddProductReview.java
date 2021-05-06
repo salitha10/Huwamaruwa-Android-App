@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 public class AddProductReview extends AppCompatActivity {
 
     private static final String INVALID_DATA = "INVALID_DATA";
-    private static final String DB_ERROR = "DATABASE_ERROR" ;
+    private static final String DB_ERROR = "DATABASE_ERROR";
     //Declare variables
     TextView seller, product;
     EditText comments;
@@ -35,7 +35,7 @@ public class AddProductReview extends AppCompatActivity {
     ProductReviews pr;
     DatabaseReference dbfProduct, dbfReview, dbfSeller;
     String productID, sellerID, imageURL, buyerComments, buyerID, date;
-    double overallRating, qRating, uRating, pRating;
+    float overallRating, qRating, uRating, pRating;
 
 
     /**
@@ -123,11 +123,11 @@ public class AddProductReview extends AppCompatActivity {
 
         //Calculate overall rating
         double overall = (qRating + uRating + pRating) / 3.0;
-        overallRating = Math.round(overall * 2) / 2.0;
+        overallRating = (float) (Math.round(overall * 2) / 2.0);
         Log.d("OverallRating", String.valueOf(overallRating));
 
 
-        try{
+        try {
             //date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
             //Set vales in model objest
@@ -146,17 +146,11 @@ public class AddProductReview extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Review Added", Toast.LENGTH_SHORT).show();
             //
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             Log.d(DB_ERROR, "DATA SAVE FAILED - " + e.getMessage());
             Toast.makeText(getApplicationContext(), "Review Not Added", Toast.LENGTH_SHORT).show();
         }
 
-
-
-
-
     }
-
 
 }
