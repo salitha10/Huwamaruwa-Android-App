@@ -97,6 +97,8 @@
     <string name="floatingMg_add">Add Product</string>
 
     <string name="no_data">Data Not Available</string>
+    <string name="nav_seller_panel_title">Seller</string>
+    <string name="no_data">Data Not Available</string>
     <string name="specs_location">Item Location :</string>
     <string name="specs_category">Category :</string>
     <string name="specs_contact">Contact Number :</string>
