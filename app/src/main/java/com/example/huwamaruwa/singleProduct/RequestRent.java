@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,15 +19,13 @@ import androidx.core.util.Pair;
 import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.Models.RequestRentModel;
-import com.example.huwamaruwa.payment.PaymentOption;
+import com.example.huwamaruwa.PaymentOption;
 import com.example.huwamaruwa.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.datepicker.CalendarConstraints;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClickListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.Calendar;
@@ -36,8 +33,6 @@ import java.util.concurrent.TimeUnit;
 
 public class RequestRent extends AppCompatActivity {
 
-    public static final String TAG_PAYMENT_DEPOSIT_AMOUNT = "com.example.huwamaruwa.payment.deposit_amount";
-    private static final String TAG = "request rent";
     Button btn,btnPay,btnReq;
     ImageView imgMain;
     TextView textView,txtTitle,txtDescription,txtPrice,txtTotal,txtDeposit;
@@ -51,8 +46,8 @@ public class RequestRent extends AppCompatActivity {
     private double total = 0;
     public static final String RS="RS. ";
      DatabaseReference dbRef;
-     private String userId;
     @Override
+    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_rent);
@@ -77,10 +72,6 @@ public class RequestRent extends AppCompatActivity {
 
         product = getIntent().getParcelableExtra(PremiumProduct.REQUEST_RENT_TAG);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.e("login",user.getUid());
-        userId = user.getUid();
-
 
 
         Glide.with(this).load(product.getImages1()).into(imgMain);
@@ -96,7 +87,7 @@ public class RequestRent extends AppCompatActivity {
     btn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-        //get Date Duration
+
             MaterialDatePicker.Builder<Pair<Long, Long>> builderRange = MaterialDatePicker.Builder.dateRangePicker();
             builderRange.setCalendarConstraints(limitRange().build());
             builderRange.setTitleText("Select Date Range");
@@ -115,10 +106,10 @@ public class RequestRent extends AppCompatActivity {
                     }else {
                         total = Double.parseDouble(String.valueOf(product.getPrice())) * dateDif;
                     }
-                    txtTotal.setText("Rs :".concat(Double.toString(total)));
+                    txtTotal.setText("Rs .".concat(Double.toString(total)));
 
-                    deposit = calcDeposit(total,product.getDepositPercentage());
-                    txtDeposit.setText("Rs :".concat(Double.toString(deposit)));
+                     deposit = total * 10/100.0;
+                    txtDeposit.setText("Rs .".concat(Double.toString(deposit)));
                 }
             });
         }
@@ -126,7 +117,7 @@ public class RequestRent extends AppCompatActivity {
     btnPay.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+            dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
             try {
                 if (TextUtils.isEmpty(edtAddress.getText())){
                     Toast.makeText(RequestRent.this, "Address Required", Toast.LENGTH_SHORT).show();
@@ -135,39 +126,42 @@ public class RequestRent extends AppCompatActivity {
                 }else if (TextUtils.isEmpty(textView.getText())){
                     Toast.makeText(RequestRent.this, "Duration required", Toast.LENGTH_SHORT).show();
                 }else {
-                    if (dateDif >= product.getMinRentalTime() ){//check Minimum Rental Time
-
-                        Bundle bundle = new Bundle();
-                        bundle.putString("address",edtAddress.getText().toString());
-                        bundle.putString("contact",edtContactNumber.getText().toString());
-                        bundle.putString("duration",textView.getText().toString());
-                        bundle.putDouble("deposit",deposit);
-                        bundle.putDouble("total",total);
-                        bundle.putString("isPremium",Boolean.toString(product.getIsPremium()));
-                        bundle.putString("productId",product.getId());
-                        bundle.putString("dateDif",Integer.toString(dateDif));
-                        bundle.putString("userId",userId);
-
-                        Intent intent = new Intent(getApplicationContext(), PaymentOption.class);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-
-                    }else {
-                        Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
-                    }
-
+                    requestRent = new RequestRentModel();
+                    requestRent.setAddress(edtAddress.getText().toString());
+                    requestRent.setContactNumber(edtContactNumber.getText().toString());
+                    requestRent.setDuration(textView.getText().toString());
+                    requestRent.setInitialDeposit(deposit);
+                    requestRent.setTotal(total);
+                    requestRent.setIsPremium(String.valueOf(product.getIsPremium()));
+                    requestRent.setProductId(product.getId());
+                    requestRent.setDateDif(Integer.toString(dateDif));
+                    requestRent.setStatus("Pending");
+                    String id = dbRef.push().getKey();
+                    requestRent.setId(id);
+                    dbRef.child(requestRent.getId()).setValue(requestRent).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(RequestRent.this, "Data added successfully", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getApplicationContext(), PaymentOption.class);
+                            startActivity(intent);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(RequestRent.this, "Request failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
 
                 }
             }catch (Exception e){
-                Log.e(TAG,"Request Rent Form: "+e.getMessage());
-                //Toast.makeText(RequestRent.this, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(RequestRent.this, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
         }
     });
     }
 
-//validate calender with limit range
+
     private CalendarConstraints.Builder limitRange() {
 
         CalendarConstraints.Builder constraintsBuilderRange = new CalendarConstraints.Builder();
@@ -230,7 +224,7 @@ public class RequestRent extends AppCompatActivity {
         }
 
 
-        public static final Creator<RangeValidator> CREATOR = new Creator<RangeValidator>() {
+        public static final Parcelable.Creator<RangeValidator> CREATOR = new Parcelable.Creator<RangeValidator>() {
 
             @Override
             public RangeValidator createFromParcel(Parcel parcel) {
@@ -244,8 +238,5 @@ public class RequestRent extends AppCompatActivity {
         };
 
 
-    }
-    public double calcDeposit(double total,double percentage){
-        return (total * percentage)/100.0;
     }
 }
