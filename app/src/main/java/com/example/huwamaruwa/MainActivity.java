@@ -2,10 +2,12 @@ package com.example.huwamaruwa;
 
 import android.content.Context;
 
+
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.AttributeSet;
 import android.os.Handler;
 import android.util.Log;
 import android.util.AttributeSet;
@@ -19,7 +21,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -41,6 +42,7 @@ import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
 import com.example.huwamaruwa.RentalRequests.nonPremium_Requests_seller_sideFragment;
 import com.example.huwamaruwa.addProduct.AddNewItem;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -77,11 +79,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FloatingActionButton floatingActionButton_add;
     FloatingActionButton floatingActionButton_req;
     TextView txtFloatingAdd,txtFloatingReq;
+
     ConstraintLayout floatingSheet;
+
     Animation rotateOpenAnim;
     Animation rotateCloseAnim;
     Animation fromBottomAnim;
     Animation toBottomAnim;
+
     Animation bottomSheet;
     Animation topSheet;
     Button btnCategory;
@@ -92,9 +97,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
         setContentView(R.layout.activity_main);
+
         //get values by id
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -110,7 +114,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         floatingActionButton_req = findViewById(R.id.floating_buyer_req_button);
         txtFloatingAdd = findViewById(R.id.txtfloating_add);
         txtFloatingReq = findViewById(R.id.txtfloating_req);
+
         floatingSheet = findViewById(R.id.floating_bottom_sheet);
+
         //set app name to toolbar
        // setSupportActionBar(toolbar);
 
@@ -171,8 +177,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 rotateCloseAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_closefloating_anim);
                 fromBottomAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.from_bottom_floating_anim);
                 toBottomAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.to_bottom_floating_anim);
+
                 bottomSheet = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floating_bottom_top_animation);
                 topSheet = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floating_bottom_bottom_animation);
+
                 setVisibility(clicker);
 
                //
@@ -202,8 +210,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setVisibility(int cli) {
         if (cli == 0){
+
             floatingSheet.setVisibility(View.VISIBLE);
             floatingSheet.setAnimation(bottomSheet);
+
             floatingActionButton_add.setVisibility(View.VISIBLE);
             floatingActionButton_req.setVisibility(View.VISIBLE);
             txtFloatingAdd.setVisibility(View.VISIBLE);
@@ -221,10 +231,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             floatingActionButton_add.setAnimation(toBottomAnim);
             txtFloatingReq.setAnimation(toBottomAnim);
             floatingActionButton_req.setAnimation(toBottomAnim);
+
             floatingSheet.setAnimation(topSheet);
             floatingActionButton_add.setVisibility(View.GONE);
             floatingActionButton_req.setVisibility(View.GONE);
             floatingSheet.setVisibility(View.GONE);
+
             clicker = 0;
         }
         floatingActionButton_add.setOnClickListener(new View.OnClickListener() {

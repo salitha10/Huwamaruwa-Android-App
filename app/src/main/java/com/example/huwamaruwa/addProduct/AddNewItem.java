@@ -230,7 +230,6 @@ public class AddNewItem extends AppCompatActivity {
         post.setImages2(imgData[1]);
         post.setImages3(imgData[2]);
         post.setImages4(imgData[3]);
-
         post.setMaxRentalTime(Integer.parseInt(edtmaxDate.getText().toString().trim()));
         post.setMinRentalTime(Integer.parseInt(edtminRentTime.getText().toString().trim()));
 
