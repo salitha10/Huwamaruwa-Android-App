@@ -130,8 +130,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
         userId = user.getUid();
+
         userBehaviours = new UserBehaviours(userId);
 
+        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
 
         reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference.child("Users").orderByChild("userId").equalTo(userId).limitToFirst(1);
@@ -241,6 +243,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onStart();
 
 //            Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
+        floatingActionButton_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AddNewItem.class);
+                startActivity(intent);
+
+            }
+        });
     }
 
 
@@ -281,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.replace(R.id.fragmentDefault,fragment);
                 fragmentTransaction.commit();
                 break;
-            case R.id.nav_seller_requests:
+                case R.id.nav_seller_requests:
                 fragment = new nonPremium_Requests_seller_sideFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();

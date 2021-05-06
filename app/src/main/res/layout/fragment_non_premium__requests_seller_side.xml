@@ -3,18 +3,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
-    android:background="#FFFFFF"
-    android:backgroundTint="#FFFFFF"
-    tools:context=".RentalRequests.nonPremium_Requests_seller_sideFragment">
+    tools:context=".RentalRequests.nonPremium_Requests_seller_side">
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:backgroundTint="#FFFFFF"
-
         android:orientation="vertical">
 
         <TextView
@@ -30,18 +24,23 @@
 
         <com.google.android.material.tabs.TabLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            android:layout_height="wrap_content"
-            android:id="@+id/tab_layout_rental_request"
-            >
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pending" />
 
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Processing" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Completed" />
         </com.google.android.material.tabs.TabLayout>
-
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/viewPager_request_rent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
 
     </LinearLayout>
 </FrameLayout>
