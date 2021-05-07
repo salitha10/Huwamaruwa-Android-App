@@ -19,9 +19,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Huwamaruwa">
-        <activity android:name=".ReviewUser.ReviewSeller"></activity>
-        <activity android:name=".ReviewUser.ReviewBuyer" />
-        <activity android:name=".ReportUser.ReportSeller" />
+        <activity android:name=".Delivery.Delivery"></activity>
+        <activity
+            android:name=".ReviewUser.ReviewSeller"
+            android:exported="true" />
+        <activity
+            android:name=".ReviewUser.ReviewBuyer"
+            android:exported="true" />
+        <activity
+            android:name=".ReportUser.ReportSeller"
+            android:exported="true" />
         <activity android:name=".ReportUser.ReportBuyer" />
         <activity
             android:name=".ProductReviews.EditReview"
