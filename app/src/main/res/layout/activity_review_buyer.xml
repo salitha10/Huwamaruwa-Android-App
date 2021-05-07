@@ -8,7 +8,7 @@
     tools:context=".ReviewUser.ReviewBuyer">
 
     <ImageView
-        android:id="@+id/imgBuyerBuyerReview"
+        android:id="@+id/imgReportBuyer"
         android:layout_width="222dp"
         android:layout_height="146dp"
         android:layout_marginTop="16dp"
@@ -81,7 +81,7 @@
         app:layout_constraintBottom_toTopOf="@+id/pRBBuyerReview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BuyerReviewBuyerReview"
+        app:layout_constraintTop_toBottomOf="@+id/nameReportBuyer"
         app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -114,7 +114,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
-        android:onClick="savedData"
+        android:onClick="Save"
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -135,7 +135,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/BuyerReviewBuyerReview"
+        android:id="@+id/nameReportBuyer"
         android:layout_width="234dp"
         android:layout_height="33dp"
         android:layout_marginTop="16dp"
@@ -145,6 +145,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBuyerBuyerReview" />
+        app:layout_constraintTop_toBottomOf="@+id/imgReportBuyer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

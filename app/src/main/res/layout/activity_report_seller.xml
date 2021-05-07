@@ -8,7 +8,7 @@
     tools:context=".ProductReviews.AddProductReview">
 
     <ImageView
-        android:id="@+id/imgBuyerBuyerReview"
+        android:id="@+id/imgReportBuyer"
         android:layout_width="244dp"
         android:layout_height="192dp"
         android:layout_marginTop="16dp"
@@ -29,11 +29,11 @@
         app:layout_constraintBottom_toTopOf="@+id/btnCancelBuyerReview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/BuyerReviewBuyerReview"
+        app:layout_constraintTop_toBottomOf="@+id/nameReportBuyer"
         app:layout_constraintVertical_bias="1.0">
 
         <EditText
-            android:id="@+id/editTextTextMultiLine"
+            android:id="@+id/editTextCommentReportBuyer"
             android:layout_width="match_parent"
             android:layout_height="135dp"
             android:layout_weight="1"
@@ -69,7 +69,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/BuyerReviewBuyerReview"
+        android:id="@+id/nameReportBuyer"
         android:layout_width="234dp"
         android:layout_height="33dp"
         android:layout_marginTop="16dp"
@@ -79,6 +79,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgBuyerBuyerReview" />
+        app:layout_constraintTop_toBottomOf="@+id/imgReportBuyer" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

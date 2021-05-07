@@ -8,6 +8,9 @@
     <string name="buyer_review1">Payment</string>
     <string name="buyer_review2">Product Handling</string>
     <string name="buyer_review3">Communication</string>
+    <string name="seller_review1">Pricing</string>
+    <string name="seller_review2">Support</string>
+    <string name="seller_review3">Delivery</string>
     <string name="btn_done">Done</string>
     <string name="btn_cancel">Cancel</string>
     <string name="btn_edit">Edit</string>
