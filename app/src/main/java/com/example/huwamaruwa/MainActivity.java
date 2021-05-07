@@ -30,6 +30,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
 import com.example.huwamaruwa.Models.User;
@@ -81,7 +82,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     DatabaseReference reference;
 
     TextView loginName, loginSellerType;
-    String userId, name, userType;
+    CircularImageView profileIcon;
+    String userId, name, userType, userProfIcon;
 
 
 
@@ -145,6 +147,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View headerView = navigationView.getHeaderView(0);
         loginName = (TextView) headerView.findViewById(R.id.LoginName);
         loginSellerType = (TextView) headerView.findViewById(R.id.LoginSellerType);
+        profileIcon = (CircularImageView) headerView.findViewById(R.id.profile_icon);
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -161,6 +164,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     name = dataSnapshot.child("name").getValue().toString();
                     userType = dataSnapshot.child("userType").getValue().toString();
+                    userProfIcon = dataSnapshot.child("userImage").getValue().toString();
+                    if(userProfIcon != "".trim()){
+                        Glide.with(MainActivity.this).load(userProfIcon).into(profileIcon);
+                    }
+                    else{
+                        Glide.with(MainActivity.this).load("https://firebasestorage.googleapis.com/v0/b/huwamaruwa-3e019.appspot.com/o/User%20Profile%20Pictures%2F1620409342626.png?alt=media&token=8798ca6c-5856-46ac-936b-9342eff852a0").into(profileIcon);
+                    }
+
 
                 }
                 loginName.setText(name);
@@ -334,6 +345,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void LogoutMethod(View view){
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(MainActivity.this, Login.class));
+    }
+
+    public void ViewUserProfile(View view){
+        Intent intent = new Intent(getApplicationContext(), ProfileView.class);
+        startActivity(intent);
     }
 
 

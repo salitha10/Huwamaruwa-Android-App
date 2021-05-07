@@ -6,6 +6,8 @@
     tools:context=".UserProfileEdit"
     android:orientation="vertical">
 
+    <include layout="@layout/toolbar"/>
+
     <TextView
         android:layout_width="172dp"
         android:layout_height="wrap_content"
@@ -47,54 +49,39 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:layout_marginBottom="30dp"/>
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/user_name"
+            android:text="Phone no."
             android:textSize="18dp"/>
 
         <EditText
-            android:id="@+id/Username"
+            android:id="@+id/Profile_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="text"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:inputType="textPersonName"
             android:layout_marginBottom="30dp"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Password"
+            android:text="Address"
             android:textSize="18dp"/>
 
         <EditText
-            android:id="@+id/userpassword"
+            android:id="@+id/Profile_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
-            android:inputType="textPassword"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
+            android:inputType="textPersonName"
             android:layout_marginBottom="30dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Re-enter password"
-            android:textSize="18dp"/>
 
-        <EditText
-            android:id="@+id/userConfirmPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginBottom="50dp"/>
+
+
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -109,10 +96,12 @@
                 android:text="@string/lblCancel"
                 android:layout_marginLeft="50dp"
                 android:layout_marginRight="100dp"/>
+
             <Button
                 android:id="@+id/userSave"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:onClick="updateUserProfile"
                 android:text="@string/lblSave" />
         </LinearLayout>
     </LinearLayout>

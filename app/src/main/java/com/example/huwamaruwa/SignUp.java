@@ -136,10 +136,10 @@ public class SignUp extends AppCompatActivity {
 
 //                                dbf.child(userType).push().setValue(user);
                                 user.setUserId(currentUser.getUid());
-                                user.setUserImage("");
+                                user.setUserImage("https://firebasestorage.googleapis.com/v0/b/huwamaruwa-3e019.appspot.com/o/User%20Profile%20Pictures%2F1620409342626.png?alt=media&token=8798ca6c-5856-46ac-936b-9342eff852a0");
                                 user.setName(name.getEditText().getText().toString().trim());
                                 user.setEmail(email.getEditText().getText().toString().trim());
-                                user.setPhoneNo(name.getEditText().getText().toString().trim());
+                                user.setPhoneNo(phoneNo.getEditText().getText().toString().trim());
                                 user.setUserType(userType.trim());
                                 user.setAddress(address.getEditText().getText().toString().trim());
                                 user.setPassword(password.getEditText().getText().toString().trim());
