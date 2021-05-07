@@ -41,12 +41,15 @@
         android:id="@+id/txtSupportReviewSeller"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:text="@string/seller_review1"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/pRBSellerReview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SellerReviewSellerReview"
+        app:layout_constraintVertical_bias="0.571" />
 
     <TextView
         android:id="@+id/txtDeliverySellerReview"
@@ -112,7 +115,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
-        android:onClick="Save"
+        android:onClick="savedData"
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -133,16 +136,16 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/txtNameSR"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/SellerReviewSellerReview"
+        android:layout_width="234dp"
+        android:layout_height="33dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
         android:text="Name"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/txtSupportReviewSeller"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.514"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgSellerSellerReview"
-        app:layout_constraintVertical_bias="0.238" />
+        app:layout_constraintTop_toBottomOf="@+id/imgSellerSellerReview" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
