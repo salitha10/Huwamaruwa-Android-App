@@ -12,8 +12,17 @@ public class RequestRentModel {
     private String productId;
     private String dateDif;
     private String status;
+    private String userId;
 
     public RequestRentModel() {
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getStatus() {
