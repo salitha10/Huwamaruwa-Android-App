@@ -56,6 +56,7 @@ public class ReviewBuyer extends AppCompatActivity {
         //Get current user
         user = FirebaseAuth.getInstance().getCurrentUser();
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+
         //userID = user.getUid();
         userID = "Lud7rSb7CyeJLQt7saQOVYTZv953";
         buyerID = "Lud7rSb7CyeJLQt7saQOVYTZv953";

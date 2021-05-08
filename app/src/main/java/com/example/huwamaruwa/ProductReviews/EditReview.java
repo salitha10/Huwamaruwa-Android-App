@@ -3,6 +3,7 @@ package com.example.huwamaruwa.ProductReviews;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -16,22 +17,16 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.ProductReviews;
 import com.example.huwamaruwa.R;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
-public class AddProductReview extends AppCompatActivity {
+public class EditReview extends AppCompatActivity {
 
     private static final String INVALID_DATA = "INVALID_DATA";
-    private static final String DB_ERROR = "DATABASE_ERROR" ;
+    private static final String DB_ERROR = "DATABASE_ERROR";
     //Declare variables
     TextView seller, product;
     EditText comments;
@@ -40,9 +35,8 @@ public class AddProductReview extends AppCompatActivity {
     ImageView thumbnail;
     ProductReviews pr;
     DatabaseReference dbfProduct, dbfReview, dbfSeller;
-    String productID, sellerID, imageURL, buyerComments, reviewerID, date;
+    String productID, sellerID, imageURL, buyerComments, buyerID, date;
     float overallRating, qRating, uRating, pRating;
-    FirebaseUser user;
 
 
     /**
@@ -66,19 +60,25 @@ public class AddProductReview extends AppCompatActivity {
         usability = (RatingBar) findViewById(R.id.pUsabilityRatingBar);
         price = (RatingBar) findViewById(R.id.pPriceRatingBar);
         thumbnail = (ImageView) findViewById(R.id.productThumbnail);
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        //reviewerID = user.getUid();
-        reviewerID  = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
-        date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        pr = new ProductReviews();
 
     }
 
     public void onResume() {
         super.onResume();
 
+        //Get object
+        Intent intent = getIntent();
+        pr = intent.getParcelableExtra("MyReview");
+
+        //Set existing values
+        Log.d("QualityRating", String.valueOf(pr.getQualityRating()));
+        quality.setRating(pr.getQualityRating());
+        usability.setRating(pr.getUsabilityRating());
+        price.setRating(pr.getPriceRating());
+        comments.setText(pr.getComment());
+
         //Display product details
-        productID = "-M_2FaJPp3ovUpe1FIMI";
+        productID = pr.getProductID();
         dbfProduct = FirebaseDatabase.getInstance().getReference().child("Product").child(productID);
 
         //Get data from product
@@ -120,13 +120,11 @@ public class AddProductReview extends AppCompatActivity {
 
     public void Save(View view) {
 
-        dbfReview = FirebaseDatabase.getInstance().getReference().child("ProductReviews");
 
         //Get ratings
         qRating = Float.parseFloat(String.valueOf(quality.getRating()));
         uRating = Float.parseFloat(String.valueOf(usability.getRating()));
         pRating = Float.parseFloat(String.valueOf(price.getRating()));
-
         //Get comments
         buyerComments = comments.getText().toString().trim();
 
@@ -136,33 +134,31 @@ public class AddProductReview extends AppCompatActivity {
         Log.d("OverallRating", String.valueOf(overallRating));
 
 
-        try{
+        try {
+
             //date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
-            //Set vales in model object
-            pr.setReviewerID(reviewerID);
-            pr.setProductID(productID);
+            //Set vales in model objest
+            //pr.setBuyerID(buyerID);
             pr.setQualityRating(qRating);
             pr.setUsabilityRating(uRating);
             pr.setPriceRating(pRating);
             pr.setAverageRating(overallRating);
             pr.setComment(buyerComments);
-            pr.setDate(date);
+            //pr.setDate(date);
 
+            dbfReview = FirebaseDatabase.getInstance().getReference().child("ProductReviews").child(pr.getID());
             //Push to database
-            dbfReview.push().setValue(pr);
+            dbfReview.setValue(pr);
 
             Toast.makeText(getApplicationContext(), "Review Added", Toast.LENGTH_SHORT).show();
 
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             Log.d(DB_ERROR, "DATA SAVE FAILED - " + e.getMessage());
             Toast.makeText(getApplicationContext(), "Review Not Added", Toast.LENGTH_SHORT).show();
         }
 
-
     }
-
 
 }
