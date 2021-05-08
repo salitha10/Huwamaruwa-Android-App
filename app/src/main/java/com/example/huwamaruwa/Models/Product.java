@@ -35,7 +35,7 @@ public class Product implements Parcelable {
     private String contactNumber;
     private String location;
     private double depositPercentage;
-    private String sellerID;
+    private String sellerId;
     private int maxRentalTime;
     private int minRentalTime;
     private boolean perHour;
@@ -200,12 +200,12 @@ public class Product implements Parcelable {
         this.depositPercentage = deposit;
     }
 
-    public String getSellerID() {
-        return sellerID;
+    public String getSellerId() {
+        return sellerId;
     }
 
-    public void setSellerID(String sellerID) {
-        this.sellerID = sellerID;
+    public void setSellerId(String sellerID) {
+        this.sellerId = sellerID;
     }
 
     public int getMaxRentalTime() {
@@ -233,7 +233,7 @@ public class Product implements Parcelable {
     }
 
     public Product(Parcel in) {
-        String data[] = new String[13];
+        String data[] = new String[21];
         in.readStringArray(data);
 
         this.price =Double.parseDouble(data[0]) ;
@@ -249,6 +249,14 @@ public class Product implements Parcelable {
         this.minRentalTime = Integer.parseInt(data[10]);
         this.id = data[11];
         this.contactNumber = data[12];
+        this.date_in_sec = Integer.parseInt(data[13]);;
+        this.date_in_year= Integer.parseInt(data[14]);
+        this.date_in_min= Integer.parseInt(data[15]);
+        this.date_in_hour= Integer.parseInt(data[16]);
+        this.date_in_day= Integer.parseInt(data[17]);
+        this.depositPercentage = Double.parseDouble(data[18]);
+        this.location = data[19];
+        this.sellerId = data[20];
     }
 
 
@@ -272,7 +280,15 @@ public class Product implements Parcelable {
                 String.valueOf(this.maxRentalTime),
                 String.valueOf(this.minRentalTime),
                 this.id,
-                this.contactNumber
+                this.contactNumber,
+                String.valueOf(this.date_in_sec),
+                String.valueOf(this.date_in_year),
+                String.valueOf(this.date_in_min),
+                String.valueOf(this.date_in_hour),
+                String.valueOf(this.date_in_day),
+                String.valueOf(this.depositPercentage),
+                this.location,
+                this.sellerId
         });
     }
 }
