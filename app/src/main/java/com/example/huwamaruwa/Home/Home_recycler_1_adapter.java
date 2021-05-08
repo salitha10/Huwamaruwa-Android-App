@@ -8,12 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.MainActivity;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.singleProduct.PremiumProduct;
@@ -40,11 +42,11 @@ public class Home_recycler_1_adapter extends RecyclerView.Adapter<Home_recycler_
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_recycler_list_1,parent,false);
         return new ViewHolder(view);
     }
-
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(context).load(product_list.get(position).getImages1()).into(holder.mainImg);
-        holder.txtPrice.setText(String.valueOf(product_list.get(position).getPrice()));
+        String h = Boolean.toString(product_list.get(position).isPerHour());
+        holder.txtPrice.setText(product_list.get(position).isPerHour()?String.valueOf(product_list.get(position).getPrice()).concat(" /Per Hour"):String.valueOf(product_list.get(position).getPrice()).concat(" /Per Day"));
         holder.txtTitle.setText(product_list.get(position).getTitle());
         holder.txtDescription.setText(product_list.get(position).getDescription());
 
@@ -53,7 +55,7 @@ public class Home_recycler_1_adapter extends RecyclerView.Adapter<Home_recycler_
         //Setting the time zone
         dateTimeInGMT.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
         int day = Integer.parseInt(dateTimeInGMT.format(new Date()));
-        dateTimeInGMT = new SimpleDateFormat("hh");
+        dateTimeInGMT = new SimpleDateFormat("HH");
         int hour =Integer.parseInt(dateTimeInGMT.format(new Date()));
         dateTimeInGMT = new SimpleDateFormat("mm");
         int min =Integer.parseInt(dateTimeInGMT.format(new Date()));
@@ -78,6 +80,9 @@ public class Home_recycler_1_adapter extends RecyclerView.Adapter<Home_recycler_
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MainActivity.userBehaviours.addBehaviour(product_list.get(position));
+
+                MainActivity.userBehaviours.uploadData();
                 Intent intent = new Intent(context, PremiumProduct.class);
                 intent.putExtra(SINGLE_PRODUCT_TAG,product_list.get(position));
                 context.startActivity(intent);

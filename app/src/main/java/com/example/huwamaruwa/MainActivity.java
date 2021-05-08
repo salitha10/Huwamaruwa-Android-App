@@ -35,6 +35,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
 import com.example.huwamaruwa.Models.User;
+import com.example.huwamaruwa.Models.UserBehaviours;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
 import com.example.huwamaruwa.RentalRequests.nonPremium_Requests_seller_sideFragment;
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fragmentManager;
     StorageReference storageReference;
     FloatingActionButton floatingActionButton;
-
+  public static  UserBehaviours userBehaviours;
     FirebaseUser currentUser;
     DatabaseReference reference;
 
@@ -129,6 +130,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
         userId = user.getUid();
+
+        userBehaviours = new UserBehaviours(userId);
 
         Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
 

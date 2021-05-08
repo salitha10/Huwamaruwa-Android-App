@@ -1,4 +1,5 @@
 package com.example.huwamaruwa.Home;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -7,9 +8,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.MainActivity;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.singleProduct.PremiumProduct;
@@ -20,7 +24,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 public class Home_recycler_2_adapter extends RecyclerView.Adapter<Home_recycler_2_adapter.ViewHolder> {
-    private ArrayList<Product>product_list;
+    private ArrayList<Product> product_list;
     private Context context;
 
     public Home_recycler_2_adapter(ArrayList<Product> product_list, Context context) {
@@ -30,17 +34,16 @@ public class Home_recycler_2_adapter extends RecyclerView.Adapter<Home_recycler_
 
     @NonNull
     @Override
-    public Home_recycler_2_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_recycler_list_2,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Home_recycler_2_adapter.ViewHolder holder, int position) {
-        String rs = "RS. ";
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(context).load(product_list.get(position).getImages1()).into(holder.mainImg);
-        holder.txtTitle.setText(product_list.get(position).getTitle());
-        holder.txtPrice.setText(rs.concat(String.valueOf(product_list.get(position).getPrice())));
+        holder.txtTitle.setText(product_list.get(position).getTitle().length() > 13?product_list.get(position).getTitle().replace(product_list.get(position).getTitle().substring(12),"..."):product_list.get(position).getTitle());
+        holder.txtPrice.setText(product_list.get(position).isPerHour()?String.valueOf(product_list.get(position).getPrice()).concat(" /Per Hour"):String.valueOf(product_list.get(position).getPrice()).concat(" /Per Day"));
         if (!product_list.get(position).getIsPremium()){
             holder.doneIcon.setVisibility(View.INVISIBLE);
             holder.careIcon.setVisibility(View.INVISIBLE);
@@ -51,7 +54,7 @@ public class Home_recycler_2_adapter extends RecyclerView.Adapter<Home_recycler_
         //Setting the time zone
         dateTimeInGMT.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
         int day = Integer.parseInt(dateTimeInGMT.format(new Date()));
-        dateTimeInGMT = new SimpleDateFormat("hh");
+        dateTimeInGMT = new SimpleDateFormat("HH");
         int hour =Integer.parseInt(dateTimeInGMT.format(new Date()));
         dateTimeInGMT = new SimpleDateFormat("mm");
         int min =Integer.parseInt(dateTimeInGMT.format(new Date()));
@@ -76,6 +79,8 @@ public class Home_recycler_2_adapter extends RecyclerView.Adapter<Home_recycler_
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                MainActivity.userBehaviours.addBehaviour(product_list.get(position));
+                MainActivity.userBehaviours.uploadData();
                 Intent intent = new Intent(context, PremiumProduct.class);
                 intent.putExtra(Home_recycler_1_adapter.SINGLE_PRODUCT_TAG,product_list.get(position));
                 context.startActivity(intent);
