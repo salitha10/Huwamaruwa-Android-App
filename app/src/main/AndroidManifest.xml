@@ -54,6 +54,7 @@
         <activity
             android:name=".ReviewUser.ReviewBuyer"
             android:exported="true" />
+
         <activity android:name=".buyerRentalRequestManage.EditSingleSellerRequest" />
         <activity android:name=".buyerRentalRequestManage.SendingOffer" />
         <activity android:name=".buyerRentalRequestManage.AllBuyerRentalRequests" />
@@ -81,8 +82,12 @@
             android:name=".ProductReviews.AddProductReview"
             android:exported="true" />
         <activity
+            android:name=".ProductReviews.EditReview"
+            android:exported="true" />
+        <activity
             android:name=".ProductReviews.AllProductReviews"
             android:exported="true" />
+
         <activity android:name=".SignUp">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -44,8 +44,6 @@ public class AllProductReviews extends AppCompatActivity {
         ft1.add(R.id.myReviewLayout, new MyReviewFragment());
         ft1.commit();
 
-
-
         //Bottom recycler view
         recyclerView = findViewById(R.id.allReviewsRecycle);
         database = FirebaseDatabase.getInstance().getReference("ProductReviews");
