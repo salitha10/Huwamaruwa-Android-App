@@ -70,7 +70,7 @@ public class AddProductReview extends AppCompatActivity {
         super.onResume();
 
         //Display product details
-        productID = "-MZml4o8n65POxbXFlcO";
+        productID = "-M_2FaJPp3ovUpe1FIMI";
         dbfProduct = FirebaseDatabase.getInstance().getReference().child("Product").child(productID);
 
         //Get data from product
@@ -80,7 +80,7 @@ public class AddProductReview extends AppCompatActivity {
 
                 //Product details for card view
                 product.setText(snapshot.child("title").getValue().toString());
-                sellerID = snapshot.child("sellerID").getValue().toString();
+                sellerID = snapshot.child("sellerId").getValue().toString();
 
                 imageURL = snapshot.child("images4").getValue().toString();
                 Log.d("URL", imageURL);
@@ -88,11 +88,11 @@ public class AddProductReview extends AppCompatActivity {
                 Glide.with(getApplicationContext()).load(imageURL).centerCrop().placeholder(R.drawable.ic_launcher_background).into(thumbnail);
 
                 //Seller details for card view
-                dbfSeller = FirebaseDatabase.getInstance().getReference().child("Users").child("Seller").child(sellerID);
+                dbfSeller = FirebaseDatabase.getInstance().getReference().child("Users").child(sellerID);
                 dbfSeller.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        seller.setText("By " + snapshot.child("username").getValue().toString());
+                        seller.setText("By " + snapshot.child("name").getValue().toString());
                     }
 
                     @Override
