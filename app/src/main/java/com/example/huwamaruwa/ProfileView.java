@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.buyerRentalRequestManage.EditSingleSellerRequest;
+import com.example.huwamaruwa.buyerRentalRequestManage.ProductImageFullScreen;
 import com.example.huwamaruwa.buyerRentalRequestManage.SentRentalRequestBySeller;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -50,6 +51,7 @@ public class ProfileView extends AppCompatActivity {
     StorageReference sdbRefe;
     String FinalImageString;
     Context context;
+    public static final String EXTRA_MESSAGE2 = "aab";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +82,7 @@ public class ProfileView extends AppCompatActivity {
                     address.setText(snapshot.child("address").getValue().toString());
                     userType.setText(snapshot.child("userType").getValue().toString());
                     userImageURL = snapshot.child("userImage").getValue().toString();
+                    FinalImageString = userImageURL;
                     Glide.with(ProfileView.this).load(userImageURL).into(profImage);
                 }
                 else{
@@ -112,6 +115,14 @@ public class ProfileView extends AppCompatActivity {
                 }else{
                     Toast.makeText(getApplicationContext(), "Profile Picture Not updated", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        profImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ProfileView.this, ProfPicFullScreen.class);
+                intent.putExtra(EXTRA_MESSAGE2,FinalImageString);
+                startActivity(intent);
             }
         });
     }
