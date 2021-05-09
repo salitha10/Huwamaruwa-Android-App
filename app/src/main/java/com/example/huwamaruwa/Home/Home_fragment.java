@@ -54,9 +54,6 @@ public class Home_fragment extends Fragment {
         recyclerView2 = view.findViewById(R.id.home_recycler_view_2);
         recyclerView3 = view.findViewById(R.id.home_recycler_view_3);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.e("login",user.getUid());
-        userId = user.getUid();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());

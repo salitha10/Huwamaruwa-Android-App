@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Product implements Parcelable {
 
-    public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
 
         @Override
         public Product createFromParcel(Parcel source) {
