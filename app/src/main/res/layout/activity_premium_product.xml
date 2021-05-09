@@ -177,8 +177,24 @@
                         android:textStyle="bold" />
 
                     <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="5dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/txtPremiumSeller_Id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="TextView" />
+                    </LinearLayout>
+
+                    <LinearLayout
                         android:layout_width="225dp"
-                        android:layout_height="33dp"
+                        android:layout_height="25dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
@@ -190,7 +206,6 @@
                             android:id="@+id/textView13"
                             android:layout_width="128dp"
                             android:layout_height="match_parent"
-                            android:gravity="center_vertical"
                             android:text="@string/accountRating"
                             android:textSize="16sp" />
 
@@ -207,7 +222,7 @@
 
                     <LinearLayout
                         android:layout_width="280dp"
-                        android:layout_height="33dp"
+                        android:layout_height="25dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
@@ -223,7 +238,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/textView16"
+                            android:id="@+id/txtPremiumProduct_MinRentTime"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -234,7 +249,7 @@
 
                     <LinearLayout
                         android:layout_width="280dp"
-                        android:layout_height="33dp"
+                        android:layout_height="25dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginLeft="10dp"
                         android:layout_marginTop="5dp"
@@ -250,7 +265,7 @@
                             android:textSize="16sp" />
 
                         <TextView
-                            android:id="@+id/textView18"
+                            android:id="@+id/txtPremiumProduct_MaxRentTime"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
@@ -311,6 +326,7 @@
                 android:orientation="horizontal">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/crdView_premium_single_store"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="20dp"
@@ -382,6 +398,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/crdView_premium_recentRental"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="15dp"
@@ -463,29 +480,26 @@
                 app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
             <com.google.android.material.tabs.TabLayout
+                android:id="@+id/premiumProduct_tab_view"
                 android:layout_width="280dp"
                 android:layout_height="match_parent">
 
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/specification" />
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/feedback" />
 
             </com.google.android.material.tabs.TabLayout>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="400dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginRight="10dp"
-                android:layout_marginBottom="10dp" />
+                android:layout_marginBottom="10dp" >
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/premiumProduct_viewpager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
 

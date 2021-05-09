@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Product implements Parcelable {
 
-    public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
 
         @Override
         public Product createFromParcel(Parcel source) {
@@ -36,17 +36,71 @@ public class Product implements Parcelable {
     private String contactNumber;
     private String location;
     private double depositPercentage;
-    private String sellerID;
+    private String sellerId;
     private int maxRentalTime;
     private int minRentalTime;
     private boolean perHour;
 
-    public String getImages1() {
-        return images1;
+    private int date_in_sec;
+    private int date_in_min;
+    private int date_in_hour;
+    private int date_in_day;
+    private int date_in_year;
+    private Date date;
+    public Product() {
     }
 
-    public void setImages1(String images1) {
-        this.images1 = images1;
+    public int getDate_in_year() {
+        return date_in_year;
+    }
+
+    public void setDate_in_year(int date_in_year) {
+        this.date_in_year = date_in_year;
+    }
+
+    public int getDate_in_sec() {
+        return date_in_sec;
+    }
+
+    public void setDate_in_sec(int date_in_sec) {
+        this.date_in_sec = date_in_sec;
+    }
+
+    public int getDate_in_min() {
+        return date_in_min;
+    }
+
+    public void setDate_in_min(int date_in_min) {
+        this.date_in_min = date_in_min;
+    }
+
+    public int getDate_in_hour() {
+        return date_in_hour;
+    }
+
+    public void setDate_in_hour(int date_in_hour) {
+        this.date_in_hour = date_in_hour;
+    }
+
+    public int getDate_in_day() {
+        return date_in_day;
+    }
+
+    public void setDate_in_day(int date_in_day) {
+        this.date_in_day = date_in_day;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getId() {
+        return id;
+
     }
 
     public void setImages2(String images2) {
@@ -118,28 +172,9 @@ public class Product implements Parcelable {
         return date_in_hour;
     }
 
-    public void setDate_in_hour(int date_in_hour) {
-        this.date_in_hour = date_in_hour;
-    }
+    public String getDescription() {
+        return description;
 
-    public int getDate_in_day() {
-        return date_in_day;
-    }
-
-    public void setDate_in_day(int date_in_day) {
-        this.date_in_day = date_in_day;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getId() {
-        return id;
     }
 
     public void setId(String id) {
@@ -211,12 +246,12 @@ public class Product implements Parcelable {
         this.depositPercentage = deposit;
     }
 
-    public String getSellerID() {
-        return sellerID;
+    public String getSellerId() {
+        return sellerId;
     }
 
-    public void setSellerID(String sellerID) {
-        this.sellerID = sellerID;
+    public void setSellerId(String sellerID) {
+        this.sellerId = sellerID;
     }
 
     public int getMaxRentalTime() {
@@ -244,7 +279,7 @@ public class Product implements Parcelable {
     }
 
     public Product(Parcel in) {
-        String data[] = new String[13];
+        String data[] = new String[21];
         in.readStringArray(data);
 
         this.price =Double.parseDouble(data[0]) ;
@@ -260,6 +295,14 @@ public class Product implements Parcelable {
         this.minRentalTime = Integer.parseInt(data[10]);
         this.id = data[11];
         this.contactNumber = data[12];
+        this.date_in_sec = Integer.parseInt(data[13]);;
+        this.date_in_year= Integer.parseInt(data[14]);
+        this.date_in_min= Integer.parseInt(data[15]);
+        this.date_in_hour= Integer.parseInt(data[16]);
+        this.date_in_day= Integer.parseInt(data[17]);
+        this.depositPercentage = Double.parseDouble(data[18]);
+        this.location = data[19];
+        this.sellerId = data[20];
     }
 
 
@@ -283,7 +326,15 @@ public class Product implements Parcelable {
                 String.valueOf(this.maxRentalTime),
                 String.valueOf(this.minRentalTime),
                 this.id,
-                this.contactNumber
+                this.contactNumber,
+                String.valueOf(this.date_in_sec),
+                String.valueOf(this.date_in_year),
+                String.valueOf(this.date_in_min),
+                String.valueOf(this.date_in_hour),
+                String.valueOf(this.date_in_day),
+                String.valueOf(this.depositPercentage),
+                this.location,
+                this.sellerId
         });
     }
 

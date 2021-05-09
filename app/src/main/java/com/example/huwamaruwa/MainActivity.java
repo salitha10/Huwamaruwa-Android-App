@@ -4,6 +4,9 @@ import android.content.Context;
 
 import android.content.Intent;
 import android.os.Bundle;
+
+import android.os.Handler;
+
 import android.util.Log;
 import android.util.AttributeSet;
 import android.view.MenuItem;
@@ -29,6 +32,9 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
 import com.example.huwamaruwa.Models.User;
+
+import com.example.huwamaruwa.Models.UserBehaviours;
+
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
 import com.example.huwamaruwa.RentalRequests.nonPremium_Requests_seller_sideFragment;
@@ -58,6 +64,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fragmentManager;
     StorageReference storageReference;
     FloatingActionButton floatingActionButton;
+
+  public static  UserBehaviours userBehaviours;
 
     FirebaseUser currentUser;
     DatabaseReference reference;
@@ -119,6 +127,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
         userId = user.getUid();
+
+
+        userBehaviours = new UserBehaviours(userId);
+
 
         Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
 
@@ -266,4 +278,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(MainActivity.this, Login.class));
     }
+
+
+    private void content() {
+    }
+
 }
