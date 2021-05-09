@@ -10,6 +10,7 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.AttributeSet;
 import android.view.MenuItem;
@@ -279,5 +280,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void LogoutMethod(View view){
         FirebaseAuth.getInstance().signOut();
         startActivity(new Intent(MainActivity.this, Login.class));
+    }
+
+
+    private void content() {
     }
 }
