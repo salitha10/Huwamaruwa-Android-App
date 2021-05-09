@@ -82,7 +82,6 @@ public class RequestRent extends AppCompatActivity {
         userId = user.getUid();
 
 
-
         Glide.with(this).load(product.getImages1()).into(imgMain);
         txtTitle.setText(product.getTitle());
         txtDescription.setText(product.getDescription());
@@ -231,7 +230,7 @@ public class RequestRent extends AppCompatActivity {
         }
 
 
-        public static final Parcelable.Creator<RangeValidator> CREATOR = new Parcelable.Creator<RangeValidator>() {
+        public static final Creator<RangeValidator> CREATOR = new Creator<RangeValidator>() {
 
             @Override
             public RangeValidator createFromParcel(Parcel parcel) {

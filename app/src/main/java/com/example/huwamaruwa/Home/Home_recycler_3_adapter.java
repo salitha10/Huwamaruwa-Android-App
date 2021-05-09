@@ -32,13 +32,13 @@ public class Home_recycler_3_adapter extends RecyclerView.Adapter<Home_recycler_
 
     @NonNull
     @Override
-    public Home_recycler_3_adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_recycler_list_2,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Home_recycler_3_adapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(context).load(product_list.get(position).getImages1()).into(holder.mainImg);
         holder.txtTitle.setText(product_list.get(position).getTitle().length() > 13?product_list.get(position).getTitle().replace(product_list.get(position).getTitle().substring(12),"..."):product_list.get(position).getTitle());
         holder.txtPrice.setText(product_list.get(position).isPerHour()?String.valueOf(product_list.get(position).getPrice()).concat(" /Per Hour"):String.valueOf(product_list.get(position).getPrice()).concat(" /Per Day"));
