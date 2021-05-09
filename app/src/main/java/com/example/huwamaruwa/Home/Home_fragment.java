@@ -47,13 +47,13 @@ public class Home_fragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        
         // Inflate the layout for this fragment
-
         View view = inflater.inflate(R.layout.home_fragment, container, false);
         recyclerView1 = view.findViewById(R.id.home_recycler_view_1);
         recyclerView2 = view.findViewById(R.id.home_recycler_view_2);
         recyclerView3 = view.findViewById(R.id.home_recycler_view_3);
+
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
