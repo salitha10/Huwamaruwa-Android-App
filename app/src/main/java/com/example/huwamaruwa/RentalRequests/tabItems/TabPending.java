@@ -12,6 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.airbnb.lottie.LottieAnimationView;
+
 import com.example.huwamaruwa.Models.RequestRentModel;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.tabbedrecyclerAdapters.PendingRequestAdapter;
@@ -29,6 +32,9 @@ public class TabPending extends Fragment {
     DatabaseReference dbRef;
     ArrayList<RequestRentModel> request_list;
     TextView noData;
+
+    LottieAnimationView searchLottie,emptyLottie;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,7 +42,12 @@ public class TabPending extends Fragment {
 
         pendingRecycler = view.findViewById(R.id.RentalReq_seller_side_pending_recycler);
 
-                noData = view.findViewById(R.id.txtPendingNoData);
+        searchLottie = view.findViewById(R.id.pending_tab_search_lottie);
+        searchLottie.setVisibility(View.GONE);
+
+        emptyLottie = view.findViewById(R.id.pending_tab_empty_lottie);
+        emptyLottie.setVisibility(View.GONE);
+
                 request_list = new ArrayList<>();
                dbRef = FirebaseDatabase.getInstance().getReference();
         Query query = dbRef.child("RequestRent").orderByChild("isPremium").equalTo("false");
@@ -45,22 +56,33 @@ public class TabPending extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.hasChildren()){
+
+                    searchLottie.setVisibility(View.VISIBLE);
+
                     for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
-                        RequestRentModel request = new RequestRentModel();
-                        request.setAddress(dataSnapshot.child("address").getValue().toString());
-                        request.setContactNumber(dataSnapshot.child("contactNumber").getValue().toString());
-                        request.setDuration(dataSnapshot.child("duration").getValue().toString());
-                        request.setInitialDeposit(Double.parseDouble(dataSnapshot.child("initialDeposit").getValue().toString()));
-                        request.setTotal(Double.parseDouble(dataSnapshot.child("total").getValue().toString()));
-                        request.setIsPremium(dataSnapshot.child("isPremium").getValue().toString());
-                        request.setProductId(dataSnapshot.child("productId").getValue().toString());
-                        request.setDateDif(dataSnapshot.child("dateDif").getValue().toString());
-                        request.setStatus(dataSnapshot.child("status").getValue().toString());
-                        request.setId(dataSnapshot.child("id").getValue().toString());
-                        request_list.add(request);
+                        if (dataSnapshot.child("status").getValue().toString().equals("Pending")){
+                            RequestRentModel request = new RequestRentModel();
+                            request.setAddress(dataSnapshot.child("address").getValue().toString());
+                            request.setContactNumber(dataSnapshot.child("contactNumber").getValue().toString());
+                            request.setDuration(dataSnapshot.child("duration").getValue().toString());
+                            request.setInitialDeposit(Double.parseDouble(dataSnapshot.child("initialDeposit").getValue().toString()));
+                            request.setTotal(Double.parseDouble(dataSnapshot.child("total").getValue().toString()));
+                            request.setIsPremium(dataSnapshot.child("isPremium").getValue().toString());
+                            request.setProductId(dataSnapshot.child("productId").getValue().toString());
+                            request.setDateDif(dataSnapshot.child("dateDif").getValue().toString());
+                            request.setStatus(dataSnapshot.child("status").getValue().toString());
+                            request.setId(dataSnapshot.child("id").getValue().toString());
+                            request.setUserId(dataSnapshot.child("userId").getValue().toString());
+                            request_list.add(request);
+
+                        }
+
                     }
+                    if (request_list.isEmpty()) emptyLottie.setVisibility(View.VISIBLE);
+                    searchLottie.setVisibility(View.GONE);
                 }else {
-                    request_list = null;
+                    emptyLottie.setVisibility(View.VISIBLE);
+
                 }
 
                 PendingRequestAdapter pendingRequestAdapter = new PendingRequestAdapter(request_list,getContext());
@@ -73,8 +95,10 @@ public class TabPending extends Fragment {
             }
 
         });
-        if (request_list == null ) noData.setText(R.string.no_data);
-        else pendingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+         pendingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
         return view;
     }
 }

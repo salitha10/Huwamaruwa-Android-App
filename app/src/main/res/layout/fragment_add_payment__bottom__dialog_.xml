@@ -1,0 +1,166 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bottom_sheet_layout_add_payment"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bottom_sheet_dialog_background"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="30dp"
+        android:layout_height="8dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/background_input"
+        android:backgroundTint="@color/vetorGreen" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:text="@string/amount"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/txt_add_payment_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center|center_vertical"
+        android:text="TextView"
+        android:textColor="@color/vetorGreen"
+        android:textSize="32dp"
+        android:textStyle="bold" />
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       android:background="@drawable/payment_rect"
+       android:layout_margin="10dp"
+       android:backgroundTint="@color/lightGreenBtn"
+       >
+
+       <EditText
+           android:id="@+id/editTextTextPersonName"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginLeft="10dp"
+           android:layout_marginTop="5dp"
+           android:layout_marginRight="10dp"
+           android:backgroundTint="@color/GreenMain"
+           android:ems="10"
+           android:hint="@string/card_number"
+           android:inputType="textShortMessage|number|textPersonName" />
+
+       <LinearLayout
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_marginLeft="10dp"
+           android:layout_marginTop="5dp"
+           android:layout_marginRight="10dp"
+           android:orientation="horizontal">
+
+           <EditText
+               android:id="@+id/editTextTextPersonName2"
+               android:layout_width="200dp"
+               android:layout_height="wrap_content"
+               android:layout_marginRight="60dp"
+               android:backgroundTint="@color/GreenMain"
+               android:ems="14"
+               android:hint="@string/expiry"
+               android:inputType="textPersonName" />
+
+           <EditText
+               android:id="@+id/editTextTextPersonName3"
+               android:layout_width="100dp"
+               android:layout_height="wrap_content"
+               android:layout_gravity="end"
+               android:backgroundTint="@color/GreenMain"
+               android:ems="10"
+               android:hint="@string/cvv"
+               android:inputType="textPassword"
+               />
+       </LinearLayout>
+
+       <View
+           android:id="@+id/divider5"
+           android:layout_width="match_parent"
+           android:layout_height="1dp"
+           android:background="?android:attr/listDivider" />
+
+       <RelativeLayout
+           android:layout_width="match_parent"
+           android:layout_height="50dp"
+           android:layout_margin="10dp"
+           android:orientation="horizontal">
+
+           <ImageView
+               android:id="@+id/imageView4"
+               android:layout_width="80dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentStart="true"
+               android:layout_marginStart="3dp"
+               android:layout_marginLeft="5dp"
+               android:layout_marginEnd="99dp"
+               android:layout_marginRight="5dp"
+               android:layout_toStartOf="@+id/imageView5"
+               android:background="@drawable/payment_rect"
+               android:src="@drawable/american_express" />
+
+           <ImageView
+               android:id="@+id/imageView5"
+               android:layout_width="80dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_alignParentBottom="true"
+               android:layout_gravity="right|center_horizontal"
+               android:layout_marginLeft="5dp"
+               android:layout_marginTop="0dp"
+               android:layout_marginEnd="17dp"
+               android:layout_marginRight="5dp"
+               android:layout_marginBottom="0dp"
+               android:layout_toStartOf="@+id/imageView6"
+               android:background="@drawable/payment_rect"
+               android:src="@drawable/visa" />
+
+           <ImageView
+               android:id="@+id/imageView6"
+               android:layout_width="80dp"
+               android:layout_height="wrap_content"
+               android:layout_alignParentTop="true"
+               android:layout_alignParentEnd="true"
+               android:layout_alignParentBottom="true"
+               android:layout_gravity="right|center_horizontal"
+               android:layout_marginLeft="5dp"
+               android:layout_marginTop="-1dp"
+               android:layout_marginEnd="13dp"
+               android:layout_marginRight="5dp"
+               android:layout_marginBottom="1dp"
+               android:background="@drawable/payment_rect"
+               android:src="@drawable/mastercard" />
+       </RelativeLayout>
+   </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="@string/terms_and_condition"
+        android:textColor="@color/lightBlack"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/btnpayment_option_add_payment"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/vetorGreen"
+        android:text="@string/pay" />
+</LinearLayout>

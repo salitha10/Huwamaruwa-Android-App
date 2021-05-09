@@ -50,7 +50,9 @@
             android:exported="true"/>
         <activity
             android:name=".ReviewUser.ReviewSeller"
+
             android:exported="true" />
+
         <activity
             android:name=".ReviewUser.ReviewBuyer"
             android:exported="true" />
@@ -67,6 +69,7 @@
             android:exported="true" />
         <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -89,14 +92,41 @@
             android:exported="true" />
 
         <activity android:name=".SignUp">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+      
+        <activity android:name=".singleProduct.RequestRent" />
+        <activity android:name=".payment.PaymentOption" >
+
+        </activity>
+        <activity android:name=".singleProduct.PremiumProduct" />
+        <activity android:name=".MainActivity">
+
+        </activity>
+        <activity android:name=".RentalHistory.RentalHistory"/>
+        <activity android:name=".PremiumStore.PremiumStore"/>
+
+        <activity
+            android:name=".ProductReviews.AddProductReview"
+            android:exported="true" />
+        <activity
+            android:name=".ProductReviews.EditReview"
+            android:exported="true" />
+        <activity
+            android:name=".ProductReviews.AllProductReviews"
+            android:exported="true" />
+        <activity android:name=".addProduct.AddNewItem">
+        </activity>
+        <activity android:name=".SignUp">
+
+        </activity>
         <activity android:name=".SplashScreen" />
-        <activity android:name=".addProduct.AddNewItem" />
+
         <activity android:name=".AddCategory" />
 
         <meta-data
