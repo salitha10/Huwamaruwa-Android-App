@@ -40,7 +40,7 @@
 
         <ImageView
             android:id="@+id/imageViewProduct"
-            android:layout_width="73dp"
+            android:layout_width="100dp"
             android:layout_height="95dp"
             android:layout_marginTop="4dp"
             android:layout_marginEnd="16dp"
@@ -103,6 +103,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="TextView"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
