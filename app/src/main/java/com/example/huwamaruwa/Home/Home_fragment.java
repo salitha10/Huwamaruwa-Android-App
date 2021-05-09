@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -23,7 +24,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 public class Home_fragment extends Fragment {
 
@@ -37,6 +42,8 @@ public class Home_fragment extends Fragment {
     Home_recycler_3_adapter home_recycler_3_adapter;
     Home_recycler_2_adapter home_recycler_2_adapter;
     private String userId;
+
+
 
 
     public Home_fragment() {
@@ -58,6 +65,7 @@ public class Home_fragment extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
         userId = user.getUid();
+
 
         product_list_latest = new ArrayList<>();
         product_list_history = new ArrayList<>();
@@ -84,15 +92,18 @@ public class Home_fragment extends Fragment {
                     product.setMaxRentalTime(Integer.parseInt(dataSnapshot.child("maxRentalTime").getValue().toString()));
                     product.setId(dataSnapshot.child("id").getValue().toString());
                     product.setContactNumber(dataSnapshot.child("contactNumber").getValue().toString());
+
                     product.setDate_in_day(Integer.parseInt(dataSnapshot.child("date_in_day").getValue().toString()));
                     product.setDate_in_hour(Integer.parseInt(dataSnapshot.child("date_in_hour").getValue().toString()));
                     product.setDate_in_min(Integer.parseInt(dataSnapshot.child("date_in_min").getValue().toString()));
                     product.setDate_in_sec(Integer.parseInt(dataSnapshot.child("date_in_sec").getValue().toString()));
                     product.setDate_in_year(Integer.parseInt(dataSnapshot.child("date_in_year").getValue().toString()));
+
                     product.setPerHour(Boolean.parseBoolean(dataSnapshot.child("perHour").getValue().toString()));
                     product.setDepositPercentage(Double.parseDouble(dataSnapshot.child("depositPercentage").getValue().toString()));
                     product.setLocation(dataSnapshot.child("location").getValue().toString());
                     product.setSellerId(dataSnapshot.child("sellerId").getValue().toString());
+
                     product_list_latest.add(product);
                     if (product.getIsPremium()){
                         product_list_premium.add(product);

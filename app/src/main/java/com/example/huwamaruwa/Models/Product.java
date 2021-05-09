@@ -26,6 +26,7 @@ public class Product implements Parcelable {
     private boolean isPremium;
     private double price;
     private String title;
+
     private String description;
     private String images1;
     private String images2;
@@ -39,6 +40,7 @@ public class Product implements Parcelable {
     private int maxRentalTime;
     private int minRentalTime;
     private boolean perHour;
+
     private int date_in_sec;
     private int date_in_min;
     private int date_in_hour;
@@ -98,6 +100,81 @@ public class Product implements Parcelable {
 
     public String getId() {
         return id;
+
+    }
+
+    public void setImages2(String images2) {
+        this.images2 = images2;
+    }
+
+    public void setImages3(String images3) {
+        this.images3 = images3;
+    }
+
+    public void setImages4(String images4) {
+        this.images4 = images4;
+    }
+
+    public boolean isPremium() {
+        return isPremium;
+    }
+
+    public void setPremium(boolean premium) {
+        isPremium = premium;
+    }
+
+    public String getImages2() {
+        return images2;
+    }
+
+    public String getImages3() {
+        return images3;
+    }
+
+    public String getImages4() {
+        return images4;
+    }
+
+    private int date_in_sec;
+    private int date_in_min;
+    private int date_in_hour;
+    private int date_in_day;
+    private int date_in_year;
+    private Date date;
+    public Product() {
+    }
+
+    public int getDate_in_year() {
+        return date_in_year;
+    }
+
+    public void setDate_in_year(int date_in_year) {
+        this.date_in_year = date_in_year;
+    }
+
+    public int getDate_in_sec() {
+        return date_in_sec;
+    }
+
+    public void setDate_in_sec(int date_in_sec) {
+        this.date_in_sec = date_in_sec;
+    }
+
+    public int getDate_in_min() {
+        return date_in_min;
+    }
+
+    public void setDate_in_min(int date_in_min) {
+        this.date_in_min = date_in_min;
+    }
+
+    public int getDate_in_hour() {
+        return date_in_hour;
+    }
+
+    public String getDescription() {
+        return description;
+
     }
 
     public void setId(String id) {
@@ -134,38 +211,7 @@ public class Product implements Parcelable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
 
-    public String getImages1() {
-        return images1;
-    }
-
-    public void setImages1(String images1) {
-        this.images1 = images1;
-    }
-
-    public String getImages2() {
-        return images2;
-    }
-
-    public void setImages2(String images2) {
-        this.images2 = images2;
-    }
-
-    public String getImages3() {
-        return images3;
-    }
-
-    public void setImages3(String images3) {
-        this.images3 = images3;
-    }
-
-    public String getImages4() {
-        return images4;
-    }
-
-    public void setImages4(String images4) {
-        this.images4 = images4;
     }
 
     public int getCategoryID() {
@@ -291,4 +337,7 @@ public class Product implements Parcelable {
                 this.sellerId
         });
     }
+
+
 }
+

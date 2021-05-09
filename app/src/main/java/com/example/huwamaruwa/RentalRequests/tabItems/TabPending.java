@@ -12,7 +12,9 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 import com.airbnb.lottie.LottieAnimationView;
+
 import com.example.huwamaruwa.Models.RequestRentModel;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.tabbedrecyclerAdapters.PendingRequestAdapter;
@@ -30,7 +32,9 @@ public class TabPending extends Fragment {
     DatabaseReference dbRef;
     ArrayList<RequestRentModel> request_list;
     TextView noData;
+
     LottieAnimationView searchLottie,emptyLottie;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -43,6 +47,7 @@ public class TabPending extends Fragment {
 
         emptyLottie = view.findViewById(R.id.pending_tab_empty_lottie);
         emptyLottie.setVisibility(View.GONE);
+
                 request_list = new ArrayList<>();
                dbRef = FirebaseDatabase.getInstance().getReference();
         Query query = dbRef.child("RequestRent").orderByChild("isPremium").equalTo("false");
@@ -51,6 +56,7 @@ public class TabPending extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 if (snapshot.hasChildren()){
+
                     searchLottie.setVisibility(View.VISIBLE);
 
                     for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
@@ -76,6 +82,7 @@ public class TabPending extends Fragment {
                     searchLottie.setVisibility(View.GONE);
                 }else {
                     emptyLottie.setVisibility(View.VISIBLE);
+
                 }
 
                 PendingRequestAdapter pendingRequestAdapter = new PendingRequestAdapter(request_list,getContext());
@@ -89,7 +96,9 @@ public class TabPending extends Fragment {
 
         });
 
+
          pendingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
+
         return view;
     }
 }

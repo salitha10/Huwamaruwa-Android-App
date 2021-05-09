@@ -9,7 +9,9 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,9 +20,11 @@ import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.Models.RequestRentModel;
 import com.example.huwamaruwa.R;
+
 import com.example.huwamaruwa.RentalRequests.MyPremiumProductRentalRequestRecyclerViewAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,11 +37,13 @@ import java.util.ArrayList;
 public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAdapter.ViewHolder> {
 
     private DatabaseReference dbRef;
+
     private DatabaseReference uDbRef;
     private ArrayList<RequestRentModel> pending_req_list;
     private Context context;
     private Product product;
     private String userName,sellerEmail,selleContact;
+
     public PendingRequestAdapter(ArrayList<RequestRentModel> pending_req_list, Context context) {
         this.pending_req_list = pending_req_list;
         this.context = context;
@@ -55,6 +61,7 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
             if (!pending_req_list.isEmpty()){
+
 
                 uDbRef = FirebaseDatabase.getInstance().getReference().child("Users");
                 Query query1 = uDbRef.orderByChild("userId").equalTo(pending_req_list.get(position).getUserId());
@@ -81,6 +88,7 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
 
                 RequestRentModel requestRentModel = pending_req_list.get(position);
 
+
                     dbRef = FirebaseDatabase.getInstance().getReference().child("Product");
 
                     Query query =dbRef.orderByChild("id").equalTo(requestRentModel.getProductId()).limitToFirst(1);
@@ -97,6 +105,7 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
                                 product.setImages2(dataSnapshot.child("images2").getValue().toString());
                                 product.setImages3(dataSnapshot.child("images3").getValue().toString());
                                 product.setImages4(dataSnapshot.child("images4").getValue().toString());
+
                                 product.setSellerId(dataSnapshot.child("sellerId").getValue().toString());
                                 product.setIsPremium(Boolean.parseBoolean(dataSnapshot.child("isPremium").getValue().toString()));
                             }
@@ -123,13 +132,16 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
                                 }
                             });
 
+
                             holder.txtTitle.setText(product.getTitle());
                             Glide.with(context).load(product.getImages1()).into(holder.imgMain);
                             holder.txtTotal.setText(String.valueOf(requestRentModel.getTotal()));
                             holder.edtDeposit.setText(String.valueOf(requestRentModel.getInitialDeposit()));
                             holder.edtAddress.setText(requestRentModel.getAddress());
                             holder.edtContactNum.setText(requestRentModel.getContactNumber());
+
                             holder.txtDuration.setText(requestRentModel.getDuration());
+
                         }
 
                         @Override
@@ -137,7 +149,6 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
 
                         }
                     });
-
 
                 holder.btnAccept.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -255,6 +266,7 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
 
             }
         });
+
     }
 
     @Override
@@ -265,7 +277,9 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView imgMain;
         EditText edtDeposit,edtContactNum,edtAddress,edtSellerId,edtSellerContactNum;
+
         TextView txtTitle,txtDuration,txtTotal,txtUserName;
+
         ImageButton btnAccept,btnReject,btnEdit;
         Button btnViewProduct;
         public ViewHolder(@NonNull View itemView) {
@@ -274,6 +288,7 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
             txtTitle = itemView.findViewById(R.id.txtRequestRent_list_title);
             txtDuration = itemView.findViewById(R.id.txtRequestRent_list_duration);
             txtTotal = itemView.findViewById(R.id.txtRequestRent_list_total);
+
             txtUserName = itemView.findViewById(R.id.txtRequestRent_list_userName);
 
             edtDeposit = itemView.findViewById(R.id.edtRequestRent_list_deposit);

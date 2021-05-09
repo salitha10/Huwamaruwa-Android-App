@@ -43,6 +43,7 @@ public class PremiumProduct extends AppCompatActivity {
     TextView txtTitle,txtPrice,txtTime,txtMaxRent,txtMinRent,sellerName;
     Button btnRentProduct;
     Product product;
+
     Product prevProduct;
     LinearLayout premiumDescription,premiumStores,premiumLogo;
     ViewPager viewPager;
@@ -53,6 +54,7 @@ public class PremiumProduct extends AppCompatActivity {
     String sName;
     CardView recentRentals;
     CardView singleStore;
+
     public static final String RS="RS. ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +78,12 @@ public class PremiumProduct extends AppCompatActivity {
         premiumStores = findViewById(R.id.premium_product_store_and_recent);
         premiumLogo = findViewById(R.id.premium_product_logo_icons);
 
+        premiumDescription = findViewById(R.id.premiumProduct_description);
+        premiumStores = findViewById(R.id.premium_product_store_and_recent);
+        premiumLogo = findViewById(R.id.premium_product_logo_icons);
+
         btnRentProduct = findViewById(R.id.btnRequestRent_form_send_request);
+
 
         viewPager = findViewById(R.id.premiumProduct_viewpager);
         tabLayout = findViewById(R.id.premiumProduct_tab_view);
@@ -94,6 +101,7 @@ public class PremiumProduct extends AppCompatActivity {
         viewPager.setAdapter(pagerAdapter);
 
          product = getIntent().getParcelableExtra(Home_recycler_1_adapter.SINGLE_PRODUCT_TAG);
+
 
 
 

@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="#FFFFFF">
 
+
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/pending_tab_search_lottie"
         android:layout_width="match_parent"
@@ -25,6 +26,7 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/empty_file_lottie" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RentalReq_seller_side_pending_recycler"
         android:layout_width="match_parent"

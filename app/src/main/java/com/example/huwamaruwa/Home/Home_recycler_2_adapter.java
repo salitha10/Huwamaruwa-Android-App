@@ -18,7 +18,10 @@ import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.singleProduct.PremiumProduct;
 
+
 import java.text.SimpleDateFormat;
+
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
@@ -42,8 +45,10 @@ public class Home_recycler_2_adapter extends RecyclerView.Adapter<Home_recycler_
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(context).load(product_list.get(position).getImages1()).into(holder.mainImg);
+
         holder.txtTitle.setText(product_list.get(position).getTitle().length() > 13?product_list.get(position).getTitle().replace(product_list.get(position).getTitle().substring(12),"..."):product_list.get(position).getTitle());
         holder.txtPrice.setText(product_list.get(position).isPerHour()?String.valueOf(product_list.get(position).getPrice()).concat(" /Per Hour"):String.valueOf(product_list.get(position).getPrice()).concat(" /Per Day"));
+
         if (!product_list.get(position).getIsPremium()){
             holder.doneIcon.setVisibility(View.INVISIBLE);
             holder.careIcon.setVisibility(View.INVISIBLE);
@@ -54,7 +59,9 @@ public class Home_recycler_2_adapter extends RecyclerView.Adapter<Home_recycler_
         //Setting the time zone
         dateTimeInGMT.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
         int day = Integer.parseInt(dateTimeInGMT.format(new Date()));
+
         dateTimeInGMT = new SimpleDateFormat("HH");
+
         int hour =Integer.parseInt(dateTimeInGMT.format(new Date()));
         dateTimeInGMT = new SimpleDateFormat("mm");
         int min =Integer.parseInt(dateTimeInGMT.format(new Date()));

@@ -29,8 +29,10 @@ public class CompleatedReqAdapter extends RecyclerView.Adapter<CompleatedReqAdap
     DatabaseReference dbRef;
     Product product;
     Context context;
+
     private DatabaseReference uDbRef;
     private String userName,sellerEmail,selleContact;
+
     public CompleatedReqAdapter(ArrayList<RequestRentModel> compleated_req_list, Context context) {
         this.compleated_req_list = compleated_req_list;
         this.context = context;
@@ -47,6 +49,7 @@ public class CompleatedReqAdapter extends RecyclerView.Adapter<CompleatedReqAdap
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
        if (!compleated_req_list.isEmpty()){
+
            holder.btnAccept.setVisibility(View.GONE);
            holder.btnEdit.setVisibility(View.GONE);
            holder.btnReject.setVisibility(View.GONE);
@@ -93,6 +96,7 @@ public class CompleatedReqAdapter extends RecyclerView.Adapter<CompleatedReqAdap
                            product.setImages4(dataSnapshot.child("images4").getValue().toString());
                            product.setIsPremium(Boolean.parseBoolean(dataSnapshot.child("isPremium").getValue().toString()));
                        }
+
                        uDbRef = FirebaseDatabase.getInstance().getReference().child("Users");
                        Query query2 = uDbRef.orderByChild("userId").equalTo(product.getSellerId());
 
@@ -115,13 +119,16 @@ public class CompleatedReqAdapter extends RecyclerView.Adapter<CompleatedReqAdap
                            }
                        });
 
+
                        holder.txtTitle.setText(product.getTitle());
                        Glide.with(context).load(product.getImages1()).into(holder.imgMain);
                        holder.txtTotal.setText(String.valueOf(requestRentModel.getTotal()));
                        holder.edtDeposit.setText(String.valueOf(requestRentModel.getInitialDeposit()));
                        holder.edtAddress.setText(requestRentModel.getAddress());
                        holder.edtContactNum.setText(requestRentModel.getContactNumber());
+
                        holder.txtDuration.setText(requestRentModel.getDuration());
+
                    }
 
                    @Override
@@ -129,6 +136,7 @@ public class CompleatedReqAdapter extends RecyclerView.Adapter<CompleatedReqAdap
 
                    }
                });
+
        }
     }
 
@@ -139,17 +147,21 @@ public class CompleatedReqAdapter extends RecyclerView.Adapter<CompleatedReqAdap
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView imgMain;
+
         EditText edtDeposit,edtContactNum,edtAddress,edtSellerId,edtSellerContactNum;
         TextView txtTitle,txtDuration,txtTotal,txtUserName;
         ImageButton btnAccept,btnReject,btnEdit;
         Button btnViewProduct;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             imgMain = itemView.findViewById(R.id.imgRequestRent_list_main);
             txtTitle = itemView.findViewById(R.id.txtRequestRent_list_title);
             txtDuration = itemView.findViewById(R.id.txtRequestRent_list_duration);
             txtTotal = itemView.findViewById(R.id.txtRequestRent_list_total);
+
             txtUserName = itemView.findViewById(R.id.txtRequestRent_list_userName);
+
 
             edtDeposit = itemView.findViewById(R.id.edtRequestRent_list_deposit);
             edtAddress = itemView.findViewById(R.id.edtRequestRent_list_address);

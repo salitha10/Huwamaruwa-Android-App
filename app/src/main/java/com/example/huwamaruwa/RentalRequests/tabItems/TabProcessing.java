@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
+
 import com.example.huwamaruwa.Models.RequestRentModel;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.tabbedrecyclerAdapters.ProcessingReqAdapter;
@@ -30,16 +31,20 @@ public class TabProcessing extends Fragment {
     ArrayList<RequestRentModel> request_list;
     DatabaseReference dbRef;
     TextView noData;
+
     LottieAnimationView searchLottie,emptyLottie;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.tab_processing,container,false);
 
+
         searchLottie = view.findViewById(R.id.processing_tab_search_lottie);
         emptyLottie = view.findViewById(R.id.processing_tab_empty_lottie);
         searchLottie.setVisibility(View.GONE);
         emptyLottie.setVisibility(View.GONE);
+
 
 
     request_list = new ArrayList<>();
@@ -52,6 +57,7 @@ public class TabProcessing extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChildren()){
                     for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
+
                         if (dataSnapshot.child("status").getValue().toString().equals("Approved")){
                             RequestRentModel request = new RequestRentModel();
                             request.setAddress(dataSnapshot.child("address").getValue().toString());
@@ -76,6 +82,7 @@ public class TabProcessing extends Fragment {
                 }
 
 
+
                 ProcessingReqAdapter processingReqAdapter = new ProcessingReqAdapter(request_list,getContext());
                 processingRecycler.setAdapter(processingReqAdapter);
             }
@@ -85,6 +92,7 @@ public class TabProcessing extends Fragment {
 
             }
         });
+
          processingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
     }

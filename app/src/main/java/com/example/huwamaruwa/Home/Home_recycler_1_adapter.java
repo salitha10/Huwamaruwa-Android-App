@@ -55,7 +55,9 @@ public class Home_recycler_1_adapter extends RecyclerView.Adapter<Home_recycler_
         //Setting the time zone
         dateTimeInGMT.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
         int day = Integer.parseInt(dateTimeInGMT.format(new Date()));
+
         dateTimeInGMT = new SimpleDateFormat("HH");
+
         int hour =Integer.parseInt(dateTimeInGMT.format(new Date()));
         dateTimeInGMT = new SimpleDateFormat("mm");
         int min =Integer.parseInt(dateTimeInGMT.format(new Date()));
