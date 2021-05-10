@@ -3,6 +3,8 @@ package com.example.huwamaruwa.customer_care;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Models.Chat;
 import com.example.huwamaruwa.Models.User;
 import com.example.huwamaruwa.R;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class MessageActivity extends AppCompatActivity {
 
@@ -33,10 +37,14 @@ public class MessageActivity extends AppCompatActivity {
     ImageButton send, camera;
     EditText message;
 
-
     FirebaseUser fb;
     DatabaseReference dbf;
     Intent intent;
+
+    MessageAdapter messageAdapter;
+    List<Chat> mChat;
+
+    RecyclerView rec;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +55,10 @@ public class MessageActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        rec = findViewById(R.id.re)
+
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -63,6 +75,9 @@ public class MessageActivity extends AppCompatActivity {
         camera = findViewById(R.id.camera_button);
         intent = getIntent();
 
+        /**
+         * Change
+         */
         //final FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
         String cUser = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
         String uID = intent.getStringExtra("userId");

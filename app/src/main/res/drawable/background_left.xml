@@ -8,7 +8,7 @@
         android:topRightRadius="0dp"
         />
 
-    <solid android:color="@color/theme_green"/>
+    <solid android:color="@color/white"/>
 
 
 
