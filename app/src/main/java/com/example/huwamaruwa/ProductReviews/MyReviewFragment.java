@@ -237,6 +237,7 @@ public class MyReviewFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
+                Log.d("Error", "DB Cancelled");
             }
         });
     }

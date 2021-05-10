@@ -118,7 +118,7 @@ public class EditReview extends AppCompatActivity {
 
     }
 
-    public void Save(View view) {
+    public void Update(View view) {
 
 
         //Get ratings
@@ -137,7 +137,6 @@ public class EditReview extends AppCompatActivity {
         try {
 
             //date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-
             //Set vales in model objest
             //pr.setBuyerID(buyerID);
             pr.setQualityRating(qRating);

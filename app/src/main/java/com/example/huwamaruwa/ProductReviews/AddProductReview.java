@@ -67,6 +67,7 @@ public class AddProductReview extends AppCompatActivity {
         price = (RatingBar) findViewById(R.id.pPriceRatingBar);
         thumbnail = (ImageView) findViewById(R.id.productThumbnail);
         user = FirebaseAuth.getInstance().getCurrentUser();
+
         //reviewerID = user.getUid();
         reviewerID  = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
@@ -105,14 +106,14 @@ public class AddProductReview extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-
+                        Log.d("Error", "DB Cancelled");
                     }
                 });
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.d("Error", "DB Cancelled");
             }
         });
 
@@ -131,8 +132,9 @@ public class AddProductReview extends AppCompatActivity {
         buyerComments = comments.getText().toString().trim();
 
         //Calculate overall rating
-        double overall = (qRating + uRating + pRating) / 3.0;
+        float overall = (float)((qRating + uRating + pRating) / 3.0);
         overallRating = (float)(Math.round(overall * 2) / 2.0);
+
         Log.d("OverallRating", String.valueOf(overallRating));
 
 
@@ -154,15 +156,10 @@ public class AddProductReview extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(), "Review Added", Toast.LENGTH_SHORT).show();
 
-
         }
         catch(Exception e){
             Log.d(DB_ERROR, "DATA SAVE FAILED - " + e.getMessage());
             Toast.makeText(getApplicationContext(), "Review Not Added", Toast.LENGTH_SHORT).show();
         }
-
-
     }
-
-
 }

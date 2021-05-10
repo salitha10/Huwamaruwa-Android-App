@@ -47,7 +47,6 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewAdapter holder, int position) {
 
-
         ProductReviews model = arraylist.get(position);
 
         /*
