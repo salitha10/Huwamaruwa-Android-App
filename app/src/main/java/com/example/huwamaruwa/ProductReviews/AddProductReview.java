@@ -72,7 +72,6 @@ public class AddProductReview extends AppCompatActivity {
         reviewerID  = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         pr = new ProductReviews();
-
     }
 
     public void onResume() {

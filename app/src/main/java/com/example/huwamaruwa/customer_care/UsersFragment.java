@@ -62,7 +62,7 @@ public class UsersFragment extends Fragment {
 
                     //Test for null objects
                     assert user != null;
-                    //assert cUser != null;
+                    assert cUser != null;
 
                     Log.d("User", user.getUserId());
 
