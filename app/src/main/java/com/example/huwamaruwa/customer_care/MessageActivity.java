@@ -3,6 +3,7 @@ package com.example.huwamaruwa.customer_care;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,7 +40,7 @@ public class MessageActivity extends AppCompatActivity {
     EditText message;
 
     FirebaseUser fb;
-    DatabaseReference dbf;
+    DatabaseReference dbfx;
     Intent intent;
 
     MessageAdapter messageAdapter;
@@ -48,6 +50,7 @@ public class MessageActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
@@ -56,7 +59,12 @@ public class MessageActivity extends AppCompatActivity {
         getSupportActionBar().setTitle("");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        rec = findViewById(R.id.re)
+        rec = findViewById(R.id.chat_recycle);
+        rec.setHasFixedSize(true);
+        LinearLayoutManager lm = new LinearLayoutManager(getApplicationContext());
+        lm.setStackFromEnd(true);
+        rec.setLayoutManager(lm);
+       // rec.setAdapter(messageAdapter);
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -65,7 +73,6 @@ public class MessageActivity extends AppCompatActivity {
                 finish();
             }
         });
-
 
         //Init
         pic = findViewById(R.id.profile_image);
@@ -95,7 +102,6 @@ public class MessageActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(getApplicationContext(),"Message is empty", Toast.LENGTH_SHORT);
                 }
-
                 message.setText("");
             }
         });
@@ -115,6 +121,10 @@ public class MessageActivity extends AppCompatActivity {
                 } else {
                     Glide.with(getApplicationContext()).load(user.getUserImage()).circleCrop().into(pic);
                 }
+
+                Log.d("readMessage", "Done");
+
+                readMessage(cUser, uID, user.getUserImage());
             }
 
             @Override
@@ -134,7 +144,33 @@ public class MessageActivity extends AppCompatActivity {
         hashMap.put("message", message);
 
         dbf.child("Chats").push().setValue(hashMap);
+    }
 
+    private void readMessage(String myid, String userid, String imageUrl){
+        mChat = new ArrayList<>();
+        dbfx = FirebaseDatabase.getInstance().getReference().child("Chats");
+        dbfx.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                mChat.clear();
+                for(DataSnapshot ds: snapshot.getChildren()){
+                    Chat chat = ds.getValue(Chat.class);
 
+                    if(chat.getReceiver().equals(myid) && chat.getSender().equals(userid)
+                    ||chat.getReceiver().equals(userid) && chat.getSender().equals(myid)){
+                        mChat.add(chat);
+                    }
+
+                    messageAdapter = new MessageAdapter(MessageActivity.this, mChat, imageUrl);
+                    Log.d("readMessage", "Ok");
+                    rec.setAdapter(messageAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }

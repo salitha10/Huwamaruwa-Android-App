@@ -34,8 +34,6 @@ public class ChatActivity extends AppCompatActivity {
         viewPageAdapter.addFragment(new ChatFragment(), "Chats");
         viewPageAdapter.addFragment(new UsersFragment(), "Users");
 
-
-
         viewpager.setAdapter(viewPageAdapter);
         tabLayout.setupWithViewPager(viewpager);
         tabLayout.getTabAt(0).setText("Chats");
