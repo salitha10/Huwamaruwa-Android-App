@@ -11,6 +11,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
@@ -29,6 +30,8 @@ import com.example.huwamaruwa.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -48,6 +51,7 @@ public class AddNewItem extends AppCompatActivity {
     private static final int CAMERA_REQEST = 1888;
     Button btnTakePhoto, btnGallery, btnPost;
     ArrayList<Uri> img_list;
+    String userId;
 
     Product post;
 
@@ -57,12 +61,17 @@ public class AddNewItem extends AppCompatActivity {
     String imgData[];
     RadioButton RentperDay_radio,RentperHour_radio;
 
+
     int i=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_iteam);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.e("login",user.getUid());
+        userId = user.getUid();
 
         btnGallery = (Button) findViewById(R.id.btnGallery);
         btnPost = (Button) findViewById(R.id.btnPost);
@@ -125,15 +134,6 @@ public class AddNewItem extends AppCompatActivity {
         });
 
 
-//        btnTakePhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                captureImg();
-//            }
-//        });
-
-
-
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -152,10 +152,14 @@ public class AddNewItem extends AppCompatActivity {
 
                         Toast.makeText(AddNewItem.this, "Description Required", Toast.LENGTH_SHORT).show();
 
-                    }else if(img_list.isEmpty()){
-                        Toast.makeText(AddNewItem.this, "Image Required", Toast.LENGTH_SHORT).show();
-                    } else {
+                    }else if(TextUtils.isEmpty(addProdcontact.getText().toString().trim()) && addProdcontact.length() == 10){
+                        Toast.makeText(AddNewItem.this, "Contact Number is Required", Toast.LENGTH_SHORT).show();
 
+                    }
+                    else if(img_list.isEmpty()){
+                        Toast.makeText(AddNewItem.this, "Image Required", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
                         loadingProgress.startProgress();
                         imageUploader(0);
 
@@ -290,9 +294,6 @@ public class AddNewItem extends AppCompatActivity {
     }
 
 
-    private void captureImg(){
-
-    }
 
 
     @Override
@@ -313,4 +314,6 @@ public class AddNewItem extends AppCompatActivity {
         recyclerView.setAdapter(postAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
     }
+
+
 }

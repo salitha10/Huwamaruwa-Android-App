@@ -73,11 +73,11 @@
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="1dp"
-                android:layout_marginBottom="940dp"
+                android:layout_marginBottom="1004dp"
                 android:background="@color/View_line"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
@@ -122,7 +122,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.32999998">
+                app:layout_constraintVertical_bias="0.29000002">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteText1"
@@ -133,6 +133,35 @@
                     android:padding="16dp"
                     android:paddingBottom="10dp"
                     android:text="@string/select_category_product"
+                    android:textSize="16sp" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/layoutsub"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="20dp"
+                android:hint="SUB CATEGORY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.35000002">
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompleteText3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:inputType="none"
+                    android:padding="16dp"
+                    android:paddingBottom="10dp"
+                    android:text="Sub Category"
                     android:textSize="16sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -150,7 +179,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.32999998">
+                app:layout_constraintVertical_bias="0.35000002">
 
                 <AutoCompleteTextView
                     android:id="@+id/autoCompleteText2"
@@ -172,7 +201,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="580dp"
+                android:layout_marginTop="630dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/background_input"
                 android:gravity="center_vertical"
@@ -213,7 +242,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="655dp"
+                android:layout_marginTop="705dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/background_input"
                 android:gravity="center_vertical"
@@ -253,7 +282,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="740dp"
+                android:layout_marginTop="790dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/background_input"
                 android:gravity="center_vertical"
@@ -293,7 +322,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="820dp"
+                android:layout_marginTop="870dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/background_input"
                 android:gravity="center_vertical"
@@ -333,7 +362,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="940dp"
+                android:layout_marginTop="1020dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/background_input"
                 android:gravity="center_vertical"
@@ -376,7 +405,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="1020dp"
+                android:layout_marginTop="1100dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/background_input"
                 android:gravity="center_vertical"
@@ -416,7 +445,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="1100dp"
+                android:layout_marginTop="1190dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/background_input"
                 android:gravity="center_vertical"
@@ -456,7 +485,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="570dp"
+                android:layout_marginTop="620dp"
                 android:background="@color/white"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
@@ -472,7 +501,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="640dp"
+                android:layout_marginTop="695dp"
                 android:background="@color/white"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
@@ -488,7 +517,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="730dp"
+                android:layout_marginTop="780dp"
                 android:background="@color/white"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
@@ -504,7 +533,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="810dp"
+                android:layout_marginTop="860dp"
                 android:background="@color/white"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
@@ -520,7 +549,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="930dp"
+                android:layout_marginTop="1005dp"
                 android:background="@color/white"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
@@ -538,7 +567,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="1010dp"
+                android:layout_marginTop="1090dp"
                 android:background="@color/white"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
@@ -554,7 +583,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="64dp"
-                android:layout_marginTop="1090dp"
+                android:layout_marginTop="1180dp"
                 android:background="@color/white"
                 android:paddingStart="6dp"
                 android:paddingEnd="6dp"
@@ -575,33 +604,12 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:navigationIcon="@drawable/menu_icon" />
 
-            <!--        <RadioButton-->
-            <!--            android:id="@+id/radioButton1"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_marginStart="80dp"-->
-            <!--            android:layout_marginTop="20dp"-->
-            <!--            android:text="@string/yes"-->
-            <!--            app:layout_constraintStart_toEndOf="@+id/textView6"-->
-            <!--            app:layout_constraintTop_toBottomOf="@+id/crd1" />-->
-
-            <!--        <RadioButton-->
-            <!--            android:id="@+id/radioButton2"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_marginStart="36dp"-->
-            <!--            android:layout_marginTop="20dp"-->
-            <!--            android:text="@string/no"-->
-            <!--            app:layout_constraintEnd_toEndOf="parent"-->
-            <!--            app:layout_constraintHorizontal_bias="0.0"-->
-            <!--            app:layout_constraintStart_toEndOf="@+id/radioButton1"-->
-            <!--            app:layout_constraintTop_toBottomOf="@+id/crd1" />-->
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="128dp"
                 android:layout_height="26dp"
-                android:layout_marginTop="580dp"
+                android:layout_marginTop="650dp"
                 android:inputType="text"
 
                 android:text="Rental Fee For"
@@ -619,7 +627,7 @@
                 android:layout_width="206dp"
                 android:layout_height="29dp"
                 android:layout_marginStart="300dp"
-                android:layout_marginTop="885dp"
+                android:layout_marginTop="950dp"
 
                 android:layout_marginEnd="32dp"
                 android:orientation="horizontal"

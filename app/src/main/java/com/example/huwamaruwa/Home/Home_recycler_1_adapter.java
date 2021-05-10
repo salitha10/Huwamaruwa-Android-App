@@ -2,7 +2,6 @@ package com.example.huwamaruwa.Home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,8 +65,8 @@ public class Home_recycler_1_adapter extends RecyclerView.Adapter<Home_recycler_
             mainImg = itemView.findViewById(R.id.home_recycler_1_img);
             txtPrice = itemView.findViewById(R.id.txt_home_recycler_1_price);
             txtTitle = itemView.findViewById(R.id.txt_home_recycler_1_title);
-            txtDescription = itemView.findViewById(R.id.txt_home_recycler_1_description);
-            parentLayout = itemView.findViewById(R.id.home_recycer_1_parentLayout);
+            txtDescription = itemView.findViewById(R.id.catagoryName);
+            parentLayout = itemView.findViewById(R.id.parentLayoutcat);
         }
     }
 }

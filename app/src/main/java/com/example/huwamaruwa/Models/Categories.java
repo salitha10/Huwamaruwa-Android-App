@@ -1,5 +1,9 @@
 package com.example.huwamaruwa.Models;
 
+import android.service.autofill.Sanitizer;
+
+import java.io.Serializable;
+
 public class Categories {
     private String CatId;
     private String CategoryTitle;

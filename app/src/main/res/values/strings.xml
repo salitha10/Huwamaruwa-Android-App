@@ -123,7 +123,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="premiumRentalRequestsTitle">Rental Request Manager</string>
-    <string name="initialDeposit" >Initial Deposit :</string>
+    <string name="initialDeposit">Initial Deposit :</string>
     <string name="view_product">View Product</string>
     <string name="seller_id">Seller Id</string>
     <string name="seller_contact">Seller Contact Number</string>
@@ -149,6 +149,18 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="category_name">Category Name</string>
+    <string name="todo1">TODO</string>
+    <string name="todo">TODO</string>
+    <string name="enter_category_name">Enter Category Name</string>
+    <string name="types">Types</string>
+    <string name="update">Update</string>
+    <string name="type_6">Type 6</string>
+    <string name="type_5">Type 5</string>
+    <string name="type_4">Type 4</string>
+    <string name="type_1">Type 1</string>
+    <string name="type_3">Type 3</string>
+    <string name="type_2">Type 2</string>
 
 
 </resources>

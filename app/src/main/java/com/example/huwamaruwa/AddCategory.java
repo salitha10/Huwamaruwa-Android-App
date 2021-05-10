@@ -55,7 +55,7 @@ public class AddCategory extends AppCompatActivity {
             public void onClick(View view) {
                 try {
                     if (TextUtils.isEmpty(AddCategoryTitle.getEditText().getText().toString())) {
-                        Toast.makeText(AddCategory.this, "Empty...", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AddCategory.this, "This Filed is Required..", Toast.LENGTH_SHORT).show();
 
                     } else {
                         cat.setCategoryTitle(AddCategoryTitle.getEditText().getText().toString().trim());
@@ -71,7 +71,7 @@ public class AddCategory extends AppCompatActivity {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(AddCategory.this, "Successfully Added New Category", Toast.LENGTH_SHORT).show();
-                                loadingProgress.dismissProgress();
+
                             }
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
@@ -100,15 +100,18 @@ public class AddCategory extends AppCompatActivity {
 
 
     private void clearContent() {
-        AddCategoryTitle.getEditText().setText("");
-        catType1.getEditText().setText("");
-        catType2.getEditText().setText("");
-        catType3.getEditText().setText("");
-        catType4.getEditText().setText("");
-        catType5.getEditText().setText("");
-        catType6.getEditText().setText("");
+//        AddCategoryTitle.getEditText().setText("");
+//        catType1.getEditText().setText("");
+//        catType2.getEditText().setText("");
+//        catType3.getEditText().setText("");
+//        catType4.getEditText().setText("");
+//        catType5.getEditText().setText("");
+//        catType6.getEditText().setText("");
+    }
+
+    public void Validation(){
+
     }
 
 
 }
-
