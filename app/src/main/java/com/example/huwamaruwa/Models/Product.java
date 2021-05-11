@@ -7,7 +7,7 @@ import java.util.Date;
 
 public class Product implements Parcelable {
 
-    public static final Parcelable.Creator<Product> CREATOR = new Parcelable.Creator<Product>() {
+    public static final Creator<Product> CREATOR = new Creator<Product>() {
 
         @Override
         public Product createFromParcel(Parcel source) {
@@ -26,7 +26,6 @@ public class Product implements Parcelable {
     private boolean isPremium;
     private double price;
     private String title;
-
     private String description;
     private String images1;
     private String images2;
@@ -36,51 +35,10 @@ public class Product implements Parcelable {
     private String contactNumber;
     private String location;
     private double depositPercentage;
-    private String sellerID;
+    private String sellerId;
     private int maxRentalTime;
     private int minRentalTime;
     private boolean perHour;
-
-    public String getImages1() {
-        return images1;
-    }
-
-    public void setImages1(String images1) {
-        this.images1 = images1;
-    }
-
-    public void setImages2(String images2) {
-        this.images2 = images2;
-    }
-
-    public void setImages3(String images3) {
-        this.images3 = images3;
-    }
-
-    public void setImages4(String images4) {
-        this.images4 = images4;
-    }
-
-    public boolean isPremium() {
-        return isPremium;
-    }
-
-    public void setPremium(boolean premium) {
-        isPremium = premium;
-    }
-
-    public String getImages2() {
-        return images2;
-    }
-
-    public String getImages3() {
-        return images3;
-    }
-
-    public String getImages4() {
-        return images4;
-    }
-
     private int date_in_sec;
     private int date_in_min;
     private int date_in_hour;
@@ -176,7 +134,38 @@ public class Product implements Parcelable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
 
+    public String getImages1() {
+        return images1;
+    }
+
+    public void setImages1(String images1) {
+        this.images1 = images1;
+    }
+
+    public String getImages2() {
+        return images2;
+    }
+
+    public void setImages2(String images2) {
+        this.images2 = images2;
+    }
+
+    public String getImages3() {
+        return images3;
+    }
+
+    public void setImages3(String images3) {
+        this.images3 = images3;
+    }
+
+    public String getImages4() {
+        return images4;
+    }
+
+    public void setImages4(String images4) {
+        this.images4 = images4;
     }
 
     public int getCategoryID() {
@@ -211,12 +200,12 @@ public class Product implements Parcelable {
         this.depositPercentage = deposit;
     }
 
-    public String getSellerID() {
-        return sellerID;
+    public String getSellerId() {
+        return sellerId;
     }
 
-    public void setSellerID(String sellerID) {
-        this.sellerID = sellerID;
+    public void setSellerId(String sellerID) {
+        this.sellerId = sellerID;
     }
 
     public int getMaxRentalTime() {
@@ -244,7 +233,7 @@ public class Product implements Parcelable {
     }
 
     public Product(Parcel in) {
-        String data[] = new String[13];
+        String data[] = new String[21];
         in.readStringArray(data);
 
         this.price =Double.parseDouble(data[0]) ;
@@ -260,6 +249,14 @@ public class Product implements Parcelable {
         this.minRentalTime = Integer.parseInt(data[10]);
         this.id = data[11];
         this.contactNumber = data[12];
+        this.date_in_sec = Integer.parseInt(data[13]);;
+        this.date_in_year= Integer.parseInt(data[14]);
+        this.date_in_min= Integer.parseInt(data[15]);
+        this.date_in_hour= Integer.parseInt(data[16]);
+        this.date_in_day= Integer.parseInt(data[17]);
+        this.depositPercentage = Double.parseDouble(data[18]);
+        this.location = data[19];
+        this.sellerId = data[20];
     }
 
 
@@ -283,10 +280,15 @@ public class Product implements Parcelable {
                 String.valueOf(this.maxRentalTime),
                 String.valueOf(this.minRentalTime),
                 this.id,
-                this.contactNumber
+                this.contactNumber,
+                String.valueOf(this.date_in_sec),
+                String.valueOf(this.date_in_year),
+                String.valueOf(this.date_in_min),
+                String.valueOf(this.date_in_hour),
+                String.valueOf(this.date_in_day),
+                String.valueOf(this.depositPercentage),
+                this.location,
+                this.sellerId
         });
     }
-
-
 }
-
