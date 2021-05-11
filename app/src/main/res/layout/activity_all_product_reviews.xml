@@ -28,11 +28,11 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/allReviewsRecycle"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#65E4A6"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/allReviewsRecycle"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/card_ash1" />
 
     </LinearLayout>
 

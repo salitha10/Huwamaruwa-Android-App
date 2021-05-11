@@ -11,6 +11,8 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
 
+        <!-- Status bar color. -->
+
         <!-- Customize your theme here. -->
         <item name="android:windowContentTransitions">true</item>
     </style>
@@ -18,7 +20,16 @@
     <style name="Theme.Huwamaruwa.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/white</item>
     </style>
+
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/lightGrey</item>
+        <item name="colorControlActivated">@color/rating_star</item>
+    </style>
+
 
     <style name="Theme.Huwamaruwa.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 

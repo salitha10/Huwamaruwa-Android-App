@@ -87,7 +87,7 @@
         android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toTopOf="@+id/btnPickedUp"
         app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintHorizontal_bias="0.429"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/ic_baseline_location_on_24" />
 
@@ -148,6 +148,5 @@
             android:paddingLeft="20sp"
             android:textSize="20sp" />
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.huwamaruwa.Models.ProductReviews;
@@ -15,6 +16,8 @@ import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.buyerRentalRequestManage.AllBuyerRequestsAdapter;
 import com.example.huwamaruwa.buyerRentalRequestManage.BuyerRentalRequestsModel;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -39,9 +42,10 @@ public class AllProductReviews extends AppCompatActivity {
         setContentView(R.layout.activity_all_product_reviews);
 
         //Top fragment
+        MyReviewFragment FR = new MyReviewFragment();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft1 = fm.beginTransaction();
-        ft1.add(R.id.myReviewLayout, new MyReviewFragment());
+        ft1.add(R.id.myReviewLayout, FR).hide(FR);
         ft1.commit();
 
         //Bottom recycler view
@@ -55,19 +59,25 @@ public class AllProductReviews extends AppCompatActivity {
         AllReviewsAdapter adapter = new AllReviewsAdapter(list,this);
         recyclerView.setAdapter(adapter);
 
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String cUser = user.getUid();
+
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ProductReviews pr = dataSnapshot.getValue(ProductReviews.class);
-                    list.add(pr);
+                    if(pr.getReviewerID().equals(cUser)) {
+                        list.add(pr);
+
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.d("Error", "DB Cancelled");
             }
         });
 

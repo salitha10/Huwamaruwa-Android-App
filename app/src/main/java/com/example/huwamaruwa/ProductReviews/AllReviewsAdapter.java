@@ -47,29 +47,25 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
     @Override
     public void onBindViewHolder(@NonNull ViewAdapter holder, int position) {
 
-
         ProductReviews model = arraylist.get(position);
 
-        /*
-        String buyerID = model.getBuyerID();
-        dbfBuyer = FirebaseDatabase.getInstance().getReference().child("Users").child("Seller").child(buyerID);
+        String buyerID = model.getReviewerID();
+        DatabaseReference dbfBuyer = FirebaseDatabase.getInstance().getReference().child("Users").child(buyerID);
         dbfBuyer.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Set vales
                 holder.reviewer.setText(snapshot.child("name").getValue().toString());
+                Glide.with(holder.itemView.getContext()).load("userImage").circleCrop().placeholder(R.drawable.ic_launcher_background).into(holder.reviewerPic);
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
-        });*/
+        });
 
         //Set data
         holder.comments.setText(model.getComment());
-        Glide.with(holder.itemView.getContext()).load(model.getThumbnailURL()).circleCrop().placeholder(R.drawable.ic_launcher_background).into(holder.reviewerPic);
         holder.rating.setRating((float)model.getAverageRating());
-
     }
 
     @Override
@@ -94,6 +90,5 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
             reviewerPic = (ImageView) itemView.findViewById(R.id.othersReviewsBuyerImage);
         }
     }
-
 
 }
