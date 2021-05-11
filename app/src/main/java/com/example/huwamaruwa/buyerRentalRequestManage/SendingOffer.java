@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
@@ -110,7 +111,7 @@ public class SendingOffer extends AppCompatActivity {
     public void saveDetails(){
         try {
 
-
+            //comnnecting with relavant document in database
             dbf = FirebaseDatabase.getInstance().getReference().child("SentOffersForProductRequest");
 
 
@@ -123,7 +124,7 @@ public class SendingOffer extends AppCompatActivity {
                 sendingOffersModel.setProductRequestId(dbf.push().getKey());
                 sendingOffersModel.setProductImage(FinalImageString.trim());
 
-//                dbf.push().setValue(sendingOffersModel);
+                //   Saving details
                 dbf.child(sendingOffersModel.getProductRequestId()).setValue(sendingOffersModel);
 
 
@@ -131,7 +132,7 @@ public class SendingOffer extends AppCompatActivity {
 
 
         }catch (Exception e){
-
+            Log.d("ERROR",e.getMessage());
         }
 
     }

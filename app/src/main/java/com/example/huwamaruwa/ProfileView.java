@@ -2,10 +2,12 @@ package com.example.huwamaruwa;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.ContentResolver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -18,11 +20,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Progress.LoadingProgress;
+import com.example.huwamaruwa.addProduct.AddNewItem;
 import com.example.huwamaruwa.buyerRentalRequestManage.EditSingleSellerRequest;
 import com.example.huwamaruwa.buyerRentalRequestManage.ProductImageFullScreen;
 import com.example.huwamaruwa.buyerRentalRequestManage.SentRentalRequestBySeller;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -31,6 +37,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.mikhaellopez.circularimageview.CircularImageView;
@@ -43,7 +50,7 @@ import java.util.HashMap;
 public class ProfileView extends AppCompatActivity {
 
     TextView name, email, phone, address, userType;
-    Button btnProfilePicGallery, btnProfilePicUpload;
+    Button btnProfilePicGallery, btnProfilePicUpload, btnDeleteUser;
     CircularImageView profImage;
     String userId, userImageURL;
     ArrayList<Uri> profileImage;
@@ -51,6 +58,7 @@ public class ProfileView extends AppCompatActivity {
     StorageReference sdbRefe;
     String FinalImageString;
     Context context;
+    LoadingProgress loadingProgress;
     public static final String EXTRA_MESSAGE2 = "aab";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +74,9 @@ public class ProfileView extends AppCompatActivity {
         btnProfilePicGallery = findViewById(R.id.btnProfile_gallery);
         btnProfilePicUpload = findViewById(R.id.btnProfile_picUpload);
         profImage = findViewById(R.id.ProfPic_circularView);
+        btnDeleteUser = findViewById(R.id.btnDeleteUser);
+
+        loadingProgress = new LoadingProgress(ProfileView.this);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
@@ -125,6 +136,59 @@ public class ProfileView extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+     btnDeleteUser.setOnClickListener(new View.OnClickListener() {
+         @Override
+         public void onClick(View view) {
+             AlertDialog.Builder deleteAccount  = new AlertDialog.Builder(view.getContext());
+             deleteAccount.setTitle("Delete Account");
+             deleteAccount.setMessage("Are You Sure you want to delete the account?");
+
+             deleteAccount.setPositiveButton("Yes", new DialogInterface.OnClickListener(){
+                 @Override
+                 public void onClick(DialogInterface dialogInterface, int i) {
+                     dbf = FirebaseDatabase.getInstance().getReference().child("Users");
+                     dbf.keepSynced(true);
+                     dbf.addListenerForSingleValueEvent(new ValueEventListener() {
+                         @Override
+                         public void onDataChange(@NonNull DataSnapshot snapshot) {
+                             dbf = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
+                             dbf.removeValue();
+
+                             user.delete()
+                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                         @Override
+                                         public void onComplete(@NonNull Task<Void> task) {
+                                             if (task.isSuccessful()) {
+                                                 Log.d("DELETE", "User account deleted.");
+                                             }
+                                         }
+                                     });
+
+                             Toast.makeText(context, "Account Deleted Successfully", Toast.LENGTH_SHORT).show();
+
+                             Intent intent = new Intent(context,Login.class);
+                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                             context.startActivity(intent);
+                         }
+
+                         @Override
+                         public void onCancelled(@NonNull DatabaseError error) {
+                            Log.d("Error", error.getMessage());
+                         }
+                     });
+                 }
+             });
+             deleteAccount.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+                 @Override
+                 public void onClick(DialogInterface dialogInterface, int i) {
+                     //return to base activity
+                 }
+             });
+             deleteAccount.create().show();
+         }
+     });
     }
 
     public void editProfile(View view){
@@ -149,7 +213,7 @@ public class ProfileView extends AppCompatActivity {
         }
     }
     public void updateProfilePicture(){
-
+        loadingProgress.startProgress();
         sdbRefe = FirebaseStorage.getInstance().getReference().child("User Profile Pictures");
 
         StorageReference storageReference  = sdbRefe.child(System.currentTimeMillis() +"."+ GetFileExtension(profileImage.get(0)));
@@ -161,6 +225,7 @@ public class ProfileView extends AppCompatActivity {
                     public void onSuccess(Uri uri) {
                         FinalImageString = uri.toString();
                         updateInRealTimeDB();
+                        loadingProgress.dismissProgress();
                         Toast.makeText(getApplicationContext(), "FinalImageString set", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -169,6 +234,7 @@ public class ProfileView extends AppCompatActivity {
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
+                loadingProgress.dismissProgress();
                 Toast.makeText(getApplicationContext(), "Failed Upload", Toast.LENGTH_SHORT).show();
 
             }
@@ -205,6 +271,9 @@ public class ProfileView extends AppCompatActivity {
 
     public void LogoutMethod(View view){
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(ProfileView.this, Login.class));
+        Intent intent =new Intent(ProfileView.this, Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
