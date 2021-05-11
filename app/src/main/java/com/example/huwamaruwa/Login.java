@@ -192,7 +192,7 @@ public class Login extends AppCompatActivity {
     }
     public boolean checkAvailable(String id){
         final boolean[] count = {false};
-         dbRef = FirebaseDatabase.getInstance().getReference().child("UserBehaviours");
+        dbRef = FirebaseDatabase.getInstance().getReference().child("UserBehaviours");
         Query query = dbRef;
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
