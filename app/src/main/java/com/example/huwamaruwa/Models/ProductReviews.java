@@ -21,6 +21,7 @@ public class ProductReviews implements Parcelable {
         productID = in.readString();
         reviewerID = in.readString();
         comment = in.readString();
+
         date = in.readString();
         qualityRating = in.readFloat();
         usabilityRating = in.readFloat();
@@ -68,6 +69,7 @@ public class ProductReviews implements Parcelable {
 
     public float getUsabilityRating() {
         return usabilityRating;
+
     }
 
     public void setUsabilityRating(float usabilityRating) {

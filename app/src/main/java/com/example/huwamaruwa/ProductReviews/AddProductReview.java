@@ -70,6 +70,7 @@ public class AddProductReview extends AppCompatActivity {
         user = FirebaseAuth.getInstance().getCurrentUser();
         //reviewerID = user.getUid();
         reviewerID = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
+
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         pr = new ProductReviews();
     }
@@ -81,19 +82,21 @@ public class AddProductReview extends AppCompatActivity {
         //Display product details
         //productID = getIntent().getStringExtra();
         productID = "-M_OmNhGhn2pInyGCqVU";
+
+  
         dbfProduct = FirebaseDatabase.getInstance().getReference().child("Product").child(productID);
 
         //Get data from product
         dbfProduct.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 if (snapshot.hasChildren()) {
                     //Product details for card view
                     product.setText(snapshot.child("title").getValue().toString());
                     sellerID = snapshot.child("sellerId").getValue().toString();
                     imageURL = snapshot.child("images1").getValue().toString();
                     Log.d("URL", imageURL);
+
 
                     //Set Image
                     Glide.with(getApplicationContext()).load(imageURL).centerCrop().placeholder(R.drawable.ic_launcher_background).into(thumbnail);
@@ -107,6 +110,7 @@ public class AddProductReview extends AppCompatActivity {
                         if (snapshot.hasChildren()) {
                             seller.setText("By " + snapshot.child("name").getValue().toString());
                         }
+
                     }
 
                     @Override
@@ -138,9 +142,11 @@ public class AddProductReview extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Ratings Can't be empty", Toast.LENGTH_SHORT).show();
         } else {
 
+
             //Get comments
             buyerComments = comments.getText().toString().trim();
             Log.d("BComments", buyerComments);
+
 
             //Calculate overall rating
             float overall = (float) ((qRating + uRating + pRating) / 3.0);
@@ -175,5 +181,6 @@ public class AddProductReview extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Review Not Added", Toast.LENGTH_SHORT).show();
             }
         }
+
     }
 }

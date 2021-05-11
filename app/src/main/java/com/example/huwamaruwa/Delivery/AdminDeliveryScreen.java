@@ -80,6 +80,7 @@ public class AdminDeliveryScreen extends AppCompatActivity {
         });
 
 
+
         dbf1.child(rentID).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -116,6 +117,7 @@ public class AdminDeliveryScreen extends AppCompatActivity {
             }
         });
 
+
     }
 
     //Pickup button press
@@ -125,16 +127,19 @@ public class AdminDeliveryScreen extends AppCompatActivity {
         pickedUp.setEnabled(false);
         sb.setEnabled(false);
         dbf2.child(rentID).child("status").setValue("Picked Up");
+
     }
 
     //InTransit button press
     public void inTransit(View view){
         sb.setEnabled(true);
         sb.setProgress(2);
+
         pickedUp.setEnabled(false);
         inTransit.setEnabled(false);
         sb.setEnabled(false);
         dbf2.child(rentID).child("status").setValue("In Transit");
+
 
     }
 

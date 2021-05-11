@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.huwamaruwa">
+
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -11,20 +12,26 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="com.google.android.providers.gsf.permission.    READ_GSERVICES" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
+
+    <uses-permission android:name="com.google.android.providers.gsf.permission.
+   READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <activity android:name=".Delivery.DeliveryUserScreen"></activity>
         <activity android:name=".Delivery.DeliveryList" />
@@ -33,6 +40,7 @@
             android:exported="true"
             android:theme="@style/Theme.Huwamaruwa"
             android:windowSoftInputMode="adjustResize" />
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -49,11 +57,15 @@
 
         <activity
             android:name=".Delivery.MapsActivity"
+                  
+
             android:exported="true"
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".Delivery.AdminDeliveryScreen"
             android:exported="true" />
+
+  
         <activity
             android:name=".ReviewUser.ReviewSeller"
 
@@ -62,6 +74,7 @@
         <activity
             android:name=".ReviewUser.ReviewBuyer"
             android:exported="true" />
+
         <activity android:name=".buyerRentalRequestManage.EditSingleSellerRequest" />
         <activity android:name=".buyerRentalRequestManage.SendingOffer" />
         <activity android:name=".buyerRentalRequestManage.AllBuyerRentalRequests" />
@@ -92,6 +105,7 @@
         <activity
             android:name=".ProductReviews.AllProductReviews"
             android:exported="true" />
+
         <activity android:name=".SignUp">
 
 
