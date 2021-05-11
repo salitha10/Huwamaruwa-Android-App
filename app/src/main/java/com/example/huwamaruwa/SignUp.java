@@ -92,31 +92,35 @@ public class SignUp extends AppCompatActivity {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Name Text Field is empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(email.getEditText().getText().toString())) {
+            else if (TextUtils.isEmpty(email.getEditText().getText().toString())) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Email Text Field is empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(phoneNo.getEditText().getText().toString())) {
+            else if (TextUtils.isEmpty(phoneNo.getEditText().getText().toString())) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Phone No. Text Field is empty", Toast.LENGTH_SHORT).show();
             }
-            if (userType == null) {
+            else if (phoneNo.getEditText().getText().toString().trim().length() != 10) {
+                check = false;
+                Toast.makeText(getApplicationContext(), "Invalid Phone No.", Toast.LENGTH_SHORT).show();
+            }
+            else if (userType == null) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "User type not selected", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(address.getEditText().getText().toString())) {
+            else if (TextUtils.isEmpty(address.getEditText().getText().toString())) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Address Text Field is empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(password.getEditText().getText().toString())) {
+            else if (TextUtils.isEmpty(password.getEditText().getText().toString())) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Password Text Field is empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(confirm_password.getEditText().getText().toString())) {
+            else if (TextUtils.isEmpty(confirm_password.getEditText().getText().toString())) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Re-enter Password", Toast.LENGTH_SHORT).show();
             }
-            if(!(passwordInput.equals(confirmPasswordInput))){
+            else if(!(passwordInput.equals(confirmPasswordInput))){
                 check = false;
                 Toast.makeText(getApplicationContext(), "Password mis-match", Toast.LENGTH_SHORT).show();
             }
@@ -136,10 +140,10 @@ public class SignUp extends AppCompatActivity {
 
 //                                dbf.child(userType).push().setValue(user);
                                 user.setUserId(currentUser.getUid());
-                                user.setUserImage("");
+                                user.setUserImage("https://firebasestorage.googleapis.com/v0/b/huwamaruwa-3e019.appspot.com/o/User%20Profile%20Pictures%2F1620409342626.png?alt=media&token=8798ca6c-5856-46ac-936b-9342eff852a0");
                                 user.setName(name.getEditText().getText().toString().trim());
                                 user.setEmail(email.getEditText().getText().toString().trim());
-                                user.setPhoneNo(name.getEditText().getText().toString().trim());
+                                user.setPhoneNo(phoneNo.getEditText().getText().toString().trim());
                                 user.setUserType(userType.trim());
                                 user.setAddress(address.getEditText().getText().toString().trim());
                                 user.setPassword(password.getEditText().getText().toString().trim());
