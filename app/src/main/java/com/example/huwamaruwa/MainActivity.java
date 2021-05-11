@@ -1,24 +1,22 @@
 package com.example.huwamaruwa;
 
-import android.content.Context;
+
 
 import android.content.Intent;
 import android.os.Bundle;
-
-import android.os.Handler;
-
 import android.util.Log;
-import android.util.AttributeSet;
+
+
+
+
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -29,9 +27,10 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
-import com.example.huwamaruwa.Models.User;
+
 
 import com.example.huwamaruwa.Models.UserBehaviours;
 
@@ -49,7 +48,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
 import com.google.firebase.storage.StorageReference;
+import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.TimeZone;
 
@@ -65,13 +66,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     StorageReference storageReference;
     FloatingActionButton floatingActionButton;
 
-  public static  UserBehaviours userBehaviours;
-
     FirebaseUser currentUser;
     DatabaseReference reference;
 
     TextView loginName, loginSellerType;
-    String userId, name, userType;
+    CircularImageView profileIcon;
+    String userId, name, userType, userProfIcon;
+
+
+
+  public static  UserBehaviours userBehaviours;
+
 
 
     FloatingActionButton floatingActionButton_add;
@@ -101,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
+
+
+
         clicker = 0;
         floatingActionButton = findViewById(R.id.floating_add_product);
         floatingActionButton_add = findViewById(R.id.floating_add_button);
@@ -122,17 +130,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         View headerView = navigationView.getHeaderView(0);
         loginName = (TextView) headerView.findViewById(R.id.LoginName);
         loginSellerType = (TextView) headerView.findViewById(R.id.LoginSellerType);
+        profileIcon = (CircularImageView) headerView.findViewById(R.id.profile_icon);
 
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
         userId = user.getUid();
 
-
-        userBehaviours = new UserBehaviours(userId);
-
-
-        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
 
         reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference.child("Users").orderByChild("userId").equalTo(userId).limitToFirst(1);
@@ -142,6 +147,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     name = dataSnapshot.child("name").getValue().toString();
                     userType = dataSnapshot.child("userType").getValue().toString();
+                    userProfIcon = dataSnapshot.child("userImage").getValue().toString();
+                    if(userProfIcon != "".trim()){
+                        Glide.with(MainActivity.this).load(userProfIcon).into(profileIcon);
+                    }
+                    else{
+                        Glide.with(MainActivity.this).load("https://firebasestorage.googleapis.com/v0/b/huwamaruwa-3e019.appspot.com/o/User%20Profile%20Pictures%2F1620409342626.png?alt=media&token=8798ca6c-5856-46ac-936b-9342eff852a0").into(profileIcon);
+                    }
+
 
                 }
                 loginName.setText(name);
@@ -155,7 +168,18 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             public void onCancelled(@NonNull DatabaseError error) {
                 Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
             }
+
         });
+
+
+
+
+
+        userBehaviours = new UserBehaviours(userId);
+
+
+
+
     }
     //set when click back then close the nav drawer
 
@@ -276,11 +300,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void LogoutMethod(View view){
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(MainActivity.this, Login.class));
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
+    public void ViewUserProfile(View view){
+        Intent intent = new Intent(getApplicationContext(), ProfileView.class);
+        startActivity(intent);
     }
 
 
     private void content() {
     }
+
+
 
 }

@@ -2,6 +2,7 @@ package com.example.huwamaruwa.buyerRentalRequestManage;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,9 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.SendingOffersModel;
+import com.example.huwamaruwa.ProfileView;
 import com.example.huwamaruwa.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +32,7 @@ public class SentRentalRequestBySellerAdapter extends RecyclerView.Adapter<SentR
     Context context;
     DatabaseReference dbf;
     public static final String EXTRA_MESSAGE1 = "aaa";
+    public static final String EXTRA_MESSAGE2 = "aca";
 
     public SentRentalRequestBySellerAdapter(ArrayList<SendingOffersModel> list, Context context) {
         this.list = list;
@@ -48,7 +52,7 @@ public class SentRentalRequestBySellerAdapter extends RecyclerView.Adapter<SentR
 
         SendingOffersModel sendingOffersModel = list.get(position);
 
-//        holder.image.setImageResource(sendingOffersModel.getProductImage());
+        Glide.with(context).load(sendingOffersModel.getProductImage()).into(holder.image);
         holder.productTitle.setText(sendingOffersModel.getProductName());
         holder.requestId.setText(sendingOffersModel.getProductRequestId());
         holder.quantity.setText(sendingOffersModel.getQuantity());
@@ -85,6 +89,14 @@ public class SentRentalRequestBySellerAdapter extends RecyclerView.Adapter<SentR
                 Intent intent = new Intent(context,EditSingleSellerRequest.class);
                 intent.putExtra(EXTRA_MESSAGE1,list.get(position));
                 context.startActivity(intent);
+            }
+        });
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, ProductImageFullScreen.class);
+                i.putExtra(EXTRA_MESSAGE2, sendingOffersModel.getProductImage() );
+                context.startActivity(i);
             }
         });
 
