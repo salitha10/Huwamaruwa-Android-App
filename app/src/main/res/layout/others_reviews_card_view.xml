@@ -1,12 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/Other_reviews_card_view"
-        android:layout_width="329dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="10dp"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:background="@color/card_ash1"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:cardCornerRadius="4dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/Other_reviews_card_view"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginBottom="5dp"
+        android:layout_gravity="center"
         app:cardCornerRadius="4dp">
 
         <LinearLayout
@@ -20,40 +30,43 @@
 
                 <ImageView
                     android:id="@+id/othersReviewsBuyerImage"
-                    android:layout_width="73dp"
+                    android:layout_width="71dp"
                     android:layout_height="65dp"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="27dp"
-                    android:layout_marginTop="13dp"
-                    android:layout_marginEnd="229dp"></ImageView>
+                    android:layout_marginStart="15dp"
+                    android:layout_marginTop="15dp"
+                    android:layout_marginEnd="264dp"></ImageView>
 
                 <RatingBar
                     android:id="@+id/othersReviewsRatingBar"
                     style="?android:attr/ratingBarStyleSmall"
-                    android:layout_width="83dp"
+                    android:layout_width="82dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/OthersReviewsName"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="109dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginEnd="137dp"
+                    android:layout_marginStart="94dp"
+                    android:layout_marginTop="14dp"
+                    android:layout_marginEnd="174dp"
                     android:layout_marginBottom="137dp"
-                    android:isIndicator="true" />
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:theme="@style/RatingBar"/>
 
                 <TextView
                     android:id="@+id/OthersReviewsName"
-                    android:layout_width="wrap_content"
+                    android:layout_width="150dp"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginStart="113dp"
-                    android:layout_marginTop="23dp"
-                    android:layout_marginEnd="158dp"
-                    android:text="Reviewer"></TextView>
+                    android:layout_marginStart="94dp"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginEnd="177dp"
+                    android:text="Reviewer"
+                    android:textSize="15sp"></TextView>
 
             </RelativeLayout>
 
@@ -62,9 +75,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="10dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="10dp"
                 android:numStars="5"
                 android:stepSize="0.1"
-                android:text="Description" />
+                android:text="Description"
+                android:textSize="15sp" />
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+</LinearLayout>

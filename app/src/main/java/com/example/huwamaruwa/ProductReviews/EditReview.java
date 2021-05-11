@@ -23,6 +23,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class EditReview extends AppCompatActivity {
 
     private static final String INVALID_DATA = "INVALID_DATA";
@@ -118,8 +122,7 @@ public class EditReview extends AppCompatActivity {
 
     }
 
-    public void Update(View view) {
-
+    public void Save(View view) {
 
         //Get ratings
         qRating = Float.parseFloat(String.valueOf(quality.getRating()));
@@ -136,7 +139,7 @@ public class EditReview extends AppCompatActivity {
 
         try {
 
-            //date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
             //Set vales in model objest
             //pr.setBuyerID(buyerID);
             pr.setQualityRating(qRating);
@@ -144,12 +147,11 @@ public class EditReview extends AppCompatActivity {
             pr.setPriceRating(pRating);
             pr.setAverageRating(overallRating);
             pr.setComment(buyerComments);
-            //pr.setDate(date);
+            pr.setDate(date);
 
             dbfReview = FirebaseDatabase.getInstance().getReference().child("ProductReviews").child(pr.getID());
             //Push to database
             dbfReview.setValue(pr);
-
             Toast.makeText(getApplicationContext(), "Review Added", Toast.LENGTH_SHORT).show();
 
 

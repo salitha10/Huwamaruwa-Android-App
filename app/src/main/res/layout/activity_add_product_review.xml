@@ -106,7 +106,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pUsabilityRatingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/pUsabilityRatingBar"
+        android:theme="@style/RatingBar"/>
 
     <TextView
         android:id="@+id/txtPPrice"
@@ -142,7 +143,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/card_view" />
+        app:layout_constraintTop_toBottomOf="@+id/card_view"
+        android:theme="@style/RatingBar"/>
 
     <RatingBar
         android:id="@+id/pUsabilityRatingBar"
@@ -152,10 +154,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pQualityRatingBar" />
+        app:layout_constraintTop_toBottomOf="@+id/pQualityRatingBar"
+        android:theme="@style/RatingBar"/>
 
     <com.google.android.material.textfield.TextInputLayout
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:theme="@style/Theme.MaterialComponents.Light"
         android:layout_width="322dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -184,6 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
+        android:backgroundTint="@color/GreenMain"
         android:onClick="Save"
         android:text="Done"
         app:layout_constraintBottom_toBottomOf="parent"

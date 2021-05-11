@@ -62,8 +62,9 @@ public class AllProductReviews extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ProductReviews pr = dataSnapshot.getValue(ProductReviews.class);
                     list.add(pr);
+                    adapter.notifyDataSetChanged();
                 }
-                adapter.notifyDataSetChanged();
+
             }
 
             @Override

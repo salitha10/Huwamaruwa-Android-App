@@ -8,16 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.Chat;
 import com.example.huwamaruwa.Models.User;
 import com.example.huwamaruwa.R;
 import com.google.firebase.database.FirebaseDatabase;
-
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
@@ -41,7 +38,7 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public MessageAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        if(viewType == MSG_TYPE_RIGHT) {
+        if (viewType == MSG_TYPE_RIGHT) {
             View view = LayoutInflater.from(mContext).inflate(R.layout.chat_item_right, parent, false);
             return new MessageAdapter.ViewHolder(view);
         } else {
@@ -53,16 +50,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     @Override
     public void onBindViewHolder(@NonNull MessageAdapter.ViewHolder holder, int position) {
 
-            Chat chat = mChat.get(position);
-            holder.show_message.setText(chat.getMessage());
+        Chat chat = mChat.get(position);
+        holder.show_message.setText(chat.getMessage());
 
-            if(imageURL.equals("default")){
-                holder.proPic.setImageResource(R.mipmap.ic_launcher);
-            }
-            else{
-                Glide.with(mContext).load(imageURL).into(holder.proPic);
+        if (imageURL.equals("default")) {
+            holder.proPic.setImageResource(R.mipmap.ic_launcher);
+        } else {
+            Glide.with(mContext).load(imageURL).into(holder.proPic);
         }
-
     }
 
     @Override

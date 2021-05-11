@@ -7,7 +7,6 @@ public class ProductReviews implements Parcelable {
     private String productID;
     private String reviewerID;
     private String comment;
-    private String thumbnailURL;
     private String date;
     private float qualityRating;
     private float usabilityRating;
@@ -22,7 +21,6 @@ public class ProductReviews implements Parcelable {
         productID = in.readString();
         reviewerID = in.readString();
         comment = in.readString();
-        thumbnailURL = in.readString();
         date = in.readString();
         qualityRating = in.readFloat();
         usabilityRating = in.readFloat();
@@ -42,6 +40,7 @@ public class ProductReviews implements Parcelable {
             return new ProductReviews[size];
         }
     };
+
 
     public String getID() {
         return ID;
@@ -81,14 +80,6 @@ public class ProductReviews implements Parcelable {
 
     public void setAverageRating(float averageRating) {
         this.averageRating = averageRating;
-    }
-
-    public String getThumbnailURL() {
-        return thumbnailURL;
-    }
-
-    public void setThumbnailURL(String thumbnailURL) {
-        this.thumbnailURL = thumbnailURL;
     }
 
     public String getProductID() {
@@ -133,7 +124,6 @@ public class ProductReviews implements Parcelable {
         parcel.writeString(productID);
         parcel.writeString(reviewerID);
         parcel.writeString(comment);
-        parcel.writeString(thumbnailURL);
         parcel.writeString(date);
         parcel.writeFloat(qualityRating);
         parcel.writeFloat(usabilityRating);

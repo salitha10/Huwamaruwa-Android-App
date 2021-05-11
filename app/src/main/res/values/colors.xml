@@ -16,7 +16,8 @@
     <color name="card_ash3">#E0E0E0</color>
     <color name="chat_bar">#9BEFC7</color>
     <color name="purple">#6200EE</color>
-    <color name="rating_star">#ffff8800</color>
+    <color name="rating_star">#f9a602</color>
+    <color name="lightGrey">#485063</color>
 
     //Danuja
     <color name="GreenMain">#1BB55C</color>
@@ -25,7 +26,7 @@
     <color name="btnBlue">#1BB5AC</color>
     <color name="btnRed">#EE0000</color>
     <color name="vetorGreen">#88E9AF</color>
-    <color name="txtLightGrey">#FF888686</color>
+    <color name="txtLightGrey">#808080</color>
     <color name="lightBlack">#6B000000</color>
 
     //kavindya

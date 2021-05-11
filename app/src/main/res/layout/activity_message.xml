@@ -7,6 +7,11 @@
     tools:context=".customer_care.MessageActivity"
     android:background="@color/card_ash3">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/chat_toolbar"
         android:layout_width="match_parent"
@@ -16,12 +21,13 @@
         app:buttonGravity="center_vertical"
         app:popupTheme="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small">
 
-        <ImageView
+        <com.mikhaellopez.circularimageview.CircularImageView
             android:id="@+id/profile_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginLeft="20dp"
-            android:src="@color/white" />
+            android:layout_marginLeft="10dp"
+            android:src="@color/white"
+            app:civ_border_width="0dp"/>
 
         <TextView
             android:id="@+id/userName"
@@ -35,13 +41,15 @@
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/chat_recycle"
-        android:layout_below="@id/chat_toolbar"
-        android:layout_above="@id/relativeBottom"/>
+        android:layout_below="@id/bar_layout"
+        android:layout_above="@id/relativeBottom"
+        android:layout_marginBottom="10dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -50,7 +58,7 @@
         android:padding="5dp"
         android:layout_alignParentBottom="true"
         android:textAlignment="center"
-        android:layout_marginTop="10dp"
+
         android:id="@+id/relativeBottom">
 
         <ImageButton
@@ -86,7 +94,6 @@
             android:layout_gravity="center_vertical"
             android:layout_marginRight="2dp"
             android:src="@drawable/ic_baseline_send_24" />
-
 
     </RelativeLayout>
 

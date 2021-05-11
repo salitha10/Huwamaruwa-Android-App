@@ -28,9 +28,8 @@
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
         <activity android:name=".customer_care.MessageActivity"
             android:exported="true"
-            android:theme="@style/Theme.Huwamaruwa.NoActionBar"
+            android:theme="@style/Theme.Huwamaruwa"
             android:windowSoftInputMode="adjustResize"></activity>
-        <activity android:name=".customer_care.ChatList" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -85,7 +84,8 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".ProductReviews.AddProductReview"
-            android:exported="true" />
+            android:exported="true"
+            />
         <activity
             android:name=".ProductReviews.EditReview"
             android:exported="true" />

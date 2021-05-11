@@ -31,7 +31,7 @@ import java.util.Locale;
 public class AddProductReview extends AppCompatActivity {
 
     private static final String INVALID_DATA = "INVALID_DATA";
-    private static final String DB_ERROR = "DATABASE_ERROR" ;
+    private static final String DB_ERROR = "DATABASE_ERROR";
     //Declare variables
     TextView seller, product;
     EditText comments;
@@ -66,10 +66,10 @@ public class AddProductReview extends AppCompatActivity {
         usability = (RatingBar) findViewById(R.id.pUsabilityRatingBar);
         price = (RatingBar) findViewById(R.id.pPriceRatingBar);
         thumbnail = (ImageView) findViewById(R.id.productThumbnail);
-        user = FirebaseAuth.getInstance().getCurrentUser();
 
+        user = FirebaseAuth.getInstance().getCurrentUser();
         //reviewerID = user.getUid();
-        reviewerID  = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
+        reviewerID = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         pr = new ProductReviews();
     }
@@ -77,8 +77,10 @@ public class AddProductReview extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
+
         //Display product details
-        productID = "-M_2FaJPp3ovUpe1FIMI";
+        //productID = getIntent().getStringExtra();
+        productID = "-M_OmNhGhn2pInyGCqVU";
         dbfProduct = FirebaseDatabase.getInstance().getReference().child("Product").child(productID);
 
         //Get data from product
@@ -86,21 +88,25 @@ public class AddProductReview extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                //Product details for card view
-                product.setText(snapshot.child("title").getValue().toString());
-                sellerID = snapshot.child("sellerId").getValue().toString();
+                if (snapshot.hasChildren()) {
+                    //Product details for card view
+                    product.setText(snapshot.child("title").getValue().toString());
+                    sellerID = snapshot.child("sellerId").getValue().toString();
+                    imageURL = snapshot.child("images1").getValue().toString();
+                    Log.d("URL", imageURL);
 
-                imageURL = snapshot.child("images4").getValue().toString();
-                Log.d("URL", imageURL);
-
-                Glide.with(getApplicationContext()).load(imageURL).centerCrop().placeholder(R.drawable.ic_launcher_background).into(thumbnail);
+                    //Set Image
+                    Glide.with(getApplicationContext()).load(imageURL).centerCrop().placeholder(R.drawable.ic_launcher_background).into(thumbnail);
+                }
 
                 //Seller details for card view
                 dbfSeller = FirebaseDatabase.getInstance().getReference().child("Users").child(sellerID);
                 dbfSeller.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        seller.setText("By " + snapshot.child("name").getValue().toString());
+                        if (snapshot.hasChildren()) {
+                            seller.setText("By " + snapshot.child("name").getValue().toString());
+                        }
                     }
 
                     @Override
@@ -115,8 +121,8 @@ public class AddProductReview extends AppCompatActivity {
                 Log.d("Error", "DB Cancelled");
             }
         });
-
     }
+
 
     public void Save(View view) {
 
@@ -127,38 +133,47 @@ public class AddProductReview extends AppCompatActivity {
         uRating = Float.parseFloat(String.valueOf(usability.getRating()));
         pRating = Float.parseFloat(String.valueOf(price.getRating()));
 
-        //Get comments
-        buyerComments = comments.getText().toString().trim();
+        //Validation
+        if (qRating == 0 || uRating == 0 || pRating == 0) {
+            Toast.makeText(getApplicationContext(), "Ratings Can't be empty", Toast.LENGTH_SHORT).show();
+        } else {
 
-        //Calculate overall rating
-        float overall = (float)((qRating + uRating + pRating) / 3.0);
-        overallRating = (float)(Math.round(overall * 2) / 2.0);
+            //Get comments
+            buyerComments = comments.getText().toString().trim();
+            Log.d("BComments", buyerComments);
 
-        Log.d("OverallRating", String.valueOf(overallRating));
+            //Calculate overall rating
+            float overall = (float) ((qRating + uRating + pRating) / 3.0);
+            overallRating = (float) (Math.round(overall * 2) / 2.0);
+
+            Log.d("OverallRating", String.valueOf(overallRating));
 
 
-        try{
-            //date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
+            try {
+                //date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
-            //Set vales in model object
-            pr.setReviewerID(reviewerID);
-            pr.setProductID(productID);
-            pr.setQualityRating(qRating);
-            pr.setUsabilityRating(uRating);
-            pr.setPriceRating(pRating);
-            pr.setAverageRating(overallRating);
-            pr.setComment(buyerComments);
-            pr.setDate(date);
+                //Set vales in model object
+                pr.setReviewerID(reviewerID);
+                Log.d("Rev", pr.getReviewerID());
+                pr.setProductID(productID);
+                pr.setQualityRating(qRating);
+                pr.setUsabilityRating(uRating);
+                pr.setPriceRating(pRating);
+                pr.setAverageRating(overallRating);
+                pr.setComment(buyerComments);
+                pr.setDate(date);
 
-            //Push to database
-            dbfReview.push().setValue(pr);
+                //Push to database
+                String id = dbfReview.push().getKey();
+                pr.setID(id);
+                dbfReview.child(id).setValue(pr);
 
-            Toast.makeText(getApplicationContext(), "Review Added", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Review Added", Toast.LENGTH_SHORT).show();
 
-        }
-        catch(Exception e){
-            Log.d(DB_ERROR, "DATA SAVE FAILED - " + e.getMessage());
-            Toast.makeText(getApplicationContext(), "Review Not Added", Toast.LENGTH_SHORT).show();
+            } catch (Exception e) {
+                Log.d(DB_ERROR, "DATA SAVE FAILED - " + e.getMessage());
+                Toast.makeText(getApplicationContext(), "Review Not Added", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }
