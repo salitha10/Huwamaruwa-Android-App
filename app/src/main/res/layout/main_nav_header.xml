@@ -16,8 +16,8 @@
         android:layout_height="110dp"
         android:orientation="horizontal">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+        <com.mikhaellopez.circularimageview.CircularImageView
+            android:id="@+id/profile_icon"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center|start"
@@ -25,7 +25,8 @@
             android:layout_marginTop="8dp"
             android:layout_marginBottom="2dp"
             android:background="#FFFFFF"
-            android:foreground="@drawable/user_logo"
+
+            android:onClick="ViewUserProfile"
             app:cardCornerRadius="100dp"
             app:layout_constraintBottom_toBottomOf="@+id/btnDone"
             app:layout_constraintEnd_toStartOf="@+id/btnDone"
@@ -62,6 +63,7 @@
         android:id="@+id/LoginName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="ViewUserProfile"
         android:text="@string/user_name"
         android:textSize="24sp"
         android:textStyle="bold" />
