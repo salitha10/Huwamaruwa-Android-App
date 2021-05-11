@@ -2,11 +2,13 @@ package com.example.huwamaruwa.RentalHistory;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.huwamaruwa.Models.RentalHistoryModel;
@@ -27,6 +29,7 @@ private DatabaseReference dbRef;
 private ArrayList<RentalHistoryModel>request_list;
 private ArrayList<String>userId_list;
 private  RecyclerView recyclerView;
+private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,20 @@ private  RecyclerView recyclerView;
         userId_list = new ArrayList<>();
         dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
         recyclerView = findViewById(R.id.premium_history_recycler);
+
+        //setup Toolbar
+        toolbar = findViewById(R.id.toolbar);
+        //setup toolbar
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Recent Rentals");
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
        Intent intent = getIntent();
        productId = intent.getStringExtra(PremiumProduct.TAG_PRODUCT_ID);

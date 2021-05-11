@@ -5,28 +5,18 @@
             android:id="@+id/nav_home"
             android:icon="@drawable/home_icon"
             android:title="@string/nav_home_title" />
-        <item
-            android:id="@+id/nav_customer_care"
-            android:icon="@drawable/customer_care_icon"
-            android:title="@string/nav_customer_care_title" />
-        <item
-            android:id="@+id/nav_messages"
-            android:icon="@drawable/message_icon"
-            android:title="@string/nav_messages_title" />
-        <item
-            android:id="@+id/nav_notifications"
-            android:icon="@drawable/notifications_icon"
-            android:title="@string/nav_notifications_title" />
 
-        <item
-            android:id="@+id/nav_favorites"
-            android:icon="@drawable/favorite_icon"
-            android:title="@string/nav_favorites_title" />
+
+
     </group>
 
-        <item android:title="@string/nav_admin_panel_title">
+        <item android:title="@string/nav_admin_panel_title" android:id="@+id/nav_admin">
             <menu>
                 <group android:checkableBehavior="single">
+                    <item
+                        android:id="@+id/nav_customer_care"
+                        android:icon="@drawable/customer_care_icon"
+                        android:title="@string/nav_customer_care_title" />
                 <item
                     android:id="@+id/admin_delivery"
                     android:icon="@drawable/delivery_icon"
@@ -52,9 +42,43 @@
         <menu>
             <group android:checkableBehavior="single">
                 <item
+                    android:id="@+id/nav_messages_seller"
+                    android:icon="@drawable/message_icon"
+                    android:title="@string/nav_messages_title" />
+
+                <item
+                    android:id="@+id/seller_delivery"
+                    android:icon="@drawable/delivery_icon"
+                    android:title="@string/nav_delivery_title" />
+                <item
                     android:id="@+id/nav_seller_requests"
                     android:icon="@drawable/rental_request_icon"
                     android:title="@string/nav_seller_request_rentals" />
+                <item
+                    android:id="@+id/nav_seller_product_request"
+                    android:icon="@drawable/product_req_icon"
+                    android:title="@string/nav_seller_request_rentals" />
+                <item
+                    android:id="@+id/nav_seller_sent_product_offers"
+                    android:icon="@drawable/product_offer_icon"
+                    android:title="@string/nav_seller_request_rentals" />
+            </group>
+        </menu>
+    </item>
+    <item
+        android:id="@+id/nav_buyer"
+        android:title="@string/nav_buyer_panel_title">
+        <menu>
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/nav_messages_buyer"
+                    android:icon="@drawable/message_icon"
+                    android:title="@string/nav_messages_title" />
+
+                <item
+                    android:id="@+id/buyer_delivery"
+                    android:icon="@drawable/delivery_icon"
+                    android:title="@string/nav_delivery_title" />
             </group>
         </menu>
     </item>

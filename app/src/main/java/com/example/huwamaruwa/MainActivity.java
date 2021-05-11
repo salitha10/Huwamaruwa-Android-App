@@ -7,11 +7,11 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 
 
-
-
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
@@ -43,6 +43,9 @@ import com.example.huwamaruwa.Models.UserBehaviours;
 import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
 import com.example.huwamaruwa.RentalRequests.nonPremium_Requests_seller_sideFragment;
 import com.example.huwamaruwa.addProduct.AddNewItem;
+import com.example.huwamaruwa.buyerRentalRequestManage.AllBuyerRentalRequests;
+import com.example.huwamaruwa.buyerRentalRequestManage.BuyerRentalRequest;
+import com.example.huwamaruwa.buyerRentalRequestManage.SentRentalRequestBySeller;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -72,19 +75,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fragmentManager;
     StorageReference storageReference;
     FloatingActionButton floatingActionButton;
-
     FirebaseUser currentUser;
     DatabaseReference reference;
-
     TextView loginName, loginSellerType;
     CircularImageView profileIcon;
     String userId, name, userType, userProfIcon;
-
-
-
-
-
-
 
     FloatingActionButton floatingActionButton_add;
     FloatingActionButton floatingActionButton_req;
@@ -98,9 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Animation topSheet;
     Button btnCategory;
     Button btnLocation;
-
-
-
 
 
     @Override
@@ -127,8 +119,79 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         txtFloatingAdd = findViewById(R.id.txtfloating_add);
         txtFloatingReq = findViewById(R.id.txtfloating_req);
         floatingSheet = findViewById(R.id.floating_bottom_sheet);
+
+        //get Current User
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.e("login",user.getUid());
+        userId = user.getUid();
+
+        //set toolbr title
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Home");
+        //hide data
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //retrieve current user details from database
+                reference = FirebaseDatabase.getInstance().getReference();
+                Query query = reference.child("Users").orderByChild("userId").equalTo(userId).limitToFirst(1);
+                query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            name = dataSnapshot.child("name").getValue().toString();
+                            userType = dataSnapshot.child("userType").getValue().toString();
+                            userProfIcon = dataSnapshot.child("userImage").getValue().toString();
+                            if(userProfIcon != "".trim()){
+                                Glide.with(MainActivity.this).load(userProfIcon).into(profileIcon);
+                            }
+                            else{
+                                Glide.with(MainActivity.this).load("https://firebasestorage.googleapis.com/v0/b/huwamaruwa-3e019.appspot.com/o/User%20Profile%20Pictures%2F1620409342626.png?alt=media&token=8798ca6c-5856-46ac-936b-9342eff852a0").into(profileIcon);
+                            }
+
+
+                        }
+                        //hide respective menu items
+                        Menu menu = navigationView.getMenu();
+
+                        if (userType.equals("Buyer")){
+                            menu.findItem(R.id.nav_admin).setVisible(false);
+                            menu.findItem(R.id.nav_seller).setVisible(false);
+                        }else if (userType.equals("Seller")){
+                            menu.findItem(R.id.nav_admin).setVisible(false);
+                            menu.findItem(R.id.nav_buyer).setVisible(false);
+                        }
+
+                        loginName.setText(name);
+                        loginSellerType.setText(userType);
+
+                        Toast.makeText(getApplicationContext(), "Set values", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
+                    }
+
+                });
+            }
+        },1000);
+
+
+
+
+
+
+
+
         //set app name to toolbar
        // setSupportActionBar(toolbar);
+
+
 
         //set toggle event
         navigationView.bringToFront();
@@ -144,50 +207,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         profileIcon = (CircularImageView) headerView.findViewById(R.id.profile_icon);
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.e("login",user.getUid());
-        userId = user.getUid();
+
 
 //        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
-
-        reference = FirebaseDatabase.getInstance().getReference();
-        Query query = reference.child("Users").orderByChild("userId").equalTo(userId).limitToFirst(1);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    name = dataSnapshot.child("name").getValue().toString();
-                    userType = dataSnapshot.child("userType").getValue().toString();
-                    userProfIcon = dataSnapshot.child("userImage").getValue().toString();
-                    if(userProfIcon != "".trim()){
-                        Glide.with(MainActivity.this).load(userProfIcon).into(profileIcon);
-                    }
-                    else{
-                        Glide.with(MainActivity.this).load("https://firebasestorage.googleapis.com/v0/b/huwamaruwa-3e019.appspot.com/o/User%20Profile%20Pictures%2F1620409342626.png?alt=media&token=8798ca6c-5856-46ac-936b-9342eff852a0").into(profileIcon);
-                    }
-
-
-                }
-                loginName.setText(name);
-                loginSellerType.setText(userType);
-
-                    Toast.makeText(getApplicationContext(), "Set values", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
-            }
-
-        });
-
-
-
-
-
-
-
 
 
 
@@ -201,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 rotateOpenAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_open_floating_anim);
                 rotateCloseAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_closefloating_anim);
                 fromBottomAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.from_bottom_floating_anim);
@@ -236,28 +259,45 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void setVisibility(int cli) {
         if (cli == 0){
+            if (!userType.equals("Buyer")){
+                if (!userType.equals("Admin")) {
+                    floatingActionButton_req.setVisibility(View.GONE);
+                    txtFloatingReq.setVisibility(View.GONE);
+                }
+                floatingActionButton_add.setVisibility(View.VISIBLE);
+                floatingActionButton_add.setAnimation(fromBottomAnim);
+                txtFloatingAdd.setVisibility(View.VISIBLE);
+                txtFloatingAdd.setAnimation(fromBottomAnim);
+
+            }else if (!userType.equals("Seller")){
+                if (!userType.equals("Admin")) {
+                    floatingActionButton_add.setVisibility(View.GONE);
+                    txtFloatingAdd.setVisibility(View.GONE);
+                }
+                floatingActionButton_req.setVisibility(View.VISIBLE);
+                floatingActionButton_req.setAnimation(fromBottomAnim);
+                txtFloatingReq.setVisibility(View.VISIBLE);
+                txtFloatingReq.setAnimation(fromBottomAnim);
+
+            }
             floatingSheet.setVisibility(View.VISIBLE);
             floatingSheet.setAnimation(bottomSheet);
-            floatingActionButton_add.setVisibility(View.VISIBLE);
-            floatingActionButton_req.setVisibility(View.VISIBLE);
-            txtFloatingAdd.setVisibility(View.VISIBLE);
-            txtFloatingReq.setVisibility(View.VISIBLE);
             floatingActionButton.setAnimation(rotateOpenAnim);
-            floatingActionButton_add.setAnimation(fromBottomAnim);
-            txtFloatingAdd.setAnimation(fromBottomAnim);
-            floatingActionButton_req.setAnimation(fromBottomAnim);
-            txtFloatingReq.setAnimation(fromBottomAnim);
             clicker = 1;
 
         }else{
+            if (!userType.equals("Buyer")){
+                txtFloatingAdd.setAnimation(toBottomAnim);
+                floatingActionButton_add.setAnimation(toBottomAnim);
+                floatingActionButton_add.setVisibility(View.GONE);
+
+            }else if (!userType.equals("Seller")){
+                floatingActionButton_req.setVisibility(View.GONE);
+                floatingActionButton_req.setAnimation(toBottomAnim);
+                txtFloatingReq.setAnimation(toBottomAnim);
+            }
             floatingActionButton.setAnimation(rotateCloseAnim);
-            txtFloatingAdd.setAnimation(toBottomAnim);
-            floatingActionButton_add.setAnimation(toBottomAnim);
-            txtFloatingReq.setAnimation(toBottomAnim);
-            floatingActionButton_req.setAnimation(toBottomAnim);
             floatingSheet.setAnimation(topSheet);
-            floatingActionButton_add.setVisibility(View.GONE);
-            floatingActionButton_req.setVisibility(View.GONE);
             floatingSheet.setVisibility(View.GONE);
             clicker = 0;
         }
@@ -267,6 +307,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 Intent intent = new Intent(getApplicationContext(), AddNewItem.class);
                 startActivity(intent);
 
+            }
+        });
+        floatingActionButton_req.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), BuyerRentalRequest.class));
             }
         });
 
@@ -297,20 +343,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         switch (item.getItemId()){
 
             case R.id.nav_home:
-                fragment = new Home_fragment();
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentDefault,fragment);
-                fragmentTransaction.commit();
+
+                startActivity(new Intent(getApplicationContext(),MainActivity.class));
                 break;
             case R.id.nav_customer_care:
+
                 fragment = new Customer_care_fragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentDefault,fragment);
                 fragmentTransaction.commit();
+                floatingActionButton.setVisibility(View.INVISIBLE);
                 break;
             case R.id.admin_Rental_requests:
+                floatingActionButton.setVisibility(View.INVISIBLE);
                 fragment = new PremiumProductRentalRequestFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
@@ -318,6 +364,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.commit();
                 break;
                 case R.id.nav_seller_requests:
+                    floatingActionButton.setVisibility(View.INVISIBLE);
                 fragment = new nonPremium_Requests_seller_sideFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
@@ -325,8 +372,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.commit();
                 break;
             case R.id.admin_add_location:
+
+                floatingActionButton.setVisibility(View.INVISIBLE);
                 startActivity(new Intent(MainActivity.this, AddLocation.class));
                 break;
+            case R.id.nav_seller_product_request:
+                startActivity(new Intent(getApplicationContext(), AllBuyerRentalRequests.class));
+                break;
+            case R.id.nav_seller_sent_product_offers:
+                startActivity(new Intent(getApplicationContext(), SentRentalRequestBySeller.class));
+                break;
+
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

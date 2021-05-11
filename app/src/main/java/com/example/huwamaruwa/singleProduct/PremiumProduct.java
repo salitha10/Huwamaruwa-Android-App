@@ -4,13 +4,16 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.appcompat.widget.Toolbar;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -59,6 +62,9 @@ public class PremiumProduct extends AppCompatActivity {
     private String sName;
     private CardView recentRentals;
     private CardView singleStore;
+
+    private Toolbar toolbar;
+
     public static final String RS="RS. ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,14 +74,13 @@ public class PremiumProduct extends AppCompatActivity {
         //make loading animation
 
 
-
         //get View by Id
         img1 = findViewById(R.id.imgPremiumProduct_1);
         img2 = findViewById(R.id.imgPremiumProduct_2);
         img3 = findViewById(R.id.imgPremiumProduct_3);
         img4 = findViewById(R.id.imgPremiumProduct_4);
         imgMain = findViewById(R.id.imgPremiumProduct_main);
-
+        toolbar = findViewById(R.id.toolbar);
         txtTitle = findViewById(R.id.txtPremiumProduct_title);
         txtPrice = findViewById(R.id.txtPremiumProduct_price);
         txtTime = findViewById(R.id.txtPremiumProduct_time);
@@ -104,10 +109,23 @@ public class PremiumProduct extends AppCompatActivity {
         pagerAdapter.addFragment(feedbackTab_fragment,"FeedBack");
         viewPager.setAdapter(pagerAdapter);
 
+        //set Toolbar title
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         //Get parcelable object via Intent
          product = getIntent().getParcelableExtra(Home_recycler_1_adapter.SINGLE_PRODUCT_TAG);
 
-
+        getSupportActionBar().setTitle(product.getTitle());
 
         if (!product.getIsPremium()){ //restrict access for Non Premium Products
             premiumDescription.setVisibility(View.GONE);
@@ -153,8 +171,6 @@ public class PremiumProduct extends AppCompatActivity {
        }else sellerName.setVisibility(View.GONE);
 
 
-
-
         SimpleDateFormat dateTimeInGMT = new SimpleDateFormat("dd");
         //Setting the time zone
         dateTimeInGMT.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
@@ -183,10 +199,11 @@ public class PremiumProduct extends AppCompatActivity {
 
     }
 
+
+
     @Override
     protected void onResume() {
         super.onResume();
-
         btnRentProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
