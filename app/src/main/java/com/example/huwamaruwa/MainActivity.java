@@ -2,13 +2,10 @@ package com.example.huwamaruwa;
 
 import android.content.Context;
 
-import android.content.Context;
-
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.util.AttributeSet;
 import android.os.Handler;
 import android.util.Log;
 import android.util.AttributeSet;
@@ -41,12 +38,9 @@ import com.example.huwamaruwa.Home.categoty_locations.LocationListFragment;
 import com.example.huwamaruwa.Models.User;
 import com.example.huwamaruwa.Models.UserBehaviours;
 import com.example.huwamaruwa.R;
-import com.example.huwamaruwa.Models.User;
-import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
 import com.example.huwamaruwa.RentalRequests.nonPremium_Requests_seller_sideFragment;
 import com.example.huwamaruwa.addProduct.AddNewItem;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -80,25 +74,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     String userId, name, userType;
 
 
-
-    FirebaseUser currentUser;
-    DatabaseReference reference;
-
-    TextView loginName, loginSellerType;
-    String userId, name, userType;
-
-
     FloatingActionButton floatingActionButton_add;
     FloatingActionButton floatingActionButton_req;
     TextView txtFloatingAdd,txtFloatingReq;
-
     ConstraintLayout floatingSheet;
-
     Animation rotateOpenAnim;
     Animation rotateCloseAnim;
     Animation fromBottomAnim;
     Animation toBottomAnim;
-
     Animation bottomSheet;
     Animation topSheet;
     Button btnCategory;
@@ -110,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
 
+        setContentView(R.layout.activity_main);
         //get values by id
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
@@ -127,9 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         floatingActionButton_req = findViewById(R.id.floating_buyer_req_button);
         txtFloatingAdd = findViewById(R.id.txtfloating_add);
         txtFloatingReq = findViewById(R.id.txtfloating_req);
-
         floatingSheet = findViewById(R.id.floating_bottom_sheet);
-
         //set app name to toolbar
        // setSupportActionBar(toolbar);
 
@@ -149,43 +130,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
         userId = user.getUid();
-
         userBehaviours = new UserBehaviours(userId);
 
-        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
-
-        reference = FirebaseDatabase.getInstance().getReference();
-        Query query = reference.child("Users").orderByChild("userId").equalTo(userId).limitToFirst(1);
-        query.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    name = dataSnapshot.child("name").getValue().toString();
-                    userType = dataSnapshot.child("userType").getValue().toString();
-
-                }
-                loginName.setText(name);
-                loginSellerType.setText(userType);
-
-                    Toast.makeText(getApplicationContext(), "Set values", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getApplicationContext(), "Failed", Toast.LENGTH_SHORT).show();
-            }
-        });
-        View headerView = navigationView.getHeaderView(0);
-        loginName = (TextView) headerView.findViewById(R.id.LoginName);
-        loginSellerType = (TextView) headerView.findViewById(R.id.LoginSellerType);
-
-
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.e("login",user.getUid());
-        userId = user.getUid();
-
-        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
 
         reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference.child("Users").orderByChild("userId").equalTo(userId).limitToFirst(1);
@@ -223,10 +169,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 rotateCloseAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.rotate_closefloating_anim);
                 fromBottomAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.from_bottom_floating_anim);
                 toBottomAnim = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.to_bottom_floating_anim);
-
                 bottomSheet = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floating_bottom_top_animation);
                 topSheet = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floating_bottom_bottom_animation);
-
                 setVisibility(clicker);
 
                //
@@ -297,22 +241,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onStart();
 
 //            Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
-        floatingActionButton_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AddNewItem.class);
-                startActivity(intent);
-
-            }
-        });
-
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-//            Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
     }
 
 
@@ -324,6 +252,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -351,7 +281,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.replace(R.id.fragmentDefault,fragment);
                 fragmentTransaction.commit();
                 break;
-                case R.id.nav_seller_requests:
+            case R.id.nav_seller_requests:
                 fragment = new nonPremium_Requests_seller_sideFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
@@ -379,6 +309,4 @@ public static boolean isConnected(Context context){
         return true;
     }else return false;
     }
-
-
 }

@@ -77,7 +77,6 @@ public class RequestRent extends AppCompatActivity {
 
         product = getIntent().getParcelableExtra(PremiumProduct.REQUEST_RENT_TAG);
 
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
         userId = user.getUid();
