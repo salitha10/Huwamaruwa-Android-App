@@ -90,9 +90,9 @@ public class AddNewItem extends AppCompatActivity {
         swhAddpost=(Switch)findViewById(R.id.swhAddpost);
 
         //getting current user
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.e("login",user.getUid());
-        userId = user.getUid();
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        Log.e("login",user.getUid());
+//        userId = user.getUid();
 
         img_list = new ArrayList<>();
         imgData = new String[4];
