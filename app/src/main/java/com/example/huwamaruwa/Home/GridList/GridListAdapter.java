@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Home.Home_recycler_1_adapter;
+import com.example.huwamaruwa.Login;
 import com.example.huwamaruwa.MainActivity;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.R;
@@ -79,8 +80,8 @@ public class GridListAdapter extends RecyclerView.Adapter<GridListAdapter.ViewHo
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.userBehaviours.addBehaviour(product_list.get(position));
-                MainActivity.userBehaviours.uploadData();
+                Login.userBehaviours.addBehaviour(product_list.get(position));
+                Login.userBehaviours.uploadData();
                 Intent intent = new Intent(context, PremiumProduct.class);
                 intent.putExtra(Home_recycler_1_adapter.SINGLE_PRODUCT_TAG,product_list.get(position));
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

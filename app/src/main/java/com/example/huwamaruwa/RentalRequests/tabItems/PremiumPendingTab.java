@@ -83,7 +83,7 @@ public class PremiumPendingTab extends Fragment {
             }
 
         });
-        if (request_list == null ) noData.setText(R.string.no_data);
+        if (request_list == null ) ;
         else pendingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
     }

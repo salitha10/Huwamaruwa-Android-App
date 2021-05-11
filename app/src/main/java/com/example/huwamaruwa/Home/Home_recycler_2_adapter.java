@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Login;
 import com.example.huwamaruwa.MainActivity;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.R;
@@ -79,8 +80,8 @@ public class Home_recycler_2_adapter extends RecyclerView.Adapter<Home_recycler_
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainActivity.userBehaviours.addBehaviour(product_list.get(position));
-                MainActivity.userBehaviours.uploadData();
+                Login.userBehaviours.addBehaviour(product_list.get(position));
+                Login.userBehaviours.uploadData();
                 Intent intent = new Intent(context, PremiumProduct.class);
                 intent.putExtra(Home_recycler_1_adapter.SINGLE_PRODUCT_TAG,product_list.get(position));
                 context.startActivity(intent);
