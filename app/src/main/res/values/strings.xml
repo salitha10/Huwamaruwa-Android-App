@@ -119,6 +119,7 @@
     <string name="specs_min_rent">Minimum Rental Time (Days) :</string>
     <string name="specs_price">Price :</string>
 
+
     //Kavindya
     <string name="select_category">select Category</string>
     <string name="select_location">select Location</string>
@@ -150,7 +151,7 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="premiumRentalRequestsTitle">Rental Request Manager</string>
-  
+
     <string name="initialDeposit">Initial Deposit :</string>
 
     <string name="view_product">View Product</string>
@@ -221,6 +222,7 @@
     <string name="clear_history">Clear History</string>
     <string name="store">Store</string>
     <string name="contact_user">Contact Seller :</string>
+
 
     <string name="title_activity_maps">Map</string>
     <string name="close">Close</string>

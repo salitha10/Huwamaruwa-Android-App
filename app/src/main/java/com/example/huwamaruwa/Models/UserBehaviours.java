@@ -32,6 +32,12 @@ public class UserBehaviours {
     public void uploadData(){
         dbRef.child(userId).setValue(products);
     }
+
+    public void setBehaveArray(ArrayList<Product>list){
+        for (int i = 0 ; i < list.size() ; i++) {
+            this.products.add(list.get(i));
+        }
+    }
     public ArrayList<Product> getProducts() {
         return products;
     }

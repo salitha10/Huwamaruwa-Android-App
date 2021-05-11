@@ -143,6 +143,10 @@
         <activity android:name=".ProfPicFullScreen"></activity>
         <activity android:name=".buyerRentalRequestManage.ProductImageFullScreen" />
 
+        <activity android:name=".Home.AddLocation">
+
+        </activity>
+        <activity android:name=".Home.GridList.GridList" />
 
         <meta-data
             android:name="preloaded_fonts"
