@@ -80,7 +80,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView loginName, loginSellerType;
     CircularImageView profileIcon;
     String userId, name, userType, userProfIcon;
-
     FloatingActionButton floatingActionButton_add;
     FloatingActionButton floatingActionButton_req;
     TextView txtFloatingAdd,txtFloatingReq;
@@ -93,7 +92,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Animation topSheet;
     Button btnCategory;
     Button btnLocation;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -119,7 +117,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         txtFloatingAdd = findViewById(R.id.txtfloating_add);
         txtFloatingReq = findViewById(R.id.txtfloating_req);
         floatingSheet = findViewById(R.id.floating_bottom_sheet);
-
 
         //get Current User
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -184,29 +181,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        //set app name to toolbar
-       // setSupportActionBar(toolbar);
-
-
-
-        //set toggle event
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        //set navigation view clickable
-        navigationView.setNavigationItemSelectedListener(this);
-        View headerView = navigationView.getHeaderView(0);
-        loginName = (TextView) headerView.findViewById(R.id.LoginName);
-        loginSellerType = (TextView) headerView.findViewById(R.id.LoginSellerType);
-        profileIcon = (CircularImageView) headerView.findViewById(R.id.profile_icon);
-
-
-
-
-//        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
-
 
 
 
@@ -234,6 +208,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 //        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
+
+
+
+
+
+
+
+
 
 
 
@@ -360,6 +342,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
@@ -395,7 +378,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.commit();
                 break;
             case R.id.admin_add_location:
-
                 floatingActionButton.setVisibility(View.INVISIBLE);
                 startActivity(new Intent(MainActivity.this, AddLocation.class));
                 break;
@@ -405,7 +387,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_seller_sent_product_offers:
                 startActivity(new Intent(getApplicationContext(), SentRentalRequestBySeller.class));
                 break;
-
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
