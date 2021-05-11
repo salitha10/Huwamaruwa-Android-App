@@ -31,7 +31,7 @@ public class Product implements Parcelable {
     private String images2;
     private String images3;
     private String images4;
-    private int categoryID;
+    private String categoryID;
     private String contactNumber;
     private String location;
     private double depositPercentage;
@@ -168,11 +168,19 @@ public class Product implements Parcelable {
         this.images4 = images4;
     }
 
-    public int getCategoryID() {
+    public boolean isPremium() {
+        return isPremium;
+    }
+
+    public void setPremium(boolean premium) {
+        isPremium = premium;
+    }
+
+    public String getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(int categoryID) {
+    public void setCategoryID(String categoryID) {
         this.categoryID = categoryID;
     }
 

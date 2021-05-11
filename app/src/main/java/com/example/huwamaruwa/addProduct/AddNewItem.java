@@ -1,3 +1,4 @@
+
 package com.example.huwamaruwa.addProduct;
 
 import androidx.annotation.NonNull;
@@ -25,13 +26,13 @@ import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.huwamaruwa.Models.Categories;
 import com.example.huwamaruwa.Models.Product;
 
 import com.example.huwamaruwa.Progress.LoadingProgress;
 import com.example.huwamaruwa.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -48,7 +49,6 @@ import java.io.IOException;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
 
@@ -62,6 +62,7 @@ public class AddNewItem extends AppCompatActivity {
     private static final int CAMERA_REQEST = 1888;
     Button btnTakePhoto, btnGallery, btnPost;
     ArrayList<Uri> img_list;
+    ArrayList<String> category;
 
     Product post;
 
@@ -71,6 +72,7 @@ public class AddNewItem extends AppCompatActivity {
     String imgData[];
     RadioButton RentperDay_radio,RentperHour_radio;
     String userId;
+    Categories cat;
 
     int i=0;
 
@@ -92,9 +94,9 @@ public class AddNewItem extends AppCompatActivity {
         swhAddpost=(Switch)findViewById(R.id.swhAddpost);
 
         //getting current user
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        Log.e("login",user.getUid());
-        userId = user.getUid();
+//        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+//        Log.e("login",user.getUid());
+//        userId = user.getUid();
 
         img_list = new ArrayList<>();
         imgData = new String[4];
@@ -107,6 +109,10 @@ public class AddNewItem extends AppCompatActivity {
 
         RentperHour_radio = findViewById(R.id.RentperHour_radio);
         RentperDay_radio = findViewById(R.id.perDay_radio);
+
+//        category = new ArrayList<String>();
+//        category.add(cat.getCategoryTitle());
+
 
 
 
@@ -141,16 +147,6 @@ public class AddNewItem extends AppCompatActivity {
 
             }
         });
-
-
-//        btnTakePhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                captureImg();
-//            }
-//        });
-
-
 
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -334,9 +330,7 @@ public class AddNewItem extends AppCompatActivity {
     }
 
 
-    private void captureImg(){
 
-    }
 
 
     @Override
@@ -356,4 +350,5 @@ public class AddNewItem extends AppCompatActivity {
         recyclerView.setAdapter(postAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
     }
+
 }

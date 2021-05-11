@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/parentLayoutcat"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/mainCardView"
+        android:layout_width="394dp"
+        android:layout_height="164dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="8dp"
+        android:foreground="@drawable/rectangle"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView11">
+
+        <RelativeLayout
+            android:id="@+id/parentLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+
+            <TextView
+                android:id="@+id/catagoryName"
+                android:layout_width="213dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:text="@string/description" />
+
+            <TextView
+                android:id="@+id/catagoryid"
+                android:layout_width="213dp"
+                android:layout_height="36dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="100dp"
+                android:text="@string/description" />
+
+            <ImageButton
+                android:id="@+id/catDelete"
+                android:layout_width="wrap_content"
+                android:layout_height="53dp"
+                android:layout_marginStart="330dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="20dp"
+                android:outlineProvider="none"
+                app:srcCompat="@drawable/ic_deletebin" />
+
+            <ImageButton
+                android:id="@+id/catEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="53dp"
+                android:layout_marginStart="250dp"
+                android:layout_marginTop="80dp"
+                app:srcCompat="@drawable/ic_editpen" />
+            <!--            </LinearLayout>-->
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -75,7 +75,9 @@
         <activity android:name=".singleProduct.RequestRent" />
 
         <activity android:name=".singleProduct.PremiumProduct" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity" >
+
+        </activity>
         <activity
             android:name=".ProductReviews.AddProductReview"
             android:exported="true" />
@@ -105,19 +107,32 @@
 
 
         <activity android:name=".addProduct.AddNewItem">
+
+
         </activity>
 
-
-
-        <activity android:name=".SplashScreen" >
+        <activity android:name=".addCategory.EditCategoryData"></activity>
+        <activity android:name=".MypostAD.EditMyAd"></activity>
+        <activity android:name=".MypostAD.UserPostedAds">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+
+
+
+
+        <activity android:name=".SplashScreen" >
+
         </activity>
 
         <activity android:name=".AddCategory" />
+        <activity android:name=".addCategory.allAddCategories">
+
+        </activity>
 
         <activity android:name=".ProfPicFullScreen"></activity>
         <activity android:name=".buyerRentalRequestManage.ProductImageFullScreen" />
