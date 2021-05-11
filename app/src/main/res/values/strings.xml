@@ -187,12 +187,10 @@
     <string name="store">Store</string>
     <string name="contact_user">Contact Seller :</string>
 
-
     <string name="close">Close</string>
     <string name="turn_on_connection">Turn On Connection</string>
     <string name="connection_time_out">Connection Time Out !</string>
     <string name="add_location">Add Location</string>
-
 
     <string name="title_activity_maps">Map</string>
     <string name="nav_buyer_panel_title">Buyer</string>

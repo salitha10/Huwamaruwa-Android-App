@@ -120,6 +120,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         txtFloatingReq = findViewById(R.id.txtfloating_req);
         floatingSheet = findViewById(R.id.floating_bottom_sheet);
 
+
         //get Current User
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
@@ -183,6 +184,29 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         },1000);
 
 
+
+        //set app name to toolbar
+       // setSupportActionBar(toolbar);
+
+
+
+        //set toggle event
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+
+        //set navigation view clickable
+        navigationView.setNavigationItemSelectedListener(this);
+        View headerView = navigationView.getHeaderView(0);
+        loginName = (TextView) headerView.findViewById(R.id.LoginName);
+        loginSellerType = (TextView) headerView.findViewById(R.id.LoginSellerType);
+        profileIcon = (CircularImageView) headerView.findViewById(R.id.profile_icon);
+
+
+
+
+//        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
 
 
 
@@ -343,7 +367,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
-
 
 
     @Override
