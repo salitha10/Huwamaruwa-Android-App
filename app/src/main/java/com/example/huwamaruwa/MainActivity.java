@@ -3,16 +3,17 @@ package com.example.huwamaruwa;
 import android.content.Context;
 
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
-
 import android.os.Handler;
-
 import android.util.Log;
 import android.util.AttributeSet;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,12 +30,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.example.huwamaruwa.Home.AddLocation;
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
+import com.example.huwamaruwa.Home.categoty_locations.CategoryListFragment;
+import com.example.huwamaruwa.Home.categoty_locations.LocationListFragment;
 import com.example.huwamaruwa.Models.User;
-
 import com.example.huwamaruwa.Models.UserBehaviours;
-
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
 import com.example.huwamaruwa.RentalRequests.nonPremium_Requests_seller_sideFragment;
@@ -64,9 +66,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     FragmentManager fragmentManager;
     StorageReference storageReference;
     FloatingActionButton floatingActionButton;
-
   public static  UserBehaviours userBehaviours;
-
     FirebaseUser currentUser;
     DatabaseReference reference;
 
@@ -84,7 +84,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Animation toBottomAnim;
     Animation bottomSheet;
     Animation topSheet;
-
+    Button btnCategory;
+    Button btnLocation;
 
 
 
@@ -99,6 +100,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
+        btnCategory = findViewById(R.id.btnCategory_home);
+        btnLocation = findViewById(R.id.btnCancel);
 
 
         clicker = 0;
@@ -127,12 +130,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
         userId = user.getUid();
-
-
         userBehaviours = new UserBehaviours(userId);
 
-
-        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
 
         reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference.child("Users").orderByChild("userId").equalTo(userId).limitToFirst(1);
@@ -175,6 +174,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 setVisibility(clicker);
 
                //
+            }
+        });
+        btnCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragment = new CategoryListFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentDefault,fragment);
+                fragmentTransaction.commit();
+            }
+        });
+        btnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragment = new LocationListFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentDefault,fragment);
+                fragmentTransaction.commit();
             }
         });
     }
@@ -262,13 +281,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.replace(R.id.fragmentDefault,fragment);
                 fragmentTransaction.commit();
                 break;
-                case R.id.nav_seller_requests:
+            case R.id.nav_seller_requests:
                 fragment = new nonPremium_Requests_seller_sideFragment();
                 fragmentManager = getSupportFragmentManager();
                 fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.replace(R.id.fragmentDefault,fragment);
                 fragmentTransaction.commit();
                 break;
+            case R.id.admin_add_location:
+                startActivity(new Intent(MainActivity.this, AddLocation.class));
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -279,8 +300,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         startActivity(new Intent(MainActivity.this, Login.class));
     }
 
+public static boolean isConnected(Context context){
+    ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+    NetworkInfo wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+    NetworkInfo mobile = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
-    private void content() {
+    if ((wifi != null && wifi.isConnected())||(mobile != null && mobile.isConnected())){
+        return true;
+    }else return false;
     }
-
 }

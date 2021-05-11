@@ -1,10 +1,7 @@
-package com.example.huwamaruwa.Home;
-import android.app.Dialog;
+package com.example.huwamaruwa.Home.GridList;
+
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +11,9 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Home.Home_recycler_1_adapter;
 import com.example.huwamaruwa.MainActivity;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.R;
@@ -25,18 +24,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class Home_recycler_3_adapter extends RecyclerView.Adapter<Home_recycler_3_adapter.ViewHolder> {
-    private ArrayList<Product>product_list;
-    private Context context;
-    private Dialog dialog;
+public class GridListAdapter extends RecyclerView.Adapter<GridListAdapter.ViewHolder> {
+    ArrayList<Product>product_list;
+    Context context;
 
-    public Home_recycler_3_adapter(ArrayList<Product> product_list, Context context) {
+    public GridListAdapter(ArrayList<Product> product_list, Context context) {
         this.product_list = product_list;
         this.context = context;
-        dialog = new Dialog(context);
-        dialog.setContentView(R.layout.connection_alert);
-        dialog.setCancelable(false);
-        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
     }
 
     @NonNull
@@ -48,7 +42,7 @@ public class Home_recycler_3_adapter extends RecyclerView.Adapter<Home_recycler_
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Glide.with(context).load(product_list.get(position).getImages1()).placeholder(R.drawable.loading_image).error(R.drawable.image_error).into(holder.mainImg);
+        Glide.with(context).load(product_list.get(position).getImages1()).into(holder.mainImg);
         holder.txtTitle.setText(product_list.get(position).getTitle().length() > 13?product_list.get(position).getTitle().replace(product_list.get(position).getTitle().substring(12),"..."):product_list.get(position).getTitle());
         holder.txtPrice.setText(product_list.get(position).isPerHour()?String.valueOf(product_list.get(position).getPrice()).concat(" /Per Hour"):String.valueOf(product_list.get(position).getPrice()).concat(" /Per Day"));
         if (!product_list.get(position).getIsPremium()){
@@ -82,34 +76,17 @@ public class Home_recycler_3_adapter extends RecyclerView.Adapter<Home_recycler_
             holder.txtTime.setText((sec - product.getDate_in_sec())+" seconds ago");
         }
 
-
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (MainActivity.isConnected(context)){
-                    MainActivity.userBehaviours.addBehaviour(product_list.get(position));
-                    MainActivity.userBehaviours.uploadData();
-                    Intent intent = new Intent(context, PremiumProduct.class);
-                    intent.putExtra(Home_recycler_1_adapter.SINGLE_PRODUCT_TAG,product_list.get(position));
-                    context.startActivity(intent);
-                }else {
-                    dialog.show();
-                    dialog.findViewById(R.id.btn_connection_close).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            context.startActivity(new Intent(context,MainActivity.class));
-                        }
-                    });
-                    dialog.findViewById(R.id.btn_connection_turn_on).setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            context.startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
-                        }
-                    });
-                }
+                MainActivity.userBehaviours.addBehaviour(product_list.get(position));
+                MainActivity.userBehaviours.uploadData();
+                Intent intent = new Intent(context, PremiumProduct.class);
+                intent.putExtra(Home_recycler_1_adapter.SINGLE_PRODUCT_TAG,product_list.get(position));
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                context.startActivity(intent);
             }
         });
-
     }
 
     @Override

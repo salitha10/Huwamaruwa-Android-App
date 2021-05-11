@@ -39,6 +39,10 @@
                         android:id="@+id/admin_Rental_requests"
                         android:icon="@drawable/rental_request_icon"
                         android:title="@string/nav_request_rentals" />
+                    <item
+                        android:id="@+id/admin_add_location"
+                        android:icon="@drawable/add_location_icon"
+                        android:title="@string/add_location" />
                 </group>
             </menu>
         </item>

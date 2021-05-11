@@ -25,6 +25,7 @@ import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.huwamaruwa.MainActivity;
 import com.example.huwamaruwa.Models.Product;
 
 import com.example.huwamaruwa.Progress.LoadingProgress;
@@ -129,6 +130,11 @@ public class AddNewItem extends AppCompatActivity {
         autoCompleteTextloc.setAdapter(arrayAdapter2);
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override
@@ -356,4 +362,5 @@ public class AddNewItem extends AppCompatActivity {
         recyclerView.setAdapter(postAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
     }
+
 }

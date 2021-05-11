@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.huwamaruwa.Models.Product;
@@ -23,7 +24,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class PremiumStore extends AppCompatActivity {
-private String sellerID;
+    private static final String TAG ="premiumStore" ;
+    private String sellerID;
 private DatabaseReference dbRef;
 private DatabaseReference uDbRef;
 private ArrayList<Product>product_list;
@@ -64,16 +66,17 @@ private String sellerName;
 
 
 
+    //get database reference
     dbRef = FirebaseDatabase.getInstance().getReference().child("Product");
-
+    //query
     Query query1 = dbRef.orderByChild("sellerId").equalTo(sellerID);
 
     query1.addListenerForSingleValueEvent(new ValueEventListener() {
         @Override
         public void onDataChange(@NonNull DataSnapshot snapshot) {
-            if (snapshot.hasChildren()){
+            if (snapshot.hasChildren()){ //check whether query has value or not
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                   if (Boolean.parseBoolean(dataSnapshot.child("isPremium").getValue().toString())){
+                   if (Boolean.parseBoolean(dataSnapshot.child("isPremium").getValue().toString())){ //check the product is premium or not
                        Product product = new Product();
                        product.setTitle(dataSnapshot.child("title").getValue().toString());
                        product.setPrice(Double.parseDouble(dataSnapshot.child("price").getValue().toString()));
@@ -99,10 +102,13 @@ private String sellerName;
                        product_list.add(product);
                    }
                 }
+                //create adapter class object
                 PremiumStoreAdapter adapter = new PremiumStoreAdapter(product_list,getApplicationContext());
+                //setup adapter to recycler view
                 recyclerView.setAdapter(adapter);
+                //setup grid layout for recycler view
                 recyclerView.setLayoutManager(new GridLayoutManager(getApplicationContext(),3));
-            }
+            }else Log.e(TAG,"Premium Store:Null object");
         }
 
         @Override

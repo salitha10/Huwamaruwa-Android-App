@@ -173,8 +173,8 @@
     <string name="expiry">Expiry MM/YY</string>
     <string name="cvv">CVV</string>
     <string name="terms_and_condition">Save my card details for faster pyments. I agree to Terms and Conditions</string>
-    <string name="warding_confirm_cashonDelivery" >Confirm Request!</string>
-    <string name="warding_confirm_cashonDelivery_description" >You can pay in cash to our courier when you received the product at your doorstep.</string>
+    <string name="warding_confirm_cashonDelivery">Confirm Request!</string>
+    <string name="warding_confirm_cashonDelivery_description">You can pay in cash to our courier when you received the product at your doorstep.</string>
     <string name="confirm">Confirm</string>
     <string name="rent_date">Rent Date:</string>
     <string name="status">Status :</string>
@@ -184,6 +184,10 @@
     <string name="contact_user">Contact Seller :</string>
 
     <string name="title_activity_maps">Map</string>
+    <string name="close">Close</string>
+    <string name="turn_on_connection">Turn On Connection</string>
+    <string name="connection_time_out">Connection Time Out !</string>
+    <string name="add_location">Add Location</string>
 
 
 </resources>

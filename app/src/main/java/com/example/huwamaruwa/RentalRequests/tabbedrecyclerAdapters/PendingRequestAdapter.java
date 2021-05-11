@@ -1,6 +1,7 @@
 package com.example.huwamaruwa.RentalRequests.tabbedrecyclerAdapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +36,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAdapter.ViewHolder> {
-
+    private static final String TAG = "PendingRequestAdapter";
     private DatabaseReference dbRef;
 
     private DatabaseReference uDbRef;
@@ -185,13 +186,13 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
     private void viewProduct(int position) {
 
     }
-
+//update Request Details
     private void updateRequest(ViewHolder holder, int position) {
-        dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
+        dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent"); //get Database Reference
         dbRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.hasChild(pending_req_list.get(position).getId())){
+                if (snapshot.hasChild(pending_req_list.get(position).getId())){ //check whether child is exist or not
                     try {
                         RequestRentModel requestRentModel = pending_req_list.get(position);
                         requestRentModel.setAddress(holder.edtAddress.getText().toString().trim());
@@ -209,7 +210,8 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
                             }
                         });
                     }catch (Exception e){
-                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Log.e(TAG,"Pending Req: "+e.getMessage());
+                        //Toast.makeText(context, e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -220,6 +222,7 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
             }
         });
     }
+    //delete request from database
     private void deleteRequest(int position) {
         dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent").child(pending_req_list.get(position).getId());
         dbRef.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -231,6 +234,7 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
             @Override
             public void onFailure(@NonNull Exception e) {
                 Toast.makeText(context, "Request Failed to Delete", Toast.LENGTH_SHORT).show();
+                Log.e(TAG,"Pending Req: Delete fail");
             }
         });
     }

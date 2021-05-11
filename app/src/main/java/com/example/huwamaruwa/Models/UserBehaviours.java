@@ -19,12 +19,12 @@ public class UserBehaviours {
     }
 
     public void addBehaviour(Product product){
-int count = 0;
+        int count = 0;
         for (Product product1:
-             products) {
-           if(product1.getId().equals(product.getId())){
-               count++;
-           }
+                products) {
+            if(product1.getId().equals(product.getId())){
+                count++;
+            }
         }
         if (count == 0) products.add(product);
     }
