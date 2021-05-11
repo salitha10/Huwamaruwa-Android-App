@@ -128,11 +128,12 @@ public class RequestRent extends AppCompatActivity {
 
             try {
                 if (TextUtils.isEmpty(edtAddress.getText())){
-                    Toast.makeText(RequestRent.this, "Address Required", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(RequestRent.this, "Address Required", Toast.LENGTH_SHORT).show();
+                    edtAddress.setError("Address Is Required");
                 }else if (TextUtils.isEmpty(edtContactNumber.getText())){
-                    Toast.makeText(RequestRent.this, "Contact number Required", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(RequestRent.this, "Contact number Required", Toast.LENGTH_SHORT).show();
                 }else if (TextUtils.isEmpty(textView.getText())){
-                    Toast.makeText(RequestRent.this, "Duration required", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(RequestRent.this, "Duration required", Toast.LENGTH_SHORT).show();
                 }else {
                     if (dateDif >= product.getMinRentalTime() ){//check Minimum Rental Time
 
@@ -167,30 +168,32 @@ public class RequestRent extends AppCompatActivity {
     btnReq.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
+
+            Toast.makeText(RequestRent.this, "Clicked Send Req", Toast.LENGTH_SHORT).show();
             try {
                 if (TextUtils.isEmpty(edtAddress.getText())){
-                    Toast.makeText(RequestRent.this, "Address Required", Toast.LENGTH_SHORT).show();
+                    edtAddress.setError("Address is Required");
                 }else if (TextUtils.isEmpty(edtContactNumber.getText())){
-                    Toast.makeText(RequestRent.this, "Contact number Required", Toast.LENGTH_SHORT).show();
+                        edtContactNumber.setError("Contact number is Required");
                 }else if (TextUtils.isEmpty(textView.getText())){
-                    Toast.makeText(RequestRent.this, "Duration required", Toast.LENGTH_SHORT).show();
+                        textView.setError("Duration Required");
                 }else {
                     if (dateDif >= product.getMinRentalTime() ){//check Minimum Rental Time
                         dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
-                        Bundle bundle = new Bundle();
-                        bundle.putString("address",edtAddress.getText().toString());
-                        bundle.putString("contact",edtContactNumber.getText().toString());
-                        bundle.putString("duration",textView.getText().toString());
-                        bundle.putDouble("deposit",deposit);
-                        bundle.putDouble("total",total);
-                        bundle.putString("isPremium",Boolean.toString(product.getIsPremium()));
-                        bundle.putString("productId",product.getId());
-                        bundle.putString("dateDif",Integer.toString(dateDif));
-                        bundle.putString("userId",userId);
+                        RequestRentModel request = new RequestRentModel();
+                        request.setAddress(edtAddress.getText().toString());
+                        request.setContactNumber(edtContactNumber.getText().toString());
+                        request.setDuration(textView.getText().toString());
+                        request.setInitialDeposit(deposit);
+                        request.setTotal(total);
+                        request.setIsPremium(Boolean.toString(product.getIsPremium()));
+                        request.setProductId(product.getId());
+                        request.setDateDif(Integer.toString(dateDif));
+                        request.setUserId(userId);
                         String id = dbRef.push().getKey();
-                        requestRent.setId(id);
-                        dbRef.child(requestRent.getId()).setValue(requestRent).addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
+                        request.setId(id);
+                        dbRef.child(requestRent.getId()).setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
+         @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(RequestRent.this, "Data added successfully", Toast.LENGTH_SHORT).show();
                             }
@@ -205,6 +208,11 @@ public class RequestRent extends AppCompatActivity {
                     }else {
                         Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
                     }
+
+                    }else {
+                        Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
+                    }
+
 
 
                 }

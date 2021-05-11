@@ -51,13 +51,14 @@ public class SpecificationTab_fragment extends Fragment {
 
         contactLayout = view.findViewById(R.id.specs_contact_layout);
 
+
+        btnContact = view.findViewById(R.id.btnproductDetails_contact);
+        btnChatWithSeller = view.findViewById(R.id.btnPremiumProduct_chat);
         if (product.getIsPremium()) {
             contactLayout.setVisibility(View.GONE);
             btnChatWithSeller.setVisibility(View.GONE);
         }
 
-        btnContact = view.findViewById(R.id.btnproductDetails_contact);
-        btnChatWithSeller = view.findViewById(R.id.btnPremiumProduct_chat);
         uDbRef = FirebaseDatabase.getInstance().getReference().child("Users");
         Query query = uDbRef.orderByChild("userId").equalTo(product.getSellerId());
 

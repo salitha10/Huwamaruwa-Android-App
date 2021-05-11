@@ -47,6 +47,7 @@ public class PremiumProduct extends AppCompatActivity {
     public static final String TAG_PRODUCT_ID = "com.example.huwamaruwa.requestRent.product.id";
     public static final String TAG_SELLER_ID = "com.example.huwamaruwa.requestRent.product.sellerId";
 
+
     //declare Variables
     private ImageView img1,img2,img3,img4,imgMain;
     private TextView txtTitle,txtPrice,txtTime,txtMaxRent,txtMinRent,sellerName;
@@ -62,9 +63,7 @@ public class PremiumProduct extends AppCompatActivity {
     private String sName;
     private CardView recentRentals;
     private CardView singleStore;
-
     private Toolbar toolbar;
-
     public static final String RS="RS. ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
