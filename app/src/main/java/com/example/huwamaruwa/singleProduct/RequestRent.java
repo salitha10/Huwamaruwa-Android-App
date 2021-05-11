@@ -37,6 +37,7 @@ import java.util.concurrent.TimeUnit;
 public class RequestRent extends AppCompatActivity {
 
     public static final String TAG_PAYMENT_DEPOSIT_AMOUNT = "com.example.huwamaruwa.payment.deposit_amount";
+    private static final String TAG = "request rent";
     Button btn,btnPay,btnReq;
     ImageView imgMain;
     TextView textView,txtTitle,txtDescription,txtPrice,txtTotal,txtDeposit;
@@ -52,7 +53,6 @@ public class RequestRent extends AppCompatActivity {
      DatabaseReference dbRef;
      private String userId;
     @Override
-    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_rent);
@@ -77,7 +77,6 @@ public class RequestRent extends AppCompatActivity {
 
         product = getIntent().getParcelableExtra(PremiumProduct.REQUEST_RENT_TAG);
 
-
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
         userId = user.getUid();
@@ -96,7 +95,7 @@ public class RequestRent extends AppCompatActivity {
     btn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+        //get Date Duration
             MaterialDatePicker.Builder<Pair<Long, Long>> builderRange = MaterialDatePicker.Builder.dateRangePicker();
             builderRange.setCalendarConstraints(limitRange().build());
             builderRange.setTitleText("Select Date Range");
@@ -117,7 +116,7 @@ public class RequestRent extends AppCompatActivity {
                     }
                     txtTotal.setText("Rs :".concat(Double.toString(total)));
 
-                     deposit = total * product.getDepositPercentage()/100.0;
+                    deposit = calcDeposit(total,product.getDepositPercentage());
                     txtDeposit.setText("Rs :".concat(Double.toString(deposit)));
                 }
             });
@@ -127,8 +126,6 @@ public class RequestRent extends AppCompatActivity {
         @Override
         public void onClick(View view) {
 
-
-
             try {
                 if (TextUtils.isEmpty(edtAddress.getText())){
                     Toast.makeText(RequestRent.this, "Address Required", Toast.LENGTH_SHORT).show();
@@ -137,7 +134,7 @@ public class RequestRent extends AppCompatActivity {
                 }else if (TextUtils.isEmpty(textView.getText())){
                     Toast.makeText(RequestRent.this, "Duration required", Toast.LENGTH_SHORT).show();
                 }else {
-                    if (dateDif >= product.getMinRentalTime() ){
+                    if (dateDif >= product.getMinRentalTime() ){//check Minimum Rental Time
 
                         Bundle bundle = new Bundle();
                         bundle.putString("address",edtAddress.getText().toString());
@@ -161,14 +158,65 @@ public class RequestRent extends AppCompatActivity {
 
                 }
             }catch (Exception e){
-                Toast.makeText(RequestRent.this, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG,"Request Rent Form: "+e.getMessage());
+                //Toast.makeText(RequestRent.this, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
         }
     });
+    btnReq.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            try {
+                if (TextUtils.isEmpty(edtAddress.getText())){
+                    Toast.makeText(RequestRent.this, "Address Required", Toast.LENGTH_SHORT).show();
+                }else if (TextUtils.isEmpty(edtContactNumber.getText())){
+                    Toast.makeText(RequestRent.this, "Contact number Required", Toast.LENGTH_SHORT).show();
+                }else if (TextUtils.isEmpty(textView.getText())){
+                    Toast.makeText(RequestRent.this, "Duration required", Toast.LENGTH_SHORT).show();
+                }else {
+                    if (dateDif >= product.getMinRentalTime() ){//check Minimum Rental Time
+                        dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
+                        Bundle bundle = new Bundle();
+                        bundle.putString("address",edtAddress.getText().toString());
+                        bundle.putString("contact",edtContactNumber.getText().toString());
+                        bundle.putString("duration",textView.getText().toString());
+                        bundle.putDouble("deposit",deposit);
+                        bundle.putDouble("total",total);
+                        bundle.putString("isPremium",Boolean.toString(product.getIsPremium()));
+                        bundle.putString("productId",product.getId());
+                        bundle.putString("dateDif",Integer.toString(dateDif));
+                        bundle.putString("userId",userId);
+                        String id = dbRef.push().getKey();
+                        requestRent.setId(id);
+                        dbRef.child(requestRent.getId()).setValue(requestRent).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(RequestRent.this, "Data added successfully", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(RequestRent.this, "Request failed", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+
+                    }else {
+                        Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
+                    }
+
+
+                }
+            }catch (Exception e){
+                Log.e(TAG,"Request Rent Form: "+e.getMessage());
+                //Toast.makeText(RequestRent.this, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    });
     }
 
-
+//validate calender with limit range
     private CalendarConstraints.Builder limitRange() {
 
         CalendarConstraints.Builder constraintsBuilderRange = new CalendarConstraints.Builder();
@@ -245,5 +293,8 @@ public class RequestRent extends AppCompatActivity {
         };
 
 
+    }
+    public double calcDeposit(double total,double percentage){
+        return (total * percentage)/100.0;
     }
 }

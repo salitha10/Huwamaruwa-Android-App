@@ -26,7 +26,6 @@
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
         app:lottie_rawRes="@raw/empty_file_lottie" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RentalReq_seller_side_processing_recycler"
         android:layout_width="match_parent"

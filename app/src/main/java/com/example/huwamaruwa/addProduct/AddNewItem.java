@@ -25,6 +25,7 @@ import android.widget.RadioButton;
 import android.widget.Switch;
 import android.widget.Toast;
 
+import com.example.huwamaruwa.MainActivity;
 import com.example.huwamaruwa.Models.Product;
 
 import com.example.huwamaruwa.Progress.LoadingProgress;
@@ -42,16 +43,13 @@ import com.google.firebase.storage.UploadTask;
 import com.sangcomz.fishbun.FishBun;
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter;
 
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
-
 
 public class AddNewItem extends AppCompatActivity {
 
@@ -129,6 +127,11 @@ public class AddNewItem extends AppCompatActivity {
         autoCompleteTextloc.setAdapter(arrayAdapter2);
 
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        startActivity(new Intent(this, MainActivity.class));
     }
 
     @Override
@@ -212,17 +215,12 @@ public class AddNewItem extends AppCompatActivity {
 
     public void dataUploader(){
 
-
-
         post = new Product();
-
         SimpleDateFormat dateTimeInGMT = new SimpleDateFormat("dd");
         //Setting the time zone
         dateTimeInGMT.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
         post.setDate_in_day(Integer.parseInt(dateTimeInGMT.format(new Date())));
-
         dateTimeInGMT = new SimpleDateFormat("HH");
-
         post.setDate_in_hour(Integer.parseInt(dateTimeInGMT.format(new Date())));
         dateTimeInGMT = new SimpleDateFormat("mm");
         post.setDate_in_min(Integer.parseInt(dateTimeInGMT.format(new Date())));
@@ -230,7 +228,6 @@ public class AddNewItem extends AppCompatActivity {
         post.setDate_in_sec(Integer.parseInt(dateTimeInGMT.format(new Date())));
         dateTimeInGMT = new SimpleDateFormat("yyy");
         post.setDate_in_year(Integer.parseInt(dateTimeInGMT.format(new Date())));
-
         Boolean isPremium = swhAddpost.isChecked();
         post.setIsPremium(isPremium);
         post.setLocation(autoCompleteTextloc.getText().toString().trim());
@@ -239,7 +236,6 @@ public class AddNewItem extends AppCompatActivity {
         post.setContactNumber(addProdcontact.getText().toString().trim());
         post.setDepositPercentage(Double.parseDouble(deposit.getText().toString().trim()));
         post.setDescription(prodDescription.getText().toString().trim());
-
         post.setImages1(imgData[0]);
         post.setImages2(imgData[1]);
         post.setImages3(imgData[2]);
@@ -356,4 +352,5 @@ public class AddNewItem extends AppCompatActivity {
         recyclerView.setAdapter(postAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.HORIZONTAL,false));
     }
+
 }

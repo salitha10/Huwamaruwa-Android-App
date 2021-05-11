@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.airbnb.lottie.LottieAnimationView;
-
 import com.example.huwamaruwa.Models.RequestRentModel;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.tabbedrecyclerAdapters.PendingRequestAdapter;
@@ -31,16 +30,13 @@ public class PremiumPendingTab extends Fragment {
     DatabaseReference dbRef;
     ArrayList<RequestRentModel> request_list;
     TextView noData;
-
     LottieAnimationView searchLottie,emptyLottie;
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.tab_pending,container,false);
 
         pendingRecycler = view.findViewById(R.id.RentalReq_seller_side_pending_recycler);
-
 
         searchLottie = view.findViewById(R.id.pending_tab_search_lottie);
         searchLottie.setVisibility(View.GONE);
@@ -57,7 +53,6 @@ public class PremiumPendingTab extends Fragment {
 
                 if (snapshot.hasChildren()){
                     for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
-
                        if (dataSnapshot.child("status").getValue().toString().equals("Pending")){
                            RequestRentModel request = new RequestRentModel();
                            request.setAddress(dataSnapshot.child("address").getValue().toString());
@@ -73,7 +68,6 @@ public class PremiumPendingTab extends Fragment {
                            request.setUserId(dataSnapshot.child("userId").getValue().toString());
                            request_list.add(request);
                        }
-
                     }
                 }else {
                     request_list = null;
@@ -89,7 +83,7 @@ public class PremiumPendingTab extends Fragment {
             }
 
         });
-        if (request_list == null ) noData.setText(R.string.no_data);
+        if (request_list == null ) ;
         else pendingRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         return view;
     }

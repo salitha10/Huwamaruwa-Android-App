@@ -45,7 +45,6 @@ public class TabCompleted extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChildren()){
                     for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
-
                         if (dataSnapshot.child("status").getValue().toString().equals("Delivered")){
                             RequestRentModel request = new RequestRentModel();
                             request.setAddress(dataSnapshot.child("address").getValue().toString());
@@ -61,7 +60,6 @@ public class TabCompleted extends Fragment {
                             request.setUserId(dataSnapshot.child("userId").getValue().toString());
                             request_list.add(request);
                         }
-
 
                     }
                 }

@@ -39,7 +39,6 @@
             android:orientation="vertical">
 
             <TextView
-
                 android:id="@+id/txtRequestRent_list_userName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -49,7 +48,6 @@
                 android:textSize="18sp" />
 
             <TextView
-
                 android:id="@+id/txtRequestRent_list_duration"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

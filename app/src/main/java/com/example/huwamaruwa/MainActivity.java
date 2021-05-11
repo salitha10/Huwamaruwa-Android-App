@@ -2,7 +2,10 @@ package com.example.huwamaruwa;
 
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -28,13 +31,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Home.AddLocation;
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
 
 
+import com.example.huwamaruwa.Home.categoty_locations.CategoryListFragment;
+import com.example.huwamaruwa.Home.categoty_locations.LocationListFragment;
 import com.example.huwamaruwa.Models.UserBehaviours;
 
-import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
 import com.example.huwamaruwa.RentalRequests.nonPremium_Requests_seller_sideFragment;
 import com.example.huwamaruwa.addProduct.AddNewItem;
@@ -52,7 +57,9 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.StorageReference;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
-import java.util.TimeZone;
+import android.widget.Button;
+
+
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     //define variables
@@ -75,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-  public static  UserBehaviours userBehaviours;
+
 
 
 
@@ -89,6 +96,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Animation toBottomAnim;
     Animation bottomSheet;
     Animation topSheet;
+    Button btnCategory;
+    Button btnLocation;
+
 
 
 
@@ -99,15 +109,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
         setContentView(R.layout.activity_main);
+
+        //
+
         //get values by id
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
-
-
-
-
+        btnCategory = findViewById(R.id.btnCategory_home);
+        btnLocation = findViewById(R.id.btnCancel);
 
         clicker = 0;
         floatingActionButton = findViewById(R.id.floating_add_product);
@@ -175,7 +186,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        userBehaviours = new UserBehaviours(userId);
+
 
 
 
@@ -199,6 +210,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 setVisibility(clicker);
 
                //
+            }
+        });
+        btnCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragment = new CategoryListFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentDefault,fragment);
+                fragmentTransaction.commit();
+            }
+        });
+        btnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fragment = new LocationListFragment();
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentDefault,fragment);
+                fragmentTransaction.commit();
             }
         });
     }
@@ -293,6 +324,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.replace(R.id.fragmentDefault,fragment);
                 fragmentTransaction.commit();
                 break;
+            case R.id.admin_add_location:
+                startActivity(new Intent(MainActivity.this, AddLocation.class));
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -312,9 +346,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
-    private void content() {
-    }
+    public static boolean isConnected(Context context){
+        ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobile = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 
+        if ((wifi != null && wifi.isConnected())||(mobile != null && mobile.isConnected())){
+            return true;
+        }else return false;
+    }
 
 
 }

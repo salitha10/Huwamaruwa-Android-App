@@ -12,15 +12,11 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-    <uses-feature
-        android:glEsVersion="0x00020000"
-        android:required="true" />
-
     <uses-permission android:name="com.google.android.providers.gsf.permission.
    READ_GSERVICES" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
 
     <uses-feature
         android:glEsVersion="0x00020000"
@@ -31,15 +27,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-
-        android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        <activity android:name=".Delivery.DeliveryUserScreen"></activity>
-        <activity android:name=".Delivery.DeliveryList" />
-        <activity
-            android:name=".customer_care.MessageActivity"
-            android:exported="true"
-            android:theme="@style/Theme.Huwamaruwa"
-            android:windowSoftInputMode="adjustResize" />
+        android:theme="@style/Theme.Huwamaruwa">
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -52,20 +40,14 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key" />
-
         <uses-library android:name="com.google.android.maps" />
 
         <activity
             android:name=".Delivery.MapsActivity"
-                  
-
-            android:exported="true"
-            android:label="@string/title_activity_maps" />
-        <activity
-            android:name=".Delivery.AdminDeliveryScreen"
-            android:exported="true" />
-
-  
+            android:label="@string/title_activity_maps"
+            android:exported="true"></activity>
+        <activity android:name=".Delivery.AdminDeliveryScreen"
+            android:exported="true"/>
         <activity
             android:name=".ReviewUser.ReviewSeller"
 
@@ -85,9 +67,7 @@
         <activity
             android:name=".StudentActivity"
             android:exported="true" />
-        <activity
-            android:name=".customer_care.ChatActivity"
-            android:exported="true" />
+        <activity android:name=".customer_care.ChatActivity" />
         <activity android:name=".Login">
 
 
@@ -142,6 +122,10 @@
         <activity android:name=".ProfPicFullScreen"></activity>
         <activity android:name=".buyerRentalRequestManage.ProductImageFullScreen" />
 
+        <activity android:name=".Home.AddLocation">
+
+        </activity>
+        <activity android:name=".Home.GridList.GridList" />
 
         <meta-data
             android:name="preloaded_fonts"
