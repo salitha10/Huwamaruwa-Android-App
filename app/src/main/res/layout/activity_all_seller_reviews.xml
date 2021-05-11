@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Delivery.AdminDeliveryScreen">
+    tools:context=".Delivery.DeliveryUserScreen">
 
     <fragment
         android:id="@+id/map"
@@ -34,61 +34,37 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
-    <Button
-        android:id="@+id/btnPickedUp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:onClick="pickedUP"
-        android:text="PickedUp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/txtStatus"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
+    <TextView
         android:id="@+id/txtStatus"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:onClick="inTransit"
-        android:text="In Transit"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnDelivered"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btnPickedUp" />
-
-    <Button
-        android:id="@+id/btnDelivered"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:onClick="delivered"
-        android:text="Delivered"
+        android:layout_height="34dp"
+        android:layout_marginBottom="36dp"
+        android:text="@string/delivery_status"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/txtStatus" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="38dp"
         android:layout_height="33dp"
+        android:layout_marginTop="64dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnDelivered"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8"
         app:srcCompat="@drawable/ic_baseline_location_on_24" />
 
     <ImageView
         android:id="@+id/imageView1"
         android:layout_width="38dp"
         android:layout_height="33dp"
-        android:layout_marginBottom="44dp"
-        app:layout_constraintBottom_toTopOf="@+id/btnPickedUp"
+        android:layout_marginTop="64dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.429"
+        app:layout_constraintHorizontal_bias="0.426"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
         app:srcCompat="@drawable/ic_baseline_location_on_24" />
 
     <TextView
@@ -97,7 +73,7 @@
         android:layout_height="27dp"
         android:layout_marginTop="4dp"
         android:gravity="center"
-        android:text="Buyer Address"
+        android:text="@string/Buyer_address"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -109,7 +85,7 @@
         android:layout_width="146dp"
         android:layout_height="26dp"
         android:gravity="center"
-        android:text="Seller Address"
+        android:text="@string/Seller_Address"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/textView8"
         app:layout_constraintEnd_toStartOf="@+id/textView8"

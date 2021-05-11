@@ -17,8 +17,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.EventListener;
-
 public class AdminDeliveryScreen extends AppCompatActivity {
 
     MapView map;
@@ -38,7 +36,7 @@ public class AdminDeliveryScreen extends AppCompatActivity {
         setContentView(R.layout.activity_admin_delivery_screen);
 
         pickedUp = (Button)findViewById(R.id.btnPickedUp);
-        inTransit = (Button)findViewById(R.id.btnIntransit);
+        inTransit = (Button)findViewById(R.id.txtStatus);
         delivered = (Button)findViewById(R.id.btnDelivered);
         sb = (SeekBar)findViewById(R.id.seekBar);
         sb.setMax(3);

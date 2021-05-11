@@ -1,4 +1,4 @@
-package com.example.huwamaruwa.ProductReviews;
+package com.example.huwamaruwa.ReviewUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,13 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
-import com.example.huwamaruwa.Models.ProductReviews;
+import com.example.huwamaruwa.Models.SellerReview;
+import com.example.huwamaruwa.ReviewUser.AllSellerReviewsAdapter;
+import com.example.huwamaruwa.ReviewUser.MySellerReview;
 import com.example.huwamaruwa.R;
-import com.example.huwamaruwa.buyerRentalRequestManage.AllBuyerRequestsAdapter;
-import com.example.huwamaruwa.buyerRentalRequestManage.BuyerRentalRequestsModel;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,23 +24,23 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AllProductReviews extends AppCompatActivity {
+public class AllSellerReviews extends AppCompatActivity {
 
     //variables
     RecyclerView recyclerView;
     DatabaseReference database;
-    AllReviewsAdapter allReviewsAdapter;
-    ArrayList<ProductReviews> list;
+    AllSellerReviewsAdapter allReviewsAdapter;
+    ArrayList<SellerReview> list;
     DatabaseReference dbf;
-    AllReviewsAdapter adapter;
+    AllSellerReviewsAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_product_reviews);
+        setContentView(R.layout.activity_all_seller_reviews);
 
         //Top fragment
-        MyReviewFragment FR = new MyReviewFragment();
+        MySellerReview FR = new MySellerReview();
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft1 = fm.beginTransaction();
         ft1.add(R.id.myReviewLayout, FR).hide(FR);
@@ -50,13 +48,13 @@ public class AllProductReviews extends AppCompatActivity {
 
         //Bottom recycler view
         recyclerView = findViewById(R.id.allReviewsRecycle);
-        database = FirebaseDatabase.getInstance().getReference("ProductReviews");
+        database = FirebaseDatabase.getInstance().getReference("SellerReview");
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         list = new ArrayList<>();
-        AllReviewsAdapter adapter = new AllReviewsAdapter(list,this);
+        AllSellerReviewsAdapter adapter = new AllSellerReviewsAdapter(list, this);
         recyclerView.setAdapter(adapter);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -66,8 +64,8 @@ public class AllProductReviews extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ProductReviews pr = dataSnapshot.getValue(ProductReviews.class);
-                    if(pr.getReviewerID().equals(cUser)) {
+                    SellerReview pr = dataSnapshot.getValue(SellerReview.class);
+                    if (pr.getReviewerID().equals(cUser)) {
                         list.add(pr);
 
                     }

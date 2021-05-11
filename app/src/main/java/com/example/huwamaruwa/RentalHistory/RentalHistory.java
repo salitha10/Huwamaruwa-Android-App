@@ -40,7 +40,6 @@ private  RecyclerView recyclerView;
        Intent intent = getIntent();
        productId = intent.getStringExtra(PremiumProduct.TAG_PRODUCT_ID);
 
-
         Query query = dbRef.orderByChild("productId").equalTo(productId);
 
         query.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -66,10 +65,7 @@ private  RecyclerView recyclerView;
             }
         });
 
-
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-
-
 
     }
 }

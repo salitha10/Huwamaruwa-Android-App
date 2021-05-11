@@ -1,4 +1,4 @@
-package com.example.huwamaruwa.ProductReviews;
+package com.example.huwamaruwa.ReviewUser;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,30 +8,29 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Models.SellerReview;
+import com.example.huwamaruwa.Models.SellerReview;
+import com.example.huwamaruwa.ReviewUser.AllSellerReviewsAdapter;
 import com.example.huwamaruwa.R;
-import com.example.huwamaruwa.buyerRentalRequestManage.SentRentalRequestBySellerAdapter;
-import com.example.huwamaruwa.buyerRentalRequestManage.SentRentalRequestsByASellerModel;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.example.huwamaruwa.Models.ProductReviews;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.BreakIterator;
 import java.util.ArrayList;
 
-public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.ViewAdapter> {
+public class AllSellerReviewsAdapter extends RecyclerView.Adapter<AllSellerReviewsAdapter.ViewAdapter> {
 
-    ArrayList<ProductReviews> arraylist;
+    ArrayList <SellerReview> arraylist;
     Context context;
 
-    public AllReviewsAdapter(ArrayList<ProductReviews> arraylist, Context context) {
+    public AllSellerReviewsAdapter(ArrayList<SellerReview> arraylist, Context context) {
         this.arraylist = arraylist;
         this.context = context;
     }
@@ -39,16 +38,16 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
 
     @NonNull
     @Override
-    public ViewAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AllSellerReviewsAdapter.ViewAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.others_reviews_card_view,parent,false);
-        ViewAdapter viewAdapter = new ViewAdapter(view);
+        AllSellerReviewsAdapter.ViewAdapter viewAdapter = new AllSellerReviewsAdapter.ViewAdapter(view);
         return viewAdapter;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewAdapter holder, int position) {
+    public void onBindViewHolder(@NonNull AllSellerReviewsAdapter.ViewAdapter holder, int position) {
 
-        ProductReviews model = arraylist.get(position);
+        SellerReview model = arraylist.get(position);
 
         String buyerID = model.getReviewerID();
         DatabaseReference dbfBuyer = FirebaseDatabase.getInstance().getReference().child("Users").child(buyerID);
@@ -91,5 +90,4 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
             reviewerPic = (ImageView) itemView.findViewById(R.id.othersReviewsBuyerImage);
         }
     }
-
 }

@@ -90,11 +90,14 @@ public class ReviewSeller extends AppCompatActivity {
         try {
 
             DatabaseReference dbf = FirebaseDatabase.getInstance().getReference().child("SellerReview");
-
             //Get values
             if (r1.getRating() == 0 || r2.getRating() == 0 || r3.getRating() == 0) {
                 Toast.makeText(getApplicationContext(), "Rating can't be empty", Toast.LENGTH_SHORT).show();
-            } else {
+            }
+            else {
+
+                float overall = (float) ((r1.getRating() + r2.getRating() + r3.getRating()) / 3.0);
+                float overallRating = (float) (Math.round(overall * 2) / 2.0);
 
                 sr.setProductID(productID);
                 sr.setReviewerID(userID);
@@ -103,6 +106,7 @@ public class ReviewSeller extends AppCompatActivity {
                 sr.setHandlingRating(r2.getRating());
                 sr.setComRating(r3.getRating());
                 sr.setDate(date);
+                sr.setAverageRating(overallRating);
 
                 //dbf.push().setValue(sr);
                 String recID = dbf.push().getKey();
@@ -114,7 +118,6 @@ public class ReviewSeller extends AppCompatActivity {
                 /**
                  *  Put log messages
                  */
-
             }
         } catch (Exception e) {
 

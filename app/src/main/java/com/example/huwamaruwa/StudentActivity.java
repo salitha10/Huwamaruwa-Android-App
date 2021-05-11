@@ -144,7 +144,6 @@ public class StudentActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(getApplicationContext(), "Update Failed", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override
@@ -153,7 +152,6 @@ public class StudentActivity extends AppCompatActivity {
             }
         });
     }
-
 
     public void Delete(View v) {
 
@@ -172,7 +170,6 @@ public class StudentActivity extends AppCompatActivity {
                 else{
                     Toast.makeText(getApplicationContext(), "Delete Failed", Toast.LENGTH_SHORT).show();
                 }
-
             }
 
             @Override

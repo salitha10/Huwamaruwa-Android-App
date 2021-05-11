@@ -97,6 +97,9 @@ public class ReviewBuyer extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Rating can't be empty", Toast.LENGTH_SHORT).show();
             } else {
 
+                float overall = (float) ((r1.getRating() + r2.getRating() + r3.getRating()) / 3.0);
+                float overallRating = (float) (Math.round(overall * 2) / 2.0);
+
                 br.setProductID(productID);
                 br.setReviewerID(userID);
                 br.setComment(comment.getText().toString().trim());
@@ -104,6 +107,7 @@ public class ReviewBuyer extends AppCompatActivity {
                 br.setHandlingRating(r2.getRating());
                 br.setComRating(r3.getRating());
                 br.setDate(date);
+                br.setAverageRating(overallRating);
 
                 //dbf.push().setValue(br);
                 String recID = dbf.push().getKey();

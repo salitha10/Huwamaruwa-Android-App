@@ -95,15 +95,8 @@
     <string name="nav_seller_request_rentals">Rental Requests</string>
     <string name="floatingMg_req">Request Product</string>
     <string name="floatingMg_add">Add Product</string>
-
+    <string name="nav_seller_panel_title">Seller</string>
     <string name="no_data">Data Not Available</string>
-    <string name="specs_location">Item Location :</string>
-    <string name="specs_category">Category :</string>
-    <string name="specs_contact">Contact Number :</string>
-    <string name="specs_max_rent">Maximum Rental Time (Days) :</string>
-    <string name="specs_min_rent">Minimum Rental Time (Days) :</string>
-    <string name="specs_price">Price :</string>
-
 
     //Kavindya
     <string name="select_category">select Category</string>
@@ -141,7 +134,6 @@
 
     <string name="view_product">View Product</string>
     <string name="seller_id">Seller Id</string>
-    <string name="seller_email">Seller Email</string>
     <string name="seller_contact">Seller Contact Number</string>
     <string name="post_ad">Post AD</string>
     <string name="categories">CATEGORY</string>
@@ -162,26 +154,13 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="nav_seller_panel_title">Seller</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-
-    <string name="product_specifications">Product Details</string>
-    <string name="amount">Amount(LKR)</string>
-    <string name="card_number">Card Number</string>
-    <string name="expiry">Expiry MM/YY</string>
-    <string name="cvv">CVV</string>
-    <string name="terms_and_condition">Save my card details for faster pyments. I agree to Terms and Conditions</string>
-    <string name="warding_confirm_cashonDelivery" >Confirm Request!</string>
-    <string name="warding_confirm_cashonDelivery_description" >You can pay in cash to our courier when you received the product at your doorstep.</string>
-    <string name="confirm">Confirm</string>
-    <string name="rent_date">Rent Date:</string>
-    <string name="status">Status :</string>
-    <string name="history_user_name">User Name :</string>
-    <string name="clear_history">Clear History</string>
-    <string name="store">Store</string>
-    <string name="contact_user">Contact Seller :</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="Seller_Address">Seller Address</string>
+    <string name="Buyer_address">Buyer Address</string>
+    <string name="delivery_status">Approved</string>
 
 
 </resources>

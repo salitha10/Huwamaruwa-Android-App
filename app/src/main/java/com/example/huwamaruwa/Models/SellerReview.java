@@ -9,7 +9,16 @@ public class SellerReview {
     float priceRating;
     float handlingRating;
     float comRating;
+    float averageRating;
     String date;
+
+    public float getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(float averageRating) {
+        this.averageRating = averageRating;
+    }
 
     public String getDate() {
         return date;

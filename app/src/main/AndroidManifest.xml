@@ -26,7 +26,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        <activity android:name=".Delivery.DeliveryUserScreen"></activity>
+        <activity android:name=".ReviewUser.EditSellerReview"></activity>
+        <activity android:name=".Delivery.DeliveryUserScreen" />
         <activity android:name=".Delivery.DeliveryList" />
         <activity
             android:name=".customer_care.MessageActivity"
@@ -56,9 +57,7 @@
             android:exported="true" />
         <activity
             android:name=".ReviewUser.ReviewSeller"
-
             android:exported="true" />
-
         <activity
             android:name=".ReviewUser.ReviewBuyer"
             android:exported="true" />
@@ -76,11 +75,15 @@
             android:name=".customer_care.ChatActivity"
             android:exported="true" />
         <activity android:name=".Login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".singleProduct.RequestRent" />
-
+        <activity android:name=".PaymentOption" />
+        <activity android:name=".singleProduct.NonPremiumProduct" />
         <activity android:name=".singleProduct.PremiumProduct" />
         <activity android:name=".MainActivity" />
         <activity
@@ -93,47 +96,19 @@
             android:name=".ProductReviews.AllProductReviews"
             android:exported="true" />
         <activity android:name=".SignUp">
-
-
-        </activity>
-
-
-        <activity android:name=".payment.PaymentOption" >
-
-        </activity>
-
-
-
-        <activity android:name=".RentalHistory.RentalHistory"/>
-        <activity android:name=".PremiumStore.PremiumStore"/>
-
-
-
-
-        <activity android:name=".addProduct.AddNewItem">
-        </activity>
-
-
-
-        <activity android:name=".SplashScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
+        <activity android:name=".SplashScreen" />
+        <activity android:name=".addProduct.AddNewItem" />
         <activity android:name=".AddCategory" />
-
-        <activity android:name=".ProfPicFullScreen"></activity>
-        <activity android:name=".buyerRentalRequestManage.ProductImageFullScreen" />
-
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-
     </application>
 
 </manifest>
