@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     TextView loginName, loginSellerType;
     CircularImageView profileIcon;
     String userId, name, userType, userProfIcon;
+
     FloatingActionButton floatingActionButton_add;
     FloatingActionButton floatingActionButton_req;
     TextView txtFloatingAdd,txtFloatingReq;
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Animation topSheet;
     Button btnCategory;
     Button btnLocation;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -208,14 +210,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 //        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
-
-
-
-
-
-
-
-
 
 
 
@@ -378,6 +372,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 fragmentTransaction.commit();
                 break;
             case R.id.admin_add_location:
+
                 floatingActionButton.setVisibility(View.INVISIBLE);
                 startActivity(new Intent(MainActivity.this, AddLocation.class));
                 break;
@@ -387,6 +382,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_seller_sent_product_offers:
                 startActivity(new Intent(getApplicationContext(), SentRentalRequestBySeller.class));
                 break;
+
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

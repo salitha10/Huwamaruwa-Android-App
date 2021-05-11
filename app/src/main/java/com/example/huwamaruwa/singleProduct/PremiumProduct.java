@@ -4,7 +4,9 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
 import android.view.MenuItem;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -60,7 +62,9 @@ public class PremiumProduct extends AppCompatActivity {
     private String sName;
     private CardView recentRentals;
     private CardView singleStore;
+
     private Toolbar toolbar;
+
     public static final String RS="RS. ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,7 +72,6 @@ public class PremiumProduct extends AppCompatActivity {
         setContentView(R.layout.activity_premium_product);
 
         //make loading animation
-
 
 
         //get View by Id
@@ -91,7 +94,6 @@ public class PremiumProduct extends AppCompatActivity {
 
         btnRentProduct = findViewById(R.id.btnRequestRent_form_send_request);
 
-
         viewPager = findViewById(R.id.premiumProduct_viewpager);
         tabLayout = findViewById(R.id.premiumProduct_tab_view);
 
@@ -112,6 +114,7 @@ public class PremiumProduct extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,6 +132,7 @@ public class PremiumProduct extends AppCompatActivity {
             premiumStores.setVisibility(View.GONE);
             premiumLogo.setVisibility(View.GONE);
         }
+
         //setup images
         Glide.with(this).load(product.getImages1()).placeholder(R.drawable.image_loading_anim).error(R.drawable.image_error).into(img1);
         Glide.with(this).load(product.getImages2()).placeholder(R.drawable.image_loading_anim).error(R.drawable.image_error).into(img2);
@@ -165,8 +169,6 @@ public class PremiumProduct extends AppCompatActivity {
                }
            });
        }else sellerName.setVisibility(View.GONE);
-
-
 
 
         SimpleDateFormat dateTimeInGMT = new SimpleDateFormat("dd");
