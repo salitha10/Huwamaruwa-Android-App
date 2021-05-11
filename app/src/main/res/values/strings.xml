@@ -163,6 +163,7 @@
 
     <string name="view_product">View Product</string>
     <string name="seller_id">Seller Id</string>
+    <string name="seller_email">Seller Email</string>
     <string name="seller_contact">Seller Contact Number</string>
     <string name="post_ad">Post AD</string>
     <string name="categories">CATEGORY</string>
@@ -183,6 +184,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="nav_seller_panel_title">Seller</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
@@ -217,7 +219,6 @@
     <string name="clear_history">Clear History</string>
     <string name="store">Store</string>
     <string name="contact_user">Contact Seller :</string>
-
 
     <string name="title_activity_maps">Map</string>
     <string name="close">Close</string>

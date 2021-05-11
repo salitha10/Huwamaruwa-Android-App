@@ -8,9 +8,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.ArrayAdapter;
@@ -30,6 +33,8 @@ import com.example.huwamaruwa.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -38,13 +43,13 @@ import com.google.firebase.storage.UploadTask;
 import com.sangcomz.fishbun.FishBun;
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter;
 
-
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;
-
 
 public class AddNewItem extends AppCompatActivity {
 
@@ -63,6 +68,7 @@ public class AddNewItem extends AppCompatActivity {
     LoadingProgress loadingProgress;
     String imgData[];
     RadioButton RentperDay_radio,RentperHour_radio;
+    String userId;
 
     int i=0;
 
@@ -83,7 +89,10 @@ public class AddNewItem extends AppCompatActivity {
         edtminRentTime=(EditText)findViewById(R.id.minDate);
         swhAddpost=(Switch)findViewById(R.id.swhAddpost);
 
-
+        //getting current user
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.e("login",user.getUid());
+        userId = user.getUid();
 
         img_list = new ArrayList<>();
         imgData = new String[4];
@@ -206,15 +215,12 @@ public class AddNewItem extends AppCompatActivity {
 
     public void dataUploader(){
 
-
-
         post = new Product();
-
         SimpleDateFormat dateTimeInGMT = new SimpleDateFormat("dd");
         //Setting the time zone
         dateTimeInGMT.setTimeZone(TimeZone.getTimeZone("GMT+5:30"));
         post.setDate_in_day(Integer.parseInt(dateTimeInGMT.format(new Date())));
-        dateTimeInGMT = new SimpleDateFormat("hh");
+        dateTimeInGMT = new SimpleDateFormat("HH");
         post.setDate_in_hour(Integer.parseInt(dateTimeInGMT.format(new Date())));
         dateTimeInGMT = new SimpleDateFormat("mm");
         post.setDate_in_min(Integer.parseInt(dateTimeInGMT.format(new Date())));
@@ -222,7 +228,6 @@ public class AddNewItem extends AppCompatActivity {
         post.setDate_in_sec(Integer.parseInt(dateTimeInGMT.format(new Date())));
         dateTimeInGMT = new SimpleDateFormat("yyy");
         post.setDate_in_year(Integer.parseInt(dateTimeInGMT.format(new Date())));
-
         Boolean isPremium = swhAddpost.isChecked();
         post.setIsPremium(isPremium);
         post.setLocation(autoCompleteTextloc.getText().toString().trim());
@@ -231,15 +236,13 @@ public class AddNewItem extends AppCompatActivity {
         post.setContactNumber(addProdcontact.getText().toString().trim());
         post.setDepositPercentage(Double.parseDouble(deposit.getText().toString().trim()));
         post.setDescription(prodDescription.getText().toString().trim());
-
         post.setImages1(imgData[0]);
         post.setImages2(imgData[1]);
         post.setImages3(imgData[2]);
         post.setImages4(imgData[3]);
         post.setMaxRentalTime(Integer.parseInt(edtmaxDate.getText().toString().trim()));
         post.setMinRentalTime(Integer.parseInt(edtminRentTime.getText().toString().trim()));
-
-
+        post.setSellerId(userId);
         post.setId(dbRefe.push().getKey());
         dbRefe.child(post.getId()).setValue(post).addOnSuccessListener(new OnSuccessListener<Void>() {
 
@@ -264,9 +267,19 @@ public class AddNewItem extends AppCompatActivity {
         if(i >= img_list.size()){
             dataUploader();
         } else{
+            Bitmap bmp = null;
+            try {
+                bmp = MediaStore.Images.Media.getBitmap(getContentResolver(),img_list.get(i));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bmp.compress(Bitmap.CompressFormat.JPEG, 25, baos);
+            byte[] data = baos.toByteArray();
+            //uploading the image
             StorageReference storageReference  = sdbRefe.child(System.currentTimeMillis() +"."+ GetFileExtension(img_list.get(i)));
             int imgfinal = i;
-            storageReference.putFile(img_list.get(i)).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            storageReference.putBytes(data).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     Toast.makeText(AddNewItem.this, "image "+ (imgfinal +1)+" uploaded", Toast.LENGTH_SHORT).show();
@@ -327,7 +340,6 @@ public class AddNewItem extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK) {
 
-            Toast.makeText(this, "Multiple Image selected", Toast.LENGTH_SHORT).show();
             img_list = data.getParcelableArrayListExtra(FishBun.INTENT_PATH);
 
             initRecycler();
