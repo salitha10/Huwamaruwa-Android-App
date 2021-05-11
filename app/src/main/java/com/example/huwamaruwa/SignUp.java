@@ -92,31 +92,35 @@ public class SignUp extends AppCompatActivity {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Name Text Field is empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(email.getEditText().getText().toString())) {
+            else if (TextUtils.isEmpty(email.getEditText().getText().toString())) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Email Text Field is empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(phoneNo.getEditText().getText().toString())) {
+            else if (TextUtils.isEmpty(phoneNo.getEditText().getText().toString())) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Phone No. Text Field is empty", Toast.LENGTH_SHORT).show();
             }
-            if (userType == null) {
+            else if (phoneNo.getEditText().getText().toString().trim().length() != 10) {
+                check = false;
+                Toast.makeText(getApplicationContext(), "Invalid Phone No.", Toast.LENGTH_SHORT).show();
+            }
+            else if (userType == null) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "User type not selected", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(address.getEditText().getText().toString())) {
+            else if (TextUtils.isEmpty(address.getEditText().getText().toString())) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Address Text Field is empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(password.getEditText().getText().toString())) {
+            else if (TextUtils.isEmpty(password.getEditText().getText().toString())) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Password Text Field is empty", Toast.LENGTH_SHORT).show();
             }
-            if (TextUtils.isEmpty(confirm_password.getEditText().getText().toString())) {
+            else if (TextUtils.isEmpty(confirm_password.getEditText().getText().toString())) {
                 check = false;
                 Toast.makeText(getApplicationContext(), "Re-enter Password", Toast.LENGTH_SHORT).show();
             }
-            if(!(passwordInput.equals(confirmPasswordInput))){
+            else if(!(passwordInput.equals(confirmPasswordInput))){
                 check = false;
                 Toast.makeText(getApplicationContext(), "Password mis-match", Toast.LENGTH_SHORT).show();
             }

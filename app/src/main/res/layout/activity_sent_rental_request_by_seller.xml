@@ -9,6 +9,17 @@
 
     <include layout="@layout/toolbar"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sent Rental Requests"
+        android:textColor="@color/theme_green"
+        android:textSize="20sp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:textAlignment="center"
+        />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/sentOffers_recyclerView"
         android:layout_width="match_parent"

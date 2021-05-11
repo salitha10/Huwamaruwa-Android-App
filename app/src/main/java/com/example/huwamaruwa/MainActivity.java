@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Log.e("login",user.getUid());
         userId = user.getUid();
 
-        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
 
         reference = FirebaseDatabase.getInstance().getReference();
         Query query = reference.child("Users").orderByChild("userId").equalTo(userId).limitToFirst(1);
@@ -276,7 +276,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void LogoutMethod(View view){
         FirebaseAuth.getInstance().signOut();
-        startActivity(new Intent(MainActivity.this, Login.class));
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 
     public void ViewUserProfile(View view){

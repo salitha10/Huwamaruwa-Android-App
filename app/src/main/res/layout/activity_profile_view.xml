@@ -160,6 +160,7 @@
             android:text="@string/btnEditProfile" />
 
         <Button
+            android:id="@+id/btnDeleteUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Delete Profile"/>

@@ -1,16 +1,21 @@
 package com.example.huwamaruwa;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
@@ -21,7 +26,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Login extends AppCompatActivity {
 
     TextInputLayout email, password;
-    Button loginButton;
+    Button loginButton ,forgotPassword;
 
     FirebaseAuth firebaseAuth;
 
@@ -33,8 +38,47 @@ public class Login extends AppCompatActivity {
         email = findViewById(R.id.userEmail);
         password = findViewById(R.id.userPassword);
         loginButton = findViewById(R.id.loginBtn);
+        forgotPassword = findViewById(R.id.btnForgotPassword);
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        forgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText resetMail = new EditText(view.getContext());
+                AlertDialog.Builder passwordResetDialog  = new AlertDialog.Builder(view.getContext());
+                passwordResetDialog.setTitle("Forgot Password?");
+                passwordResetDialog.setMessage("Enter your Email to reset the password");
+                passwordResetDialog.setView(resetMail);
+
+                passwordResetDialog.setPositiveButton("Confirm", new DialogInterface.OnClickListener(){
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String mail = resetMail.getText().toString();
+                        firebaseAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(Login.this,"Reset Email Link Sent",Toast.LENGTH_LONG).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(Login.this,"Error: "+ e.getMessage(),Toast.LENGTH_LONG).show();
+
+                            }
+                        });
+
+                    }
+                });
+                passwordResetDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //redirect to login page
+                    }
+                });
+                passwordResetDialog.create().show();
+            }
+        });
     }
     public void signUp(View view){
         Intent intent = new Intent(this,SignUp.class);
