@@ -17,219 +17,232 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-        </LinearLayout>
-    </ScrollView>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView12"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:gravity="center"
-            android:text="@string/product_specifications"
-            android:textColor="@color/lightBlack"
-            android:textSize="32dp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/specs_contact_layout"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btnproductDetails_contact"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/green_rect"
-                android:gravity="center_vertical"
-                android:text="@string/contact_user"
-                android:textColor="@color/txtLightGrey"
-                app:icon="@drawable/contact_icon"
-                app:iconGravity="textStart"
-                app:iconTint="@color/GreenMain" />
+            android:background="#FFFFFF"
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/txtproductDetails_contact_number"
+                android:id="@+id/textView12"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:text="@string/contactNumber"
-                android:textSize="18sp" />
-        </LinearLayout>
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:gravity="center"
+                android:text="@string/product_specifications"
+                android:textColor="@color/lightBlack"
+                android:textSize="32dp"
+                android:textStyle="bold" />
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:stretchColumns="1,2"
-           >
-
-            <TableRow
+            <LinearLayout
+                android:id="@+id/specs_contact_layout"
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
+                android:layout_height="50dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnproductDetails_contact"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/green_rect"
+                    android:gravity="center_vertical"
+                    android:text="@string/contact_user"
+                    android:textColor="@color/txtLightGrey"
+                    app:icon="@drawable/contact_icon"
+                    app:iconGravity="textStart"
+                    app:iconTint="@color/GreenMain" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="@string/specs_location"
+                    android:id="@+id/txtproductDetails_contact_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:text="@string/contactNumber"
                     android:textSize="18sp" />
+            </LinearLayout>
 
-                <TextView
-                    android:id="@+id/txtproductDetails_location"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="@string/location"
-                    android:textSize="18sp" />
-            </TableRow>
-
-            <TableRow
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-                <TextView
+                <Button
+                    android:id="@+id/btnPremiumProduct_chat"
+                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="@string/specs_category"
-                    android:textSize="18sp" />
+                    android:layout_gravity="end"
+                    android:insetTop="0dp"
+                    android:insetBottom="0dp"
+                    android:text="Chat With Seller"
+                    android:textColor="@color/GreenMain"
+                    app:icon="@drawable/chat_icon"
+                    app:iconGravity="start"
+                    app:iconTint="@color/GreenMain" />
+            </LinearLayout>
 
-                <TextView
-                    android:id="@+id/txtproductDetails_category"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="@string/contact_number"
-                    android:textSize="18sp" />
-            </TableRow>
-
-            <TableRow
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="20dp">
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                android:stretchColumns="1,2">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="@string/initialDeposit"
-                    android:textSize="18sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
 
-                <TextView
-                    android:id="@+id/txtproductDetails_deposit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="Contact Number"
-                    android:textSize="18sp" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="@string/specs_location"
+                        android:textSize="18sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="20dp">
+                    <TextView
+                        android:id="@+id/txtproductDetails_location"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="@string/location"
+                        android:textSize="18sp" />
+                </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="@string/specs_max_rent"
-                    android:textSize="18sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
 
-                <TextView
-                    android:id="@+id/txtproductDetails_max_rental"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="Contact Number"
-                    android:textSize="18sp" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="@string/specs_category"
+                        android:textSize="18sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="20dp">
+                    <TextView
+                        android:id="@+id/txtproductDetails_category"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="@string/contact_number"
+                        android:textSize="18sp" />
+                </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="@string/specs_min_rent"
-                    android:textSize="18sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
 
-                <TextView
-                    android:id="@+id/txtproductDetails_min_rental"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="Contact Number"
-                    android:textSize="18sp" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="@string/initialDeposit"
+                        android:textSize="18sp" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="20dp">
+                    <TextView
+                        android:id="@+id/txtproductDetails_deposit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="Contact Number"
+                        android:textSize="18sp" />
+                </TableRow>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="1"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="@string/specs_price"
-                    android:textSize="18sp" />
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
 
-                <TextView
-                    android:id="@+id/txtproductDetails_price"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_column="2"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@drawable/txt_rectangle_with_bottum_strok"
-                    android:text="Contact Number"
-                    android:textSize="18sp" />
-            </TableRow>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="@string/specs_max_rent"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtproductDetails_max_rental"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="Contact Number"
+                        android:textSize="18sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="@string/specs_min_rent"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtproductDetails_min_rental"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="Contact Number"
+                        android:textSize="18sp" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="1"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="@string/specs_price"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/txtproductDetails_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_column="2"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginRight="10dp"
+                        android:background="@drawable/txt_rectangle_with_bottum_strok"
+                        android:text="Contact Number"
+                        android:textSize="18sp" />
+                </TableRow>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -238,21 +251,21 @@
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
                     android:text="@string/description"
-                    android:textSize="18sp" >
-                </TextView>
+                    android:textSize="18sp"></TextView>
 
-            <TextView
-                android:id="@+id/txtproductDetails_description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="1"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="@string/description"
-                android:textSize="15sp"/>
-        </TableLayout>
-
+                <TextView
+                    android:id="@+id/txtproductDetails_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_column="1"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="@string/description"
+                    android:textSize="15sp" />
+            </TableLayout>
 
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </FrameLayout>

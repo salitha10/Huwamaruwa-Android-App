@@ -28,7 +28,7 @@ import com.google.firebase.database.ValueEventListener;
 public class SpecificationTab_fragment extends Fragment {
     TextView txtSpecLocation,txtSpecCategory,txtSpecContact,txtSpecDeposit,txtSpecMaxRent,txtSpecMinRent,txtSpecDes,txtSpecPrice;
     Product product;
-    Button btnContact;
+    Button btnContact,btnChatWithSeller;
     DatabaseReference uDbRef;
     String contactNumber;
     LinearLayout contactLayout;
@@ -51,10 +51,13 @@ public class SpecificationTab_fragment extends Fragment {
 
         contactLayout = view.findViewById(R.id.specs_contact_layout);
 
-        if (product.getIsPremium()) contactLayout.setVisibility(View.GONE);
+        if (product.getIsPremium()) {
+            contactLayout.setVisibility(View.GONE);
+            btnChatWithSeller.setVisibility(View.GONE);
+        }
 
         btnContact = view.findViewById(R.id.btnproductDetails_contact);
-
+        btnChatWithSeller = view.findViewById(R.id.btnPremiumProduct_chat);
         uDbRef = FirebaseDatabase.getInstance().getReference().child("Users");
         Query query = uDbRef.orderByChild("userId").equalTo(product.getSellerId());
 

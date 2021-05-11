@@ -5,10 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.example.huwamaruwa.Models.Product;
@@ -32,12 +33,26 @@ private ArrayList<Product>product_list;
 private RecyclerView recyclerView;
 private TextView storeName;
 private String sellerName;
+private Toolbar toolbar;
 @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_premium_store);
 
         storeName = findViewById(R.id.txt_premium_store_seller_name);
+        toolbar = findViewById(R.id.toolbar);
+        //setup toolbar
+    setSupportActionBar(toolbar);
+    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    getSupportActionBar().setDisplayShowHomeEnabled(true);
+    getSupportActionBar().setTitle("Premium Store");
+    toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            onBackPressed();
+        }
+    });
+
 
         product_list = new ArrayList<>();
         recyclerView = findViewById(R.id.premium_store_recycler);
