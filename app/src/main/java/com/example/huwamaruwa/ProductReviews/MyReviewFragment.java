@@ -92,7 +92,6 @@ public class MyReviewFragment extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
 
-        getView().setVisibility(View.GONE);
     }
 
     @Override

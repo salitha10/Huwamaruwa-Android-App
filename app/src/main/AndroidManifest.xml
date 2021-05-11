@@ -26,10 +26,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.DayNight.DarkActionBar">
-        <activity android:name=".customer_care.MessageActivity"
+        <activity android:name=".Delivery.DeliveryUserScreen"></activity>
+        <activity android:name=".Delivery.DeliveryList" />
+        <activity
+            android:name=".customer_care.MessageActivity"
             android:exported="true"
             android:theme="@style/Theme.Huwamaruwa"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="adjustResize" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -84,8 +87,7 @@
         <activity android:name=".MainActivity" />
         <activity
             android:name=".ProductReviews.AddProductReview"
-            android:exported="true"
-            />
+            android:exported="true" />
         <activity
             android:name=".ProductReviews.EditReview"
             android:exported="true" />

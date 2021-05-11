@@ -66,7 +66,6 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
         //Set data
         holder.comments.setText(model.getComment());
         holder.rating.setRating((float)model.getAverageRating());
-
     }
 
     @Override

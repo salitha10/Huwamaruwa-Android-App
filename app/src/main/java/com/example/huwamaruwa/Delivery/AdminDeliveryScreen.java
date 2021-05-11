@@ -80,6 +80,42 @@ public class AdminDeliveryScreen extends AppCompatActivity {
         });
 
 
+        dbf1.child(rentID).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.hasChildren()){
+                    String status = snapshot.child("status").getValue().toString();
+
+                    if(status.equals("Picked Up")){
+                        sb.setEnabled(true);
+                        sb.setProgress(1);
+                        pickedUp.setEnabled(false);
+                        sb.setEnabled(false);
+                    }
+                    else if(status.equals("In Transit")){
+                        sb.setEnabled(true);
+                        sb.setProgress(2);
+                        pickedUp.setEnabled(false);
+                        inTransit.setEnabled(false);
+                        sb.setEnabled(false);
+                    }
+                    else if(status.equals("Delivered")){
+                        sb.setEnabled(true);
+                        sb.setProgress(3);
+                        pickedUp.setEnabled(false);
+                        inTransit.setEnabled(false);
+                        delivered.setEnabled(false);
+                        sb.setEnabled(false);
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     //Pickup button press
@@ -89,22 +125,25 @@ public class AdminDeliveryScreen extends AppCompatActivity {
         pickedUp.setEnabled(false);
         sb.setEnabled(false);
         dbf2.child(rentID).child("status").setValue("Picked Up");
-
     }
 
     //InTransit button press
     public void inTransit(View view){
         sb.setEnabled(true);
         sb.setProgress(2);
+        pickedUp.setEnabled(false);
         inTransit.setEnabled(false);
         sb.setEnabled(false);
         dbf2.child(rentID).child("status").setValue("In Transit");
+
     }
 
     //Delivered button pressed
     public void delivered(View view){
         sb.setEnabled(true);
         sb.setProgress(3);
+        pickedUp.setEnabled(false);
+        inTransit.setEnabled(false);
         delivered.setEnabled(false);
         sb.setEnabled(false);
         dbf2.child(rentID).child("status").setValue("Delivered");
