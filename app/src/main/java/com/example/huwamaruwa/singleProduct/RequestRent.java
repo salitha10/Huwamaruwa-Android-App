@@ -168,7 +168,6 @@ public class RequestRent extends AppCompatActivity {
     btnReq.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
             Toast.makeText(RequestRent.this, "Clicked Send Req", Toast.LENGTH_SHORT).show();
             try {
                 if (TextUtils.isEmpty(edtAddress.getText())){
@@ -190,10 +189,11 @@ public class RequestRent extends AppCompatActivity {
                         request.setProductId(product.getId());
                         request.setDateDif(Integer.toString(dateDif));
                         request.setUserId(userId);
+                        request.setStatus("Pending");
                         String id = dbRef.push().getKey();
                         request.setId(id);
-                        dbRef.child(requestRent.getId()).setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
-         @Override
+                        dbRef.child(request.getId()).setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
                             public void onSuccess(Void aVoid) {
                                 Toast.makeText(RequestRent.this, "Data added successfully", Toast.LENGTH_SHORT).show();
                             }
@@ -208,11 +208,6 @@ public class RequestRent extends AppCompatActivity {
                     }else {
                         Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
                     }
-
-                    }else {
-                        Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
-                    }
-
 
 
                 }
