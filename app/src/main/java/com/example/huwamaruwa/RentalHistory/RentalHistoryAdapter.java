@@ -57,7 +57,12 @@ public class RentalHistoryAdapter extends RecyclerView.Adapter<RentalHistoryAdap
                            userName = dataSnapshot.child("name").getValue().toString();
                        }
                    }
-                   holder.txtUserName.setText(userName);
+
+                   if (userName.length() > 10) {
+                       holder.txtUserName.setText(userName.substring(0, 10).concat("..."));
+                   } else {
+                       holder.txtUserName.setText(userName);
+                   }
                }
 
                @Override

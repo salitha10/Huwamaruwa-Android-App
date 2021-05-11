@@ -31,4 +31,5 @@
 
     //kavindya
     <color name="View_line">#A6A6A6</color>
+    <color name="bac_gray_conn">#E6EAEC</color>
 </resources>

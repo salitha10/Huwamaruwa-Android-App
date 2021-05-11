@@ -52,6 +52,7 @@ DatabaseReference dbRef;
 
         dialog = new Dialog(this);
 
+
        bundle = getIntent().getExtras();
 
 

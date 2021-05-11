@@ -37,6 +37,7 @@ import java.util.concurrent.TimeUnit;
 public class RequestRent extends AppCompatActivity {
 
     public static final String TAG_PAYMENT_DEPOSIT_AMOUNT = "com.example.huwamaruwa.payment.deposit_amount";
+    private static final String TAG = "request rent";
     Button btn,btnPay,btnReq;
     ImageView imgMain;
     TextView textView,txtTitle,txtDescription,txtPrice,txtTotal,txtDeposit;
@@ -52,7 +53,6 @@ public class RequestRent extends AppCompatActivity {
      DatabaseReference dbRef;
      private String userId;
     @Override
-    @SuppressWarnings("unchecked")
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_rent);
@@ -95,7 +95,7 @@ public class RequestRent extends AppCompatActivity {
     btn.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-
+        //get Date Duration
             MaterialDatePicker.Builder<Pair<Long, Long>> builderRange = MaterialDatePicker.Builder.dateRangePicker();
             builderRange.setCalendarConstraints(limitRange().build());
             builderRange.setTitleText("Select Date Range");
@@ -116,7 +116,7 @@ public class RequestRent extends AppCompatActivity {
                     }
                     txtTotal.setText("Rs :".concat(Double.toString(total)));
 
-                     deposit = total * product.getDepositPercentage()/100.0;
+                    deposit = calcDeposit(total,product.getDepositPercentage());
                     txtDeposit.setText("Rs :".concat(Double.toString(deposit)));
                 }
             });
@@ -126,8 +126,6 @@ public class RequestRent extends AppCompatActivity {
         @Override
         public void onClick(View view) {
 
-
-
             try {
                 if (TextUtils.isEmpty(edtAddress.getText())){
                     Toast.makeText(RequestRent.this, "Address Required", Toast.LENGTH_SHORT).show();
@@ -136,7 +134,7 @@ public class RequestRent extends AppCompatActivity {
                 }else if (TextUtils.isEmpty(textView.getText())){
                     Toast.makeText(RequestRent.this, "Duration required", Toast.LENGTH_SHORT).show();
                 }else {
-                    if (dateDif >= product.getMinRentalTime() ){
+                    if (dateDif >= product.getMinRentalTime() ){//check Minimum Rental Time
 
                         Bundle bundle = new Bundle();
                         bundle.putString("address",edtAddress.getText().toString());
@@ -160,14 +158,15 @@ public class RequestRent extends AppCompatActivity {
 
                 }
             }catch (Exception e){
-                Toast.makeText(RequestRent.this, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                Log.e(TAG,"Request Rent Form: "+e.getMessage());
+                //Toast.makeText(RequestRent.this, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
 
         }
     });
     }
 
-
+//validate calender with limit range
     private CalendarConstraints.Builder limitRange() {
 
         CalendarConstraints.Builder constraintsBuilderRange = new CalendarConstraints.Builder();
@@ -244,5 +243,8 @@ public class RequestRent extends AppCompatActivity {
         };
 
 
+    }
+    public double calcDeposit(double total,double percentage){
+        return (total * percentage)/100.0;
     }
 }
