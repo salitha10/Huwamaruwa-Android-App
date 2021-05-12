@@ -10,13 +10,13 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout_chat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/theme_green"
-        app:tabSelectedTextColor = "@color/design_default_color_primary_dark"
-        app:tabIndicatorColor = "@color/design_default_color_primary_dark"
-       />
+            android:id="@+id/tab_layout_chat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/theme_green"
+            app:tabSelectedTextColor = "@color/design_default_color_primary_dark"
+            app:tabIndicatorColor = "@color/design_default_color_primary_dark"
+            />
 
     </com.google.android.material.appbar.AppBarLayout>
 

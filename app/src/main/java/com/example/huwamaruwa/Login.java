@@ -124,6 +124,7 @@ public class Login extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful()){
                                         FirebaseUser user = firebaseAuth.getCurrentUser();
+
                                         if (checkAvailable(user.getUid())){
                                             product_list_history = new ArrayList<>();
                                             dbRef = FirebaseDatabase.getInstance().getReference().child("UserBehaviours").child(user.getUid());

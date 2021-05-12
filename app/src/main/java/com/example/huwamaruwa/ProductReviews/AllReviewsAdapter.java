@@ -35,7 +35,6 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
         this.context = context;
     }
 
-
     @NonNull
     @Override
     public ViewAdapter onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -56,7 +55,8 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //Set vales
                 holder.reviewer.setText(snapshot.child("name").getValue().toString());
-                Glide.with(holder.itemView.getContext()).load("userImage").circleCrop().placeholder(R.drawable.ic_launcher_background).into(holder.reviewerPic);
+                String url = snapshot.child("userImage").getValue().toString();
+                Glide.with(holder.itemView.getContext()).load(url).circleCrop().placeholder(R.drawable.ic_launcher_background).into(holder.reviewerPic);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -76,7 +76,6 @@ public class AllReviewsAdapter extends RecyclerView.Adapter<AllReviewsAdapter.Vi
     public static class ViewAdapter  extends RecyclerView.ViewHolder{
 
         TextView reviewer, comments;
-        Button done, cancel;
         RatingBar rating;
         ImageView reviewerPic;
 

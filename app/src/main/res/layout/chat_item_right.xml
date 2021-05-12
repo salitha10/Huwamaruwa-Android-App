@@ -12,7 +12,6 @@
         android:src="@mipmap/ic_launcher"
         android:visibility="gone"/>
 
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

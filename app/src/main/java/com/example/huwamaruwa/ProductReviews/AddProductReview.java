@@ -68,8 +68,7 @@ public class AddProductReview extends AppCompatActivity {
         thumbnail = (ImageView) findViewById(R.id.productThumbnail);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
-        //reviewerID = user.getUid();
-        reviewerID = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
+        reviewerID = user.getUid();
 
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
         pr = new ProductReviews();
@@ -78,12 +77,16 @@ public class AddProductReview extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         //Display product details
-        //productID = getIntent().getStringExtra();
-        productID = "-M_OmNhGhn2pInyGCqVU";
-
-  
+        productID = getIntent().getStringExtra("ProductID");
+        //productID = "-M_Rn2Sq6QWGxFcgS2y0";
         dbfProduct = FirebaseDatabase.getInstance().getReference().child("Product").child(productID);
 
         //Get data from product
@@ -96,7 +99,6 @@ public class AddProductReview extends AppCompatActivity {
                     sellerID = snapshot.child("sellerId").getValue().toString();
                     imageURL = snapshot.child("images1").getValue().toString();
                     Log.d("URL", imageURL);
-
 
                     //Set Image
                     Glide.with(getApplicationContext()).load(imageURL).centerCrop().placeholder(R.drawable.ic_launcher_background).into(thumbnail);
@@ -176,11 +178,12 @@ public class AddProductReview extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Review Added", Toast.LENGTH_SHORT).show();
 
+
             } catch (Exception e) {
                 Log.d(DB_ERROR, "DATA SAVE FAILED - " + e.getMessage());
                 Toast.makeText(getApplicationContext(), "Review Not Added", Toast.LENGTH_SHORT).show();
             }
         }
-
+        finish();
     }
 }

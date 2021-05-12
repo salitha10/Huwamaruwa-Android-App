@@ -72,6 +72,14 @@ public class EditReview extends AppCompatActivity {
     public void onResume() {
         super.onResume();
 
+        //Set action for close button
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         //Get object
         Intent intent = getIntent();
         pr = intent.getParcelableExtra("MyReview");
@@ -159,14 +167,15 @@ public class EditReview extends AppCompatActivity {
             //Push to database
             dbfReview.setValue(pr);
 
-            Toast.makeText(getApplicationContext(), "Review Added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Review Updated", Toast.LENGTH_SHORT).show();
 
 
         } catch (Exception e) {
             Log.d(DB_ERROR, "DATA SAVE FAILED - " + e.getMessage());
-            Toast.makeText(getApplicationContext(), "Review Not Added", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Review Not Updated", Toast.LENGTH_SHORT).show();
         }
 
+            finish();
     }
 
 }

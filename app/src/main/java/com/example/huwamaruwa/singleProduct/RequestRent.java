@@ -50,8 +50,8 @@ public class RequestRent extends AppCompatActivity {
     private double deposit = 0;
     private double total = 0;
     public static final String RS="RS. ";
-     DatabaseReference dbRef;
-     private String userId;
+    DatabaseReference dbRef;
+    private String userId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,139 +92,134 @@ public class RequestRent extends AppCompatActivity {
             btnPay.setVisibility(View.GONE);
         }
 
-    btn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-        //get Date Duration
-            MaterialDatePicker.Builder<Pair<Long, Long>> builderRange = MaterialDatePicker.Builder.dateRangePicker();
-            builderRange.setCalendarConstraints(limitRange().build());
-            builderRange.setTitleText("Select Date Range");
-             pickerRange = builderRange.build();
-            pickerRange.show(getSupportFragmentManager(), pickerRange.toString());
-            pickerRange.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Pair<Long, Long>>() {
-                @Override
-                public void onPositiveButtonClick(Pair<Long, Long> selection) {
-                    textView.setText(pickerRange.getHeaderText());
-                    Long startDate = selection.first;
-                    Long endDate = selection.second;
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //get Date Duration
+                MaterialDatePicker.Builder<Pair<Long, Long>> builderRange = MaterialDatePicker.Builder.dateRangePicker();
+                builderRange.setCalendarConstraints(limitRange().build());
+                builderRange.setTitleText("Select Date Range");
+                pickerRange = builderRange.build();
+                pickerRange.show(getSupportFragmentManager(), pickerRange.toString());
+                pickerRange.addOnPositiveButtonClickListener(new MaterialPickerOnPositiveButtonClickListener<Pair<Long, Long>>() {
+                    @Override
+                    public void onPositiveButtonClick(Pair<Long, Long> selection) {
+                        textView.setText(pickerRange.getHeaderText());
+                        Long startDate = selection.first;
+                        Long endDate = selection.second;
 
-                    dateDif = (int) TimeUnit.MILLISECONDS.toDays(endDate - startDate)+1;
-                    if (product.isPerHour()){
-                        total = Double.parseDouble(String.valueOf(product.getPrice())) * (24 * dateDif);
-                    }else {
-                        total = Double.parseDouble(String.valueOf(product.getPrice())) * dateDif;
+                        dateDif = (int) TimeUnit.MILLISECONDS.toDays(endDate - startDate)+1;
+                        if (product.isPerHour()){
+                            total = Double.parseDouble(String.valueOf(product.getPrice())) * (24 * dateDif);
+                        }else {
+                            total = Double.parseDouble(String.valueOf(product.getPrice())) * dateDif;
+                        }
+                        txtTotal.setText("Rs :".concat(Double.toString(total)));
+
+                        deposit = calcDeposit(total,product.getDepositPercentage());
+                        txtDeposit.setText("Rs :".concat(Double.toString(deposit)));
                     }
-                    txtTotal.setText("Rs :".concat(Double.toString(total)));
-
-                    deposit = calcDeposit(total,product.getDepositPercentage());
-                    txtDeposit.setText("Rs :".concat(Double.toString(deposit)));
-                }
-            });
-        }
-    });
-    btnPay.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
-
-            try {
-                if (TextUtils.isEmpty(edtAddress.getText())){
-                    //Toast.makeText(RequestRent.this, "Address Required", Toast.LENGTH_SHORT).show();
-                    edtAddress.setError("Address Is Required");
-                }else if (TextUtils.isEmpty(edtContactNumber.getText())){
-                   // Toast.makeText(RequestRent.this, "Contact number Required", Toast.LENGTH_SHORT).show();
-                }else if (TextUtils.isEmpty(textView.getText())){
-                   // Toast.makeText(RequestRent.this, "Duration required", Toast.LENGTH_SHORT).show();
-                }else {
-                    if (dateDif >= product.getMinRentalTime() ){//check Minimum Rental Time
-
-                        Bundle bundle = new Bundle();
-                        bundle.putString("address",edtAddress.getText().toString());
-                        bundle.putString("contact",edtContactNumber.getText().toString());
-                        bundle.putString("duration",textView.getText().toString());
-                        bundle.putDouble("deposit",deposit);
-                        bundle.putDouble("total",total);
-                        bundle.putString("isPremium",Boolean.toString(product.getIsPremium()));
-                        bundle.putString("productId",product.getId());
-                        bundle.putString("dateDif",Integer.toString(dateDif));
-                        bundle.putString("userId",userId);
-
-                        Intent intent = new Intent(getApplicationContext(), PaymentOption.class);
-                        intent.putExtras(bundle);
-                        startActivity(intent);
-
-                    }else {
-                        Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
-                    }
-
-
-                }
-            }catch (Exception e){
-                Log.e(TAG,"Request Rent Form: "+e.getMessage());
-                //Toast.makeText(RequestRent.this, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
             }
+        });
+        btnPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        }
-    });
-    btnReq.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View view) {
+                try {
+                    if (TextUtils.isEmpty(edtAddress.getText())){
+                        //Toast.makeText(RequestRent.this, "Address Required", Toast.LENGTH_SHORT).show();
+                        edtAddress.setError("Address Is Required");
+                    }else if (TextUtils.isEmpty(edtContactNumber.getText())){
+                        // Toast.makeText(RequestRent.this, "Contact number Required", Toast.LENGTH_SHORT).show();
+                    }else if (TextUtils.isEmpty(textView.getText())){
+                        // Toast.makeText(RequestRent.this, "Duration required", Toast.LENGTH_SHORT).show();
+                    }else {
+                        if (dateDif >= product.getMinRentalTime() ){//check Minimum Rental Time
 
-            Toast.makeText(RequestRent.this, "Clicked Send Req", Toast.LENGTH_SHORT).show();
-            try {
-                if (TextUtils.isEmpty(edtAddress.getText())){
-                    edtAddress.setError("Address is Required");
-                }else if (TextUtils.isEmpty(edtContactNumber.getText())){
+                            Bundle bundle = new Bundle();
+                            bundle.putString("address",edtAddress.getText().toString());
+                            bundle.putString("contact",edtContactNumber.getText().toString());
+                            bundle.putString("duration",textView.getText().toString());
+                            bundle.putDouble("deposit",deposit);
+                            bundle.putDouble("total",total);
+                            bundle.putString("isPremium",Boolean.toString(product.getIsPremium()));
+                            bundle.putString("productId",product.getId());
+                            bundle.putString("dateDif",Integer.toString(dateDif));
+                            bundle.putString("userId",userId);
+
+                            Intent intent = new Intent(getApplicationContext(), PaymentOption.class);
+                            intent.putExtras(bundle);
+                            startActivity(intent);
+
+                        }else {
+                            Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
+                        }
+
+
+                    }
+                }catch (Exception e){
+                    Log.e(TAG,"Request Rent Form: "+e.getMessage());
+                    //Toast.makeText(RequestRent.this, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+        btnReq.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(RequestRent.this, "Clicked Send Req", Toast.LENGTH_SHORT).show();
+                try {
+                    if (TextUtils.isEmpty(edtAddress.getText())){
+                        edtAddress.setError("Address is Required");
+                    }else if (TextUtils.isEmpty(edtContactNumber.getText())){
                         edtContactNumber.setError("Contact number is Required");
-                }else if (TextUtils.isEmpty(textView.getText())){
+                    }else if (TextUtils.isEmpty(textView.getText())){
                         textView.setError("Duration Required");
-                }else {
-                    if (dateDif >= product.getMinRentalTime() ){//check Minimum Rental Time
-                        dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
-                        RequestRentModel request = new RequestRentModel();
-                        request.setAddress(edtAddress.getText().toString());
-                        request.setContactNumber(edtContactNumber.getText().toString());
-                        request.setDuration(textView.getText().toString());
-                        request.setInitialDeposit(deposit);
-                        request.setTotal(total);
-                        request.setIsPremium(Boolean.toString(product.getIsPremium()));
-                        request.setProductId(product.getId());
-                        request.setDateDif(Integer.toString(dateDif));
-                        request.setUserId(userId);
-                        String id = dbRef.push().getKey();
-                        request.setId(id);
-                        dbRef.child(requestRent.getId()).setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
-         @Override
-                            public void onSuccess(Void aVoid) {
-                                Toast.makeText(RequestRent.this, "Data added successfully", Toast.LENGTH_SHORT).show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(RequestRent.this, "Request failed", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-
-
                     }else {
-                        Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
+                        if (dateDif >= product.getMinRentalTime() ){//check Minimum Rental Time
+                            dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
+                            RequestRentModel request = new RequestRentModel();
+                            request.setAddress(edtAddress.getText().toString());
+                            request.setContactNumber(edtContactNumber.getText().toString());
+                            request.setDuration(textView.getText().toString());
+                            request.setInitialDeposit(deposit);
+                            request.setTotal(total);
+                            request.setIsPremium(Boolean.toString(product.getIsPremium()));
+                            request.setProductId(product.getId());
+                            request.setDateDif(Integer.toString(dateDif));
+                            request.setUserId(userId);
+                            request.setStatus("Pending");
+                            String id = dbRef.push().getKey();
+                            request.setId(id);
+                            dbRef.child(request.getId()).setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Toast.makeText(RequestRent.this, "Data added successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(RequestRent.this, "Request failed", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
+                        }else {
+                            Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
+                        }
+
+
                     }
-
-                    }else {
-                        Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
-                    }
-
-
-
+                }catch (Exception e){
+                    Log.e(TAG,"Request Rent Form: "+e.getMessage());
+                    //Toast.makeText(RequestRent.this, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
                 }
-            }catch (Exception e){
-                Log.e(TAG,"Request Rent Form: "+e.getMessage());
-                //Toast.makeText(RequestRent.this, "Error "+e.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }
-    });
+        });
     }
 
-//validate calender with limit range
+    //validate calender with limit range
     private CalendarConstraints.Builder limitRange() {
 
         CalendarConstraints.Builder constraintsBuilderRange = new CalendarConstraints.Builder();
@@ -299,7 +294,6 @@ public class RequestRent extends AppCompatActivity {
                 return new RangeValidator[size];
             }
         };
-
 
     }
     public double calcDeposit(double total,double percentage){

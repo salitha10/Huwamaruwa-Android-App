@@ -22,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.Chat;
 import com.example.huwamaruwa.Models.User;
 import com.example.huwamaruwa.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -53,7 +54,6 @@ public class MessageActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_message);
 
@@ -67,7 +67,7 @@ public class MessageActivity extends AppCompatActivity {
         LinearLayoutManager lm = new LinearLayoutManager(getApplicationContext());
         lm.setStackFromEnd(true);
         rec.setLayoutManager(lm);
-       // rec.setAdapter(messageAdapter);
+        // rec.setAdapter(messageAdapter);
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -88,8 +88,8 @@ public class MessageActivity extends AppCompatActivity {
         /**
          * Change
          */
-        //final FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
-        String cUser = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
+        final FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();
+        String cUser = User.getUid();
         String uID = intent.getStringExtra("userId");
         Log.d("new UID", uID);
 
@@ -160,7 +160,7 @@ public class MessageActivity extends AppCompatActivity {
                     Chat chat = ds.getValue(Chat.class);
 
                     if(chat.getReceiver().equals(myid) && chat.getSender().equals(userid)
-                    ||chat.getReceiver().equals(userid) && chat.getSender().equals(myid)){
+                            ||chat.getReceiver().equals(userid) && chat.getSender().equals(myid)){
                         mChat.add(chat);
                     }
 
@@ -169,7 +169,6 @@ public class MessageActivity extends AppCompatActivity {
                     rec.setAdapter(messageAdapter);
                 }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
 

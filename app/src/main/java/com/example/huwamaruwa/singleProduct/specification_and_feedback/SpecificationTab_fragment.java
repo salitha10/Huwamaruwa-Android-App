@@ -16,7 +16,9 @@ import android.widget.TextView;
 
 import com.example.huwamaruwa.Home.Home_recycler_1_adapter;
 import com.example.huwamaruwa.Models.Product;
+import com.example.huwamaruwa.ProductReviews.AllProductReviews;
 import com.example.huwamaruwa.R;
+import com.example.huwamaruwa.customer_care.MessageActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +34,7 @@ public class SpecificationTab_fragment extends Fragment {
     DatabaseReference uDbRef;
     String contactNumber;
     LinearLayout contactLayout;
+    String sellerID;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,6 +42,8 @@ public class SpecificationTab_fragment extends Fragment {
         View view =inflater.inflate(R.layout.fragment_specification_tab_fragment, container, false);
 
         product = getActivity().getIntent().getParcelableExtra(Home_recycler_1_adapter.SINGLE_PRODUCT_TAG);
+        sellerID = product.getSellerId();
+
 
         txtSpecLocation = view.findViewById(R.id.txtproductDetails_location);
         txtSpecCategory = view.findViewById(R.id.txtproductDetails_category);
@@ -95,6 +100,15 @@ public class SpecificationTab_fragment extends Fragment {
             public void onClick(View view) {
                 Intent intent = new Intent(Intent.ACTION_DIAL);
                 intent.setData(Uri.parse("tel:".concat(contactNumber)));
+                startActivity(intent);
+            }
+        });
+
+        btnChatWithSeller.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), MessageActivity.class);
+                intent.putExtra("userId", sellerID);
                 startActivity(intent);
             }
         });
