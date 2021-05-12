@@ -1,6 +1,7 @@
 package com.example.huwamaruwa.RentalRequests.tabbedrecyclerAdapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

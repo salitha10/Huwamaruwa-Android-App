@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -130,6 +131,7 @@ public class Home_fragment extends Fragment {
                         product.setPerHour(Boolean.parseBoolean(dataSnapshot.child("perHour").getValue().toString()));
                         product.setDepositPercentage(Double.parseDouble(dataSnapshot.child("depositPercentage").getValue().toString()));
                         product.setLocation(dataSnapshot.child("location").getValue().toString());
+                        product.setCategoryID(dataSnapshot.child("categoryID").getValue().toString());
                         product.setSellerId(dataSnapshot.child("sellerId").getValue().toString());
                         product_list_latest.add(product); //add data for array list
                         if (product.getIsPremium()){//check whether add is premium or not
@@ -194,7 +196,8 @@ public class Home_fragment extends Fragment {
                         product.setPerHour(Boolean.parseBoolean(dataSnapshot.child("perHour").getValue().toString()));
                         product.setDepositPercentage(Double.parseDouble(dataSnapshot.child("depositPercentage").getValue().toString()));
                         product.setLocation(dataSnapshot.child("location").getValue().toString());
-                        product.setLocation(dataSnapshot.child("categoryID").getValue().toString());
+                        Toast.makeText(getContext(), "Category is "+ dataSnapshot.child("categoryID").getValue().toString(), Toast.LENGTH_SHORT).show();
+                        product.setCategoryID(dataSnapshot.child("categoryID").getValue().toString());
                         product.setSellerId(dataSnapshot.child("sellerId").getValue().toString());
                         product_list_history.add(product);
                         if (product.getIsPremium()) product_list_history_premium.add(product);

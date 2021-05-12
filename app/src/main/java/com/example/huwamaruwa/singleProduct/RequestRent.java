@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.util.Pair;
 
 import com.bumptech.glide.Glide;
@@ -56,6 +57,7 @@ public class RequestRent extends AppCompatActivity {
     private double deposit = 0;
     private double total = 0;
     private String userId;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +74,7 @@ public class RequestRent extends AppCompatActivity {
         txtTitle = findViewById(R.id.txtRequest_rent_form_title);
         txtTotal = findViewById(R.id.txtRequestRent__form_total);
         txtDeposit = findViewById(R.id.txtRequestRent__form_deposit);
+        toolbar = findViewById(R.id.toolbar);
 
         edtAddress = findViewById(R.id.edtRequesrtRent_form_address);
         edtContactNumber = findViewById(R.id.edtRequesrtRent_form_contactnumber);
@@ -85,6 +88,19 @@ public class RequestRent extends AppCompatActivity {
         Log.e("login", user.getUid());
         userId = user.getUid();
 
+        //setup Toolbar
+        //set Toolbar title
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Rent Request");
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         Glide.with(this).load(product.getImages1()).into(imgMain);
         txtTitle.setText(product.getTitle());

@@ -40,8 +40,10 @@ import com.example.huwamaruwa.Home.categoty_locations.CategoryListFragment;
 import com.example.huwamaruwa.Home.categoty_locations.LocationListFragment;
 import com.example.huwamaruwa.Models.UserBehaviours;
 
+import com.example.huwamaruwa.MypostAD.UserPostedAds;
 import com.example.huwamaruwa.RentalRequests.PremiumProductRentalRequestFragment;
 import com.example.huwamaruwa.RentalRequests.nonPremium_Requests_seller_sideFragment;
+import com.example.huwamaruwa.addCategory.allAddCategories;
 import com.example.huwamaruwa.addProduct.AddNewItem;
 import com.example.huwamaruwa.buyerRentalRequestManage.AllBuyerRentalRequests;
 import com.example.huwamaruwa.buyerRentalRequestManage.BuyerRentalRequest;
@@ -158,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                         if (userType.equals("Buyer")){
                             menu.findItem(R.id.nav_admin).setVisible(false);
                             menu.findItem(R.id.nav_seller).setVisible(false);
+                            menu.findItem(R.id.nav_seller_my_add).setVisible(false);
                         }else if (userType.equals("Seller")){
                             menu.findItem(R.id.nav_admin).setVisible(false);
                             menu.findItem(R.id.nav_buyer).setVisible(false);
@@ -386,6 +389,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_seller_sent_product_offers:
                 startActivity(new Intent(getApplicationContext(), SentRentalRequestBySeller.class));
+                break;
+            case R.id.admin_categories:
+                startActivity(new Intent(getApplicationContext(), allAddCategories.class));
+                break;
+            case R.id.nav_seller_my_add:
+                startActivity(new Intent(getApplicationContext(), UserPostedAds.class));
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);

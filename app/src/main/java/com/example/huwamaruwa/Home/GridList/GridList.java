@@ -2,11 +2,13 @@ package com.example.huwamaruwa.Home.GridList;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.huwamaruwa.Home.categoty_locations.CategoryListAdapter;
 import com.example.huwamaruwa.Home.categoty_locations.LocationListAdapter;
@@ -27,15 +29,31 @@ public class GridList extends AppCompatActivity {
     RecyclerView recyclerView;
     Query query;
     String location;
+    Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid_list);
         product_list  = new ArrayList<>();
         recyclerView = findViewById(R.id.grid_recycler_griidList);
-
+        toolbar = findViewById(R.id.toolbar);
+        
         Intent intent = getIntent();
         String catTitle = intent.getStringExtra(CategoryListAdapter.TAG_CATEGORY_TITLE);
+        
+        //setup Toolbar
+        //set Toolbar title
+
+        String title = null;
+        if (intent.getStringExtra(LocationListAdapter.TAG_Location_TITLE) != null){
+            title = location;
+        }else if (intent.getStringExtra(intent.getStringExtra(CategoryListAdapter.TAG_CATEGORY_TITLE)) != null){
+            title = catTitle;
+        }
+        
+
+
+
         location = intent.getStringExtra(LocationListAdapter.TAG_Location_TITLE);
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("Product");

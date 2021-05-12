@@ -62,6 +62,10 @@
                     android:id="@+id/nav_seller_sent_product_offers"
                     android:icon="@drawable/product_offer_icon"
                     android:title="@string/nav_seller_request_rentals" />
+                <item
+                    android:id="@+id/nav_seller_my_add"
+                    android:icon="@drawable/my_ad_icon"
+                    android:title="@string/nav_seller_my_add_title" />
             </group>
         </menu>
     </item>

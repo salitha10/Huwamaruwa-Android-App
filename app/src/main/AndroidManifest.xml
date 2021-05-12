@@ -90,7 +90,12 @@
 
 
         </activity>
+        <activity android:name=".addCategory.allAddCategories">
 
+        </activity>
+        <activity android:name=".addCategory.EditCategoryData">
+
+        </activity>
 
         <activity android:name=".payment.PaymentOption" >
 
@@ -120,6 +125,8 @@
         <activity android:name=".AddCategory" />
 
         <activity android:name=".ProfPicFullScreen"></activity>
+        <activity android:name=".MypostAD.UserPostedAds"></activity>
+        <activity android:name=".MypostAD.EditMyAd"></activity>
         <activity android:name=".buyerRentalRequestManage.ProductImageFullScreen" />
 
         <activity android:name=".Home.AddLocation">

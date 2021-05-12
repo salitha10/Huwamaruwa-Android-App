@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -33,15 +34,17 @@ import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 
 public class PaymentOption extends AppCompatActivity {
-CardView oneTimePayment,cashOnDelivery;
-TextView amount;
-Double productAmount =0.00;
-Dialog dialog;
-RequestRentModel requestRent;
-DatabaseReference dbRef;
-    Bundle bundle;
-    Button payBtn;
-    String id = null;
+    private CardView oneTimePayment, cashOnDelivery;
+    private TextView amount;
+    private Double productAmount = 0.00;
+    private Dialog dialog;
+    private RequestRentModel requestRent;
+    private DatabaseReference dbRef;
+    private Bundle bundle;
+    private Button payBtn;
+    private String id = null;
+    private Toolbar toolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,30 +54,38 @@ DatabaseReference dbRef;
         cashOnDelivery = findViewById(R.id.card_cash_on_delivery);
 
         dialog = new Dialog(this);
+        toolbar = findViewById(R.id.toolbar);
 
 
-       bundle = getIntent().getExtras();
+        bundle = getIntent().getExtras();
+
+        //setup Toolbar
+        //set Toolbar title
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Rent Request");
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
 
-       productAmount = bundle.getDouble("deposit");
-//       productAmount = bundle.getString("address")
-//       productAmount = bundle.getString("contact");
-//       productAmount = bundle.getString("duration");
-//       productAmount = bundle.getDouble("total");
-//       productAmount = bundle.getBoolean("isPremium");
-//       productAmount = bundle.getString("productId");
-//       productAmount = bundle.getString("dateDif");
-//       productAmount = bundle.getString("userId");
+        productAmount = bundle.getDouble("deposit");
+
         oneTimePayment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(PaymentOption.this,R.style.BottomSheetDialogTheme);
-                View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.fragment_add_payment__bottom__dialog_, (LinearLayout)findViewById(R.id.bottom_sheet_layout_add_payment));
+                BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(PaymentOption.this, R.style.BottomSheetDialogTheme);
+                View bottomSheetView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.fragment_add_payment__bottom__dialog_, (LinearLayout) findViewById(R.id.bottom_sheet_layout_add_payment));
                 bottomSheetDialog.setContentView(bottomSheetView);
                 bottomSheetDialog.show();
-               amount = bottomSheetView.findViewById(R.id.txt_add_payment_amount);
-               amount.setText(Double.toString(productAmount));
-                payBtn= bottomSheetView.findViewById(R.id.btnpayment_option_add_payment);
+                amount = bottomSheetView.findViewById(R.id.txt_add_payment_amount);
+                amount.setText(Double.toString(productAmount));
+                payBtn = bottomSheetView.findViewById(R.id.btnpayment_option_add_payment);
 
                 payBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -88,9 +99,9 @@ DatabaseReference dbRef;
         cashOnDelivery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (id != null){
+                if (id != null) {
                     fancyDialog();
-                }else {
+                } else {
                     warningDialog();
                 }
 
@@ -99,7 +110,8 @@ DatabaseReference dbRef;
 
 
     }
-    public void fancyDialog(){
+
+    public void fancyDialog() {
         new FancyGifDialog.Builder(PaymentOption.this)
                 .setTitle("You Almost Done !") // You can also send title like R.string.from_resources
                 .setMessage("Give us some times to review your request and we will contact you soon.Thank you") // or pass like R.string.description_from_resources
@@ -112,8 +124,8 @@ DatabaseReference dbRef;
                 .OnPositiveClicked(new FancyGifDialogListener() {
                     @Override
                     public void OnClick() {
-                       Intent intent = new Intent(PaymentOption.this, MainActivity.class);
-                       startActivity(intent);
+                        Intent intent = new Intent(PaymentOption.this, MainActivity.class);
+                        startActivity(intent);
                     }
                 })
                 .OnNegativeClicked(new FancyGifDialogListener() {
@@ -125,7 +137,7 @@ DatabaseReference dbRef;
                 .build();
     }
 
-    public void warningDialog(){
+    public void warningDialog() {
         //View alertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.cash_on_delivery_confirm_alert, (ConstraintLayout)findViewById(R.id.cash_on_delivery_warning_dialog_layout));
         dialog.setContentView(R.layout.cash_on_delivery_confirm_alert);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -153,7 +165,8 @@ DatabaseReference dbRef;
 
         dialog.show();
     }
-    public void addRequestData(){
+
+    public void addRequestData() {
         dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
         requestRent = new RequestRentModel();
         requestRent.setAddress(bundle.getString("address"));
