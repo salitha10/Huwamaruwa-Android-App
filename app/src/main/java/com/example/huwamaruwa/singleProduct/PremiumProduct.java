@@ -237,8 +237,6 @@ public class PremiumProduct extends AppCompatActivity {
         }else if ((sec - product.getDate_in_sec()) > 0){
             txtTime.setText("Posted On "+(sec - product.getDate_in_sec())+" seconds ago");
         }
-
-
     }
 
 

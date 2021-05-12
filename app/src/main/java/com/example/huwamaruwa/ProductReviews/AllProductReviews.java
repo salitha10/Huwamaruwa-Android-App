@@ -41,8 +41,18 @@ public class AllProductReviews extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_product_reviews);
 
-        //Top fragment
+        //Get prodicutID
+        String pID = getIntent().getStringExtra("ProductID");
+        Log.d("ProductID", pID);
+
+        //String pID = "-M_RmmPviuLA62pC8a5q";
+
         MyReviewFragment FR = new MyReviewFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("ProductID", pID);
+        FR.setArguments(bundle);
+
+        //Top fragment
         FragmentManager fm = getSupportFragmentManager();
         FragmentTransaction ft1 = fm.beginTransaction();
         ft1.add(R.id.myReviewLayout, FR).hide(FR);
@@ -55,6 +65,7 @@ public class AllProductReviews extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        //Init recyclerview
         list = new ArrayList<>();
         AllReviewsAdapter adapter = new AllReviewsAdapter(list,this);
         recyclerView.setAdapter(adapter);
@@ -62,17 +73,18 @@ public class AllProductReviews extends AppCompatActivity {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String cUser = user.getUid();
 
+
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
+                list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     ProductReviews pr = dataSnapshot.getValue(ProductReviews.class);
-                    if(pr.getReviewerID().equals(cUser)) {
+                    if(pr.getProductID().equals(pID) && !pr.getReviewerID().equals(cUser)) {
                         list.add(pr);
-
+                        adapter.notifyDataSetChanged();
                     }
                 }
-                adapter.notifyDataSetChanged();
             }
 
             @Override

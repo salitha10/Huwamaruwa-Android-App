@@ -23,24 +23,19 @@ public class ChatActivity extends AppCompatActivity {
     }
 
     public void onResume() {
-        super.onResume();
 
+        super.onResume();
         //Chat list
         TabLayout tabLayout = (TabLayout)findViewById(R.id.tab_layout_chat);
         ViewPager viewpager = (ViewPager)findViewById(R.id.View_pager_chat);
-
         ViewPageAdapter viewPageAdapter = new ViewPageAdapter(getSupportFragmentManager());
-
         viewPageAdapter.addFragment(new ChatFragment(), "Chats");
         viewPageAdapter.addFragment(new UsersFragment(), "Users");
-
         viewpager.setAdapter(viewPageAdapter);
         tabLayout.setupWithViewPager(viewpager);
         tabLayout.getTabAt(0).setText("Chats");
         tabLayout.getTabAt(1).setText("Users");
-
     }
-
 
     //Initilaize tab layout
     class ViewPageAdapter extends FragmentPagerAdapter{
@@ -52,9 +47,7 @@ public class ChatActivity extends AppCompatActivity {
             super(fm);
             this.fragments = new ArrayList<>();
             this.titles = new ArrayList<>();
-
         }
-
 
         @NonNull
         @Override

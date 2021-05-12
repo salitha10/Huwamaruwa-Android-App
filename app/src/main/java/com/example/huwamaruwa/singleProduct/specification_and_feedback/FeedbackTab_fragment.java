@@ -1,5 +1,6 @@
 package com.example.huwamaruwa.singleProduct.specification_and_feedback;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,7 +8,14 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.huwamaruwa.Home.Home_recycler_1_adapter;
+import com.example.huwamaruwa.MainActivity;
+import com.example.huwamaruwa.Models.Product;
+import com.example.huwamaruwa.Models.ProductReviews;
+import com.example.huwamaruwa.ProductReviews.AddProductReview;
+import com.example.huwamaruwa.ProductReviews.AllProductReviews;
 import com.example.huwamaruwa.R;
 
 /**
@@ -16,6 +24,9 @@ import com.example.huwamaruwa.R;
  * create an instance of this fragment.
  */
 public class FeedbackTab_fragment extends Fragment {
+
+    Button addReview, showReviews;
+    Product pd;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,12 +66,43 @@ public class FeedbackTab_fragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_feedback_tab_fragment, container, false);
+
+        View view =inflater.inflate(R.layout.fragment_feedback_tab_fragment, container, false);
+        //Get product ID
+        pd = getActivity().getIntent().getParcelableExtra(Home_recycler_1_adapter.SINGLE_PRODUCT_TAG);
+
+        addReview = (Button)view.findViewById(R.id.AddReview);
+        showReviews = (Button)view.findViewById(R.id.ViewReviews);
+        String productID = pd.getId();
+
+        //Add button click
+        addReview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AddProductReview.class);
+                intent.putExtra("ProductID", productID);
+                startActivity(intent);
+            }
+        });
+
+        showReviews.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), AllProductReviews.class);
+                intent.putExtra("ProductID", productID);
+                startActivity(intent);
+            }
+        });
+
+
+        return view;
     }
+
+
 }

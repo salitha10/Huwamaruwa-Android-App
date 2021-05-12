@@ -1,3 +1,4 @@
+
 package com.example.huwamaruwa.customer_care;
 
 import android.os.Bundle;
@@ -48,9 +49,10 @@ public class UsersFragment extends Fragment {
 
     private void readUsers() {
 
-        //final FirebaseUser cUser = FirebaseAuth.getInstance().getCurrentUser();
-        String cUser = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
+        final FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();
+        String cUser = User.getUid();
         DatabaseReference dbf = FirebaseDatabase.getInstance().getReference().child("Users");
+
         dbf.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -66,7 +68,9 @@ public class UsersFragment extends Fragment {
 
                     Log.d("User", user.getUserId());
 
-                    if(!user.getUserId().equals(cUser)){
+                    //if(!user.getUserId().equals(cUser)){
+
+                    if(user.getUserType().equals("Admin")){
                         mUsers.add(user);
                     }
                 }

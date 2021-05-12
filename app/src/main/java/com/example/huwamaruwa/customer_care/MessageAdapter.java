@@ -8,13 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.Chat;
 import com.example.huwamaruwa.Models.User;
 import com.example.huwamaruwa.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.List;
 
 public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHolder> {
@@ -25,8 +30,6 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
     private Context mContext;
     private List<Chat> mChat;
     String imageURL;
-
-    //final FirebaseUser;
     String cUser;
 
     public MessageAdapter(Context mContext, List<Chat> mChat, String imageURL) {
@@ -81,8 +84,8 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     public int getItemViewType(int position) {
 
-        //cUser = FirebaseAuth.getInstance().getCurrentUser();
-        cUser = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
+        final FirebaseUser User = FirebaseAuth.getInstance().getCurrentUser();
+        cUser = User.getUid();
 
         if (mChat.get(position).getSender().equals(cUser)) {
             return MSG_TYPE_RIGHT;

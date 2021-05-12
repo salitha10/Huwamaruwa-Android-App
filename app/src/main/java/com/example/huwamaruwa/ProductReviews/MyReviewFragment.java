@@ -21,6 +21,7 @@ import com.example.huwamaruwa.Models.ProductReviews;
 import com.example.huwamaruwa.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -71,7 +72,7 @@ public class MyReviewFragment extends Fragment {
     RatingBar rating;
     ImageView reviewerPic, delete;
     DatabaseReference dbf1, dbf2, dbf3;
-    FirebaseAuth user;
+    String pID, revID;
 
 
     ProductReviews pr = new ProductReviews();
@@ -113,7 +114,6 @@ public class MyReviewFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
-
         }
 
     }
@@ -124,7 +124,7 @@ public class MyReviewFragment extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_review, container, false);
-
+        pID = getArguments().getString("ProductID");
         return view;
 
     }
@@ -175,14 +175,13 @@ public class MyReviewFragment extends Fragment {
         });
 
         //Get data from review
-        String cUser = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
-        //String cUser = user.getCurrentUser().getUid();
-        String proID = "-M_OmNhGhn2pInyGCqVU";
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String cUser = user.getUid();
+        //String cUser = "jmkzIioXtdXgY84pPmGUT4y7Cap2";
+        String proID =pID;
 
         dbf1 = FirebaseDatabase.getInstance().getReference().child("ProductReviews");
-
         dbf2 = FirebaseDatabase.getInstance().getReference().child("Users");
-        dbf3 = FirebaseDatabase.getInstance().getReference().child("Product");
 
         dbf1.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -190,10 +189,9 @@ public class MyReviewFragment extends Fragment {
                 if (snapshot.hasChildren()) {
                     //reviewer.setText(snapshot.child("id").getValue().toString());
 
-                        ProductReviews pror;
+                    ProductReviews pror;
                     for(DataSnapshot ds: snapshot.getChildren()){
                         pror = ds.getValue(ProductReviews.class);
-
                         if(pror.getReviewerID().equals(cUser) && pror.getProductID().equals(proID)){
                             pr = pror;
                             getView().setVisibility(View.VISIBLE);
@@ -221,12 +219,14 @@ public class MyReviewFragment extends Fragment {
                     rating.setRating(Float.parseFloat(String.valueOf(pr.getAverageRating())));
                     String reviewerID = pr.getReviewerID();
                     String productID = pr.getProductID();
+                    revID = pr.getID();
 
                     dbf2.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             reviewer.setText(snapshot.child(reviewerID).child("name").getValue().toString());
-                            Glide.with(getContext()).load(snapshot.child(reviewerID).child("userImage").getValue()).circleCrop().placeholder(R.drawable.ic_launcher_background).into(reviewerPic);
+                            String url = snapshot.child(reviewerID).child("userImage").getValue().toString();
+                            Glide.with(getContext()).load(url).circleCrop().placeholder(R.drawable.ic_launcher_background).into(reviewerPic);
 
                         }
 
@@ -264,7 +264,7 @@ public class MyReviewFragment extends Fragment {
                 //Get data from Std1
 
                 if (snapshot.hasChildren()) {
-                    dbf1.removeValue();
+                    dbf1.child(revID).removeValue();
                     getView().setVisibility(View.GONE);
                     Toast.makeText(getContext(), "Deleted", Toast.LENGTH_SHORT).show();
                 } else {
