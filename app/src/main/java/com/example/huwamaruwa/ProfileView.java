@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.ContentResolver;
 import android.content.Context;
@@ -52,6 +53,7 @@ public class ProfileView extends AppCompatActivity {
     TextView name, email, phone, address, userType;
     Button btnProfilePicGallery, btnProfilePicUpload, btnDeleteUser;
     CircularImageView profImage;
+    Toolbar toolbar;
     String userId, userImageURL;
     ArrayList<Uri> profileImage;
     DatabaseReference dbf;
@@ -75,12 +77,25 @@ public class ProfileView extends AppCompatActivity {
         btnProfilePicUpload = findViewById(R.id.btnProfile_picUpload);
         profImage = findViewById(R.id.ProfPic_circularView);
         btnDeleteUser = findViewById(R.id.btnDeleteUser);
+        toolbar = findViewById(R.id.toolbar);
 
         loadingProgress = new LoadingProgress(ProfileView.this);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
         userId = user.getUid();
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Profile");
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         dbf = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
         dbf.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -180,7 +195,7 @@ public class ProfileView extends AppCompatActivity {
                      });
                  }
              });
-             deleteAccount.setNegativeButton("Cancel", new DialogInterface.OnClickListener(){
+             deleteAccount.setNegativeButton("No", new DialogInterface.OnClickListener(){
                  @Override
                  public void onClick(DialogInterface dialogInterface, int i) {
                      //return to base activity

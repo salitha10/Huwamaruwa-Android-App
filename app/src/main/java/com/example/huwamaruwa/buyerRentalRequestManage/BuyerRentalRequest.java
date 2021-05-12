@@ -1,7 +1,9 @@
 package com.example.huwamaruwa.buyerRentalRequestManage;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -10,6 +12,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.huwamaruwa.MainActivity;
 import com.example.huwamaruwa.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -20,12 +23,26 @@ public class BuyerRentalRequest extends AppCompatActivity {
     Button submit, cancel;
     DatabaseReference dbf;
     BuyerRentalRequestsModel buyerRentalRequestsModel;
+    Toolbar toolbar;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_buyer_rental_request);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Request Product");
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         productTitle = (EditText)findViewById(R.id.prouctNameEdit);
         category = (EditText)findViewById(R.id.productCategoryEdit);
@@ -37,6 +54,12 @@ public class BuyerRentalRequest extends AppCompatActivity {
 
         buyerRentalRequestsModel = new BuyerRentalRequestsModel();
 
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(BuyerRentalRequest.this, MainActivity.class));
+            }
+        });
 
     }
     private void clearContent(){
@@ -82,6 +105,8 @@ public class BuyerRentalRequest extends AppCompatActivity {
                 clearContent();
 
                 Toast.makeText(getApplicationContext(), "Request added successfully", Toast.LENGTH_LONG).show();
+
+                startActivity(new Intent(this, MainActivity.class));
             }
 
 

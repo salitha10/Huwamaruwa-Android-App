@@ -3,6 +3,7 @@ package com.example.huwamaruwa.buyerRentalRequestManage;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -46,6 +47,7 @@ public class EditSingleSellerRequest extends AppCompatActivity {
     DatabaseReference dbf;
     StorageReference sdbRefe;
     String FinalImageString;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +67,19 @@ public class EditSingleSellerRequest extends AppCompatActivity {
 
         sendingOffersModel = getIntent().getParcelableExtra(SentRentalRequestBySellerAdapter.EXTRA_MESSAGE1);
 
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(sendingOffersModel.getProductName());
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         sendingProductTitle.setText(sendingOffersModel.getProductName());
         sendingQuantity.setText(sendingOffersModel.getQuantity());
         sendingRental.setText(sendingOffersModel.getRental());
@@ -76,6 +91,13 @@ public class EditSingleSellerRequest extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 imageChooser();
+            }
+        });
+
+        cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(EditSingleSellerRequest.this, SentRentalRequestBySeller.class));
             }
         });
 

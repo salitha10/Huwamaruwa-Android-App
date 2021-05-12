@@ -2,10 +2,12 @@ package com.example.huwamaruwa.buyerRentalRequestManage;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.huwamaruwa.R;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +21,7 @@ import java.util.ArrayList;
 public class AllBuyerRentalRequests extends AppCompatActivity {
 
     //variables
+    Toolbar toolbar;
     RecyclerView recyclerView;
     DatabaseReference database;
     AllBuyerRequestsAdapter allBuyerRequestsAdapter;
@@ -28,6 +31,19 @@ public class AllBuyerRentalRequests extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_buyer_rental_requests);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Product Requests");
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         recyclerView = findViewById(R.id.allBuyerRequests_recyclerView);
         database = FirebaseDatabase.getInstance().getReference("BuyerRentalRequest");

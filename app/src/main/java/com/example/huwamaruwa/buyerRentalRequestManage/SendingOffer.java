@@ -2,6 +2,7 @@ package com.example.huwamaruwa.buyerRentalRequestManage;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.ContentResolver;
 import android.content.Intent;
@@ -43,6 +44,7 @@ public class SendingOffer extends AppCompatActivity {
     DatabaseReference dbf;
     StorageReference sdbRefe;
     SendingOffersModel sendingOffersModel;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +61,19 @@ public class SendingOffer extends AppCompatActivity {
         productImage = findViewById(R.id.sendingForm_photo);
 
         buyerRentalRequestsModel = getIntent().getParcelableExtra(AllBuyerRequestsAdapter.EXTRA_MESSAGE);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle(buyerRentalRequestsModel.getProductTitle());
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         productName.setText(buyerRentalRequestsModel.getProductTitle());
         category.setText(buyerRentalRequestsModel.getCategory());
@@ -129,7 +144,7 @@ public class SendingOffer extends AppCompatActivity {
 
 
                 Toast.makeText(getApplicationContext(), "Request added successfully", Toast.LENGTH_LONG).show();
-
+                startActivity(new Intent(this, SentRentalRequestBySeller.class));
 
         }catch (Exception e){
             Log.d("ERROR",e.getMessage());
@@ -176,5 +191,9 @@ public class SendingOffer extends AppCompatActivity {
 
             Toast.makeText(getApplicationContext(), "Image selected", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void cancelOffer(View view){
+        startActivity(new Intent(this, SentRentalRequestBySeller.class));
     }
 }

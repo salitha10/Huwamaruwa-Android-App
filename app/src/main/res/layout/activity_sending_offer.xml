@@ -227,6 +227,7 @@
                 android:id="@+id/btnSendingForm_cancel"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:onClick="cancelOffer"
                 android:text="Cancel"
                 />
 

@@ -2,10 +2,12 @@ package com.example.huwamaruwa.buyerRentalRequestManage;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.huwamaruwa.Models.SendingOffersModel;
 import com.example.huwamaruwa.R;
@@ -23,11 +25,25 @@ public class SentRentalRequestBySeller extends AppCompatActivity {
     DatabaseReference database;
     ArrayList<SendingOffersModel> list;
     SentRentalRequestBySellerAdapter sentRentalRequestBySellerAdapter;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sent_rental_request_by_seller);
+
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Sent Requests");
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         //Hooks
         sentOffers_recyclerView = findViewById(R.id.sentOffers_recyclerView);

@@ -2,6 +2,7 @@ package com.example.huwamaruwa;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ public class UserProfileEdit extends AppCompatActivity {
 
     EditText name, email, phone, address;
     String userId;
+    Toolbar toolbar;
     DatabaseReference dbf;
     FirebaseUser user;
     User loggedUser;
@@ -41,12 +43,23 @@ public class UserProfileEdit extends AppCompatActivity {
         email = findViewById(R.id.profileEmail);
         phone = findViewById(R.id.Profile_phone);
         address = findViewById(R.id.Profile_address);
+        toolbar = findViewById(R.id.toolbar);
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login", user.getUid());
         userId = user.getUid();
 
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getSupportActionBar().setTitle("Edit Profile");
 
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         dbf = FirebaseDatabase.getInstance().getReference().child("Users").child(userId);
 
@@ -102,8 +115,11 @@ public class UserProfileEdit extends AppCompatActivity {
                             }
                         });
                 Toast.makeText(getApplicationContext(), "Profile Updated", Toast.LENGTH_LONG).show();
-
+                startActivity(new Intent(UserProfileEdit.this,ProfileView.class));
             }
         });
+    }
+    public void cancelEdit(View view){
+        startActivity(new Intent(this,ProfileView.class));
     }
 }

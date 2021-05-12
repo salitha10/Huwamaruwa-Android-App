@@ -209,9 +209,7 @@ public class RequestRent extends AppCompatActivity {
                         Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
                     }
 
-                    }else {
-                        Toast.makeText(RequestRent.this, "Minimum Rental time is "+product.getMinRentalTime()+" Days", Toast.LENGTH_SHORT).show();
-                    }
+
 
 
 
