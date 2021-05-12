@@ -27,11 +27,6 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link DeliveryList#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class DeliveryList extends Fragment {
 
     private RecyclerView recyclerView;
@@ -87,7 +82,7 @@ public class DeliveryList extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.d("DBCancelled", error.getMessage());
             }
         });
 

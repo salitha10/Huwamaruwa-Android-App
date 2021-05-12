@@ -175,7 +175,7 @@ public class EditReview extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Review Not Updated", Toast.LENGTH_SHORT).show();
         }
 
-            finish();
+        finish();
     }
 
 }

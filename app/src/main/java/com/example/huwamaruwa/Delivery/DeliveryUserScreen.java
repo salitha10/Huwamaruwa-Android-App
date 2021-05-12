@@ -25,8 +25,7 @@ public class DeliveryUserScreen extends AppCompatActivity {
     SeekBar sb;
     DatabaseReference dbf1, dbf2, dbf3;
 
-
-    // String rentID = "-M_2HpdA_lCTNFKnS9FK";
+    //String rentID = "-M_2HpdA_lCTNFKnS9FK";
     //String sellerID = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
 
     String sellerID = getIntent().getStringExtra("sellerID");
@@ -36,7 +35,6 @@ public class DeliveryUserScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_delivery_user_screen);
-
         sb = (SeekBar)findViewById(R.id.seekBar);
         sb.setMax(3);
         sb.setProgress(0);
@@ -64,7 +62,6 @@ public class DeliveryUserScreen extends AppCompatActivity {
             }
         });
 
-
         dbf1.child(sellerID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -76,7 +73,6 @@ public class DeliveryUserScreen extends AppCompatActivity {
 
             }
         });
-
 
         dbf1.child(rentID).addValueEventListener(new ValueEventListener() {
             @Override

@@ -46,12 +46,10 @@ public class EditSellerReviews extends AppCompatActivity {
     FirebaseUser user;
     String date;
 
-
     /**
      * Get buyer id from intents
      * Get Seller ID from intents
      */
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +65,16 @@ public class EditSellerReviews extends AppCompatActivity {
         r2 = (RatingBar) findViewById(R.id.hRBSellerReview);
         r3 = (RatingBar) findViewById(R.id.cRBSellerReview);
         sr = new SellerReview();
+
+
         //Get current user
         user = FirebaseAuth.getInstance().getCurrentUser();
         date = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
-        //userID = user.getUid();
-        userID = "Lud7rSb7CyeJLQt7saQOVYTZv953";
+        userID = user.getUid();
+        //userID = "Lud7rSb7CyeJLQt7saQOVYTZv953";
 
-        //sellerID = getIntent().getExtras("sellerID");
-        sellerID = "HVGC2pBrNXaeGwcZAYfyxe0wgwJ3";
+         sellerID = getIntent().getStringExtra("sellerID");
+        //sellerID = "HVGC2pBrNXaeGwcZAYfyxe0wgwJ3";
 
         Intent intent = getIntent();
         sr = intent.getParcelableExtra("MyReview");
@@ -134,7 +134,7 @@ public class EditSellerReviews extends AppCompatActivity {
                 sr.setHandlingRating(r2.getRating());
                 sr.setComRating(r3.getRating());
                 sr.setDate(date);
-                sr.setID(sellerID);
+                sr.setSellerID(sellerID);
 
                 //dbf.push().setValue(sr);
                 dbf.child(sr.getID()).setValue(sr);
