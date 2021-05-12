@@ -201,7 +201,6 @@ public class MyReviewFragment extends Fragment {
                     }
 
                     /*
-
                     //Set object values
                     pr.setComment(snapshot.child("comment").getValue().toString());
                     //pr.setBuyerID(snapshot.child("buyerID").getValue().toString());

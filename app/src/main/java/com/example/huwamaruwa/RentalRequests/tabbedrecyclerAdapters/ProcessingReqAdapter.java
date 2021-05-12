@@ -186,7 +186,6 @@ public class ProcessingReqAdapter extends RecyclerView.Adapter<ProcessingReqAdap
                     Intent intent = new Intent(context, MessageActivity.class);
                     intent.putExtra("sellerId", product.getSellerId());
                     intent.putExtra("rentId", rentID);
-
                     context.startActivity(intent);
                 }
             });

@@ -40,6 +40,7 @@ public class ChatFragment extends Fragment {
 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_chat, container, false);
 
@@ -47,8 +48,9 @@ public class ChatFragment extends Fragment {
         rec.setHasFixedSize(true);
         rec.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        //Get current user
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
-        String cUser = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
+        String cUser = currentUser.getUid();
 
         userList = new ArrayList<>();
 
@@ -87,9 +89,10 @@ public class ChatFragment extends Fragment {
 
         dbf = FirebaseDatabase.getInstance().getReference().child("Users");
         dbf.addValueEventListener(new ValueEventListener() {
+
+            //Get Data
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
                 mUser.clear();
 
                 for (DataSnapshot ds : snapshot.getChildren()) {
@@ -120,7 +123,7 @@ public class ChatFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
+                Log.d("DBCancelled", error.getMessage());
             }
         });
 

@@ -4,10 +4,8 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,19 +14,44 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.SellerReview;
-import com.example.huwamaruwa.ProductReviews.EditReview;
-import com.example.huwamaruwa.ProductReviews.MyReviewFragment;
+import com.example.huwamaruwa.Models.SellerReview;
 import com.example.huwamaruwa.R;
-import com.google.firebase.auth.FirebaseAuth;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
+import android.widget.Toast;
+import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Models.SellerReview;
+import com.example.huwamaruwa.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import androidx.fragment.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import com.example.huwamaruwa.R;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -45,7 +68,7 @@ public class MySellerReview extends Fragment {
     String pID, revID;
 
 
-    SellerReview sr = new SellerReview();
+    SellerReview pr = new SellerReview();
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,17 +83,8 @@ public class MySellerReview extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment myReviewFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MyReviewFragment newInstance(String param1, String param2) {
-        MyReviewFragment fragment = new MyReviewFragment();
+    public static MySellerReview newInstance(String param1, String param2) {
+        MySellerReview fragment = new MySellerReview();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -94,8 +108,9 @@ public class MySellerReview extends Fragment {
 
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_my_review, container, false);
-        pID = getArguments().getString("sellerID");
+        pID = getArguments().getString("ProductID");
         return view;
+
     }
 
     public void onResume() {
@@ -144,11 +159,11 @@ public class MySellerReview extends Fragment {
 
         //Get data from review
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        //String cUser = user.getUid();
-        String cUser = "Lud7rSb7CyeJLQt7saQOVYTZv953";
-        String proID = pID;
+        String cUser = user.getUid();
+        //String cUser = "Lud7rSb7CyeJLQt7saQOVYTZv953";
+        String proID =pID;
 
-        dbf1 = FirebaseDatabase.getInstance().getReference().child("ProductReviews");
+        dbf1 = FirebaseDatabase.getInstance().getReference().child("SellerReview");
         dbf2 = FirebaseDatabase.getInstance().getReference().child("Users");
 
         dbf1.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -158,19 +173,22 @@ public class MySellerReview extends Fragment {
 
                     //reviewer.setText(snapshot.child("id").getValue().toString());
                     SellerReview pror;
-                    for (DataSnapshot ds : snapshot.getChildren()) {
+                    for(DataSnapshot ds: snapshot.getChildren()){
                         pror = ds.getValue(SellerReview.class);
-                        if (pror.getReviewerID().equals(cUser)) {
-                            sr = pror;
+
+                        Log.d("REVID", pror.getReviewerID());
+
+                        if(pror.getReviewerID().equals(cUser)){
+                            pr = pror;
                             getView().setVisibility(View.VISIBLE);
                             break;
                         }
                     }
 
-                    comments.setText(sr.getComment());
-                    rating.setRating(Float.parseFloat(String.valueOf(sr.getAverageRating())));
-                    String reviewerID = sr.getReviewerID();
-                    revID = sr.getID();
+                    comments.setText(pr.getComment());
+                    rating.setRating(Float.parseFloat(String.valueOf(pr.getAverageRating())));
+                    String reviewerID = pr.getReviewerID();
+                    revID = pr.getID();
 
                     dbf2.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -179,7 +197,6 @@ public class MySellerReview extends Fragment {
                             String url = snapshot.child(reviewerID).child("userImage").getValue().toString();
                             Glide.with(getContext()).load(url).circleCrop().placeholder(R.drawable.ic_launcher_background).into(reviewerPic);
                         }
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
 
@@ -196,12 +213,12 @@ public class MySellerReview extends Fragment {
         });
     }
 
-
     public void goToEdit() {
+
         Intent intent = new Intent(getContext(), EditSellerReviews.class);
-        intent.putExtra("MyReview", sr);
+        intent.putExtra("sellerID", pr.getSellerID());
         startActivity(intent);
-        Log.d("quality", String.valueOf(sr.getComRating()));
+        Log.d("quality", String.valueOf(pr.getComRating()));
     }
 
 
@@ -219,6 +236,7 @@ public class MySellerReview extends Fragment {
                 } else {
                     Toast.makeText(getContext(), "Delete Failed", Toast.LENGTH_SHORT).show();
                 }
+
             }
 
             @Override

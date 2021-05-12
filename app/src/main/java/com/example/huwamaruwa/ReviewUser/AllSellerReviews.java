@@ -12,7 +12,6 @@ import android.util.Log;
 
 import com.example.huwamaruwa.Models.SellerReview;
 import com.example.huwamaruwa.ReviewUser.AllSellerReviewAdapter;
-import com.example.huwamaruwa.ProductReviews.MyReviewFragment;
 import com.example.huwamaruwa.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,12 +37,12 @@ public class AllSellerReviews extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_seller_reviews);
 
-       // String sID = getIntent().getStringExtra("SellerID");
-        //Log.d("SellerID", sID);
+        String sID = getIntent().getStringExtra("SellerID");
+        Log.d("SellerID", sID);
 
-        String sID = "-M_TegdG5KJNDkmprM22";
+        //String sID = "-M_TegdG5KJNDkmprM22";
 
-        MyReviewFragment FR = new MyReviewFragment();
+        MySellerReview FR = new MySellerReview();
         Bundle bundle = new Bundle();
         bundle.putString("SellerID", sID);
         FR.setArguments(bundle);
@@ -56,7 +55,7 @@ public class AllSellerReviews extends AppCompatActivity {
 
         //Bottom recycler view
         recyclerView = findViewById(R.id.allReviewsRecycle);
-        database = FirebaseDatabase.getInstance().getReference("SellerReviews");
+        database = FirebaseDatabase.getInstance().getReference("SellerReview");
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -76,10 +75,11 @@ public class AllSellerReviews extends AppCompatActivity {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     SellerReview sr = dataSnapshot.getValue(SellerReview.class);
-                    if(sr.getReviewerID().equals(sID) && !sr.getReviewerID().equals(cUser)) {
+                    Log.d("RevID", sr.getReviewerID());
+                    if(!sr.getReviewerID().equals(cUser)) {
                         list.add(sr);
-                        adapter.notifyDataSetChanged();
                     }
+                        adapter.notifyDataSetChanged();
                 }
             }
 

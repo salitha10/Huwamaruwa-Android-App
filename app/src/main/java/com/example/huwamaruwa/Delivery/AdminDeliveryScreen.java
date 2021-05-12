@@ -31,7 +31,6 @@ public class AdminDeliveryScreen extends AppCompatActivity {
     String rentID = getIntent().getStringExtra("recID");
     String sellerID = getIntent().getStringExtra("sellerID");
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
