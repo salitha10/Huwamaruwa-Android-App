@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.appcompat.widget.Toolbar;
@@ -57,10 +58,12 @@ public class PremiumProduct extends AppCompatActivity {
     private FeedbackTab_fragment feedbackTab_fragment;
     private SpecificationTab_fragment specificationTab_fragment;
     private DatabaseReference dbRef;
+    private DatabaseReference ratingDb;
     private String sName;
     private CardView recentRentals;
     private CardView singleStore;
     private Toolbar toolbar;
+    private RatingBar ratingBar;
     public static final String RS="RS. ";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +94,8 @@ public class PremiumProduct extends AppCompatActivity {
 
         btnRentProduct = findViewById(R.id.btnRequestRent_form_send_request);
 
+        //rating bar
+        ratingBar = findViewById(R.id.premium_product_rating_bar);
 
         viewPager = findViewById(R.id.premiumProduct_viewpager);
         tabLayout = findViewById(R.id.premiumProduct_tab_view);
@@ -129,6 +134,45 @@ public class PremiumProduct extends AppCompatActivity {
             premiumStores.setVisibility(View.GONE);
             premiumLogo.setVisibility(View.GONE);
         }
+
+
+        //get user ratings
+
+        ratingDb = FirebaseDatabase.getInstance().getReference().child("ProductReviews");
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                final int[] numRating = {0};
+                final int[] numCus = {0};
+                Query q = ratingDb.orderByChild("productID").equalTo(product.getId());
+                q.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()){
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                numRating[0] += Integer.parseInt(dataSnapshot.child("averageRating").getValue().toString());
+                                numCus[0]++;
+                            }
+                        }
+                        ratingBar.setNumStars(5);
+                        double avgRate =calcAvgRating(numRating[0],numCus[0]);
+                        ratingBar.setRating((float) avgRate * 5);
+                        Toast.makeText(PremiumProduct.this, "Number of avg "+avgRate, Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        },1000);
+
+
+
+
         //setup images
         Glide.with(this).load(product.getImages1()).placeholder(R.drawable.image_loading_anim).error(R.drawable.image_error).into(img1);
         Glide.with(this).load(product.getImages2()).placeholder(R.drawable.image_loading_anim).error(R.drawable.image_error).into(img2);
@@ -268,5 +312,9 @@ public class PremiumProduct extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         startActivity(new Intent(this, MainActivity.class));
+    }
+
+    public double calcAvgRating(int allRatedStars,int noOfUsers){
+        return allRatedStars/((double)noOfUsers*5);
     }
 }

@@ -1,6 +1,7 @@
 package com.example.huwamaruwa.RentalRequests.tabItems;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.huwamaruwa.Models.RequestRentModel;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.tabbedrecyclerAdapters.CompleatedReqAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,10 +32,15 @@ public class TabCompleted extends Fragment {
     ArrayList<RequestRentModel> request_list;
     RecyclerView completedRecycler;
     TextView noData;
+    String userId;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view= inflater.inflate(R.layout.tab_completed,container,false);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.e("login",user.getUid());
+        userId = user.getUid();
 
         noData = view.findViewById(R.id.txtCompletedNoData);
         completedRecycler = view.findViewById(R.id.RentalReq_seller_side_completed_recycler);
@@ -45,7 +53,7 @@ public class TabCompleted extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChildren()){
                     for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
-                        if (dataSnapshot.child("status").getValue().toString().equals("Delivered")){
+                        if (dataSnapshot.child("status").getValue().toString().equals("Delivered") && (dataSnapshot.child("sellerId").getValue().toString().equals(userId))){
                             RequestRentModel request = new RequestRentModel();
                             request.setAddress(dataSnapshot.child("address").getValue().toString());
                             request.setContactNumber(dataSnapshot.child("contactNumber").getValue().toString());
@@ -58,6 +66,7 @@ public class TabCompleted extends Fragment {
                             request.setStatus(dataSnapshot.child("status").getValue().toString());
                             request.setId(dataSnapshot.child("id").getValue().toString());
                             request.setUserId(dataSnapshot.child("userId").getValue().toString());
+                            request.setSellerId(dataSnapshot.child("sellerId").getValue().toString());
                             request_list.add(request);
                         }
 

@@ -166,6 +166,7 @@ DatabaseReference dbRef;
         requestRent.setDateDif(bundle.getString("dateDif"));
         requestRent.setStatus("Pending");
         requestRent.setUserId(bundle.getString("userId"));
+        requestRent.setSellerId(bundle.getString("sellerId"));
         id = dbRef.push().getKey();
         requestRent.setId(id);
         dbRef.child(requestRent.getId()).setValue(requestRent).addOnSuccessListener(new OnSuccessListener<Void>() {

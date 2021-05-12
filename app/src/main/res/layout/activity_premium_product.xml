@@ -212,7 +212,7 @@
                             android:textSize="16sp" />
 
                         <RatingBar
-                            android:id="@+id/pUsabilityRatingBar"
+                            android:id="@+id/premium_product_rating_bar"
                             style="@style/Widget.AppCompat.RatingBar.Small"
                             android:layout_width="94dp"
                             android:layout_height="wrap_content"

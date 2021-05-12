@@ -1,5 +1,6 @@
 package com.example.huwamaruwa.Home;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.Switch;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -37,6 +40,7 @@ public class Home_fragment extends Fragment {
     private RecyclerView recyclerView1,recyclerView2,recyclerView3;
     private ArrayList<Product>product_list_latest;
     private ArrayList<Product>product_list_history;
+    private ArrayList<Product>product_list_history_premium;
     private ArrayList<Product>product_list_premium;
     private DatabaseReference dRef_latest;
     private DatabaseReference dRef_history;
@@ -45,8 +49,11 @@ public class Home_fragment extends Fragment {
     private Home_recycler_2_adapter home_recycler_2_adapter;
     private String userId;
     private Dialog dialog;
+    private LinearLayout historyLayout;
+    @SuppressLint("UseSwitchCompatOrMaterialCode")
+    private Switch onlyPremium;
     private static final String TAG = "home_fragment";
-
+    boolean onlyPre = false;
     //default constructor
     public Home_fragment() {
         // Required empty public constructor
@@ -70,6 +77,8 @@ public class Home_fragment extends Fragment {
         //set loading animation
 
         //get views by ids
+        //layout
+        historyLayout = view.findViewById(R.id.linearLayout2);
 
         //recycler
         recyclerView1 = view.findViewById(R.id.home_recycler_view_1);
@@ -79,7 +88,11 @@ public class Home_fragment extends Fragment {
         //initialize arrays
         product_list_latest = new ArrayList<>();
         product_list_history = new ArrayList<>();
+        product_list_history_premium = new ArrayList<>();
         product_list_premium = new ArrayList<>();
+
+        //switch
+        //onlyPremium = view.findViewById(R.id.only_premium);
 
 
         //Retrieve value for recycler view 1(pro ads)
@@ -124,7 +137,6 @@ public class Home_fragment extends Fragment {
                         }
                     }
                 }else {
-
                     Log.e(TAG,"home fragment:null Object");
                 }
 
@@ -145,7 +157,13 @@ public class Home_fragment extends Fragment {
 
             }
         });
-
+//onlyPremium.setOnClickListener(new View.OnClickListener() {
+//    @Override
+//    public void onClick(View view) {
+//        if (onlyPremium.isChecked()) onlyPre = true;
+//        else onlyPre= false;
+//    }
+//});
 
         //retrieve user history in db
         dRef_history = FirebaseDatabase.getInstance().getReference().child("UserBehaviours").child(userId);
@@ -176,13 +194,30 @@ public class Home_fragment extends Fragment {
                         product.setPerHour(Boolean.parseBoolean(dataSnapshot.child("perHour").getValue().toString()));
                         product.setDepositPercentage(Double.parseDouble(dataSnapshot.child("depositPercentage").getValue().toString()));
                         product.setLocation(dataSnapshot.child("location").getValue().toString());
+                        product.setLocation(dataSnapshot.child("categoryID").getValue().toString());
                         product.setSellerId(dataSnapshot.child("sellerId").getValue().toString());
                         product_list_history.add(product);
+                        if (product.getIsPremium()) product_list_history_premium.add(product);
                     }
 
                 }
-                home_recycler_2_adapter = new Home_recycler_2_adapter(product_list_history,getContext());
-                recyclerView2.setAdapter(home_recycler_2_adapter);
+                if (onlyPre){
+                    recyclerView2.setAdapter(home_recycler_1_adapter);
+                    if (product_list_history_premium.size() < 3){
+
+                    }
+                    else
+                    home_recycler_2_adapter = new Home_recycler_2_adapter(product_list_history_premium,getContext());
+                }else {
+                    if (product_list_history.size() < 4){
+                            historyLayout.setVisibility(View.GONE);
+                            recyclerView2.setVisibility(View.GONE);
+                    }
+                    else
+                    home_recycler_2_adapter = new Home_recycler_2_adapter(product_list_history,getContext());
+                    recyclerView2.setAdapter(home_recycler_2_adapter);
+                }
+
                 new Handler().postDelayed(new Runnable()
                 {
                     @Override

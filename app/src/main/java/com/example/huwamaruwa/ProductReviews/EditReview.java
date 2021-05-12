@@ -63,7 +63,7 @@ public class EditReview extends AppCompatActivity {
         done = (Button) findViewById(R.id.btnDone);
         cancel = (Button) findViewById(R.id.btnCancel);
         quality = (RatingBar) findViewById(R.id.pQualityRatingBar);
-        usability = (RatingBar) findViewById(R.id.pUsabilityRatingBar);
+        usability = (RatingBar) findViewById(R.id.premium_product_rating_bar);
         price = (RatingBar) findViewById(R.id.pPriceRatingBar);
         thumbnail = (ImageView) findViewById(R.id.productThumbnail);
 

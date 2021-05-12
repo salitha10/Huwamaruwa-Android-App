@@ -1,6 +1,7 @@
 package com.example.huwamaruwa.RentalRequests.tabItems;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,8 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.huwamaruwa.Models.RequestRentModel;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.tabbedrecyclerAdapters.ProcessingReqAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,11 +33,17 @@ public class TabProcessing extends Fragment {
     ArrayList<RequestRentModel> request_list;
     DatabaseReference dbRef;
     TextView noData;
+    String userId;
     LottieAnimationView searchLottie,emptyLottie;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.tab_processing,container,false);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.e("login",user.getUid());
+        userId = user.getUid();
+
 
         searchLottie = view.findViewById(R.id.processing_tab_search_lottie);
         emptyLottie = view.findViewById(R.id.processing_tab_empty_lottie);
@@ -52,7 +61,7 @@ public class TabProcessing extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.hasChildren()){
                     for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
-                        if (dataSnapshot.child("status").getValue().toString().equals("Approved")){
+                        if (dataSnapshot.child("status").getValue().toString().equals("Approved")&& (dataSnapshot.child("sellerId").getValue().toString().equals(userId))){
                             RequestRentModel request = new RequestRentModel();
                             request.setAddress(dataSnapshot.child("address").getValue().toString());
                             request.setContactNumber(dataSnapshot.child("contactNumber").getValue().toString());
@@ -65,6 +74,7 @@ public class TabProcessing extends Fragment {
                             request.setStatus(dataSnapshot.child("status").getValue().toString());
                             request.setId(dataSnapshot.child("id").getValue().toString());
                             request.setUserId(dataSnapshot.child("userId").getValue().toString());
+                            request.setSellerId(dataSnapshot.child("sellerId").getValue().toString());
                             request_list.add(request);
                         }
                     }

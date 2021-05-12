@@ -6,6 +6,6 @@
     android:maxLines="1"
     android:padding="18dp"
     android:textAppearance="?attr/textAppearanceSubtitle1"
-    >
+    android:textSize="20sp">
 
 </TextView>

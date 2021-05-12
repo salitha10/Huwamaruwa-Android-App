@@ -9,8 +9,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
@@ -35,8 +37,13 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.installations.internal.FidListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -60,6 +67,8 @@ public class AddNewItem extends AppCompatActivity {
     private static final int CAMERA_REQEST = 1888;
     Button btnTakePhoto, btnGallery, btnPost;
     ArrayList<Uri> img_list;
+    ArrayList<String> cat_list;
+    ArrayList<String> loc_list;
 
     Product post;
 
@@ -95,6 +104,8 @@ public class AddNewItem extends AppCompatActivity {
         userId = user.getUid();
 
         img_list = new ArrayList<>();
+        cat_list = new ArrayList<>();
+        loc_list = new ArrayList<>();
         imgData = new String[4];
         loadingProgress = new LoadingProgress(AddNewItem.this);
 
@@ -107,24 +118,72 @@ public class AddNewItem extends AppCompatActivity {
         RentperDay_radio = findViewById(R.id.perDay_radio);
 
 
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                dbRefe = FirebaseDatabase.getInstance().getReference();
+                Query q = dbRefe.child("Category");
+                q.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()){
+                            for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                                cat_list.add(dataSnapshot.child("categoryTitle").getValue().toString());
+                            }
 
-        String[] category = {"Book", "Kitchenware", "Electronic", "Jewelleries", "Videography Equipments",
-                "Construction", "Catering Equipments", "Camping Equipments", "Health Equipments",
-                "Gaming Equipment", "Costumes","Ceremony Equipment"};
+                            String categor[] = new String[cat_list.size()];
+                            int i = 0;
+                            for (String title:cat_list){
+                                categor[i] = title;
+                                i++;
+                            }
+
+                            ArrayAdapter arrayAdapter = new ArrayAdapter(getApplicationContext(), R.layout.dropdown_category, categor);
+                            autoCompleteTextCat.setText(arrayAdapter.getItem(0).toString(), false);
+                            autoCompleteTextCat.setAdapter(arrayAdapter);
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        },1000);
 
 
-        String[] Location = {"Colombo", "Kandy", "Galle", "Ampara", "Anuradhapura", "Badulla", "Batticaloa",
-                "Gampaha", "Hambantota", "Jaffna", "Kalutara", "Kilinochchi", "Kurunegla", "Mannar", "Matale",
-                "Matara", "Monaragala", "Mullative", "Nuwara Eliya", "Polonnaruwa", "Puttalam", "Ratnapura",
-                "Trincomalee", "Vavuniya"};
+        dbRefe = FirebaseDatabase.getInstance().getReference();
+        Query q2 = dbRefe.child("Locations");
+        q2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.hasChildren()){
+                    for (DataSnapshot dataSnapshot : snapshot.getChildren()){
+                        loc_list.add(dataSnapshot.child("location").getValue().toString());
+                    }
 
-        ArrayAdapter arrayAdapter = new ArrayAdapter(this, R.layout.dropdown_category, category);
-        autoCompleteTextCat.setText(arrayAdapter.getItem(0).toString(), false);
-        autoCompleteTextCat.setAdapter(arrayAdapter);
 
-        ArrayAdapter arrayAdapter2 = new ArrayAdapter(this, R.layout.dropdown_category, Location);
-        autoCompleteTextloc.setText(arrayAdapter2.getItem(0).toString(), false);
-        autoCompleteTextloc.setAdapter(arrayAdapter2);
+                    String locations[] = new String[loc_list.size()];
+                    int i = 0;
+                    for (String title:loc_list){
+                        locations[i] = title;
+                        i++;
+                    }
+
+                    ArrayAdapter arrayAdapter2 = new ArrayAdapter(getApplicationContext(), R.layout.dropdown_category, locations);
+                    autoCompleteTextloc.setText(arrayAdapter2.getItem(0).toString(), false);
+                    autoCompleteTextloc.setAdapter(arrayAdapter2);
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
     }
@@ -231,6 +290,7 @@ public class AddNewItem extends AppCompatActivity {
         Boolean isPremium = swhAddpost.isChecked();
         post.setIsPremium(isPremium);
         post.setLocation(autoCompleteTextloc.getText().toString().trim());
+        post.setCategoryID(autoCompleteTextCat.getText().toString().trim());
         post.setTitle(addProductName.getText().toString().trim());
         post.setPrice(Double.parseDouble(rentFee.getText().toString().trim()));
         post.setContactNumber(addProdcontact.getText().toString().trim());
@@ -326,7 +386,7 @@ public class AddNewItem extends AppCompatActivity {
     }
 
     private void imageChooser() {
-        FishBun.with(this).setImageAdapter(new GlideAdapter()).setMaxCount(4).setRequestCode(100).startAlbum();
+        FishBun.with(this).setImageAdapter(new GlideAdapter()).setMaxCount(4).setRequestCode(100).setActionBarColor(Color.parseColor("#1BB55C")).startAlbum();
     }
 
 

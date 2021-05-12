@@ -19,7 +19,6 @@ import com.bumptech.glide.Glide;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.Models.RequestRentModel;
 import com.example.huwamaruwa.R;
-import com.example.huwamaruwa.RentalRequests.MyPremiumProductRentalRequestRecyclerViewAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
@@ -187,6 +186,15 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
                         requestRentModel.setAddress(holder.edtAddress.getText().toString().trim());
                         requestRentModel.setContactNumber(holder.edtContactNum.getText().toString().trim());
                         requestRentModel.setInitialDeposit(Double.parseDouble(holder.edtDeposit.getText().toString().trim()));
+                        requestRentModel.setDuration(pending_req_list.get(position).getDuration());
+                        requestRentModel.setTotal(pending_req_list.get(position).getTotal());
+                        requestRentModel.setIsPremium(pending_req_list.get(position).getIsPremium());
+                        requestRentModel.setProductId(pending_req_list.get(position).getProductId());
+                        requestRentModel.setDateDif(pending_req_list.get(position).getDateDif());
+                        requestRentModel.setStatus(pending_req_list.get(position).getStatus());
+                        requestRentModel.setId(pending_req_list.get(position).getId());
+                        requestRentModel.setUserId(pending_req_list.get(position).getUserId());
+                        requestRentModel.setSellerId(pending_req_list.get(position).getSellerId());
                         dbRef.child(requestRentModel.getId()).setValue(requestRentModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
@@ -236,6 +244,17 @@ public class PendingRequestAdapter extends RecyclerView.Adapter<PendingRequestAd
                     try {
                         RequestRentModel requestRentModel = pending_req_list.get(position);
                         requestRentModel.setStatus("Approved");
+                        requestRentModel.setAddress(pending_req_list.get(position).getAddress());
+                        requestRentModel.setContactNumber(pending_req_list.get(position).getContactNumber());
+                        requestRentModel.setInitialDeposit(pending_req_list.get(position).getInitialDeposit());
+                        requestRentModel.setDuration(pending_req_list.get(position).getDuration());
+                        requestRentModel.setTotal(pending_req_list.get(position).getTotal());
+                        requestRentModel.setIsPremium(pending_req_list.get(position).getIsPremium());
+                        requestRentModel.setProductId(pending_req_list.get(position).getProductId());
+                        requestRentModel.setDateDif(pending_req_list.get(position).getDateDif());
+                        requestRentModel.setId(pending_req_list.get(position).getId());
+                        requestRentModel.setUserId(pending_req_list.get(position).getUserId());
+                        requestRentModel.setSellerId(pending_req_list.get(position).getSellerId());
                         DatabaseReference dRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
                         dRef.child(pending_req_list.get(position).getId()).setValue(requestRentModel).addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override

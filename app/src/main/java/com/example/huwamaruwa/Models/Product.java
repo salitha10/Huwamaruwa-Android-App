@@ -31,7 +31,7 @@ public class Product implements Parcelable {
     private String images2;
     private String images3;
     private String images4;
-    private int categoryID;
+    private String categoryID;
     private String contactNumber;
     private String location;
     private double depositPercentage;
@@ -168,11 +168,11 @@ public class Product implements Parcelable {
         this.images4 = images4;
     }
 
-    public int getCategoryID() {
+    public String getCategoryID() {
         return categoryID;
     }
 
-    public void setCategoryID(int categoryID) {
+    public void setCategoryID(String categoryID) {
         this.categoryID = categoryID;
     }
 
@@ -233,7 +233,7 @@ public class Product implements Parcelable {
     }
 
     public Product(Parcel in) {
-        String data[] = new String[21];
+        String data[] = new String[22];
         in.readStringArray(data);
 
         this.price =Double.parseDouble(data[0]) ;
@@ -257,6 +257,7 @@ public class Product implements Parcelable {
         this.depositPercentage = Double.parseDouble(data[18]);
         this.location = data[19];
         this.sellerId = data[20];
+        this.categoryID = data[21];
     }
 
 
@@ -288,7 +289,8 @@ public class Product implements Parcelable {
                 String.valueOf(this.date_in_day),
                 String.valueOf(this.depositPercentage),
                 this.location,
-                this.sellerId
+                this.sellerId,
+                this.categoryID
         });
     }
 }

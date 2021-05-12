@@ -1,10 +1,12 @@
 package com.example.huwamaruwa.RentalRequests.tabItems;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +18,8 @@ import com.airbnb.lottie.LottieAnimationView;
 import com.example.huwamaruwa.Models.RequestRentModel;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.RentalRequests.tabbedrecyclerAdapters.PendingRequestAdapter;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -31,10 +35,17 @@ public class TabPending extends Fragment {
     ArrayList<RequestRentModel> request_list;
     TextView noData;
     LottieAnimationView searchLottie,emptyLottie;
+    String userId;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view =  inflater.inflate(R.layout.tab_pending,container,false);
+
+        //get Current User
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.e("login",user.getUid());
+        userId = user.getUid();
+
 
         pendingRecycler = view.findViewById(R.id.RentalReq_seller_side_pending_recycler);
 
@@ -54,7 +65,7 @@ public class TabPending extends Fragment {
                     searchLottie.setVisibility(View.VISIBLE);
 
                     for (DataSnapshot dataSnapshot:snapshot.getChildren()) {
-                        if (dataSnapshot.child("status").getValue().toString().equals("Pending")){
+                        if ((dataSnapshot.child("status").getValue().toString().equals("Pending")) && (dataSnapshot.child("sellerId").getValue().toString().equals(userId)) ){
                             RequestRentModel request = new RequestRentModel();
                             request.setAddress(dataSnapshot.child("address").getValue().toString());
                             request.setContactNumber(dataSnapshot.child("contactNumber").getValue().toString());
@@ -67,6 +78,7 @@ public class TabPending extends Fragment {
                             request.setStatus(dataSnapshot.child("status").getValue().toString());
                             request.setId(dataSnapshot.child("id").getValue().toString());
                             request.setUserId(dataSnapshot.child("userId").getValue().toString());
+                            request.setSellerId(dataSnapshot.child("sellerId").getValue().toString());
                             request_list.add(request);
 
                         }

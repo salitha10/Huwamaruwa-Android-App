@@ -94,7 +94,7 @@ public class CompleatedReqAdapter extends RecyclerView.Adapter<CompleatedReqAdap
                            product.setIsPremium(Boolean.parseBoolean(dataSnapshot.child("isPremium").getValue().toString()));
                        }
                        uDbRef = FirebaseDatabase.getInstance().getReference().child("Users");
-                       Query query2 = uDbRef.orderByChild("userId").equalTo(product.getSellerId());
+                       Query query2 = uDbRef.orderByChild("userId").equalTo(requestRentModel.getSellerId());
 
                        query2.addListenerForSingleValueEvent(new ValueEventListener() {
                            @Override
