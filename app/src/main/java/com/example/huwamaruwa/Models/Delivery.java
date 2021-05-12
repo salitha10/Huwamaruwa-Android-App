@@ -2,12 +2,12 @@ package com.example.huwamaruwa.Models;
 
 public class Delivery {
 
-    String pickedUP;
-    String pickedUpDate;
-    String inTransit;
-    String InTransitDate;
-    String Delivered;
-    String deliveredDate;
+    private String pickedUP;
+    private String pickedUpDate;
+    private String inTransit;
+    private String InTransitDate;
+    private String Delivered;
+    private String deliveredDate;
 
     public String getInTransitDate() {
         return InTransitDate;

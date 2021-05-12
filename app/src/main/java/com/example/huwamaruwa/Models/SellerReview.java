@@ -1,15 +1,64 @@
 package com.example.huwamaruwa.Models;
 
-public class SellerReview {
+import android.os.Parcel;
+import android.os.Parcelable;
 
-    String ID;
-    String productID;
-    String reviewerID;
-    String comment;
-    float priceRating;
-    float handlingRating;
-    float comRating;
-    String date;
+public class SellerReview implements Parcelable {
+
+    private String ID;
+    private String sellerID;
+    private String reviewerID;
+    private String comment;
+    private float priceRating;
+    private float handlingRating;
+    private float comRating;
+    private float averageRating;
+    private String date;
+
+    public SellerReview(Parcel in) {
+        ID = in.readString();
+        sellerID = in.readString();
+        reviewerID = in.readString();
+        comment = in.readString();
+        priceRating = in.readFloat();
+        handlingRating = in.readFloat();
+        comRating = in.readFloat();
+        averageRating = in.readFloat();
+        date = in.readString();
+    }
+
+    public static final Creator<SellerReview> CREATOR = new Creator<SellerReview>() {
+        @Override
+        public SellerReview createFromParcel(Parcel in) {
+            return new SellerReview(in);
+        }
+
+        @Override
+        public SellerReview[] newArray(int size) {
+            return new SellerReview[size];
+        }
+    };
+
+    public SellerReview() {
+
+    }
+
+    public String getSellerID() {
+        return sellerID;
+    }
+
+    public void setSellerID(String sellerID) {
+        this.sellerID = sellerID;
+    }
+
+    public float getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(float averageRating) {
+        this.averageRating = averageRating;
+    }
+
 
     public String getDate() {
         return date;
@@ -25,14 +74,6 @@ public class SellerReview {
 
     public void setID(String ID) {
         this.ID = ID;
-    }
-
-    public String getProductID() {
-        return productID;
-    }
-
-    public void setProductID(String productID) {
-        this.productID = productID;
     }
 
     public String getReviewerID() {
@@ -75,11 +116,21 @@ public class SellerReview {
         this.comRating = comRating;
     }
 
-    public String getString() {
-        return date;
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
-    public void setString(String date) {
-        this.date = date;
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(ID);
+        parcel.writeString(sellerID);
+        parcel.writeString(reviewerID);
+        parcel.writeString(comment);
+        parcel.writeFloat(priceRating);
+        parcel.writeFloat(handlingRating);
+        parcel.writeFloat(comRating);
+        parcel.writeFloat(averageRating);
+        parcel.writeString(date);
     }
 }

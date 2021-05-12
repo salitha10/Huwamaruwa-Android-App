@@ -178,7 +178,6 @@ public class AddProductReview extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Review Added", Toast.LENGTH_SHORT).show();
 
-
             } catch (Exception e) {
                 Log.d(DB_ERROR, "DATA SAVE FAILED - " + e.getMessage());
                 Toast.makeText(getApplicationContext(), "Review Not Added", Toast.LENGTH_SHORT).show();

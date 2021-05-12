@@ -60,7 +60,6 @@ public class PremiumProcessingTab extends Fragment {
                           // request.setUserId(dataSnapshot.child("userId").getValue().toString());
                             request_list.add(request);
                         }
-
                     }
                 }else request_list = null;
 

@@ -3,7 +3,9 @@ package com.example.huwamaruwa.ReviewUser;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Models.ProductReviews;
 import com.example.huwamaruwa.Models.SellerReview;
 import com.example.huwamaruwa.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,7 +30,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class ReviewSeller extends AppCompatActivity {
+public class EditSellerReviews extends AppCompatActivity {
+
+    private static final String INVALID_DATA = "INVALID_DATA";
+    private static final String DB_ERROR = "DATABASE_ERROR";
 
     EditText comment;
     TextView name;
@@ -39,6 +45,13 @@ public class ReviewSeller extends AppCompatActivity {
     DatabaseReference dbf;
     FirebaseUser user;
     String date;
+
+
+    /**
+     * Get buyer id from intents
+     * Get Seller ID from intents
+     */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +75,15 @@ public class ReviewSeller extends AppCompatActivity {
 
         //sellerID = getIntent().getExtras("sellerID");
         sellerID = "HVGC2pBrNXaeGwcZAYfyxe0wgwJ3";
+
+        Intent intent = getIntent();
+        sr = intent.getParcelableExtra("MyReview");
+
+        comment.setText(sr.getComment());
+        r1.setRating(sr.getComRating());
+        r2.setRating(sr.getHandlingRating());
+        r3.setRating(sr.getPriceRating());
+
     }
 
     public void onResume() {
@@ -115,9 +137,7 @@ public class ReviewSeller extends AppCompatActivity {
                 sr.setID(sellerID);
 
                 //dbf.push().setValue(sr);
-                String recID = dbf.push().getKey();
-                sr.setID(recID);
-                dbf.child(recID).setValue(sr);
+                dbf.child(sr.getID()).setValue(sr);
 
                 Toast.makeText(getApplicationContext(), "Saved", Toast.LENGTH_SHORT).show();
 
