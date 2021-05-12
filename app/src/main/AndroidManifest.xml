@@ -105,19 +105,39 @@
 
 
         <activity android:name=".addProduct.AddNewItem">
+
         </activity>
 
+        <activity android:name=".MypostAD.UserPostedAds">
 
 
-        <activity android:name=".SplashScreen" >
+        </activity>
+        <activity android:name=".MypostAD.EditMyAd">
+
+        </activity>
+        <activity android:name=".addCategory.EditCategoryData">
+
+        </activity>
+        <activity android:name=".addCategory.allAddCategories">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".AddCategory">
+
         </activity>
 
-        <activity android:name=".AddCategory" />
+
+
+
+        <activity android:name=".SplashScreen" >
+
+        </activity>
+
+
 
         <activity android:name=".ProfPicFullScreen"></activity>
         <activity android:name=".buyerRentalRequestManage.ProductImageFullScreen" />
