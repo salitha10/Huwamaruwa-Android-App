@@ -113,6 +113,7 @@ private Toolbar toolbar;
                        product.setPerHour(Boolean.parseBoolean(dataSnapshot.child("perHour").getValue().toString()));
                        product.setDepositPercentage(Double.parseDouble(dataSnapshot.child("depositPercentage").getValue().toString()));
                        product.setLocation(dataSnapshot.child("location").getValue().toString());
+                       product.setCategoryID(dataSnapshot.child("categoryID").getValue().toString());
                        product.setSellerId(dataSnapshot.child("sellerId").getValue().toString());
                        product_list.add(product);
                    }

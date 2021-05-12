@@ -8,12 +8,16 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.huwamaruwa.Models.RentalHistoryModel;
 import com.example.huwamaruwa.R;
 import com.example.huwamaruwa.singleProduct.PremiumProduct;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,17 +33,27 @@ private DatabaseReference dbRef;
 private ArrayList<RentalHistoryModel>request_list;
 private ArrayList<String>userId_list;
 private  RecyclerView recyclerView;
+private Button btnClearHistory;
+private String userId,sellerId;
 private Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rental_history);
 
+        //get Current User
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        Log.e("login",user.getUid());
+        userId = user.getUid();
+
+        btnClearHistory = findViewById(R.id.btnClearHistoryPremiumStore);
         request_list = new ArrayList<>();
         userId_list = new ArrayList<>();
+
         dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
         recyclerView = findViewById(R.id.premium_history_recycler);
 
+        btnClearHistory.setVisibility(View.GONE);
         //setup Toolbar
         toolbar = findViewById(R.id.toolbar);
         //setup toolbar
@@ -70,7 +84,10 @@ private Toolbar toolbar;
                         rentalHistoryModel.setRentDate(dataSnapshot.child("duration").getValue().toString());
                         userId_list.add(dataSnapshot.child("userId").getValue().toString());
                         request_list.add(rentalHistoryModel);
+                        sellerId = dataSnapshot.child("sellerId").getValue().toString();
+                         if (userId.equals(sellerId)) btnClearHistory.setVisibility(View.VISIBLE);
                     }
+
                 }
                 RentalHistoryAdapter adapter = new RentalHistoryAdapter(request_list,getApplicationContext(),userId_list);
                 recyclerView.setAdapter(adapter);
@@ -86,7 +103,16 @@ private Toolbar toolbar;
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
 
+        btnClearHistory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clearHistory();
+            }
+        });
 
+    }
+
+    private void clearHistory() {
 
     }
 }

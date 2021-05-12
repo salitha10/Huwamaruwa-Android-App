@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Home");
+        getSupportActionBar().setTitle("Huwamaruwa");
         //hide data
         new Handler().postDelayed(new Runnable() {
             @Override

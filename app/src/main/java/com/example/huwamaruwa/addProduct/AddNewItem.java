@@ -205,15 +205,6 @@ public class AddNewItem extends AppCompatActivity {
         });
 
 
-//        btnTakePhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                captureImg();
-//            }
-//        });
-
-
-
         btnPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -223,16 +214,26 @@ public class AddNewItem extends AppCompatActivity {
                 try {
 
                     if (TextUtils.isEmpty(addProductName.getText().toString().trim())){
+                        addProductName.requestFocus();
+                        addProductName.setError("Fieled can not be empty");
 
                         Toast.makeText(AddNewItem.this, "Title Required", Toast.LENGTH_SHORT).show();
                     }else if (TextUtils.isEmpty(rentFee.getText().toString().trim())){
+                        rentFee.requestFocus();
+                        rentFee.setError("This Field can not be empty");
                         Toast.makeText(AddNewItem.this, "Price Required", Toast.LENGTH_SHORT).show();
 
                     }else if (TextUtils.isEmpty(prodDescription.getText().toString().trim())){
-
+                        prodDescription.requestFocus();
+                        prodDescription.setError("This filed can not be empty");
                         Toast.makeText(AddNewItem.this, "Description Required", Toast.LENGTH_SHORT).show();
 
-                    }else if(img_list.isEmpty()){
+                    }else if(TextUtils.isEmpty(addProdcontact.getText().toString().trim())){
+                        addProdcontact.requestFocus();
+                        addProdcontact.setError("This filed can not be empty");
+                        Toast.makeText(AddNewItem.this, "Contact Number Required", Toast.LENGTH_SHORT).show();
+
+                    } else if(img_list.isEmpty()){
                         Toast.makeText(AddNewItem.this, "Image Required", Toast.LENGTH_SHORT).show();
                     } else {
 

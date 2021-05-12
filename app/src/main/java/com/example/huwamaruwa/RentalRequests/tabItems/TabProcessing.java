@@ -45,9 +45,9 @@ public class TabProcessing extends Fragment {
         userId = user.getUid();
 
 
-        searchLottie = view.findViewById(R.id.processing_tab_search_lottie);
+        //searchLottie = view.findViewById(R.id.processing_tab_search_lottie);
         emptyLottie = view.findViewById(R.id.processing_tab_empty_lottie);
-        searchLottie.setVisibility(View.GONE);
+       // searchLottie.setVisibility(View.GONE);
         emptyLottie.setVisibility(View.GONE);
 
 

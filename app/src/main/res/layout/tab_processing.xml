@@ -7,16 +7,6 @@
     android:background="#FFFFFF">
 
     <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/processing_tab_search_lottie"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        app:lottie_rawRes="@raw/search_lottie" />
-    <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/processing_tab_empty_lottie"
         android:layout_width="match_parent"
         android:layout_height="200dp"

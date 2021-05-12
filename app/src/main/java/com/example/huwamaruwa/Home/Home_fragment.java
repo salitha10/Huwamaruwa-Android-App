@@ -2,6 +2,7 @@ package com.example.huwamaruwa.Home;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -19,6 +21,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.huwamaruwa.Home.GridList.GridList;
 import com.example.huwamaruwa.MainActivity;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.Progress.LoadingProgress;
@@ -35,6 +38,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 public class Home_fragment extends Fragment {
+    private static final String TAG_LATEST_MORE_TITLE = "com.example.latest_viewMore";
 
     //declare Private variables
 
@@ -50,6 +54,7 @@ public class Home_fragment extends Fragment {
     private Home_recycler_2_adapter home_recycler_2_adapter;
     private String userId;
     private Dialog dialog;
+    private Button viewMoreLatest,viewMoreHistory;
     private LinearLayout historyLayout;
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch onlyPremium;
@@ -80,6 +85,7 @@ public class Home_fragment extends Fragment {
         //get views by ids
         //layout
         historyLayout = view.findViewById(R.id.linearLayout2);
+        viewMoreHistory = view.findViewById(R.id.btnhistory_view_more);
 
         //recycler
         recyclerView1 = view.findViewById(R.id.home_recycler_view_1);
@@ -92,7 +98,7 @@ public class Home_fragment extends Fragment {
         product_list_history_premium = new ArrayList<>();
         product_list_premium = new ArrayList<>();
 
-        //switch
+        viewMoreLatest = view.findViewById(R.id.btnlatest_view_more);
         //onlyPremium = view.findViewById(R.id.only_premium);
 
 
@@ -152,6 +158,23 @@ public class Home_fragment extends Fragment {
                 recyclerView3.setAdapter(home_recycler_3_adapter);
                 home_recycler_1_adapter.notifyDataSetChanged();
                 home_recycler_3_adapter.notifyDataSetChanged();
+
+                viewMoreLatest.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), GridList.class);
+                       // intent.putExtra(TAG_LATEST_MORE_TITLE,);
+                        getContext().startActivity(intent);
+                    }
+                });
+                viewMoreHistory.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(getContext(), GridList.class);
+                        // intent.putExtra(TAG_LATEST_MORE_TITLE,);
+                        getContext().startActivity(intent);
+                    }
+                });
             }
 
             @Override
@@ -196,7 +219,6 @@ public class Home_fragment extends Fragment {
                         product.setPerHour(Boolean.parseBoolean(dataSnapshot.child("perHour").getValue().toString()));
                         product.setDepositPercentage(Double.parseDouble(dataSnapshot.child("depositPercentage").getValue().toString()));
                         product.setLocation(dataSnapshot.child("location").getValue().toString());
-                        Toast.makeText(getContext(), "Category is "+ dataSnapshot.child("categoryID").getValue().toString(), Toast.LENGTH_SHORT).show();
                         product.setCategoryID(dataSnapshot.child("categoryID").getValue().toString());
                         product.setSellerId(dataSnapshot.child("sellerId").getValue().toString());
                         product_list_history.add(product);

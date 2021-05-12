@@ -277,7 +277,7 @@
                     android:layout_height="55dp"
                     android:background="@null"
                     android:importantForAutofill="no"
-                    android:inputType="text"
+                    android:inputType="phone"
                     android:paddingStart="10dp"
                     android:paddingEnd="10dp"
                     android:textColor="@color/View_line"

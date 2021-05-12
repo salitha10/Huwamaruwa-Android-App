@@ -1,6 +1,8 @@
 package com.example.huwamaruwa.payment;
 
 import android.app.Dialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,6 +21,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.huwamaruwa.MainActivity;
 import com.example.huwamaruwa.Models.RequestRentModel;
@@ -34,6 +38,7 @@ import com.shashank.sony.fancygifdialoglib.FancyGifDialog;
 import com.shashank.sony.fancygifdialoglib.FancyGifDialogListener;
 
 public class PaymentOption extends AppCompatActivity {
+    private static final String CHANNEL_ID = "id1";
     private CardView oneTimePayment, cashOnDelivery;
     private TextView amount;
     private Double productAmount = 0.00;
@@ -43,7 +48,6 @@ public class PaymentOption extends AppCompatActivity {
     private Bundle bundle;
     private Button payBtn;
     private String id = null;
-    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,24 +58,17 @@ public class PaymentOption extends AppCompatActivity {
         cashOnDelivery = findViewById(R.id.card_cash_on_delivery);
 
         dialog = new Dialog(this);
-        toolbar = findViewById(R.id.toolbar);
 
 
         bundle = getIntent().getExtras();
 
-        //setup Toolbar
-        //set Toolbar title
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setTitle("Rent Request");
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
+        int imp = NotificationManager.IMPORTANCE_DEFAULT;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,"Notification_channel",imp);
+            channel.setDescription("Huwamaruwa Notification");
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
 
 
         productAmount = bundle.getDouble("deposit");
@@ -124,6 +121,14 @@ public class PaymentOption extends AppCompatActivity {
                 .OnPositiveClicked(new FancyGifDialogListener() {
                     @Override
                     public void OnClick() {
+                        NotificationCompat.Builder builder = new NotificationCompat.Builder(getApplicationContext(),CHANNEL_ID)
+                                .setSmallIcon(R.drawable.notifications_icon)
+                                .setContentTitle("Huwamaruwa")
+                                .setContentText("Your Request Under Review")
+                                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+                                .setAutoCancel(true);
+                        NotificationManagerCompat notificationManager = NotificationManagerCompat.from(getApplicationContext());
+                        notificationManager.notify(0,builder.build());
                         Intent intent = new Intent(PaymentOption.this, MainActivity.class);
                         startActivity(intent);
                     }

@@ -37,24 +37,17 @@ public class GridList extends AppCompatActivity {
         product_list  = new ArrayList<>();
         recyclerView = findViewById(R.id.grid_recycler_griidList);
         toolbar = findViewById(R.id.toolbar);
-        
+
+
+
+
         Intent intent = getIntent();
         String catTitle = intent.getStringExtra(CategoryListAdapter.TAG_CATEGORY_TITLE);
-        
-        //setup Toolbar
-        //set Toolbar title
-
-        String title = null;
-        if (intent.getStringExtra(LocationListAdapter.TAG_Location_TITLE) != null){
-            title = location;
-        }else if (intent.getStringExtra(intent.getStringExtra(CategoryListAdapter.TAG_CATEGORY_TITLE)) != null){
-            title = catTitle;
-        }
-        
-
 
 
         location = intent.getStringExtra(LocationListAdapter.TAG_Location_TITLE);
+
+
 
         dbRef = FirebaseDatabase.getInstance().getReference().child("Product");
 
@@ -93,6 +86,7 @@ public class GridList extends AppCompatActivity {
                         product.setPerHour(Boolean.parseBoolean(dataSnapshot.child("perHour").getValue().toString()));
                         product.setDepositPercentage(Double.parseDouble(dataSnapshot.child("depositPercentage").getValue().toString()));
                         product.setLocation(dataSnapshot.child("location").getValue().toString());
+                        product.setCategoryID(dataSnapshot.child("categoryID").getValue().toString());
                         product.setSellerId(dataSnapshot.child("sellerId").getValue().toString());
                         if (intent.getStringExtra(LocationListAdapter.TAG_Location_TITLE) != null){
                             if (product.getLocation().equals(location)){

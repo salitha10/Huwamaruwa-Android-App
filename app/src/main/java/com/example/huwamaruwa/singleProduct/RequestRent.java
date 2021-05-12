@@ -170,7 +170,6 @@ public class RequestRent extends AppCompatActivity {
                                 bundle.putString("dateDif", Integer.toString(dateDif));
                                 bundle.putString("userId", userId);
                                 bundle.putString("sellerId", product.getSellerId());
-
                                 Intent intent = new Intent(getApplicationContext(), PaymentOption.class);
                                 intent.putExtras(bundle);
                                 startActivity(intent);
