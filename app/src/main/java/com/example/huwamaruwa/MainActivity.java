@@ -2,12 +2,16 @@ package com.example.huwamaruwa;
 
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.util.Log;
 
 
@@ -31,6 +35,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Delivery.DeliveryList;
 import com.example.huwamaruwa.Home.AddLocation;
 import com.example.huwamaruwa.Home.Customer_care_fragment;
 import com.example.huwamaruwa.Home.Home_fragment;
@@ -48,6 +53,7 @@ import com.example.huwamaruwa.addProduct.AddNewItem;
 import com.example.huwamaruwa.buyerRentalRequestManage.AllBuyerRentalRequests;
 import com.example.huwamaruwa.buyerRentalRequestManage.BuyerRentalRequest;
 import com.example.huwamaruwa.buyerRentalRequestManage.SentRentalRequestBySeller;
+import com.example.huwamaruwa.customer_care.ChatFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -94,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Animation topSheet;
     Button btnCategory;
     Button btnLocation;
-
+    Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         txtFloatingReq = findViewById(R.id.txtfloating_req);
         floatingSheet = findViewById(R.id.floating_bottom_sheet);
 
-
         //get Current User
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         Log.e("login",user.getUid());
@@ -132,6 +137,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setTitle("Huwamaruwa");
+
+        //setup dialog box
+        dialog = new Dialog(getApplicationContext());
+        dialog.setContentView(R.layout.connection_alert);
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
         //hide data
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -185,36 +197,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        //set app name to toolbar
-       // setSupportActionBar(toolbar);
-
-
-
-        //set toggle event
-        navigationView.bringToFront();
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
-
-        //set navigation view clickable
-        navigationView.setNavigationItemSelectedListener(this);
-        View headerView = navigationView.getHeaderView(0);
-        loginName = (TextView) headerView.findViewById(R.id.LoginName);
-        loginSellerType = (TextView) headerView.findViewById(R.id.LoginSellerType);
-        profileIcon = (CircularImageView) headerView.findViewById(R.id.profile_icon);
-
-
-
-
-//        Toast.makeText(getApplicationContext(), userId, Toast.LENGTH_LONG).show();
-
 
 
 
 
 
         //set app name to toolbar
-       // setSupportActionBar(toolbar);
+        // setSupportActionBar(toolbar);
 
 
 
@@ -265,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 topSheet = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.floating_bottom_bottom_animation);
                 setVisibility(clicker);
 
-               //
+                //
             }
         });
         btnCategory.setOnClickListener(new View.OnClickListener() {
@@ -369,56 +358,80 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
 
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-        switch (item.getItemId()){
+        if(isConnected(this)){
+            switch (item.getItemId()){
 
-            case R.id.nav_home:
+                case R.id.nav_home:
 
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
-                break;
-            case R.id.nav_customer_care:
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                    break;
 
-                fragment = new Customer_care_fragment();
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentDefault,fragment);
-                fragmentTransaction.commit();
-                floatingActionButton.setVisibility(View.INVISIBLE);
-                break;
-            case R.id.admin_Rental_requests:
-                floatingActionButton.setVisibility(View.INVISIBLE);
-                fragment = new PremiumProductRentalRequestFragment();
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentDefault,fragment);
-                fragmentTransaction.commit();
-                break;
+                case R.id.admin_Rental_requests:
+                    floatingActionButton.setVisibility(View.INVISIBLE);
+                    fragment = new PremiumProductRentalRequestFragment();
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentDefault,fragment);
+                    fragmentTransaction.commit();
+                    break;
                 case R.id.nav_seller_requests:
                     floatingActionButton.setVisibility(View.INVISIBLE);
-                fragment = new nonPremium_Requests_seller_sideFragment();
-                fragmentManager = getSupportFragmentManager();
-                fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentDefault,fragment);
-                fragmentTransaction.commit();
-                break;
-            case R.id.admin_add_location:
-                floatingActionButton.setVisibility(View.INVISIBLE);
-                startActivity(new Intent(MainActivity.this, AddLocation.class));
-                break;
-            case R.id.nav_seller_product_request:
-                startActivity(new Intent(getApplicationContext(), AllBuyerRentalRequests.class));
-                break;
-            case R.id.nav_seller_sent_product_offers:
-                startActivity(new Intent(getApplicationContext(), SentRentalRequestBySeller.class));
-                break;
-            case R.id.admin_categories:
-                startActivity(new Intent(getApplicationContext(), allAddCategories.class));
-                break;
-            case R.id.nav_seller_my_add:
-                startActivity(new Intent(getApplicationContext(), UserPostedAds.class));
-                break;
+                    fragment = new nonPremium_Requests_seller_sideFragment();
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentDefault,fragment);
+                    fragmentTransaction.commit();
+                    break;
+                case R.id.admin_add_location:
+                    floatingActionButton.setVisibility(View.INVISIBLE);
+                    startActivity(new Intent(MainActivity.this, AddLocation.class));
+                    break;
+                case R.id.nav_seller_product_request:
+                    startActivity(new Intent(getApplicationContext(), AllBuyerRentalRequests.class));
+                    break;
+                case R.id.nav_seller_sent_product_offers:
+                    startActivity(new Intent(getApplicationContext(), SentRentalRequestBySeller.class));
+                    break;
+                case R.id.admin_categories:
+                    startActivity(new Intent(getApplicationContext(), allAddCategories.class));
+                    break;
+                case R.id.nav_seller_my_add:
+                    startActivity(new Intent(getApplicationContext(), UserPostedAds.class));
+                    break;
+                case R.id.admin_delivery:
+                    fragment = new DeliveryList();
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentDefault,fragment);
+                    fragmentTransaction.commit();
+                    break;
+                case R.id.nav_customer_care:
+                    fragment = new ChatFragment();
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.fragmentDefault,fragment);
+                    fragmentTransaction.commit();
+                    break;
+
+            }
+        }else {
+            dialog.show();
+            dialog.findViewById(R.id.btn_connection_close).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                }
+            });
+            dialog.findViewById(R.id.btn_connection_turn_on).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                }
+            });
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;

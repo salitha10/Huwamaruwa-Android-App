@@ -2,6 +2,7 @@ package com.example.huwamaruwa.RentalRequests.tabbedrecyclerAdapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -141,8 +142,12 @@ public class ProcessingReqAdapter extends RecyclerView.Adapter<ProcessingReqAdap
            holder.btnViewProduct.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View view) {
-                   Toast.makeText(context, "Clicked viewProduct Button", Toast.LENGTH_SHORT).show();
-                   viewProduct(position);
+                   Intent intent = new Intent(context,DeliveryUserScreen.class);
+                   Bundle bundle = new Bundle();
+                   bundle.putString("sellerId",processing_req_list.get(position).getSellerId());
+                   bundle.putString("rendId",processing_req_list.get(position).getId());
+                   intent.putExtras(bundle);
+                   context.startActivity(intent);
                }
            });
        }

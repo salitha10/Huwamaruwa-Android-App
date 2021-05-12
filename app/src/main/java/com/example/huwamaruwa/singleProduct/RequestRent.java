@@ -1,9 +1,13 @@
 package com.example.huwamaruwa.singleProduct;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.provider.Settings;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -58,7 +62,7 @@ public class RequestRent extends AppCompatActivity {
     private double total = 0;
     private String userId;
     private Toolbar toolbar;
-
+    private Dialog dialog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,6 +105,12 @@ public class RequestRent extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+        dialog = new Dialog(getApplicationContext());
+        dialog.setContentView(R.layout.connection_alert);
+        dialog.setCancelable(false);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
 
         Glide.with(this).load(product.getImages1()).into(imgMain);
         txtTitle.setText(product.getTitle());
@@ -159,20 +169,39 @@ public class RequestRent extends AppCompatActivity {
                     } else {
                         if (dateDif >= product.getMinRentalTime()) {//check Minimum Rental Time
                             if (android.util.Patterns.PHONE.matcher(edtContactNumber.getText().toString().trim()).matches() && edtContactNumber.getText().toString().trim().length() == 10) { //validate phone number
-                                Bundle bundle = new Bundle();
-                                bundle.putString("address", edtAddress.getText().toString());
-                                bundle.putString("contact", edtContactNumber.getText().toString());
-                                bundle.putString("duration", textView.getText().toString());
-                                bundle.putDouble("deposit", deposit);
-                                bundle.putDouble("total", total);
-                                bundle.putString("isPremium", Boolean.toString(product.getIsPremium()));
-                                bundle.putString("productId", product.getId());
-                                bundle.putString("dateDif", Integer.toString(dateDif));
-                                bundle.putString("userId", userId);
-                                bundle.putString("sellerId", product.getSellerId());
-                                Intent intent = new Intent(getApplicationContext(), PaymentOption.class);
-                                intent.putExtras(bundle);
-                                startActivity(intent);
+                               if (MainActivity.isConnected(getApplicationContext())){
+                                   Bundle bundle = new Bundle();
+                                   bundle.putString("address", edtAddress.getText().toString());
+                                   bundle.putString("contact", edtContactNumber.getText().toString());
+                                   bundle.putString("duration", textView.getText().toString());
+                                   bundle.putDouble("deposit", deposit);
+                                   bundle.putDouble("total", total);
+                                   bundle.putString("isPremium", Boolean.toString(product.getIsPremium()));
+                                   bundle.putString("productId", product.getId());
+                                   bundle.putString("dateDif", Integer.toString(dateDif));
+                                   bundle.putString("userId", userId);
+                                   bundle.putString("sellerId", product.getSellerId());
+                                   Intent intent = new Intent(getApplicationContext(), PaymentOption.class);
+                                   intent.putExtras(bundle);
+                                   startActivity(intent);
+                               }else {
+                                   dialog.show();
+                                   dialog.findViewById(R.id.btn_connection_close).setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View view) {
+                                          startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                       }
+                                   });
+                                   dialog.findViewById(R.id.btn_connection_turn_on).setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View view) {
+                                           startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                                       }
+                                   });
+                               }
+
+
+
 
                             } else edtContactNumber.setError("Invalid Format");
 
@@ -205,32 +234,49 @@ public class RequestRent extends AppCompatActivity {
                     } else {
                         if (dateDif >= product.getMinRentalTime()) {//check Minimum Rental Time
                             if (android.util.Patterns.PHONE.matcher(edtContactNumber.getText().toString().trim()).matches() && edtContactNumber.getText().toString().trim().length() == 10) { //validate phone number
-                                dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
-                                RequestRentModel request = new RequestRentModel();
-                                request.setAddress(edtAddress.getText().toString());
-                                request.setContactNumber(edtContactNumber.getText().toString());
-                                request.setDuration(textView.getText().toString());
-                                request.setInitialDeposit(deposit);
-                                request.setTotal(total);
-                                request.setIsPremium(Boolean.toString(product.getIsPremium()));
-                                request.setProductId(product.getId());
-                                request.setDateDif(Integer.toString(dateDif));
-                                request.setUserId(userId);
-                                request.setStatus("Pending");
-                                request.setSellerId(product.getSellerId());
-                                String id = dbRef.push().getKey();
-                                request.setId(id);
-                                dbRef.child(request.getId()).setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
-                                    @Override
-                                    public void onSuccess(Void aVoid) {
-                                       fancyDialog();
-                                    }
-                                }).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(RequestRent.this, "Request failed", Toast.LENGTH_SHORT).show();
-                                    }
-                                });
+                               if (MainActivity.isConnected(getApplicationContext())){
+                                   dbRef = FirebaseDatabase.getInstance().getReference().child("RequestRent");
+                                   RequestRentModel request = new RequestRentModel();
+                                   request.setAddress(edtAddress.getText().toString());
+                                   request.setContactNumber(edtContactNumber.getText().toString());
+                                   request.setDuration(textView.getText().toString());
+                                   request.setInitialDeposit(deposit);
+                                   request.setTotal(total);
+                                   request.setIsPremium(Boolean.toString(product.getIsPremium()));
+                                   request.setProductId(product.getId());
+                                   request.setDateDif(Integer.toString(dateDif));
+                                   request.setUserId(userId);
+                                   request.setStatus("Pending");
+                                   request.setSellerId(product.getSellerId());
+                                   String id = dbRef.push().getKey();
+                                   request.setId(id);
+                                   dbRef.child(request.getId()).setValue(request).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                       @Override
+                                       public void onSuccess(Void aVoid) {
+                                           fancyDialog();
+                                       }
+                                   }).addOnFailureListener(new OnFailureListener() {
+                                       @Override
+                                       public void onFailure(@NonNull Exception e) {
+                                           Toast.makeText(RequestRent.this, "Request failed", Toast.LENGTH_SHORT).show();
+                                       }
+                                   });
+                               }else {
+                                   dialog.show();
+                                   dialog.findViewById(R.id.btn_connection_close).setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View view) {
+                                           startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                                       }
+                                   });
+                                   dialog.findViewById(R.id.btn_connection_turn_on).setOnClickListener(new View.OnClickListener() {
+                                       @Override
+                                       public void onClick(View view) {
+                                           startActivity(new Intent(Settings.ACTION_WIFI_SETTINGS));
+                                       }
+                                   });
+                               }
+
                             }else edtContactNumber.setError("Invalid Format");
 
                         } else {
