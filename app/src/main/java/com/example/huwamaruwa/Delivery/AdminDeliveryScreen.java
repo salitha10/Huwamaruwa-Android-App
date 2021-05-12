@@ -28,8 +28,8 @@ public class AdminDeliveryScreen extends AppCompatActivity {
     SeekBar sb;
     DatabaseReference dbf1, dbf2, dbf3;
 
-    String rentID = "-M_2HpdA_lCTNFKnS9FK";
-    String sellerID = "3lrP6PcxDRgYUZtdqhuHE6nDwJC2";
+    String rentID = getIntent().getStringExtra("recID");
+    String sellerID = getIntent().getStringExtra("sellerID");
 
 
     @Override
@@ -117,7 +117,6 @@ public class AdminDeliveryScreen extends AppCompatActivity {
             }
         });
 
-
     }
 
     //Pickup button press
@@ -134,7 +133,6 @@ public class AdminDeliveryScreen extends AppCompatActivity {
     public void inTransit(View view){
         sb.setEnabled(true);
         sb.setProgress(2);
-
         pickedUp.setEnabled(false);
         inTransit.setEnabled(false);
         sb.setEnabled(false);

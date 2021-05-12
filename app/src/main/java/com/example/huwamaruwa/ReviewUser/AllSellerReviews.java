@@ -1,4 +1,4 @@
-package com.example.huwamaruwa.ProductReviews;
+package com.example.huwamaruwa.ReviewUser;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,13 +9,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
-import com.example.huwamaruwa.Models.ProductReviews;
+import com.example.huwamaruwa.Models.SellerReview;
+import com.example.huwamaruwa.ReviewUser.AllSellerReviewAdapter;
+import com.example.huwamaruwa.ProductReviews.MyReviewFragment;
 import com.example.huwamaruwa.R;
-import com.example.huwamaruwa.buyerRentalRequestManage.AllBuyerRequestsAdapter;
-import com.example.huwamaruwa.buyerRentalRequestManage.BuyerRentalRequestsModel;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,30 +24,28 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class AllProductReviews extends AppCompatActivity {
+public class AllSellerReviews extends AppCompatActivity {
 
-    //variables
     RecyclerView recyclerView;
     DatabaseReference database;
-    AllReviewsAdapter allReviewsAdapter;
-    ArrayList<ProductReviews> list;
+    AllSellerReviewAdapter allReviewsAdapter;
+    ArrayList<SellerReview> list;
     DatabaseReference dbf;
-    AllReviewsAdapter adapter;
+    AllSellerReviewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_all_product_reviews);
+        setContentView(R.layout.activity_all_seller_reviews);
 
-        //Get prodicutID
-        String pID = getIntent().getStringExtra("ProductID");
-        Log.d("ProductID", pID);
+       // String sID = getIntent().getStringExtra("SellerID");
+        //Log.d("SellerID", sID);
 
-        //String pID = "-M_RmmPviuLA62pC8a5q";
+        String sID = "-M_TegdG5KJNDkmprM22";
 
         MyReviewFragment FR = new MyReviewFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("ProductID", pID);
+        bundle.putString("SellerID", sID);
         FR.setArguments(bundle);
 
         //Top fragment
@@ -60,27 +56,28 @@ public class AllProductReviews extends AppCompatActivity {
 
         //Bottom recycler view
         recyclerView = findViewById(R.id.allReviewsRecycle);
-        database = FirebaseDatabase.getInstance().getReference("ProductReviews");
+        database = FirebaseDatabase.getInstance().getReference("SellerReviews");
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         //Init recyclerview
         list = new ArrayList<>();
-        AllReviewsAdapter adapter = new AllReviewsAdapter(list,this);
+        AllSellerReviewAdapter adapter = new AllSellerReviewAdapter(list,this);
         recyclerView.setAdapter(adapter);
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String cUser = user.getUid();
+        //String cUser = user.getUid();
+        String cUser = "Lud7rSb7CyeJLQt7saQOVYTZv953";
 
         database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 list.clear();
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    ProductReviews pr = dataSnapshot.getValue(ProductReviews.class);
-                    if(pr.getProductID().equals(pID) && !pr.getReviewerID().equals(cUser)) {
-                        list.add(pr);
+                    SellerReview sr = dataSnapshot.getValue(SellerReview.class);
+                    if(sr.getReviewerID().equals(sID) && !sr.getReviewerID().equals(cUser)) {
+                        list.add(sr);
                         adapter.notifyDataSetChanged();
                     }
                 }
@@ -93,5 +90,4 @@ public class AllProductReviews extends AppCompatActivity {
         });
 
     }
-
 }

@@ -1,6 +1,7 @@
 package com.example.huwamaruwa.RentalRequests.tabbedrecyclerAdapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +16,11 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.huwamaruwa.Delivery.DeliveryUserScreen;
 import com.example.huwamaruwa.Models.Product;
 import com.example.huwamaruwa.Models.RequestRentModel;
 import com.example.huwamaruwa.R;
+import com.example.huwamaruwa.customer_care.MessageActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -33,6 +36,7 @@ public class ProcessingReqAdapter extends RecyclerView.Adapter<ProcessingReqAdap
     DatabaseReference dbRef;
     private DatabaseReference uDbRef;
     private String userName,sellerEmail,selleContact;
+    String rentID;
     Product product;
     public ProcessingReqAdapter(ArrayList<RequestRentModel> processing_req_list, Context context) {
         this.processing_req_list = processing_req_list;
@@ -55,7 +59,6 @@ public class ProcessingReqAdapter extends RecyclerView.Adapter<ProcessingReqAdap
            holder.btnReject.setVisibility(View.GONE);
            holder.btnViewProduct.setText("View Delivery");
 
-
            uDbRef = FirebaseDatabase.getInstance().getReference().child("Users");
            Query query1 = uDbRef.orderByChild("userId").equalTo(processing_req_list.get(position).getUserId());
 
@@ -77,8 +80,8 @@ public class ProcessingReqAdapter extends RecyclerView.Adapter<ProcessingReqAdap
            });
 
 
-
            RequestRentModel requestRentModel = processing_req_list.get(position);
+           rentID = requestRentModel.getId();
 
                dbRef = FirebaseDatabase.getInstance().getReference().child("Product");
 
@@ -176,6 +179,17 @@ public class ProcessingReqAdapter extends RecyclerView.Adapter<ProcessingReqAdap
             btnReject = itemView.findViewById(R.id.btnRequestRent_list_reject);
             btnEdit = itemView.findViewById(R.id.btnRequestRent_list_edit);
             btnViewProduct = itemView.findViewById(R.id.btnRequestRent_list_viewProduct);
+
+            btnViewProduct.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, MessageActivity.class);
+                    intent.putExtra("sellerId", product.getSellerId());
+                    intent.putExtra("rentId", rentID);
+
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }
